@@ -1,6 +1,6 @@
-# 【保存版】WEBアプリ開発における基礎～最新（2021年9月）
+# 【保存版】WEBアプリ開発における基礎～最新 <!-- omit in toc -->
 
-## 0.  はじめに
+## 1.  はじめに
 
 WEBアプリケーションの構成や技術選定を考えるにあたって調べた専門用語やトレンドをメモしました。色んな書籍やブログをサーフィンして調べたまとめ記事です。かなりコピペもしているので、その際は出典としてURLを貼るようにしてます。
 
@@ -16,41 +16,499 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
 - とにかく横文字が多すぎて苦痛、概要だけでも拾いたい！
 - WEBのすべてを知りたい・・・（知らないことがあるなんて嫌だ）
 
-みたいな感じですかね。では、長いですが、どうぞ。
+では、長いですがどうぞ。
 
-## 1.  Internet
+- [1.  はじめに](#1--はじめに)
+- [2.  Internet](#2--internet)
+  - [2.1. Internet Protocol Suite](#21-internet-protocol-suite)
+    - [2.1.1. Application Layer](#211-application-layer)
+    - [2.1.2. Transport Layer](#212-transport-layer)
+    - [2.1.3. Internet Layer](#213-internet-layer)
+    - [2.1.4. Network Interface Layer](#214-network-interface-layer)
+  - [2.2. HTTP (HyperText Transfer Protocol)](#22-http-hypertext-transfer-protocol)
+    - [2.2.1. HTTP/0.9](#221-http09)
+    - [2.2.2. HTTP/1.0](#222-http10)
+    - [2.2.3. HTTP/1.1](#223-http11)
+    - [2.2.4. HTTP/2](#224-http2)
+    - [2.2.5. HTTP/3](#225-http3)
+  - [2.3. HTTPS (HTTP over SSL/TLS)](#23-https-http-over-ssltls)
+  - [2.4. Cookie (HTTP Cookie)](#24-cookie-http-cookie)
+  - [2.5. Third Party Cookie](#25-third-party-cookie)
+  - [2.6. Cache File](#26-cache-file)
+  - [2.7. TCP (Transmission Control Protocol)](#27-tcp-transmission-control-protocol)
+  - [2.8. SSL/TLS Handshake](#28-ssltls-handshake)
+  - [2.9. URL (a Uniform Resource Locator)](#29-url-a-uniform-resource-locator)
+  - [2.10. ISP (Internet Service Provider)](#210-isp-internet-service-provider)
+  - [2.11. SEO (Search Engine Optimization)](#211-seo-search-engine-optimization)
+  - [2.12. gRPC (Remote Procedure Call)](#212-grpc-remote-procedure-call)
+  - [2.13. Semantic WEB](#213-semantic-web)
+    - [2.13.1. RDF (Resource Description Framework)](#2131-rdf-resource-description-framework)
+    - [2.13.2. OWL (The W3C Web Ontology Language)](#2132-owl-the-w3c-web-ontology-language)
+  - [2.14. Web Socket](#214-web-socket)
+- [3. Browser](#3-browser)
+  - [3.1. Browserの種類](#31-browserの種類)
+    - [3.1.1. Chrome](#311-chrome)
+    - [3.1.2. Safari](#312-safari)
+    - [3.1.3. Firefox](#313-firefox)
+    - [3.1.4. Edge](#314-edge)
+    - [3.1.5. Sidekick](#315-sidekick)
+  - [3.2. Rendering Engine](#32-rendering-engine)
+    - [3.2.1. Webkit](#321-webkit)
+    - [3.2.2. Blink](#322-blink)
+  - [3.3. JavaScript Engine](#33-javascript-engine)
+    - [3.3.1. V8](#331-v8)
+  - [3.4. Critical Rendering Path](#34-critical-rendering-path)
+    - [3.4.1. Object Modelの構築](#341-object-modelの構築)
+    - [3.4.2. Rendering Tree の構築](#342-rendering-tree-の構築)
+    - [3.4.3. Rendering Tree のレイアウト](#343-rendering-tree-のレイアウト)
+    - [3.4.4. Rendering Tree の描画](#344-rendering-tree-の描画)
+- [4. DNS (Domain Name System)](#4-dns-domain-name-system)
+  - [4.1. Registry（レジストリ）](#41-registryレジストリ)
+  - [4.2. Registrar（レジストラ）](#42-registrarレジストラ)
+- [5. WEB Server](#5-web-server)
+  - [5.1. WEB Server のタイプ](#51-web-server-のタイプ)
+    - [5.1.1. Prefork](#511-prefork)
+    - [5.1.2. Event Driven](#512-event-driven)
+    - [5.1.3. Worker](#513-worker)
+  - [5.2. WEB Server Middlewares](#52-web-server-middlewares)
+    - [5.2.1. Apache HTTP Server](#521-apache-http-server)
+    - [5.2.2. nginx](#522-nginx)
+    - [5.2.3. Cloudflare](#523-cloudflare)
+    - [5.2.4. LiteSpeed](#524-litespeed)
+    - [5.2.5. Microsoft IIS (Internet Information Service)](#525-microsoft-iis-internet-information-service)
+  - [5.3. WEB Server Software の利用シェア](#53-web-server-software-の利用シェア)
+  - [5.4. Static Content（静的コンテンツ）](#54-static-content静的コンテンツ)
+  - [5.5. CDN (Contents Delivery Network)](#55-cdn-contents-delivery-network)
+  - [5.6. CDN 事業者](#56-cdn-事業者)
+  - [5.7. CDN で使用されている技術](#57-cdn-で使用されている技術)
+  - [5.8. Dynamic Content（動的コンテンツ）](#58-dynamic-content動的コンテンツ)
+  - [5.9. CGI (Common Gateway Interface)](#59-cgi-common-gateway-interface)
+  - [5.10. WSGI (Web Server Gateway Interface)](#510-wsgi-web-server-gateway-interface)
+    - [5.10.1. Libraries / Frameworks for WSGI](#5101-libraries--frameworks-for-wsgi)
+  - [5.11. Rack / PSGI (Perl Web Server Gateway Interface)](#511-rack--psgi-perl-web-server-gateway-interface)
+- [6. AP Server (Application Server)](#6-ap-server-application-server)
+  - [6.1. Tomcat](#61-tomcat)
+  - [6.2. JBOSS](#62-jboss)
+  - [6.3. Microsoft IIS](#63-microsoft-iis)
+- [7. HTML and CSS](#7-html-and-css)
+  - [7.1. HTML (HyperText Markup Language)](#71-html-hypertext-markup-language)
+  - [7.2. DOM (Document Object Model)](#72-dom-document-object-model)
+  - [7.3. OGP (Open Graph Protocol)](#73-ogp-open-graph-protocol)
+  - [7.4. CSS (Cascading Style Sheets)](#74-css-cascading-style-sheets)
+  - [7.5. Alt CSS (Alternative CSS)](#75-alt-css-alternative-css)
+  - [7.6. CSS Frameworks](#76-css-frameworks)
+    - [7.6.1. Bootstrap](#761-bootstrap)
+    - [7.6.2. Tailwind CSS](#762-tailwind-css)
+    - [7.6.3. Materialize CSS](#763-materialize-css)
+    - [7.6.4. Foundation](#764-foundation)
+    - [7.6.5. Reactstrap](#765-reactstrap)
+    - [7.6.6. Material UI](#766-material-ui)
+    - [7.6.7. Chakra UI](#767-chakra-ui)
+    - [7.6.8. Other CSS Frameworks](#768-other-css-frameworks)
+  - [7.7. Post CSS](#77-post-css)
+    - [7.7.1. Post CSS Tools](#771-post-css-tools)
+  - [7.8. CSS in JS](#78-css-in-js)
+    - [7.8.1. CSS in JS の主なライブラリ](#781-css-in-js-の主なライブラリ)
+  - [7.9. CSS Architecture](#79-css-architecture)
+    - [7.9.1. BEM (Block, Element, Modifier)](#791-bem-block-element-modifier)
+  - [7.10. WEB Font](#710-web-font)
+    - [7.10.1. Font Awesome](#7101-font-awesome)
+  - [7.11. Image Files](#711-image-files)
+    - [7.11.1. SVG (Scalable Vector Graphics)](#7111-svg-scalable-vector-graphics)
+  - [7.12. Responsive Design](#712-responsive-design)
+    - [7.12.1. Meta Viewport Tag](#7121-meta-viewport-tag)
+    - [7.12.2. Media Query](#7122-media-query)
+  - [7.13. User Interface Design](#713-user-interface-design)
+    - [7.13.1. Skeuomorphism Design](#7131-skeuomorphism-design)
+  - [7.14. 6-13-2.  Flat Design](#714-6-13-2--flat-design)
+  - [7.15. 6-13-3.  Material Design](#715-6-13-3--material-design)
+  - [7.16. 6-14.  CMS (Contents Management System)](#716-6-14--cms-contents-management-system)
+  - [7.17. 6-14-1.  WordPress](#717-6-14-1--wordpress)
+  - [7.18. 6-13-2.  Drupal](#718-6-13-2--drupal)
+  - [7.19. 6-15.  Headless CMS](#719-6-15--headless-cms)
+  - [7.20. 6-15-1. Contentful](#720-6-15-1-contentful)
+  - [7.21. 6-15-2. MicroCMS](#721-6-15-2-microcms)
+- [8.  JavaScript](#8--javascript)
+  - [8.1. 7-1.  ECMA Script](#81-7-1--ecma-script)
+  - [8.2. 7-1-1.  Prototype-based VS Class-based](#82-7-1-1--prototype-based-vs-class-based)
+  - [8.3. 7-2.  Alt JS / JavaScript Flavors](#83-7-2--alt-js--javascript-flavors)
+  - [8.4. 7-2-1.  CoffeeScript](#84-7-2-1--coffeescript)
+  - [8.5. 7-2-2.  TypeScript](#85-7-2-2--typescript)
+  - [8.6. 7-2-3.  JavaScript Flavors の利用率](#86-7-2-3--javascript-flavors-の利用率)
+  - [8.7. 7-3.  Front-End JS Frameworks](#87-7-3--front-end-js-frameworks)
+  - [8.8. 7-3-1.  React](#88-7-3-1--react)
+  - [8.9. 7-3-2.  Vue.js](#89-7-3-2--vuejs)
+  - [8.10. 7-3-3.  Svelte](#810-7-3-3--svelte)
+  - [8.11. 7-3-4.  Angular](#811-7-3-4--angular)
+  - [8.12. 7-3-5.  Front-End JS Frameworks の利用率や満足度](#812-7-3-5--front-end-js-frameworks-の利用率や満足度)
+  - [8.13. 7-2-7.  Other Alt JS](#813-7-2-7--other-alt-js)
+  - [8.14. 7-3.  Runtime for JavaScript (and TypeScript)](#814-7-3--runtime-for-javascript-and-typescript)
+  - [8.15. 7-3-1.  Node.js](#815-7-3-1--nodejs)
+  - [8.16. 7-3-2.  Deno（ディーノ）](#816-7-3-2--denoディーノ)
+  - [8.17. 7-3-3.  npm (Node Package Manager)](#817-7-3-3--npm-node-package-manager)
+  - [8.18. 7-4.  Back-End JS Framework](#818-7-4--back-end-js-framework)
+  - [8.19. 7-4-1.  Express.js](#819-7-4-1--expressjs)
+  - [8.20. 7-4-2.  Next.js](#820-7-4-2--nextjs)
+  - [8.21. 7-4-3.  Nuxt.js](#821-7-4-3--nuxtjs)
+  - [8.22. 7-4-4.  Sapper](#822-7-4-4--sapper)
+  - [8.23. 7-4-5.  SvelteKit](#823-7-4-5--sveltekit)
+  - [8.24. 7-4-6.  Blitz.js](#824-7-4-6--blitzjs)
+  - [8.25. 7-5.  Build Tool / Bandler for Alt JS](#825-7-5--build-tool--bandler-for-alt-js)
+  - [8.26. 7-5-1.  Webpack](#826-7-5-1--webpack)
+  - [8.27. 7-5-2.  Rollup.js](#827-7-5-2--rollupjs)
+  - [8.28. 7-5-3.  Vite](#828-7-5-3--vite)
+  - [8.29. 7-5-4.  Stencil.js](#829-7-5-4--stenciljs)
+  - [8.30. 7-6.  Transcompiler for Alt JS](#830-7-6--transcompiler-for-alt-js)
+  - [8.31. 7-6-1.  Babel.js](#831-7-6-1--babeljs)
+  - [8.32. 7-7.  CLI for Alt JS (a Command-Line Interface)](#832-7-7--cli-for-alt-js-a-command-line-interface)
+  - [8.33. 7-8.  State Container for JS](#833-7-8--state-container-for-js)
+  - [8.34. 7-8-1.  Redux](#834-7-8-1--redux)
+  - [8.35. 7-8-2.  Flux](#835-7-8-2--flux)
+  - [8.36. 7-8-3.  MobX](#836-7-8-3--mobx)
+  - [8.37. 7-8-4.  Jotai](#837-7-8-4--jotai)
+  - [8.38. 7-8-5.  Vuex](#838-7-8-5--vuex)
+  - [8.39. 7-9.  Virtual DOM](#839-7-9--virtual-dom)
+  - [8.40. 7-9-1.  Shadow DOM](#840-7-9-1--shadow-dom)
+  - [8.41. 7-10.  Source Map](#841-7-10--source-map)
+  - [8.42. 7-11.  Data Format](#842-7-11--data-format)
+  - [8.43. 7-11-1.  JSON (JavaScript Object Notation)](#843-7-11-1--json-javascript-object-notation)
+  - [8.44. 7-11-2.  XML (Extensible Markup Language)](#844-7-11-2--xml-extensible-markup-language)
+  - [8.45. 7-11-3.  BSON (Binary JSON)](#845-7-11-3--bson-binary-json)
+  - [8.46. 7-11-4.  YAML (YAML Ain't Markup Language)](#846-7-11-4--yaml-yaml-aint-markup-language)
+  - [8.47. 7-12.  Ajax (Asynchronous JavaScript and XML)](#847-7-12--ajax-asynchronous-javascript-and-xml)
+  - [8.48. 7-12-1.  Google による Ajax の先行事例](#848-7-12-1--google-による-ajax-の先行事例)
+  - [8.49. 7-13.  Animation](#849-7-13--animation)
+  - [8.50. 7-13-1.  GSAP (GreenSock Animation Platform)](#850-7-13-1--gsap-greensock-animation-platform)
+  - [8.51. 7-14.  その他の JavaScript / React の概念や機能](#851-7-14--その他の-javascript--react-の概念や機能)
+  - [8.52. 7-14-1.  Event Bubbling](#852-7-14-1--event-bubbling)
+  - [8.53. 7-14-2.  Scope](#853-7-14-2--scope)
+  - [8.54. 7-14-3.  Strict Mode](#854-7-14-3--strict-mode)
+  - [8.55. 7-14-4.  Fast Refresh](#855-7-14-4--fast-refresh)
+  - [8.56. 7-14-5.  JSX](#856-7-14-5--jsx)
+- [9.  WASM (Web Assembly)](#9--wasm-web-assembly)
+  - [9.1. 8-1.  WASMはどのくらい速いのか](#91-8-1--wasmはどのくらい速いのか)
+  - [9.2. 8-2.  Rust](#92-8-2--rust)
+  - [9.3. 8-3.  WASI (WebAssembly System Interface)](#93-8-3--wasi-webassembly-system-interface)
+  - [9.4. 8-4.  WASM Runtime](#94-8-4--wasm-runtime)
+  - [9.5. 8-5.  Rust Web Frameworks](#95-8-5--rust-web-frameworks)
+  - [9.6. 8-5-1.  Rocket](#96-8-5-1--rocket)
+  - [9.7. 8-5-2.  Actix-web](#97-8-5-2--actix-web)
+  - [9.8. 8-5-3.  Warp](#98-8-5-3--warp)
+  - [9.9. 8-5-4.  Tide](#99-8-5-4--tide)
+  - [9.10. 8-5-5.  Gotham](#910-8-5-5--gotham)
+- [10.  Server Side Script](#10--server-side-script)
+  - [10.1. 9-1.  Python Frameworks](#101-9-1--python-frameworks)
+  - [10.2. 9-1-1.  Flask](#102-9-1-1--flask)
+  - [10.3. 9-1-2.  Django](#103-9-1-2--django)
+  - [10.4. 9-1-3.  Fast API](#104-9-1-3--fast-api)
+  - [10.5. 9-1-4.  Tornado](#105-9-1-4--tornado)
+  - [10.6. 9-1-5.  Web2py](#106-9-1-5--web2py)
+  - [10.7. 9-1-6.  Pyramid](#107-9-1-6--pyramid)
+  - [10.8. 9-1-7.  Mako](#108-9-1-7--mako)
+  - [10.9. 9-2.  PHP Frameworks](#109-9-2--php-frameworks)
+  - [10.10. 9-3.  Java Frameworks](#1010-9-3--java-frameworks)
+  - [10.11. 9-4.  Async Technologies for Python / Django](#1011-9-4--async-technologies-for-python--django)
+- [11.  Web API](#11--web-api)
+  - [11.1. 10-1.  RESTful API](#111-10-1--restful-api)
+  - [11.2. 10-2.  GraphQL](#112-10-2--graphql)
+  - [11.3. 10-2-1. GraphQL のデータ例](#113-10-2-1-graphql-のデータ例)
+  - [11.4. 10-2-2.  Hasura](#114-10-2-2--hasura)
+  - [11.5. 10-2-3.  Apollo GraphQL](#115-10-2-3--apollo-graphql)
+  - [11.6. 10-3. Webhook](#116-10-3-webhook)
+  - [11.7. 10-4.  Postman](#117-10-4--postman)
+- [12.  WEB Application](#12--web-application)
+  - [12.1. 11-1.  SPA (Single Page Application)](#121-11-1--spa-single-page-application)
+  - [12.2. 11-2.  SSR (Server-Side Rendering)](#122-11-2--ssr-server-side-rendering)
+  - [12.3. 11-3.  SSG (Static Site Generator)](#123-11-3--ssg-static-site-generator)
+  - [12.4. 11-3-1.  Hugo](#124-11-3-1--hugo)
+  - [12.5. 11-3-2.  Jekyll](#125-11-3-2--jekyll)
+  - [12.6. 11-3-3.  ASP.NET](#126-11-3-3--aspnet)
+  - [12.7. 11-3-4.  ASP.NET Core](#127-11-3-4--aspnet-core)
+  - [12.8. 11-3-5.  Gatsby.js](#128-11-3-5--gatsbyjs)
+  - [12.9. 11-4.  PWA (Progressive Web Apps)](#129-11-4--pwa-progressive-web-apps)
+  - [12.10. 11-5. Hybrid Application](#1210-11-5-hybrid-application)
+  - [12.11. 11-5-1. Hybrid App Frameworks](#1211-11-5-1-hybrid-app-frameworks)
+  - [12.12. 11-5-2.  DART](#1212-11-5-2--dart)
+  - [12.13. 11-6.  RIA (Rich Internet Application)](#1213-11-6--ria-rich-internet-application)
+  - [12.14. 11-7.  BFF (Backends For Frontends)](#1214-11-7--bff-backends-for-frontends)
+  - [12.15. 11-7-1.  BFF のメリット](#1215-11-7-1--bff-のメリット)
+  - [12.16. 11-7-2.  BFF のデメリット](#1216-11-7-2--bff-のデメリット)
+  - [12.17. 11-8.  Microservices](#1217-11-8--microservices)
+  - [12.18. 11-8-1.  Istio](#1218-11-8-1--istio)
+  - [12.19. 11-9.  MVC (Model-View-Controller)](#1219-11-9--mvc-model-view-controller)
+  - [12.20. 11-10.  MVVM (Model-View-ViewModel)](#1220-11-10--mvvm-model-view-viewmodel)
+  - [12.21. 11-11.  Accessibility (a11y)](#1221-11-11--accessibility-a11y)
+- [13.  RDBMS (Relational DataBase Management System)](#13--rdbms-relational-database-management-system)
+  - [13.1. 12-1.  RDBMSの種類](#131-12-1--rdbmsの種類)
+  - [13.2. 12-2.  DBの冗長化](#132-12-2--dbの冗長化)
+  - [13.3. 12-3.  Query Cache](#133-12-3--query-cache)
+  - [13.4. 12-4.  ORM (Object-Relational Mapper)](#134-12-4--orm-object-relational-mapper)
+  - [13.5. 12-5.  SQL Antipatterns](#135-12-5--sql-antipatterns)
+  - [13.6. 12-5-1.  MENTOR Your Indexes](#136-12-5-1--mentor-your-indexes)
+  - [13.7. 12-6.  Dump](#137-12-6--dump)
+  - [13.8. 12-7.  ERD (Entity Relationship Diagram)](#138-12-7--erd-entity-relationship-diagram)
+  - [13.9. 12-7-1.  Conceptual Data Model](#139-12-7-1--conceptual-data-model)
+  - [13.10. 12-7-2.  Logical Data Model](#1310-12-7-2--logical-data-model)
+  - [13.11. 12-7-3.  Physical Data Model](#1311-12-7-3--physical-data-model)
+  - [13.12. 12-8.  EERD (Enhanced / Extended ERD)](#1312-12-8--eerd-enhanced--extended-erd)
+  - [13.13. 12-9.  Drawing Tools](#1313-12-9--drawing-tools)
+  - [13.14. 12-9-1.  Draw.io](#1314-12-9-1--drawio)
+  - [13.15. 12-9-2.  Lucidchart](#1315-12-9-2--lucidchart)
+  - [13.16. 12-9-3.  Cacoo](#1316-12-9-3--cacoo)
+- [14.  NoSQL DB (Not Only SQL DataBase)](#14--nosql-db-not-only-sql-database)
+  - [14.1. 13-1. NoSQL DB の種類](#141-13-1-nosql-db-の種類)
+  - [14.2. 13-1.  KVS (Key-Value Store)](#142-13-1--kvs-key-value-store)
+  - [14.3. 13-1-1.  Redis](#143-13-1-1--redis)
+  - [14.4. 13-1-2.  Memcached](#144-13-1-2--memcached)
+  - [14.5. 13-2.  Column-Oriented DB（カラム指向DB）](#145-13-2--column-oriented-dbカラム指向db)
+  - [14.6. 13-2-1.  Apache Cassandra](#146-13-2-1--apache-cassandra)
+  - [14.7. 13-3.  Document-Oriented DB（ドキュメント指向DB）](#147-13-3--document-oriented-dbドキュメント指向db)
+  - [14.8. 13-3-1.  MongoDB](#148-13-3-1--mongodb)
+  - [14.9. 13-3-2.  Robomongo](#149-13-3-2--robomongo)
+  - [14.10. 13-3-3.  Apache Couch DB](#1410-13-3-3--apache-couch-db)
+  - [14.11. 13-3-4.  Realm](#1411-13-3-4--realm)
+  - [14.12. 13-4.  Multi-Model DB](#1412-13-4--multi-model-db)
+  - [14.13. 13-3-1.  Fauna DB](#1413-13-3-1--fauna-db)
+- [15.  Version Control System](#15--version-control-system)
+  - [15.1. 14-1.  GitHub](#151-14-1--github)
+  - [15.2. 14-1-1.  GitHub Actions](#152-14-1-1--github-actions)
+  - [15.3. 14-1-2.  GitHub Webhooks](#153-14-1-2--github-webhooks)
+  - [15.4. 14-1-3.  GitHub Marketplace](#154-14-1-3--github-marketplace)
+  - [15.5. 14-1-4.  GitHub Enterprise](#155-14-1-4--github-enterprise)
+  - [15.6. 14-1-5.  GitHub Copilot](#156-14-1-5--github-copilot)
+  - [15.7. 14-2.  Git Command](#157-14-2--git-command)
+- [16.  CI/CD (Continuous Integration and Continuous Delivery)](#16--cicd-continuous-integration-and-continuous-delivery)
+  - [16.1. 15-1.  CI/CD Tools](#161-15-1--cicd-tools)
+  - [16.2. 15-1-1.  **CircleCI**](#162-15-1-1--circleci)
+  - [16.3. 15-1-2.  **Travis CI**](#163-15-1-2--travis-ci)
+  - [16.4. 15-1-3.  **Jenkins**](#164-15-1-3--jenkins)
+  - [16.5. 15-1-4.  **GitHub Actions**](#165-15-1-4--github-actions)
+  - [16.6. 15-1-5.  Other CI/CD](#166-15-1-5--other-cicd)
+  - [16.7. 15-2.  DevOps](#167-15-2--devops)
+  - [16.8. 15-3.  SRE (Site Reliability Engineering)](#168-15-3--sre-site-reliability-engineering)
+- [17.  Static Code Analysis（静的規約チェックツール）](#17--static-code-analysis静的規約チェックツール)
+  - [17.1. 16-1.  Coding Standards for C](#171-16-1--coding-standards-for-c)
+  - [17.2. 16-1-1.  MISRA-C](#172-16-1-1--misra-c)
+  - [17.3. 16-1-2.  CERT-C](#173-16-1-2--cert-c)
+  - [17.4. 16-2.  Coding Standards for JS](#174-16-2--coding-standards-for-js)
+- [18.  Code Formatter](#18--code-formatter)
+  - [18.1. 17-1.  Code Formatter のサービス例](#181-17-1--code-formatter-のサービス例)
+  - [18.2. 17-1-1.  Prettier (for JS)](#182-17-1-1--prettier-for-js)
+  - [18.3. 17-1-2.  autopep8](#183-17-1-2--autopep8)
+  - [18.4. 17-1-3.  Black](#184-17-1-3--black)
+  - [18.5. 17-1-4.  isort](#185-17-1-4--isort)
+  - [18.6. 17-1-5.  YAPF](#186-17-1-5--yapf)
+- [19.  Code Linter](#19--code-linter)
+  - [19.1. 18-1.  Code Linter for JS](#191-18-1--code-linter-for-js)
+  - [19.2. 18-1-1.  ESLint](#192-18-1-1--eslint)
+  - [19.3. 18-1-2.  JSHint](#193-18-1-2--jshint)
+  - [19.4. 18-1-3.  JSLint](#194-18-1-3--jslint)
+  - [19.5. 18-2.  Code Linter for CSS](#195-18-2--code-linter-for-css)
+  - [19.6. 18-2-1.  Stylelint](#196-18-2-1--stylelint)
+  - [19.7. 18-2.  Code Linter for Java](#197-18-2--code-linter-for-java)
+  - [19.8. 18-2-1.  SpotBugs](#198-18-2-1--spotbugs)
+  - [19.9. 18-3.  Code Linter for Multi-Languages](#199-18-3--code-linter-for-multi-languages)
+  - [19.10. 18-3-1.  Coverity](#1910-18-3-1--coverity)
+- [20.  Test Frameworks](#20--test-frameworks)
+  - [20.1. 19-1.  Test Frameworks for JS](#201-19-1--test-frameworks-for-js)
+  - [20.2. 19-1-1.  Jest](#202-19-1-1--jest)
+  - [20.3. 19-1-2.  Mocha](#203-19-1-2--mocha)
+  - [20.4. 19-1-3.  Selenium](#204-19-1-3--selenium)
+- [21.  Development Methods（開発手法）](#21--development-methods開発手法)
+  - [21.1. 20-1.  Waterfall](#211-20-1--waterfall)
+  - [21.2. 20-2.  Prototype](#212-20-2--prototype)
+  - [21.3. 20-3.  Agile](#213-20-3--agile)
+  - [21.4. 20-4.  Spiral](#214-20-4--spiral)
+  - [21.5. 20-5.  Other Development Methods（その他）](#215-20-5--other-development-methodsその他)
+  - [21.6. 20-5-1.  DRY (Don’t Repeat Your Self)](#216-20-5-1--dry-dont-repeat-your-self)
+  - [21.7. 20-5-2.  OAOO (Once And Only Once)](#217-20-5-2--oaoo-once-and-only-once)
+  - [21.8. 20-5-3.  SOLID](#218-20-5-3--solid)
+  - [21.9. 20-5-4.  KISS (Keep It Simple, Stupid)](#219-20-5-4--kiss-keep-it-simple-stupid)
+  - [21.10. 20-5-5.  YAGNI (You Aren't Going to Need it.)](#2110-20-5-5--yagni-you-arent-going-to-need-it)
+- [22.  Agile Development Practices](#22--agile-development-practices)
+  - [22.1. 21-1.  TDD (Test Driven Development)](#221-21-1--tdd-test-driven-development)
+  - [22.2. 21-2.  BDD (Behavior Driven Development)](#222-21-2--bdd-behavior-driven-development)
+  - [22.3. 21-2-1.  BDD Tools and Frameworks](#223-21-2-1--bdd-tools-and-frameworks)
+  - [22.4. 21-3.  DDD (Domain Driven Design)](#224-21-3--ddd-domain-driven-design)
+  - [22.5. 21-4.  ATDD (Acceptance Test Driven Development)](#225-21-4--atdd-acceptance-test-driven-development)
+  - [22.6. 21-4-1.  ATDD Tools and Frameworks](#226-21-4-1--atdd-tools-and-frameworks)
+  - [22.7. 21-5.  ADD (Attribute Driven Design)](#227-21-5--add-attribute-driven-design)
+  - [22.8. 21-6.  FDD (Feature Driven Development)](#228-21-6--fdd-feature-driven-development)
+  - [22.9. 21-7.  MDD (Model Driven Development)](#229-21-7--mdd-model-driven-development)
+  - [22.10. 21-8.  UCDD (Use Case Driven Development)](#2210-21-8--ucdd-use-case-driven-development)
+  - [22.11. 21-9.  PDD (Proof Driven Development)](#2211-21-9--pdd-proof-driven-development)
+- [23.  Testing Pyramid](#23--testing-pyramid)
+  - [23.1. 22-1.  Unit Test](#231-22-1--unit-test)
+  - [23.2. 22-1-1.  White-Box Testing](#232-22-1-1--white-box-testing)
+  - [23.3. 22-1-2.  Automated Testing](#233-22-1-2--automated-testing)
+  - [23.4. 22-1-3.  Coding Coverage](#234-22-1-3--coding-coverage)
+  - [23.5. 22-2.  Integration Test](#235-22-2--integration-test)
+  - [23.6. 22-3.  E2E Test (End to End Test)](#236-22-3--e2e-test-end-to-end-test)
+  - [23.7. 22-3-1.  Black-Box Testing](#237-22-3-1--black-box-testing)
+  - [23.8. 22-3-2.  E2E Test Frameworks](#238-22-3-2--e2e-test-frameworks)
+  - [23.9. 22-3-3.  E2E Test の不安定さ](#239-22-3-3--e2e-test-の不安定さ)
+  - [23.10. 22-4.  Feedback Cycle](#2310-22-4--feedback-cycle)
+- [24.  Infrastructure](#24--infrastructure)
+  - [24.1. 23-1.  AWS Service](#241-23-1--aws-service)
+  - [24.2. 23-2.  AWSの各種用語](#242-23-2--awsの各種用語)
+  - [24.3. 23-2-1.  VPC (Virtual Private Cloud)](#243-23-2-1--vpc-virtual-private-cloud)
+  - [24.4. 23-2-2.  Internet Gateway](#244-23-2-2--internet-gateway)
+  - [24.5. 23-2-3.  Virtual Private Gateway](#245-23-2-3--virtual-private-gateway)
+  - [24.6. 23-2-4.  NAT Gateway (a Network Address Translation Gateway)](#246-23-2-4--nat-gateway-a-network-address-translation-gateway)
+  - [24.7. 23-2-5.  Subnet](#247-23-2-5--subnet)
+  - [24.8. 23-2-6.  Route Table](#248-23-2-6--route-table)
+  - [24.9. 23-2-7.  Amazon Route 53](#249-23-2-7--amazon-route-53)
+  - [24.10. 23-2-8.  Amazon S3 (Amazon Simple Storage Service)](#2410-23-2-8--amazon-s3-amazon-simple-storage-service)
+  - [24.11. 23-2-9.  Amazon EFS (Amazon Elastic File System)](#2411-23-2-9--amazon-efs-amazon-elastic-file-system)
+  - [24.12. 23-2-10.  Amazon EBS (Amazon Elastic Block Store)](#2412-23-2-10--amazon-ebs-amazon-elastic-block-store)
+  - [24.13. 23-2-11.  Amazon ECS (Amazon Elastic Container Service)](#2413-23-2-11--amazon-ecs-amazon-elastic-container-service)
+  - [24.14. 23-2-12.  Amazon ElastiCache](#2414-23-2-12--amazon-elasticache)
+  - [24.15. 23-2-13.  Amazon DynamoDB](#2415-23-2-13--amazon-dynamodb)
+  - [24.16. 23-2-14.  Amazon API Gateway](#2416-23-2-14--amazon-api-gateway)
+  - [24.17. 23-2-15.  AWS Lambda](#2417-23-2-15--aws-lambda)
+  - [24.18. 23-2-16.  Amazon CloudFront](#2418-23-2-16--amazon-cloudfront)
+  - [24.19. 23-2-17.  AWS Certificate Manager](#2419-23-2-17--aws-certificate-manager)
+  - [24.20. 23-2-18.  Amazon Cognito](#2420-23-2-18--amazon-cognito)
+  - [24.21. 23-2-19.  AWS Fargate](#2421-23-2-19--aws-fargate)
+  - [24.22. 23-2-20.  Amazon Aurora](#2422-23-2-20--amazon-aurora)
+  - [24.23. 23-2-21.  Amazon Kinesis Data Firehose](#2423-23-2-21--amazon-kinesis-data-firehose)
+  - [24.24. 23-3.  Managed Services](#2424-23-3--managed-services)
+  - [24.25. 23-4.  Load Balancer](#2425-23-4--load-balancer)
+  - [24.26. 23-4-1.  LBの負荷分散方法](#2426-23-4-1--lbの負荷分散方法)
+- [25.  Serverless Hosting Service](#25--serverless-hosting-service)
+  - [25.1. 24-1.  Firebase](#251-24-1--firebase)
+  - [25.2. 24-1-1.  Firebase Hosting](#252-24-1-1--firebase-hosting)
+  - [25.3. 24-1-2.  Firestore](#253-24-1-2--firestore)
+  - [25.4. 24-1-3.  Firebase Authentication](#254-24-1-3--firebase-authentication)
+  - [25.5. 24-2.  Netlify](#255-24-2--netlify)
+  - [25.6. 24-3.  Vercel](#256-24-3--vercel)
+  - [25.7. 24-4.  Heroku](#257-24-4--heroku)
+  - [25.8. 24-5.  Supabase](#258-24-5--supabase)
+  - [25.9. 24-6.  Gatsby Cloud](#259-24-6--gatsby-cloud)
+- [26.  インフラ監視・分析](#26--インフラ監視分析)
+  - [26.1. 25-1.  監視の種類](#261-25-1--監視の種類)
+  - [26.2. 25-1-1.  死活監視](#262-25-1-1--死活監視)
+  - [26.3. 25-1-2.  リソース監視](#263-25-1-2--リソース監視)
+  - [26.4. 25-1-3.  接続監視](#264-25-1-3--接続監視)
+  - [26.5. 25-1-4.  ログ監視](#265-25-1-4--ログ監視)
+  - [26.6. 25-1-5.  プロセス/サービス監視](#266-25-1-5--プロセスサービス監視)
+  - [26.7. 25-2.  監視サービス](#267-25-2--監視サービス)
+  - [26.8. 25-2-1.  CloudWatch](#268-25-2-1--cloudwatch)
+  - [26.9. 25-2-2.  **Datadog**](#269-25-2-2--datadog)
+  - [26.10. 25-2-3.  **Mackerel**](#2610-25-2-3--mackerel)
+  - [26.11. 25-2-4.  **Prometheus**](#2611-25-2-4--prometheus)
+  - [26.12. 25-2-5.  **Zabbix**](#2612-25-2-5--zabbix)
+  - [26.13. 25-2-6.  **Sentry**](#2613-25-2-6--sentry)
+  - [26.14. 25-2-7.  **New Relic**](#2614-25-2-7--new-relic)
+- [27.  仮想化とコンテナ](#27--仮想化とコンテナ)
+  - [27.1. 26-1.  仮想化技術](#271-26-1--仮想化技術)
+  - [27.2. 26-1-1.  VirtualBox](#272-26-1-1--virtualbox)
+  - [27.3. 26-1-2.  VMware](#273-26-1-2--vmware)
+  - [27.4. 26-1-3.  AWS EC2](#274-26-1-3--aws-ec2)
+  - [27.5. 26-2.  コンテナ化技術](#275-26-2--コンテナ化技術)
+  - [27.6. 26-2-1.  Docker](#276-26-2-1--docker)
+  - [27.7. 26-2-2.  Kubernetes (k8s)](#277-26-2-2--kubernetes-k8s)
+  - [27.8. 26-2-3.  Micro Kubernetes (Micro k8s)](#278-26-2-3--micro-kubernetes-micro-k8s)
+  - [27.9. 26-2-4.  Lightweight Kubernetes (k3s)](#279-26-2-4--lightweight-kubernetes-k3s)
+- [28.  IaC (Infrastructure as Code / 構成管理ツール)](#28--iac-infrastructure-as-code--構成管理ツール)
+  - [28.1. 27-1.  Terraform](#281-27-1--terraform)
+  - [28.2. 27-2.  Ansible](#282-27-2--ansible)
+  - [28.3. 27-3.  Chef](#283-27-3--chef)
+- [29.  Security](#29--security)
+  - [29.1. 28-1.  様々なセキュリティリスク](#291-28-1--様々なセキュリティリスク)
+  - [29.2. 28-1-1.  Password Cracking](#292-28-1-1--password-cracking)
+  - [29.3. 28-1-2.  DOS (Denial of Service) 攻撃](#293-28-1-2--dos-denial-of-service-攻撃)
+  - [29.4. 28-1-3.  DDOS (Distributed DOS) 攻撃](#294-28-1-3--ddos-distributed-dos-攻撃)
+  - [29.5. 28-1-4.  Session Hijacking（セッションハイジャック）](#295-28-1-4--session-hijackingセッションハイジャック)
+  - [29.6. 28-1-5.  Directory Traversal（ディレクトリトラバーサル）](#296-28-1-5--directory-traversalディレクトリトラバーサル)
+  - [29.7. 28-1-6.  XSS (Cross Site Scripting)](#297-28-1-6--xss-cross-site-scripting)
+  - [29.8. 28-1-7.  CSRF (Cross Site Request Forgeries)](#298-28-1-7--csrf-cross-site-request-forgeries)
+  - [29.9. 28-1-8.  SQL Injection](#299-28-1-8--sql-injection)
+  - [29.10. 28-2.  Security Policy](#2910-28-2--security-policy)
+  - [29.11. 28-2-1.  Same-Origin Policy](#2911-28-2-1--same-origin-policy)
+  - [29.12. 28-2-2.  CORS (Cross-Origin Resource Sharing)](#2912-28-2-2--cors-cross-origin-resource-sharing)
+  - [29.13. 28-3.  WAF (Web Application Firewall)](#2913-28-3--waf-web-application-firewall)
+  - [29.14. 28-4.  不正アクセスを防ぐ仕組み](#2914-28-4--不正アクセスを防ぐ仕組み)
+  - [29.15. 28-5.  公開鍵証明書](#2915-28-5--公開鍵証明書)
+  - [29.16. 28-6.  Authentication（認証）](#2916-28-6--authentication認証)
+  - [29.17. 28-6-1.  Open ID](#2917-28-6-1--open-id)
+  - [29.18. 28-7.  Authorization（認可）](#2918-28-7--authorization認可)
+  - [29.19. 28-7-1.  OAuth](#2919-28-7-1--oauth)
+  - [29.20. 28-7-2.  Open ID Connect](#2920-28-7-2--open-id-connect)
+  - [29.21. 28-7-3.  JWT (JSON Web Tokens)](#2921-28-7-3--jwt-json-web-tokens)
+  - [29.22. 28-7-4.  Auth0](#2922-28-7-4--auth0)
+  - [29.23. 28-8.  脆弱性診断](#2923-28-8--脆弱性診断)
+- [30.  Log運用](#30--log運用)
+- [31.  Performance](#31--performance)
+  - [31.1. 30-1. Performance 計測ツール](#311-30-1-performance-計測ツール)
+  - [31.2. 30-1-1. Google Lighthouse](#312-30-1-1-google-lighthouse)
+- [32.  Text Editor](#32--text-editor)
+  - [32.1. 31-1.  VSCode (Visual Studio Code)](#321-31-1--vscode-visual-studio-code)
+  - [32.2. 31-1-1.  VSCode Extensions](#322-31-1-1--vscode-extensions)
+  - [32.3. 31-2.  Atom](#323-31-2--atom)
+  - [32.4. 31-2.  Eclipse IDE](#324-31-2--eclipse-ide)
+  - [32.5. 31-3.  Web Storm](#325-31-3--web-storm)
+- [33.  まとめ](#33--まとめ)
 
-### 1-1.  Internet Protocol Suite
+## 2.  Internet
 
-インターネットを含む多くのコンピュータネットワークにおいて、標準的に利用されている通信プロトコルのセットである。TCP/IP（Transmission Control Protocol /Internet Protocol ）とも呼ばれる。階層とそれぞれの階層で使用される主なプロトコルは、
+### 2.1. Internet Protocol Suite
 
-- Application Layer：　トランスポート層までのネットワーク層を使って、どのような用途として使用するのかを決めるレイヤー。主なプロトコルは、HTTP、DNS、SMTP
-- Transport Layer：　インターネット層のプロトコルが提供する機能を、より便利に使える機能（パケットのエラー処理や複数コネクションの管理等）として提供するレイヤー。主なプロトコルは、TCP、UDP、QUIC
-  - TCPは、コネクション型のプロトコル。欠損パケットの再送処理や、パケットの到着順番の保証などの機能を提供するので高信頼だが、速度的なデメリットがある。暗号化通信をサポートしていない
-  - UDPは、コネクションレス型のプロトコル。信頼性が落ちる代わりに速度が速い。動画や音声のストリーミングに向いている。暗号化通信をサポートしていない
-  - QUICは、UDPの上位レイヤーで、高速なのに高信頼。暗号化通信（TLS）も統合されている。TLSは Transport Layer Security の略。2012年にGoogleが開発
-- Internet Layer：　複数機器を経由した通信をするレイヤー。主なプロトコルは、IPv4、IPv6。IPv6が最新で、Googleによると33％程度が既にIPv6
-- Network Interface Layer：　同じネットワーク内にある機器とデータ通信するレイヤー。主なプロトコルは、Ethernet（有線LANの技術の総称）、Wi-Fi（無線）
+インターネットを含む多くのコンピュータネットワークにおいて、標準的に利用されている通信プロトコルのセットである。TCP/IP（Transmission Control Protocol /Internet Protocol ）とも呼ばれる。階層とそれぞれの階層で使用される主なプロトコルは、下記。
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+#### 2.1.1. Application Layer
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+トランスポート層までのネットワーク層を使って、どのような用途として使用するのかを決めるレイヤー。主なプロトコルは、HTTP、DNS、SMTP。
 
-### 1-2.  HTTP通信 (HyperText Transfer Protocol)
+#### 2.1.2. Transport Layer
+
+インターネット層のプロトコルが提供する機能を、より便利に使える機能（パケットのエラー処理や複数コネクションの管理等）として提供するレイヤー。主なプロトコルは、TCP、UDP、QUIC。
+
+- TCP：　コネクション型のプロトコル。欠損パケットの再送処理や、パケットの到着順番の保証などの機能を提供するので高信頼だが、速度的なデメリットがある。暗号化通信をサポートしていない
+- UDP：　コネクションレス型のプロトコル。信頼性が落ちる代わりに速度が速い。動画や音声のストリーミングに向いている。暗号化通信をサポートしていない
+- QUIC：　UDPの上位レイヤーで、高速なのに高信頼。暗号化通信（TLS）も統合されている。TLSは Transport Layer Security の略。2012年にGoogleが開発
+
+#### 2.1.3. Internet Layer
+
+複数機器を経由した通信をするレイヤー。主なプロトコルは、IPv4、IPv6。IPv6が最新で、Googleによると33％程度が既にIPv6
+
+#### 2.1.4. Network Interface Layer
+
+同じネットワーク内にある機器とデータ通信するレイヤー。主なプロトコルは、Ethernet（有線LANの技術の総称）、Wi-Fi（無線）
+
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
+
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
+
+### 2.2. HTTP (HyperText Transfer Protocol)
 
 HTTPはWEBでクライアントとサーバーが通信するときに使用されるアプリケーション層のプロトコル。そのプロトコルに則った通信。HTMLなどのテキストデータだけでなく、JSONなどのデータや、バイナリデータの転送も出来る
 
-- HTTP/0.9：　1991年から。もうほとんど使われてない
-- HTTP/1.0：　1996年から。もうほとんど使われてない
-- HTTP/1.1：　1999年から。まだ現在の主流のプロトコル。これ以降、HTTP Keep Aliveが適用されて、HTTPリクエストごとにTCPコネクションを確立せずに維持できるようになった。1つのHTML内に複数画像ある場合などに有効。HTTPパイプラインも適用されて、リクエストに対するレスポンスを待たずに次のリクエストが出来るようになった
-- HTTP/2：　2015年から。HTTP/1.1と後方互換性がある。ヘッダの圧縮や、パイプラインと呼ばれる通信の多重化技術が使われており、HTTP/1.1よりも高速。Googleが考案したSPDY（スピーディ）というプロトコルがベース。TCPコネクションにストリームという仮想的な複数の通信経路が導入され、リクエスト順にレスポンスしないといけなかったHTTPパイプラインが改良され順不同に返せるようになった。HTTP通信もテキストからバイナリに変わった。ヘッダー圧縮というヘッダーを差分だけ送るHPACK圧縮方式も追加。サーバープッシュというHTML内に画像があれば、それがリクエストされてなくてもサーバー側で判断してついでに送る技術も追加
-- HTTP/3：　これまでのバージョンではトランスポート層のプロトコルはTCPだったが、今回からQUICを使用。HTTP/2よりも高速
+#### 2.2.1. HTTP/0.9
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+1991年から。もうほとんど使われてない
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+#### 2.2.2. HTTP/1.0
 
-### 1-3.  HTTPS (HTTP over SSL/TLS)
+1996年から。もうほとんど使われてない
+
+#### 2.2.3. HTTP/1.1
+
+1999年から。まだ現在の主流のプロトコル。これ以降、HTTP Keep Aliveが適用されて、HTTPリクエストごとにTCPコネクションを確立せずに維持できるようになった。1つのHTML内に複数画像ある場合などに有効。HTTPパイプラインも適用されて、リクエストに対するレスポンスを待たずに次のリクエストが出来るようになった
+
+#### 2.2.4. HTTP/2
+
+2015年から。HTTP/1.1と後方互換性がある。ヘッダの圧縮や、パイプラインと呼ばれる通信の多重化技術が使われており、HTTP/1.1よりも高速。Googleが考案したSPDY（スピーディ）というプロトコルがベース。TCPコネクションにストリームという仮想的な複数の通信経路が導入され、リクエスト順にレスポンスしないといけなかったHTTPパイプラインが改良され順不同に返せるようになった。HTTP通信もテキストからバイナリに変わった。ヘッダー圧縮というヘッダーを差分だけ送るHPACK圧縮方式も追加。サーバープッシュというHTML内に画像があれば、それがリクエストされてなくてもサーバー側で判断してついでに送る技術も追加
+
+#### 2.2.5. HTTP/3
+
+これまでのバージョンではトランスポート層のプロトコルはTCPだったが、今回からQUICを使用。HTTP/2よりも高速
+
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
+
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
+
+### 2.3. HTTPS (HTTP over SSL/TLS)
 
 暗号化方式であるSSL (Secure Sockets Layer) やTLS (Transport Layer Security) を利用したHTTP。SSLはバージョン3からTLSと改名されたがまだSSLの言葉が慣習的に残っている。やってくれることは
 
@@ -60,7 +518,7 @@ HTTPはWEBでクライアントとサーバーが通信するときに使用さ�
 
 HTTPSでないサイトは検索に優先順位が落ちるとされている。
 
-### 1-4.  Cookie (HTTP Cookie)
+### 2.4. Cookie (HTTP Cookie)
 
 HTTPはステートレスな通信なので、状態管理はCookieで行う。
 
@@ -70,11 +528,11 @@ HTTPはステートレスな通信なので、状態管理はCookieで行う。
 
 そのため、Cookieにたくさんの値を保存しすぎると、通信効率が悪くなるので、Cookieには最低限の識別子のようなデータだけを記録し、状態管理の機能自体はWEBサーバー側に持つことが多い。有効期限がないCookieはブラウザが閉じられると削除される。こういうCookieをセッションCookieという。
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
 
-### 1-5.  Third Party Cookie
+### 2.5. Third Party Cookie
 
 通常のCookieはファーストパーティCookieと分類され、WEBサイト自体が発行する。
 
@@ -82,11 +540,11 @@ HTTPはステートレスな通信なので、状態管理はCookieで行う。
 
 プライバシーの問題から、禁止される方向である。
 
-[https://moltsinc.co.jp/data-strategy/9987/](https://moltsinc.co.jp/data-strategy/9987/)
+https://moltsinc.co.jp/data-strategy/9987/
 
-[https://japan.cnet.com/article/35156564/](https://japan.cnet.com/article/35156564/)
+https://japan.cnet.com/article/35156564/
 
-### 1-6.  Cache / Cache File
+### 2.6. Cache File
 
 同一コンテンツを何度も送信するのを避ける機能。キャッシュファイルは、例えばWindowsだと、だいたい下記パスにある。ブラウザが持ってるといっても、具体的にはCドライブのブラウザのディレクトリにある。
 
@@ -104,15 +562,15 @@ HTTPはステートレスな通信なので、状態管理はCookieで行う。
 
 ETagの方が最終更新日よりも厳密に管理できる。例えば、同じURLで、日英で内容を出しわけたい際などに有効。ETag自体は、後述するWEBサーバーのミドルウェア（Apacheなど）が生成してくれるようです。
 
-[https://www.tipsfound.com/chrome/01001](https://www.tipsfound.com/chrome/01001)
+https://www.tipsfound.com/chrome/01001
 
-[https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/ETag](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/ETag)
+https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/ETag
 
-[https://blog.redbox.ne.jp/http-header-tuning.html](https://blog.redbox.ne.jp/http-header-tuning.html)
+https://blog.redbox.ne.jp/http-header-tuning.html
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
 
-### 1-7.  TCP通信 (Transmission Control Protocol)
+### 2.7. TCP (Transmission Control Protocol)
 
 HTTP通信をカプセル化したトランスポート層でのプロトコルに則った通信。コネクションの確率は次の3段階を経る
 
@@ -120,11 +578,11 @@ HTTP通信をカプセル化したトランスポート層でのプロトコル�
 - サーバーからクライアントに対して確認応答・接続要求：　確認応答がACK（Acknowledgement）パケット。同時に接続要求もするのでSYNパケットも送る
 - クライアントからサーバーに対して確認応答：　クライアントからACKパケットを送ってコネクション確立
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
 
-### 1-8.  SSL/TLS Handshake
+### 2.8. SSL/TLS Handshake
 
 暗号化通信の手順。
 
@@ -135,38 +593,38 @@ HTTP通信をカプセル化したトランスポート層でのプロトコル�
 
 で暗号化通信が開始する。
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
 
-### 1-9.  URL (a Uniform Resource Locator)
+### 2.9. URL (a Uniform Resource Locator)
 
 図の下に記載の参考サイトより。パスはファイル名を含めたパスで、「.html」などが来ます。「.jsp」はjavaコードが含まれたHTMLファイルの拡張子です。引数はパラメータとも呼ばれ、&区切りで複数つく場合があります。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled.png)
+![](2021-09-27-17-11-07.png)
 
-[https://rainbow-engine.com/basic-domain-url/](https://rainbow-engine.com/basic-domain-url/)
+https://rainbow-engine.com/basic-domain-url/
 
-### 1-10.  ISP (Internet Service Provider)
+### 2.10. ISP (Internet Service Provider)
 
 国内だと、NTTコミュニケーションズや、ソフトバンクなど。海外だとVerizonやAT＆Tなどのこと。ISPは階層構造をとっていて、非常に規模が大きく最上位に位置するISPがTier1です。Tier1以外のISPも相互に接続されていて、最終的にはどこかのTier1のISPにつながっています。つまり、インターネット上のすべてのISPはTier1を経由してどこかでつながっています。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%201.png)
+![](2021-09-27-17-13-59.png)
 
 同Tier内では、ピアー（peer）と呼ばれる、無料での情報やり取りができますが、Tierが違うとトランジット（transit）と呼ばれる、上位Tierに使用料を払うことで経路情報をもらう接続が適用されます。
 
 - Tier 1：　AT&T、Verizon、NTTコミュニケーションズ（米Verioを買収してTier1昇格）、ソフトバンク（米Sprintを買収してTier1昇格）。
 - Tier 2：　日本だとOCN、KDDI、IIJなど（調べてもはっきりしない）
 
-[https://www.soumu.go.jp/main_content/000577920.pdf](https://www.soumu.go.jp/main_content/000577920.pdf)
+https://www.soumu.go.jp/main_content/000577920.pdf
 
-[https://www.m2ri.jp/release/detail.html](https://www.m2ri.jp/release/detail.html?id=424)
+https://www.m2ri.jp/release/detail.html?id=424
 
-[https://www.n-study.com/internetworking-overview/internet-overview/](https://www.n-study.com/internetworking-overview/internet-overview/)
+https://www.n-study.com/internetworking-overview/internet-overview/
 
-[https://www.geekpage.jp/blog/?id=2012/10/16/1](https://www.geekpage.jp/blog/?id=2012/10/16/1)
+https://www.geekpage.jp/blog/?id=2012/10/16/1
 
-[https://kaiteki-netlife.com/ocn_reason/](https://kaiteki-netlife.com/ocn_reason/)
+https://kaiteki-netlife.com/ocn_reason/
 
-### 1-11.  SEO (Search Engine Optimization)
+### 2.11. SEO (Search Engine Optimization)
 
 Googlebotなど検索エンジンはクローラーと呼ぶ、インターネット上を徘徊するボットを動かしている。これらがサイトやページの評価を行い、検索キーワードに対するページのランキングが作られ、それが表示されている。
 
@@ -174,15 +632,15 @@ Googlebotなど検索エンジンはクローラーと呼ぶ、インターネ�
 
 基本的には小手先のテクニックではなく、そもそもユーザーにとって価値のあるサイトを真正面から作ることが一番順位をあげるコツであるという感覚。実際Googleもそういってますね。詳しくはGoogleの公式サイトにガイドが載っているので、これを見るのがいいでしょう。公式以外にも簡単にチェックできそうな記事も載せてます。
 
-[https://developers.google.com/search/docs/beginner/seo-starter-guide](https://developers.google.com/search/docs/beginner/seo-starter-guide)
+https://developers.google.com/search/docs/beginner/seo-starter-guide
 
-[https://satori.marketing/marketing-blog/seo/seo-measures/](https://satori.marketing/marketing-blog/seo/seo-measures/)
+https://satori.marketing/marketing-blog/seo/seo-measures/
 
-[https://www.irep.co.jp/knowledge/blog/detail/id=45926/](https://www.irep.co.jp/knowledge/blog/detail/id=45926/)
+https://www.irep.co.jp/knowledge/blog/detail/id=45926/
 
-[https://prtimes.jp/main/html/rd/p/000000087.000035376.html](https://prtimes.jp/main/html/rd/p/000000087.000035376.html)
+https://prtimes.jp/main/html/rd/p/000000087.000035376.html
 
-### 1-12.  gRPC (Remote Procedure Call)
+### 2.12. gRPC (Remote Procedure Call)
 
 Googleが自社サービス向けに開発して使用していたものをオープンソース化した技術で、さまざまな大規模サービスでの利用実績がある。
 
@@ -190,17 +648,17 @@ Googleが自社サービス向けに開発して使用していたものをオ�
 
 これらは基本的にテキストベースで情報をやり取りするためデータの転送効率が悪く、またバイナリデータを扱いにくいという問題があった。また、HTTP/HTTPSを使用しているため比較的長い期間で散発的にデータをやり取りしにくかったり、転送効率の面でもオーバーヘッドが存在したりする。こういった問題を解決するために考案されたのがgRPC。現在はLinux Foundation傘下のCloud Native Computing Foundation（CNCF）によって開発が進められている。
 
-余談なんですが、gが何を示すのかは謎です（Globalのgかな。もしくはGoogleのgじゃねえか？）
+余談なんですが、gが何を示すのかは結構調べましたが、謎です（Globalのgか、もしくはGoogleのgだと思うが）
 
-[https://grpc.io/about/](https://grpc.io/about/)
+https://grpc.io/about/
 
-[https://grpc.io/docs/what-is-grpc/introduction/](https://grpc.io/docs/what-is-grpc/introduction/)
+https://grpc.io/docs/what-is-grpc/introduction/
 
-[https://knowledge.sakura.ad.jp/24059/](https://knowledge.sakura.ad.jp/24059/)
+https://knowledge.sakura.ad.jp/24059/
 
-[https://qiita.com/oohira/items/63b5ccb2bf1a913659d6](https://qiita.com/oohira/items/63b5ccb2bf1a913659d6)
+https://qiita.com/oohira/items/63b5ccb2bf1a913659d6
 
-### 1-13.  Semantic WEB
+### 2.13. Semantic WEB
 
 現在のWWW（World Wide Web）は単にデータの集合であり人間がデータを解釈して初めて意味のある情報となるが，セマンティック・ウェブ（Semantic Web）はウェブページにメタデータを付加することでコンピュータが意味情報を解釈・処理することを目指す枠組み。
 
@@ -208,29 +666,29 @@ Googleが自社サービス向けに開発して使用していたものをオ�
 
 WEB DEVELOPER Roadmap 2021だと、Learn anytime扱いとなっている。
 
-[https://roadmap.sh/frontend](https://roadmap.sh/frontend)
+https://roadmap.sh/frontend
 
-[https://www.s.u-tokyo.ac.jp/ja/story/newsletter/keywords/17/05.html](https://www.s.u-tokyo.ac.jp/ja/story/newsletter/keywords/17/05.html)
+https://www.s.u-tokyo.ac.jp/ja/story/newsletter/keywords/17/05.html
 
-### 1-13-1.  RDF (Resource Description Framework)
+#### 2.13.1. RDF (Resource Description Framework)
 
-RDF is a standard model for data interchange on the Web.　情報についての情報(メタ情報/メタデータ)を表記するための汎用的な手法を定めたデータ形式の一つ。Webサイトの更新情報を配信するRSSの原型になった仕様としてよく知られる。
+メタ情報/メタデータを表記するための汎用的な手法を定めたデータ形式の一つ。Webサイトの更新情報を配信するRSSの原型になった仕様としてよく知られる。
 
-[https://e-words.jp/w/RDF.html](https://e-words.jp/w/RDF.html)
+https://e-words.jp/w/RDF.html
 
-[https://www.w3.org/RDF/](https://www.w3.org/RDF/)
+https://www.w3.org/RDF/
 
-### 1-13-2.  OWL (The W3C Web Ontology Language)
+#### 2.13.2. OWL (The W3C Web Ontology Language)
 
 物事、物事のグループ、物事間の関係についての豊かで複雑な知識を表現するために設計されたセマンティック・ウェブ言語。
 
 OWLウェブ・オントロジー言語は、人間に対して単に情報を提示するのではなく、情報の内容を処理する必要のあるアプリケーションが利用できるように設計されています。OWLは、形式意味論（formal semantics）を用いて語彙を補足して提供することによって、XML、RDF、および、RDFスキーマ (RDF-S) のサポートよりもウェブ・コンテンツに対する機械解釈可能性の実現をより容易にします。OWLには、OWL Lite、OWL DL、OWL Fullの順でより表現力を持つ3つのサブ言語（sub language）が存在しています。
 
-[https://www.w3.org/OWL/](https://www.w3.org/OWL/)
+https://www.w3.org/OWL/
 
-[http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rec-owl-features-20040210.html](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rec-owl-features-20040210.html)
+http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rec-owl-features-20040210.html
 
-### 1-14.  Web Socket
+### 2.14. Web Socket
 
 Webにおいて双方向通信を低コストで行うための仕組み。プロトコルの一種。下記のようなHTTPの課題を解決するために生まれた
 
@@ -239,29 +697,29 @@ Webにおいて双方向通信を低コストで行うための仕組み。プ�
 
 例えばFacebookのチャットアプリみたいに多数のクライアントが一つのページにアクセスしてて誰かがメッセージを投稿するとそれをその他のユーザーに通知したい場合があって、そういった時に双方向通信の必要性が出てくる。
 
-[https://en.wikipedia.org/wiki/WebSocket](https://en.wikipedia.org/wiki/WebSocket)
+https://en.wikipedia.org/wiki/WebSocket
 
-[https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
 
-[https://qiita.com/south37/items/6f92d4268fe676347160](https://qiita.com/south37/items/6f92d4268fe676347160)
+https://qiita.com/south37/items/6f92d4268fe676347160
 
-[https://qiita.com/chihiro/items/9d280704c6eff8603389](https://qiita.com/chihiro/items/9d280704c6eff8603389)
+https://qiita.com/chihiro/items/9d280704c6eff8603389
 
-## 2.  Browser
+## 3. Browser
 
 受け取ったHTMLファイルを解析するレンダリングエンジンが各ブラウザには内包されている。またJavaScriptはJavaScriptエンジンで動く。それらのエンジンが、ブラウザ間で異なるために同じHTMLやJavaScriptの内容でも表示や挙動が異なる場合がある。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%202.png)
+![](2021-09-27-17-27-03.png)
 
-[https://2020.stateofjs.com/en-US/other-tools/](https://2020.stateofjs.com/en-US/other-tools/)
+https://2020.stateofjs.com/en-US/other-tools/
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_FEV5Y74CDVTH1HD880NF](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_FEV5Y74CDVTH1HD880NF)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_FEV5Y74CDVTH1HD880NF
 
-### 2-1.  Browserの種類
+### 3.1. Browserの種類
 
 ここでは5種類くらいしか紹介しませんが、実は新興ブラウザもどんどん誕生しています。もうとっくに勝負は決したかと思っていましたが、決して聖域ではないわけですね。とはいえ調査結果にもある通り、基本はChromeです。
 
-### 2-1-1.  Chrome
+#### 3.1.1. Chrome
 
 Google。一番使われている。他のブラウザでも検索エンジン自体は同じGoogleだったりする。
 
@@ -269,70 +727,70 @@ Google。一番使われている。他のブラウザでも検索エンジン�
 
 JavaScriptエンジンは、V8。
 
-[https://www.chromium.org/blink](https://www.chromium.org/blink)
+https://www.chromium.org/blink
 
-### 2-1-2.  Safari
+#### 3.1.2. Safari
 
 Apple。iPhoneやiPadのデバイスのことを考えると使われている。特に日本ではスマホなどのデバイスはほとんどAppleだからだ。レンダリングエンジンは、Webkit。JavaScriptエンジンは、JavaScriptCore
 
-### 2-1-3.  Firefox
+#### 3.1.3. Firefox
 
 Mozilla。レンダリングエンジンは、Gecko。ブラウザと同じくMozillaなどが管理。JavaScriptエンジンは、SpiderMonkey。今までのクライアントさんでもデフォルトはFirefox、というのはたまにありました。MozillaのことはFirefoxでしか知らないかもしれませんが、実は色々やっていて、後で出てきます。
 
-### 2-1-4.  Edge
+#### 3.1.4. Edge
 
 Microsoft。長年使われたIEの後継。IEはもう紹介しないけどいいよね。Googleと同じで、レンダリングエンジンは、Blink。JavaScriptエンジンは、V8
 
-### 2-1-5.  Sidekick
+#### 3.1.5. Sidekick
 
 Chromeと同期できるChromeみたいなブラウザ。Chromeより早くて、広告ブロックもしてくれる。最近増えていて、アーリーアダプターを中心にTwitterで人気。ただちょうど好きになってきたころに、課金のお知らせが来る（それでもやめられない快適感なのですが）
 
-### 2-2.  Rendering Engine
+### 3.2. Rendering Engine
 
 各社で競い合ってるが、WebkitとBlinkをご紹介。ちなみに、レンダリングエンジンは必ずしもブラウザのみで利用されるとは限りません。たとえば、メールクライアントではHTMLメールの表示をサポートするために内部にレンダリングエンジンを組み込みます。
 
-Webフロントエンド ハイパフォーマンス チューニング [https://www.amazon.co.jp/dp/B0728K5JZV/ref=cm_sw_r_cp_api_glt_3RHKAG3G6TKCWGBCSZ66?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B0728K5JZV/ref=cm_sw_r_cp_api_glt_3RHKAG3G6TKCWGBCSZ66?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B0728K5JZV/ref=cm_sw_r_cp_api_glt_3RHKAG3G6TKCWGBCSZ66?_encoding=UTF8&psc=1
 
-### 2-2-1.  Webkit
+#### 3.2.1. Webkit
 
 WebKitの源流は、1990年代後半にKDEがオープンソースとして開発を進めていたKHTML（KDE HTML）というWebレンダリングエンジンにある。当時NetscapeのGecko、MicrosoftのTrident（Internet Explorer）という形で2つのメジャーなレンダリングエンジンが存在したが、それとは独立する形で進んでいた。後に、AppleがKHTMLをForkする形で分岐し、大幅な改良を加える形で誕生したのがWebKitだ。
 
 そして次に、GoogleがオープンソースプロジェクトとしてのWebKitに積極的に関わるようになり、2008年にはWebKitをベースにしたWebブラウザー「Chrome」の発表と、そのオープンソースプロジェクトである「Chromium」の立ち上げを行なった。しかし蜜月も束の間であった（Blinkに続く）
 
-[https://ascii.jp/elem/000/000/778/778554/2/](https://ascii.jp/elem/000/000/778/778554/2/)
+https://ascii.jp/elem/000/000/778/778554/2/
 
-### 2-2-2.  Blink
+#### 3.2.2. Blink
 
 Googleが開発、ChromeやEdgeで利用。もともとGoogleはAppleと同じWebkitを使っていたが、2013年GoogleがWebKitを離れて「Blink」への移行を表明。BlinkはWebKitのForkにあたるプロジェクト。これをずっと傍から見ていたMozillaの公式にBlinkの解説ページがあるのだから、面白い
 
-[https://saneyukis.hatenablog.com/entry/2020/02/05/002818](https://saneyukis.hatenablog.com/entry/2020/02/05/002818)
+https://saneyukis.hatenablog.com/entry/2020/02/05/002818
 
-[https://ascii.jp/elem/000/000/778/778554/](https://ascii.jp/elem/000/000/778/778554/)
+https://ascii.jp/elem/000/000/778/778554/
 
-[https://developer.mozilla.org/ja/docs/Glossary/Blink](https://developer.mozilla.org/ja/docs/Glossary/Blink)
+https://developer.mozilla.org/ja/docs/Glossary/Blink
 
-[https://www.itmedia.co.jp/pcuser/articles/1812/09/news016.html](https://www.itmedia.co.jp/pcuser/articles/1812/09/news016.html)
+https://www.itmedia.co.jp/pcuser/articles/1812/09/news016.html
 
-### 2-3.  JavaScript Engine
+### 3.3. JavaScript Engine
 
 こちらも各社で競い合っているが、代表的なV8をご紹介。
 
-### 2-3-1. V8
+#### 3.3.1. V8
 
 V8は、C++で書かれたGoogleのオープンソースの高性能JavaScriptおよびWebAssemblyエンジンです。ChromeやNode.jsなどで使用されています。ECMAScriptとWebAssemblyを実装しており、Windows 7以降、macOS 10.12+、x64、IA-32、ARM、MIPSプロセッサを使用したLinuxシステムで動作します。V8はスタンドアロンで動作することも、C++アプリケーションに組み込むこともできます。また、V8 エンジンは、２つのコンポーネントで構成されています。
 
 1. Memory Heap（メモリの割り当てなど）
 2. Call Stack(コードを実行するためのスタック)
 
-[https://v8.dev/](https://v8.dev/)
+https://v8.dev/
 
-[https://qiita.com/ryoya41/items/fd8e46702b0f4fbe1188](https://qiita.com/ryoya41/items/fd8e46702b0f4fbe1188)
+https://qiita.com/ryoya41/items/fd8e46702b0f4fbe1188
 
-### 2-4.  Critical Rendering Path
+### 3.4. Critical Rendering Path
 
 HTML,CSS,Javascriptをどう処理して画面に表示するのか。HTML、CSS、JavaScript のバイトの受信から、これらをピクセルとしてレンダリングするために必要な処理までの中間段階で行われている内容のこと。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%203.png)
+![](2021-09-27-18-33-57.png)
 
 そのプロセスは下記の通り。
 
@@ -341,11 +799,11 @@ HTML,CSS,Javascriptをどう処理して画面に表示するのか。HTML、CSS
 3. Rendering Tree のレイアウト
 4. Rendering Tree の描画
 
-[https://developers.google.com/web/fundamentals/performance/critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path)
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path
 
-[https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc](https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc)
+https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc
 
-### 2-4-1.  Object Modelの構築
+#### 3.4.1. Object Modelの構築
 
 ブラウザはページを描画する前に、DOMとCSSOMツリーを構築する必要があります。このDOMとCSSOMツリーを構築する工程を指します。
 
@@ -353,78 +811,101 @@ HTML,CSS,Javascriptをどう処理して画面に表示するのか。HTML、CSS
 
 という流れでオブジェクトモデルは構築されます。
 
-1. ブラウザはディスクやネットワークからHTMLのバイトを読み取り、utf8などの文字コードに応じて<html>や<head>のような文字列に変換
+1. ブラウザはディスクやネットワークからHTMLのバイトを読み取り、utf8などの文字コードに応じて`<html>`や`<head>`のような文字列に変換
 2. 取得した文字列をトークンに変換
-3. トークンは<html>や<head>といったオブジェクトに変換
+3. トークンは`<html>`や`<head>`といったオブジェクトに変換
 4. 字句解析で作られたオブジェクトはオリジナルのマークアップの定義に基づいた親子関係をもつ木構造に整形
 
-[https://developers.google.com/web/fundamentals/performance/critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path)
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path
 
-[https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc](https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc)
+https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc
 
-### 2-4-2.  Rendering Tree の構築
+#### 3.4.2. Rendering Tree の構築
 
 DOMツリーとCSSOMツリーを合成してレンダーツリーを生成。
 
-[https://developers.google.com/web/fundamentals/performance/critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path)
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path
 
-[https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc](https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc)
+https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc
 
-### 2-4-3.  Rendering Tree のレイアウト
+#### 3.4.3. Rendering Tree のレイアウト
 
 デバイスのviewport内でそれら要素の厳密な位置やサイズを算出するレイアウトの工程が行われます(リフローとも言われます)
 
 ページ上での個々の要素の正確なサイズや位置を求めるために、レンダーツリーのルートからブラウザはトラバースします。
 
-[https://developers.google.com/web/fundamentals/performance/critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path)
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path
 
-[https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc](https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc)
+https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc
 
-### 2-4-4.  Rendering Tree の描画
+#### 3.4.4. Rendering Tree の描画
 
 最後に、レイアウトプロセスで得ることができた個々の要素のサイズと位置情報を最終的な正確なピクセル値へと変えるペイント(又はラスタライゼイション)の行程が行われます。それぞれの工程の合計時間を最小化することでクリティカルレンダリングパスを最適化することができます。
 
-[https://developers.google.com/web/fundamentals/performance/critical-rendering-path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path)
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path
 
-[https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc](https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc)
+https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc
 
-## 3.  DNS (Domain Name System)
+## 4. DNS (Domain Name System)
 
 - DNS Server：　WEBブラウザからホスト名を受け取り、IPアドレスを返すサーバー
 - DNS Cache Server：　実際は毎回DNSサーバーが回答してるわけではなく、一定期間はDNSキャッシュサーバーに保持され、ここから回答している
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
 
-### 3-1.  Registry（レジストリ）
+### 4.1. Registry（レジストリ）
 
 「.com」などのトップレベルドメインを管理している組織。例えば「.com」はVeriSignが管理している。テック系で増えている「.io」はnicが管理している
 
-### 3-2.  Registrar（レジストラ）
+### 4.2. Registrar（レジストラ）
 
 ドメインを登録する事業者。お名前.comや、ムームードメイン、Google Domainなどが該当する
 
-[https://www.nadukete.net/domain-guide/setting/registry-registrar.html](https://www.nadukete.net/domain-guide/setting/registry-registrar.html)
+https://www.nadukete.net/domain-guide/setting/registry-registrar.html
 
-[https://jp.godaddy.com/help/what-is-the-difference-between-a-registry-registrar-and-registrant-8039](https://jp.godaddy.com/help/what-is-the-difference-between-a-registry-registrar-and-registrant-8039)
+https://jp.godaddy.com/help/what-is-the-difference-between-a-registry-registrar-and-registrant-8039
 
-[https://www.nic.io/](https://www.nic.io/)
+https://www.nic.io/
 
-## 4.  WEB Server
+## 5. WEB Server
 
 WEBサーバーは複数クライアントからのリクエストに、同時並行的に応答しないといけない。複数リクエストの処理には2種類ある。ポート番号はhttpならば80。httpsならば443
 
-- Prefork型：　OSは実行するプロセスを高速に切り替えることで、複数のプロセスが同時並行で実行されているかのようにふるまう。この仕組みを用いるのがPrefork型。代表的なものは、Apache HTTP Server。プロセスの数が多くなるとOSのプロセス切り替え処理の割合が増えてしまい、遅くなる。C10K（クライアント1万台）問題という。
-- イベント駆動型：　1つのプロセスで複数のリクエストを処理できる。非同期I/O（Input/Output）を利用している。ネットワークやディスクとのデータのやりとりは、CPUから見ると低速で、待ち状態が発生する。その間に別の処理を実行するのが非同期I/O。代表的なものは、nginx（エンジンエックス）
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1
 
-[https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&psc=1)
+https://milestone-of-se.nesuke.com/sv-basic/linux-basic/apache-mpm-prefork-worker-event/
 
-### 4-1.  Apache HTTP Server
+### 5.1. WEB Server のタイプ
+
+#### 5.1.1. Prefork
+
+Prefork型。OSは実行するプロセスを高速に切り替えることで、複数のプロセスが同時並行で実行されているかのようにふるまう。この仕組みを用いるのがPrefork型。代表的なものは、Apache HTTP Server。プロセスの数が多くなるとOSのプロセス切り替え処理の割合が増えてしまい、遅くなる。C10K（クライアント1万台）問題という。
+
+fork とは Linux のシステムコールの 1 つで、プロセスから別のプロセスを呼び出すことです。(このケースでは、ある プロセス ID を持つ httpd が、別のプロセス ID となる httpd プロセスを生成することです。）
+
+#### 5.1.2. Event Driven
+
+イベント駆動型。1つのプロセスで複数のリクエストを処理できる。非同期I/O（Input/Output）を利用している。ネットワークやディスクとのデータのやりとりは、CPUから見ると低速で、待ち状態が発生する。その間に別の処理を実行するのが非同期I/O。代表的なものは、nginx（エンジンエックス）。
+
+Apache でも設定を変更すれば、このモードに出来る。
+
+#### 5.1.3. Worker
+
+ベースはイベント駆動型と同じ。worker 方式では 1 つのプロセスが複数のスレッドを持ちます。これにより、少ないプロセス数で多くの仕事を同時実行できるようになります。このようなプロセスを『マルチスレッドプロセス』と呼びます。
+
+Apache でも設定を変更すれば、このモードに出来る。
+
+### 5.2. WEB Server Middlewares
+
+WEBサーバーの役割を担うミドルウェアをメモしていく。
+
+#### 5.2.1. Apache HTTP Server
 
 非営利団体のApache Software Foundationが開発・管理している
 
-### 4-2.  nginx
+#### 5.2.2. nginx
 
 nginx社が提供しているフリーかつオープンなWebサーバ用のソフトウェア。元々ロシアで開発された。派生系も含めたグローバルシェアは2021年に合計50％を超えて、単独のnginxにおいても下記のグラフのようにApacheを超えた。とはいえ、日本やアメリカにおいてはApacheの方が依然シェアが高い。
 
@@ -432,41 +913,41 @@ nginxは他のWebサーバと組み合わせて使われることが多いとさ
 
 WebサーバとAPサーバを同一サーバに集約し、コストを抑えたいという場合は、WebサーバとしてNginx採用は最適とは言えない。NginxはApacheに比べ、Webアプリケーションでよく用いられるPHPやPerl、CGIなどで実装される動的コンテンツのようなCPUを使った処理が得意ではない。
 
-[https://news.mynavi.jp/article/20210507-1884013/](https://news.mynavi.jp/article/20210507-1884013/)
+https://news.mynavi.jp/article/20210507-1884013/
 
-[https://www.sbbit.jp/article/cont1/65256](https://www.sbbit.jp/article/cont1/65256)
+https://www.sbbit.jp/article/cont1/65256
 
-### 4-3.  Cloudflare
+#### 5.2.3. Cloudflare
 
-NASDAQ上場企業のCloudflare社が提供するWEBサーバー。[https://www.cloudflare.com/ja-jp/](https://www.cloudflare.com/ja-jp/)
+NASDAQ上場企業のCloudflare社が提供するWEBサーバー。https://www.cloudflare.com/ja-jp/
 
-### 4-4.  LiteSpeed
+#### 5.2.4. LiteSpeed
 
-第4位のWEBサーバー。[https://www.litespeedtech.com/](https://www.litespeedtech.com/)
+第4位のWEBサーバー。https://www.litespeedtech.com/
 
-### 4-5.  Microsoft IIS (Internet Information Service)
+#### 5.2.5. Microsoft IIS (Internet Information Service)
 
 Microsoftが開発・管理している
 
-### 4-6.  WEB Server Software の利用シェア
+### 5.3. WEB Server Software の利用シェア
 
 ２大巨頭はNginxとApache。2021年7月はNginx、Cloudflare Server、LiteSpeedがシェアを増やし、Apacheがシェアを減らした。ApacheとMicrosoft-IISがシェアを減らし、Nginx、Cloudflare Server、LiteSpeedがシェアを増やすというのがここ数年の傾向となっている。ただし、増減のペースはほぼ一定で、数年間という比較的長いスパンでシェアの推移が起こっている。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%204.png)
+![](2021-09-27-18-38-11.png)
 
-[https://news.livedoor.com/article/detail/20472752/](https://news.livedoor.com/article/detail/20472752/)
+https://news.livedoor.com/article/detail/20472752/
 
-### 4-7.  Static Content（静的コンテンツ）
+### 5.4. Static Content（静的コンテンツ）
 
 ヘルプページなど、最初から配信するコンテンツの中身が変わらないもの。この特性を生かして、効率よく配信するためのシステムをCDN（Contents Delivery Network）という。
 
-### 4-8.  CDN (Contents Delivery Network)
+### 5.5. CDN (Contents Delivery Network)
 
 コンテンツキャッシュサーバーの役割も果たす。CDNを提供する事業者やクラウドサービスはいくつかある。CDNを実現する、つまり同一のコンテンツを多くのサーバでミラーする手段としては、単純なDNSラウンドロビンから、P2P、地理情報を加味した複雑な配信技術までさまざまなものがあり、研究、実用化がなされている。(左) 単一のサーバーによる配信　(右) CDNによる配信
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%205.png)
+![](2021-09-27-18-51-32.png)
 
-### 4-9.  CDN事業者
+### 5.6. CDN 事業者
 
 主なCDN事業者は、下記。世界的には上位3社による寡占が進んでいるらしい。日本語サイトではAmazon CloudFrontが2018年頃からここ数年1位。
 
@@ -477,16 +958,16 @@ Microsoftが開発・管理している
 
 [https://ja.wikipedia.org/wiki/コンテンツデリバリネットワーク](https://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%83%87%E3%83%AA%E3%83%90%E3%83%AA%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF)
 
-### 4-10.  CDNで使用されている技術
+### 5.7. CDN で使用されている技術
 
-- DNSラウンドロビン：　一つのドメイン名に複数のIPアドレスを割り当てる負荷分散技術の一つ
+- DNS ラウンドロビン：　一つのドメイン名に複数のIPアドレスを割り当てる負荷分散技術の一つ
 - P2P：　複数のコンピューター間で通信を行う際のアーキテクチャのひとつで、対等の者（Peer、ピア）同士が通信をすることを特徴とする通信方式
 
 [https://ja.wikipedia.org/wiki/DNSラウンドロビン](https://ja.wikipedia.org/wiki/DNS%E3%83%A9%E3%82%A6%E3%83%B3%E3%83%89%E3%83%AD%E3%83%93%E3%83%B3)
 
-[https://ja.wikipedia.org/wiki/Peer_to_Peer](https://ja.wikipedia.org/wiki/Peer_to_Peer)
+https://ja.wikipedia.org/wiki/Peer_to_Peer
 
-### 4-11.  Dynamic Content（動的コンテンツ）
+### 5.8. Dynamic Content（動的コンテンツ）
 
 動的に中身の変わるコンテンツ。WEBサーバー側で動的な処理を入れる方法は2つ。
 
@@ -495,62 +976,62 @@ Microsoftが開発・管理している
 
 後者の方法もCGIをはじめとしていくつか変遷を遂げた。
 
-### 4-12.  CGI (Common Gateway Interface)
+### 5.9. CGI (Common Gateway Interface)
 
 リクエストの度に毎回プログラムを起動するため、アクセスが増えると遅くなる。cgi-binフォルダにある拡張子cgiがcgiプログラム。CGIの問題を解決するために下記のような方法も生まれた
 
 - Apache Module：　Apacheの拡張機能。ただ、Prefork型であるため、C10K問題につながった
 - FastCGI：　CGIの改良版。毎回外部プログラムを起動せずに、WEBサーバーと外部プログラムとの接続を維持・常駐させた。イベント駆動型である。外部プログラムとの通信はUNIXドメインソケットなど使わなければならない
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
-### 4-13.  WSGI (Web Server Gateway Interface)
+### 5.10. WSGI (Web Server Gateway Interface)
 
 Webアプリケーションが発展していくに伴って、数多くのフレームワークが開発されました。そしてフレームワークは、Webサーバとのやりとりの処理をそれぞれ独自に実装していました。そのためフレームワークによって使用できるWebサーバやシステム構成に制限が発生するようになってきました。 そこでフレームワークとWebサーバの間に入ってインタフェースを提供し抽象化するための規格がPythonで提案されました。それがWSGIです。
 
 HTTPを使ってWEBサーバーと外部プログラムが連携できるため、FastCGIを使う必要がなくなった。WEBサーバーとAPサーバーが分離したケース。WSGIは、ウィスキーまたはウィズギーと発音される。
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
-### 4-13-1.  Library / Framework for WSGI
+#### 5.10.1. Libraries / Frameworks for WSGI
 
-- Bottle：　Bottleは高速、シンプル、軽量なPython用のWSGIマイクロウェブフレームワークです。Bottleは1つのファイルモジュールとして配布され、Python標準ライブラリ以外の依存関係はありません。[https://bottlepy.org/docs/dev/](https://bottlepy.org/docs/dev/)
-- Falcon：　Falconは、高速なWeb APIやアプリのバックエンドを構築するためのミニマルなWSGIライブラリ。[https://falcon.readthedocs.io/en/stable/](https://falcon.readthedocs.io/en/stable/)
+- Bottle：　Bottleは高速、シンプル、軽量なPython用のWSGIマイクロウェブフレームワークです。Bottleは1つのファイルモジュールとして配布され、Python標準ライブラリ以外の依存関係はありません。https://bottlepy.org/docs/dev/
+- Falcon：　Falconは、高速なWeb APIやアプリのバックエンドを構築するためのミニマルなWSGIライブラリ。https://falcon.readthedocs.io/en/stable/
 
-### 4-14.  Rack / PSGI (Perl Web Server Gateway Interface)
+### 5.11. Rack / PSGI (Perl Web Server Gateway Interface)
 
 WSGIの登場によって、Python製のフレームワークはWSGIにさえ対応すれば、どのWebサーバやシステム構成でも動作させることが可能になりました。その有用性が認識され、ほかの言語でも同様のしくみが導入されました。RubyのRack、PerlのPlackがそれに当たります。
 
-## 5.  AP Server (Application Server)
+## 6. AP Server (Application Server)
 
 アプリケーションサーバとは、アプリケーションによって動的コンテンツを送信するミドルウェアです。Webサーバからリクエストによって、アプリケーションソフトの実行を行います。「Java」や「PHP」などで作られたアプリケーションを実行し、Webサーバに結果を返すのがアプリケーションサーバの役割。
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
 [https://www.fenet.jp/infla/column/technology/ソフトウェアの1つ！ミドルウェアの役割6つ｜ミド/](https://www.fenet.jp/infla/column/technology/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE1%E3%81%A4%EF%BC%81%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE%E5%BD%B9%E5%89%B26%E3%81%A4%EF%BD%9C%E3%83%9F%E3%83%89/)
 
-### 5-1.  Tomcat
+### 6.1. Tomcat
 
 無料。Tomcatとは、簡単にいうとJava サーブレットを動かすときに必要なソフトです。JavaサーブレットとはWebサーバー上で実行されるJavaのプログラムのこと。
-[https://agency-star.co.jp/column/tomcat](https://agency-star.co.jp/column/tomcat)
+https://agency-star.co.jp/column/tomcat
 
-### 5-2.  JBOSS
+### 6.2. JBOSS
 
 有料と無料どちらもある。企業向けの機能を集めたJava EE(Java Platform Enterprise Edition）を使うことができるアプリケーションサーバである。日本では、JBossというと、RedHatが販売しているJBoss Enterprise Application Platformを指す場合が多い。しかし、JBossには、WildFlyと呼ばれるオープンソースのコミュニティ版も存在している。そのため、必ずしも商用ソフトウェアの名称というわけではない。
 
-[https://www.designet.co.jp/faq/term/?id=SkJvc3M](https://www.designet.co.jp/faq/term/?id=SkJvc3M)
+https://www.designet.co.jp/faq/term/?id=SkJvc3M
 
-### 5-3.  IIS
+### 6.3. Microsoft IIS
 
 Microsoftのミドルウェア（WEBサーバーでもある）
 
-[https://qiita.com/tamago3keran/items/f470593926458b7ef52a](https://qiita.com/tamago3keran/items/f470593926458b7ef52a)
+https://qiita.com/tamago3keran/items/f470593926458b7ef52a
 
-[https://thinkit.co.jp/article/11837](https://thinkit.co.jp/article/11837)
+https://thinkit.co.jp/article/11837
 
-## 6.  HTML and CSS
+## 7. HTML and CSS
 
-### 6-1.  HTML (HyperText Markup Language)
+### 7.1. HTML (HyperText Markup Language)
 
 いくつかのバージョンがある
 
@@ -562,31 +1043,31 @@ Microsoftのミドルウェア（WEBサーバーでもある）
 - HTML 5：　2014年公開。最新で主流。2021年8月時点だとバージョンは5.2
 - HTML 6：　まだ未公開。小型アップデートで時期未定で出るという噂。
 
-[https://en.wikipedia.org/wiki/HTML](https://en.wikipedia.org/wiki/HTML)
+https://en.wikipedia.org/wiki/HTML
 
-[https://www.creativebloq.com/features/html6](https://www.creativebloq.com/features/html6)
+https://www.creativebloq.com/features/html6
 
-[https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&psc=1
 
-### 6-2.  DOM (Document Object Model)
+### 7.2. DOM (Document Object Model)
 
 W3Cが標準化・管理。HTMLはテキスト文書を扱うために構造化された言語だが、そのままではコンピュータで扱うことはできず、一度解析をして、メモリ上に構造化されたデータとして読み込む必要がある。こんなツリー上のデータ。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%206.png)
+![](2021-09-27-18-54-54.png)
 
 ブラウザで解析された HTMLのデータに対してデータの読み込みや変更を行いたい場合は、何らかの形で操作方法を提供する必要がある。
 
 DOMは、 HTMLのようなマークアップ言語の文書をプログラミング言語から操作可能にするためのプログラミングインタフェース。
 
-### 6-3.  OGP (Open Graph Protocol)
+### 7.3. OGP (Open Graph Protocol)
 
 FacebookやTwitterなどのSNSでシェアした際に、設定したWEBページのタイトルやイメージ画像、詳細などを正しく伝えるためのHTML要素。metaタグをHTMLソースコード内に記述することで、設定ができる。設定する際は1ページごとの画像や説明文が必要
 
-[https://digitalidentity.co.jp/blog/seo/ogp-share-setting.html](https://digitalidentity.co.jp/blog/seo/ogp-share-setting.html)
+https://digitalidentity.co.jp/blog/seo/ogp-share-setting.html
 
-[https://bindup.jp/camp/marketing/promotion/27424](https://bindup.jp/camp/marketing/promotion/27424)
+https://bindup.jp/camp/marketing/promotion/27424
 
-### 6-4.  CSS (Cascading Style Sheets)
+### 7.4. CSS (Cascading Style Sheets)
 
 HTMLから見栄えの機能を分離するために策定されたのがCSS。CSSはHTML 4から本格的に導入された。CSSを実現するために、HTML 4にはid、class、styleといった要素やstyleタグなどが追加されたり、linkタグを使って外部のCSSを読み込むことができるようになった。Tim Berners-Leeと一緒に働いていたHåkon Wium Lieが1994年に最初に提案した。W3Cが管理している
 
@@ -595,11 +1076,11 @@ HTMLから見栄えの機能を分離するために策定されたのがCSS。C
 - CSS 3：　各機能ごとにモジュールとしてまとめて別々に策定が進むようになった。なので厳密にはCSS3という塊は存在しない。あくまでモジュール単位。CSS2からさらにさまざまな機能が拡張されている。ほかにもアニメーション／要素の変形／グラデーションのような機能も追加されている。CSS3が現在主流の規格。モジュールによってはまだドラフトもある
 - CSS 4：　同じくモジュール単位なので、もはや何がCSS4か曖昧。Level 4をCSS 4とみなすのであれば、いくつかのモジュールはドラフトが公開されてたりはする
 
-[https://www.w3.org/Style/CSS/current-work](https://www.w3.org/Style/CSS/current-work)
+https://www.w3.org/Style/CSS/current-work
 
-[https://uxmilk.jp/53220](https://uxmilk.jp/53220)
+https://uxmilk.jp/53220
 
-### 6-5.  Alt CSS (Alternative CSS)
+### 7.5. Alt CSS (Alternative CSS)
 
 CSSはHTMLの見栄えを変更することを目的に策定された。そのため変数や定数、継承のようなプログラミングに近い機能はあまり提供されていない。そこでCSSにもっとWebアプリケーション開発と親和性の高い機能を別の言語で実装し、CSSを出力する方法が開発された。このような言語を総称してAltCSSと呼ぶ。CSS Preprocessorともカテゴライズされる
 
@@ -607,81 +1088,83 @@ CSSはHTMLの見栄えを変更することを目的に策定された。その�
 - Sass：　Sass（syntactically awesome style sheetsの略）は、カスケードスタイルシート（CSS）に解釈またはコンパイルされるプリプロセッサのスクリプト言語
 - Stylus：　Stylusは、カスケードスタイルシート（CSS）にコンパイルされる動的スタイルシートプリプロセッサ言語です。Node.jsの元プログラマーであり、Luna言語の生みの親でもあるTJ Holowaychuk 氏によって作られました。JADEとNode.jsで書かれています。
 
-### 6-6.  CSS Frameworks
+### 7.6. CSS Frameworks
 
 CSSでHTMLから見栄えの部分の分離ができたとはいえ、ゼロからCSSを書くのは大変です。そこでよく使われるスタイルをあらかじめ定義しておいて、それを利用する方法が考えられました。それがCSSフレームワークです。CSSフレームワークにもいくつか実装がありますが、代表的なものにBootstrap。2020年の利用率調査ではこんな感じでした。ただ、SatisfactionではTailwind CSSが1位で、Bootstrapは中位くらいでした。
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%207.png)
+![](2021-09-27-18-56-15.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
-利用実績率の推移。Usage = (would use again + would not use again) / total
+https://2020.stateofcss.com/en-US/
 
-[https://2020.stateofcss.com/en-US/](https://2020.stateofcss.com/en-US/)
+https://coliss.com/articles/build-websites/operation/css/the-state-of-css-2020.html
 
-[https://coliss.com/articles/build-websites/operation/css/the-state-of-css-2020.html](https://coliss.com/articles/build-websites/operation/css/the-state-of-css-2020.html)
+#### 7.6.1. Bootstrap
 
-### 6-6-1.  Bootstrap
+一番有名。世界で最も普及しているフロントエンドのオープンソースツールキットであるBootstrapは、Sass変数とミックスイン、レスポンシブグリッドシステム、豊富な組み込みコンポーネント、パワフルなJavaScriptプラグインを備えており、レスポンシブなモバイルファーストサイトを素早くデザイン、カスタマイズできます。https://getbootstrap.com/
 
-一番有名。世界で最も普及しているフロントエンドのオープンソースツールキットであるBootstrapは、Sass変数とミックスイン、レスポンシブグリッドシステム、豊富な組み込みコンポーネント、パワフルなJavaScriptプラグインを備えており、レスポンシブなモバイルファーストサイトを素早くデザイン、カスタマイズできます。[https://getbootstrap.com/](https://getbootstrap.com/)
+#### 7.6.2. Tailwind CSS
 
-### 6-6-2.  Tailwind CSS
+対抗馬。最近よく聞きます。
 
-対抗馬。flex、pt-4、text-center、rotate-90などのクラスが搭載されたユーティリティファーストのCSSフレームワークで、マークアップに直接組み込むことで、あらゆるデザインを構築できます。[https://tailwindcss.com/](https://tailwindcss.com/)
+flex、pt-4、text-center、rotate-90などのクラスが搭載されたユーティリティファーストのCSSフレームワークで、マークアップに直接組み込むことで、あらゆるデザインを構築できます。https://tailwindcss.com/
 
-### 6-6-3.  Materialize CSS
+#### 7.6.3. Materialize CSS
 
-まず、マテリアルデザインというものがあり、2014年に Google社によって発案されたデザインコンセプトです。主に Android のUI のために考案され、仮想的である画面のタッチ操作や見え方（ユーザインタフェース）を現実の紙のように近付けて自然な操作を実現しようというもの。マテリアルデザインのページを実際に作成するためのCSSフレームワークが Materialize。[https://blogk.com/1176](https://blogk.com/1176)
+まず、マテリアルデザインというものがあり、2014年に Google社によって発案されたデザインコンセプトです。主に Android のUI のために考案され、仮想的である画面のタッチ操作や見え方（ユーザインタフェース）を現実の紙のように近付けて自然な操作を実現しようというもの。
 
-### 6-6-4.  Foundation
+そのマテリアルデザインのページを実際に作成するためのCSSフレームワークが Materialize CSS。https://blogk.com/1176
+
+#### 7.6.4. Foundation
 
 CSSフレームワークといっていますが、htmlのテンプレートも用意されているようで、その場合はCLIをインストールすると、htmlが準備出来た段階から制作することが出来ます。[https://sterfield.co.jp/programmer/cssフレームワークfoundationを試してみた/](https://sterfield.co.jp/programmer/css%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AFfoundation%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/)
 
-### 6-6-5.  Reactstrap
+#### 7.6.5. Reactstrap
 
 ReactでBootstrap 4を使えるようにしたライブラリ。React自体は後述。既存の CSS を React コンポーネントとして提供するもの。
 
 サーバーレスホスティングサービスを提供している Netlify 社が開発している。
 
-[https://reactstrap.github.io/](https://reactstrap.github.io/)
+https://reactstrap.github.io/
 
-[https://zenn.dev/kkeeth/scraps/dd30ae9d48f092](https://zenn.dev/kkeeth/scraps/dd30ae9d48f092)
+https://zenn.dev/kkeeth/scraps/dd30ae9d48f092
 
-[https://qiita.com/kyrieleison/items/39ce30dd2d204791a9ea](https://qiita.com/kyrieleison/items/39ce30dd2d204791a9ea)
+https://qiita.com/kyrieleison/items/39ce30dd2d204791a9ea
 
-### 6-6-6.  Material UI
+#### 7.6.6. Material UI
 
 Google Material Design のガイドラインに沿った React を前提とした React コンポーネントセットです。日本でも使っている人が多く、情報量も多い。
 
-[https://mui.com/](https://mui.com/)
+https://mui.com/
 
-[https://qiita.com/kyrieleison/items/39ce30dd2d204791a9ea](https://qiita.com/kyrieleison/items/39ce30dd2d204791a9ea)
+https://qiita.com/kyrieleison/items/39ce30dd2d204791a9ea
 
-[https://zenn.dev/kkeeth/scraps/dd30ae9d48f092](https://zenn.dev/kkeeth/scraps/dd30ae9d48f092)
+https://zenn.dev/kkeeth/scraps/dd30ae9d48f092
 
-### 6-6-7.  Chakra UI
+#### 7.6.7. Chakra UI
 
 シンプルでモジュール化されたアクセス可能なコンポーネントライブラリで、Reactアプリケーションを構築するために必要なビルディングブロックを提供
 
-[https://chakra-ui.com/](https://chakra-ui.com/)
+https://chakra-ui.com/
 
-[https://zenn.dev/sobaotto/articles/cc6db2747fc88e](https://zenn.dev/sobaotto/articles/cc6db2747fc88e)
+https://zenn.dev/sobaotto/articles/cc6db2747fc88e
 
-### 6-6-8.  Other CSS Frameworks
+#### 7.6.8. Other CSS Frameworks
 
 Bulma、Pure CSS、Semantic UI、Skeleton、Susy、UI Kit　など多数
 
-### 6-7.  Post CSS
+### 7.7. Post CSS
 
 ロシア人の Andrey Sitnik という人が開発している、Node.js製の「CSSツールを作るためのフレームワーク」です。PostCSS自体はただのCSSのパーサー。JavaScript（後述）のプラグインを使って、CSSを拡張/変換することができるツールという方がわかりやすいかもです。CSS Preprocessorにカテゴライズされる
 
 公式サイトにいくつかサンプルコードが載っており、これを見ればCSSの変化前と変化後のイメージが少しわくかと思います。
 
-[https://postcss.org/](https://postcss.org/)
+https://postcss.org/
 
-[https://qiita.com/morishitter/items/4a04eb144abf49f41d7d](https://qiita.com/morishitter/items/4a04eb144abf49f41d7d)
+https://qiita.com/morishitter/items/4a04eb144abf49f41d7d
 
-[https://bagelee.com/design/css/5-years-from-post-css-present-and-future/](https://bagelee.com/design/css/5-years-from-post-css-present-and-future/)
+https://bagelee.com/design/css/5-years-from-post-css-present-and-future/
 
-### 6-7-1.  Post CSS Tools
+#### 7.7.1. Post CSS Tools
 
 - Autoprefixer：　ベンダープリフィックスを自動で付与する
 - cssnext：　未来のCSSの構文の一部を今のブラウザで解釈できるようにする
@@ -689,30 +1172,30 @@ Bulma、Pure CSS、Semantic UI、Skeleton、Susy、UI Kit　など多数
 
 などが有名。PostCSSを使用している企業やサービスとして、Facebook, GitHub, Google等、日本では Qiitaで導入しています。
 
-### 6-8.  CSS in JS
+### 7.8. CSS in JS
 
 JavaScriptを使用してコンポーネントをスタイルするテクニック。JavaScript自体は次の章で解説しますが、目的はCSSということでここで簡単にご紹介。
 
 JavaScriptが解析されると、CSSが生成され（通常は style 要素として）、DOMに付加されます。
 
-[https://coliss.com/articles/build-websites/operation/javascript/5-things-you-can-do-in-css-in-js.html](https://coliss.com/articles/build-websites/operation/javascript/5-things-you-can-do-in-css-in-js.html)
+https://coliss.com/articles/build-websites/operation/javascript/5-things-you-can-do-in-css-in-js.html
 
-[https://techlife.cookpad.com/entry/2021/03/15/090000](https://techlife.cookpad.com/entry/2021/03/15/090000)
+https://techlife.cookpad.com/entry/2021/03/15/090000
 
-### 6-8-1.  CSS in JS の主なライブラリ
+#### 7.8.1. CSS in JS の主なライブラリ
 
 - emotion：　stylis という CSS ライブラリが基盤。CSS を返す関数を定義することで、動的に スタイルを生成。クックパッドも使用している
-- JSS：　CSSのオーサリングツールで、JavaScriptを使ってスタイルを宣言的に、矛盾なく、再利用可能な方法で記述可能。JSSは、ブラウザ、サーバサイド、またはNode.NETでのビルド時にコンパイルすることができます。また、JSSはフレームワークに依存しません。コア、プラグイン、フレームワーク統合など、複数のパッケージで構成されています。[https://cssinjs.org/](https://cssinjs.org/)
-- Redium：　React要素のインラインスタイルを管理するツール群です。CSSなしで強力なスタイリング機能を実現。[https://formidable.com/open-source/radium/](https://formidable.com/open-source/radium/)
+- JSS：　CSSのオーサリングツールで、JavaScriptを使ってスタイルを宣言的に、矛盾なく、再利用可能な方法で記述可能。JSSは、ブラウザ、サーバサイド、またはNode.NETでのビルド時にコンパイルすることができます。また、JSSはフレームワークに依存しません。コア、プラグイン、フレームワーク統合など、複数のパッケージで構成されています。https://cssinjs.org/
+- Redium：　React要素のインラインスタイルを管理するツール群です。CSSなしで強力なスタイリング機能を実現。https://formidable.com/open-source/radium/
 - Styled-Components：　JSXのようにJavaScriptファイル内でCSSを書ける。但し、拡張子が .js とか .ts になるので、エディターやリンターによっては、拡張子に紐づいた支援ツールがうまく動かない場合もあるので注意
 
-[https://qiita.com/jagaapple/items/7f74fc32c69f5b731159](https://qiita.com/jagaapple/items/7f74fc32c69f5b731159)
+https://qiita.com/jagaapple/items/7f74fc32c69f5b731159
 
-### 6-9.  CSS Architecture
+### 7.9. CSS Architecture
 
 CSS の記法や設計方法について。CSS in JS も記法という意味では含まれますね。
 
-### 6-9-1.  BEM
+#### 7.9.1. BEM (Block, Element, Modifier)
 
 BEMとは、Block(かたまり)・Element(要素)・Modifier(修飾)の頭文字をとったものです。厳格なclass名の命名ルールが特徴的なCSS設計方法の一つ。下記のようなセパレータを使って記述をする（search__input などのアンスコ2つのこと）
 
@@ -731,34 +1214,34 @@ BEMが生まれた理由は、下記の点である。つまり、HTMLとCSSが�
 2. チームのスケーラビリティ
 3. コードの再利用性
 
-[https://www.codegrid.net/articles/bem-basic-1/](https://www.codegrid.net/articles/bem-basic-1/)
+https://www.codegrid.net/articles/bem-basic-1/
 
-[https://pikawaka.com/html-css/bem](https://pikawaka.com/html-css/bem)
+https://pikawaka.com/html-css/bem
 
-[https://cloudsmith.co.jp/blog/frontend/2021/03/1742107.html](https://cloudsmith.co.jp/blog/frontend/2021/03/1742107.html)
+https://cloudsmith.co.jp/blog/frontend/2021/03/1742107.html
 
-[https://qiita.com/Takuan_Oishii/items/0f0d2c5dc33a9b2d9cb1](https://qiita.com/Takuan_Oishii/items/0f0d2c5dc33a9b2d9cb1)
+https://qiita.com/Takuan_Oishii/items/0f0d2c5dc33a9b2d9cb1
 
-### 6-10.  WEB Font
+### 7.10. WEB Font
 
 ちょっと細かくなりますが、WEBページを作る際に、SNSやSaaSのアイコンが欲しくなる時があります。そんな時は、Font Awesomeがいいかもしれません。他にも以下のようなものがある
 
 - Google Fonts
 - Adobe Typekit　など
 
-### 6-10-1.  Font Awesome
+#### 7.10.1. Font Awesome
 
 WEB上でよく使用されるアイコンをWEBフォントにしたサービス。
 
-HTMLのhead内にhrefを記述し、Font Awesomeのサイトから表示させたいアイコンの選んで、その<i>タグをHTMLの該当箇所にはるだけ。
+HTMLのhead内にhrefを記述し、Font Awesomeのサイトから表示させたいアイコンの選んで、その `<i>` タグをHTMLの該当箇所にはるだけ。
 
-[https://fontawesome.com/](https://fontawesome.com/)
+https://fontawesome.com/
 
-### 6-11.  Image Files
+### 7.11. Image Files
 
 JPEGやPNGなど色々あるが、それは扱ったことがあると思うので、SVGを紹介しておく。
 
-### 6-11-1.  SVG (Scalable Vector Graphics)
+#### 7.11.1. SVG (Scalable Vector Graphics)
 
 「大きさを変えられるベクター画像」という意味です。PNGやJPEGなどがピクセルの集まりとして表現されるラスター画像（ビットマップ画像）であるのに対して、ベクター画像は曲線を描いたり一定の範囲を塗りつぶしたりといった処理を座標と数式によって行えることが特徴です。ベクター画像は、Adobe Illustrator や CorelDRAW などの画像編集ソフトで扱うことができます。
 
@@ -766,60 +1249,62 @@ SVGの画像フォーマットは、HTMLやCSSをはじめとするWeb関連技�
 
 XMLに準拠しているため、画像なのに、テキストエディタで編集することも可能。
 
-[https://jp.ext.hp.com/techdevice/technologysc/creator_004/](https://jp.ext.hp.com/techdevice/technologysc/creator_004/)
+https://jp.ext.hp.com/techdevice/technologysc/creator_004/
 
 [https://tech-blog.rakus.co.jp/entry/20201112/svg](https://tech-blog.rakus.co.jp/entry/20201112/svg#SVG%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%8C%E6%99%AE%E5%8F%8A%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%83%AF%E3%82%B1)
 
-### 6-12.  Responsive Design
+### 7.12. Responsive Design
 
 Webサイトのデザインを「閲覧ユーザーが使用するデバイスの画面サイズに応じて表示を最適化するデザイン」を指します。1つのHTMLで配信され、デバイスごとにCSSを用意して表示を変える仕組みをとっています。Googleが2021年3月にMFI（モバイル・ファースト・インデックス）へ完全移行する旨を発表したことから、さらに関心が高まっています。
 
 レスポンシブデザインを作るには、ページのHTMLとCSSファイルにそれぞれ「meta viewportタグ」と「メディアクエリ」を記述する必要があります。
 
-[https://semlabo.com/seo/blog/responsive_design/](https://semlabo.com/seo/blog/responsive_design/)
+https://semlabo.com/seo/blog/responsive_design/
 
-### 6-12-1.  Meta Viewport Tag
+#### 7.12.1. Meta Viewport Tag
 
 すべてのHTMLファイルのヘッダー内に、下記をいれる。
 
-> <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+```html
+<meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+```
 
 これにより、①閲覧ユーザーの使用デバイス情報の取得、②取得情報から画面横のサイズを把握してPC版・スマホ版を判断、ができるようになります。
 
-[https://semlabo.com/seo/blog/responsive_design/](https://semlabo.com/seo/blog/responsive_design/)
+https://semlabo.com/seo/blog/responsive_design/
 
-### 6-12-2.  Media Query
+#### 7.12.2. Media Query
 
 閲覧ユーザーの画面サイズに応じたページサイズの切り替えができるようになります。
 
-> @media screen and (min-width: 481px)　{ A }
+```css
+@media screen and (min-width: 481px)　{ A }
 @media screen and (max-width: 480px)　{ B }
+```
 
 1行目で「min-width: 481px」と指定することで、画面横のサイズ（CSSピクセル）が481pxに達した時に、モバイル版ページからPC版ページへと画面サイズが切り替わるようになります。Aの部分にCSSコードを入れます。2行目にはモバイル版のコードをBに入れるイメージ。
 
 他にも方法は色々あるかとは思いますが、例えばこういう風に切り替えている。
 
-[https://semlabo.com/seo/blog/responsive_design/](https://semlabo.com/seo/blog/responsive_design/)
+https://semlabo.com/seo/blog/responsive_design/
 
-### 6-13.  Flat Design vs Material Design
+### 7.13. User Interface Design
 
 WEBサイトのデザインの変遷として、下記のパターンと流れがあった。絵で見た方がはやい。
 
-### 6-13-1.  Skeuomorphism Design
+#### 7.13.1. Skeuomorphism Design
 
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%208.png)
-
-![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%209.png)
+![](2021-09-27-19-14-45.png) ![](2021-09-27-19-15-03.png)
 
 スキューモフィズムデザインと読む。初期のデザイン。ギリシャ由来の言葉で、リアリズムに影響を受けた実際にあるものに近しいデザイン。
 
 初期のデザインなのですが、またブームが来ているとかいないとか。フラットデザインに飽きてくるんでしょうね。（個人的な意見ですが）
 
-[https://b-risk.jp/blog/2020/01/skeuomorphism/](https://b-risk.jp/blog/2020/01/skeuomorphism/)
+https://b-risk.jp/blog/2020/01/skeuomorphism/
 
-[https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/](https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/)
+https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/
 
-### 6-13-2.  Flat Design
+### 7.14. 6-13-2.  Flat Design
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2010.png)
 
@@ -829,9 +1314,9 @@ WEBサイトのデザインの変遷として、下記のパターンと流れ�
 
 シンプルな分、ページの読み込み時間も早くなったりするらしい。
 
-[https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/](https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/)
+https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/
 
-### 6-13-3.  Material Design
+### 7.15. 6-13-3.  Material Design
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2012.png)
 
@@ -841,37 +1326,37 @@ WEBサイトのデザインの変遷として、下記のパターンと流れ�
 
 アニメーションが関係してたりもするので、実際に本家を訪れて、タッチしてみるのが早いです。
 
-[https://material.io/develop/web/examples](https://material.io/develop/web/examples)
+https://material.io/develop/web/examples
 
-[https://tayori.com/blog/material-design/](https://tayori.com/blog/material-design/)
+https://tayori.com/blog/material-design/
 
-### 6-14.  CMS (Contents Management System)
+### 7.16. 6-14.  CMS (Contents Management System)
 
 Webサイトのコンテンツを構成するテキストや画像、デザイン・レイアウト情報（テンプレート）などを一元的に保存・管理するシステムのこと。WEBアプリそのものには使わなくても（使えなくても）、それにまつわるLPやHPはまた別途必要になる、いやむしろ先に必要になるので、知っておいて損はない。
 
 - オープンソース型：　ブログなど小規模サイト向け。代表的な製品は、WordPress、Joomla!、Drupal、Concrete5 などがある
 - 商用パッケージ型：　中～大規模サイト向け。数千～数万ページ程度の中規模サイト（それでも多いけど）だと、HeartCore、NOREN。数万ページを超えるような大規模サイトだと、Sitecore、Adobe Experience Manager などがある
 
-[https://www.hitachi-solutions.co.jp/digitalmarketing/sp/column/cms_vol01/](https://www.hitachi-solutions.co.jp/digitalmarketing/sp/column/cms_vol01/)
+https://www.hitachi-solutions.co.jp/digitalmarketing/sp/column/cms_vol01/
 
-[https://www.asobou.co.jp/blog/web/about-cms](https://www.asobou.co.jp/blog/web/about-cms)
+https://www.asobou.co.jp/blog/web/about-cms
 
-### 6-14-1.  WordPress
+### 7.17. 6-14-1.  WordPress
 
 有名。2003年公開。PHPで書かれている。よくブログなんかで使われている。HPもこれでよいとされてきた。
 
-### 6-13-2.  Drupal
+### 7.18. 6-13-2.  Drupal
 
 PHPで書かれたフリーでオープンソースのウェブコンテンツ管理システムで、GNU General Public Licenseの下で配布されています。Drupalは、世界のトップ10,000のウェブサイトのうち、少なくとも13%にバックエンドフレームワークを提供しています。
-[https://www.drupal.org/](https://www.drupal.org/)
+https://www.drupal.org/
 
-### 6-15.  Headless CMS
+### 7.19. 6-15.  Headless CMS
 
 ビューを提供しないCMS。Node.js上で動作するものが非常に多くなっています。
 
-[https://wk-partners.co.jp/homepage/blog/hpseisaku/htmlcss/headless-cms/](https://wk-partners.co.jp/homepage/blog/hpseisaku/htmlcss/headless-cms/)
+https://wk-partners.co.jp/homepage/blog/hpseisaku/htmlcss/headless-cms/
 
-### 6-15-1. Contentful
+### 7.20. 6-15-1. Contentful
 
 2011年創業のドイツの会社が運営する Headless CMS 最大手。
 
@@ -879,15 +1364,15 @@ PHPで書かれたフリーでオープンソースのウェブコンテンツ�
 
 日本語UIはない。
 
-[https://www.contentful.com/](https://www.contentful.com/)
+https://www.contentful.com/
 
-### 6-15-2. MicroCMS
+### 7.21. 6-15-2. MicroCMS
 
 日本製のHeadless CMS。日本語ドキュメントがあり、サポートも日本語。2017年創業のベンチャーmicroCMS（旧会社名ウォンタ）が開発・運営。元ヤフーのメンバー。すごい
 
-[https://microcms.io/](https://microcms.io/)
+https://microcms.io/
 
-## 7.  JavaScript
+## 8.  JavaScript
 
 本編を特に詳しく扱います。
 
@@ -897,11 +1382,11 @@ Webの初期のころに使われていたNetscape Navigatorというブラウ�
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2014.png)
 
-[https://2020.stateofjs.com/en-US/technologies/](https://2020.stateofjs.com/en-US/technologies/)
+https://2020.stateofjs.com/en-US/technologies/
 
-### 7-1.  ECMA Script
+### 8.1. 7-1.  ECMA Script
 
-MozillaとMicrosoftが別々に開発してたのでECMA(エクマ)インターナショナルが間を持った結果ECMAスクリプトという仕様名になった。（結局フレームワーク側でまた色んなものが開発されているが・・・）
+MozillaとMicrosoftが別々に開発してたのでECMA(エクマインターナショナルが間を持った結果ECMAスクリプトという仕様名になった。（結局フレームワーク側でまた色んなものが開発されているが・・・）
 
 - ECMAScript 1、2、3：　それぞれ1997年、1998年、1999年公開。まだ流行ってない頃
 - ECMAScript 4：　うまく仕様決まらず、公開もされず2003年破棄
@@ -909,13 +1394,13 @@ MozillaとMicrosoftが別々に開発してたのでECMA(エクマ)インター�
 - ECMAScript 2015：　Version 6に該当。2015年公開。ここからVersion番号ではなく年が使われる。クラスベース寄りの機能が実装された。また変数のスコープや再代入不可の変数の定義ができるなど、プログラムをより安全に書くための機能も追加されている。
 - ECMAScript 2016～2021：　以降、毎年6月に公開されている
 
-[https://en.wikipedia.org/wiki/ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
+https://en.wikipedia.org/wiki/ECMAScript
 
-[https://stackoverflow.com/questions/186244/what-does-it-mean-that-javascript-is-a-prototype-based-language](https://stackoverflow.com/questions/186244/what-does-it-mean-that-javascript-is-a-prototype-based-language)
+https://stackoverflow.com/questions/186244/what-does-it-mean-that-javascript-is-a-prototype-based-language
 
-[https://chomado.com/programming/type-safety/](https://chomado.com/programming/type-safety/)
+https://chomado.com/programming/type-safety/
 
-### 7-1-1.  Prototype-based VS Class-based
+### 8.2. 7-1-1.  Prototype-based VS Class-based
 
 JavaScriptはプロトタイプベースのオブジェクト指向言語。
 
@@ -923,47 +1408,47 @@ JavaScriptはプロトタイプベースのオブジェクト指向言語。
 
 Javascriptで全てはオブジェクトで、クラスベース言語でいうところのインスタンスのみだと思えば良い。
 
-[https://qiita.com/awakia/items/8ff451ca5f8ae0122be7](https://qiita.com/awakia/items/8ff451ca5f8ae0122be7)
+https://qiita.com/awakia/items/8ff451ca5f8ae0122be7
 
-[https://www.wantedly.com/companies/ashita-team/post_articles/298904](https://www.wantedly.com/companies/ashita-team/post_articles/298904)
+https://www.wantedly.com/companies/ashita-team/post_articles/298904
 
-### 7-2.  Alt JS / JavaScript Flavors
+### 8.3. 7-2.  Alt JS / JavaScript Flavors
 
 JavaScriptに何らかの機能を追加したい場合は、ブラウザのJavaScriptエンジンに実装が必要。かつ実装するだけでは駄目で、ユーザーに新しいブラウザへアップデートしてもらう必要がある。ユーザーは必ずしも新しいブラウザにバージョンアップしてくれるとは限らないので（特に企業ユースの場合）、新しい機能が使えるようになるには時間がかかる。そこでJavaScriptに何らかの機能を実装するときに別の言語で実装し、古いバージョンでも動作するJavaScriptを出力する方法が開発された。これらのJavaScriptを出力する言語をalternative JavaScript、通称AltJSと呼ぶ
 
-### 7-2-1.  CoffeeScript
+### 8.4. 7-2-1.  CoffeeScript
 
 古くからある
 
-### 7-2-2.  TypeScript
+### 8.5. 7-2-2.  TypeScript
 
 Microsoftが開発・保守しているプログラミング言語。JavaScriptの厳密な構文スーパーセット（上位集合）であり、オプションで静的な型付けが追加されています。（Node.jsやDenoのように）クライアントサイドとサーバーサイドの両方で実行されるJavaScriptアプリケーションの開発に使用することができます。
 
-### 7-2-3.  JavaScript Flavors の利用率
+### 8.6. 7-2-3.  JavaScript Flavors の利用率
 
 TypeScriptの利用率が圧倒的。グラフは割愛したが、満足度も93％で1位。
 
-[https://2020.stateofjs.com/en-US/technologies/javascript-flavors/](https://2020.stateofjs.com/en-US/technologies/javascript-flavors/)
+https://2020.stateofjs.com/en-US/technologies/javascript-flavors/
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2015.png)
 
 利用実績率の推移。Usage = (would use again + would not use again) / total
 
-### 7-3.  Front-End JS Frameworks
+### 8.7. 7-3.  Front-End JS Frameworks
 
 ここ数年はReactとVueがリード。Svelteが猛追している。
 
-### 7-3-1.  React
+### 8.8. 7-3-1.  React
 
 React（React.jsまたはReactJSとも呼ばれる）は、UIやUIコンポーネントを構築するための、フリーでオープンソースのフロントエンドJavaScriptライブラリ。SPAやモバイルアプリケーションの開発において、ベースとして使用することができる。 JSで書かれており、2013年リリース。どうやら、2021年現在最も人気がある
 
-### 7-3-2.  Vue.js
+### 8.9. 7-3-2.  Vue.js
 
 Vue.js（通称Vue、発音は/vjuː/で「ビュー」と同じ）は、UIやSPAを構築するためのオープンソースのMVC型フロントエンドJavaScriptフレームワーク。 Evan Youによって作成され、同氏をはじめとする現役のコアチームメンバーによってメンテナンスされている。TypeScriptで書かれており、2014年リリース
 
-[https://www.amazon.co.jp/gp/product/B07X6F1C2P/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B07X6F1C2P/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B07X6F1C2P/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1
 
-### 7-3-3.  Svelte
+### 8.10. 7-3-3.  Svelte
 
 人気急上昇中。Rich Harrisが作成。OSSとして公開されているJSコンパイラ。
 
@@ -971,15 +1456,15 @@ Vue.js（通称Vue、発音は/vjuː/で「ビュー」と同じ）は、UIやSP
 
 実行時に仮想DOMを使用してアプリケーションコードを解釈するReactとは対照的に、ビルド時にアプリケーションをJavaScriptに変換するコンパイラです。この仕組みにより、Svelteは軽量かつ高速に動作。
 
-### 7-3-4.  Angular
+### 8.11. 7-3-4.  Angular
 
 GoogleのAngularチームが中心となり、個人や企業のコミュニティによって運営されている、TypeScriptベースのフリーかつオープンソースのWebアプリケーションフレームワーク
 
-### 7-3-5.  Front-End JS Frameworks の利用率や満足度
+### 8.12. 7-3-5.  Front-End JS Frameworks の利用率や満足度
 
 利用率ではReactがこの数年1位。Angularも高いが満足度が相対的に低い。満足度の高さと利用率の伸びでみるとSvelteの勢いはすごい。
 
-[https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/](https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/)
+https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2016.png)
 
@@ -989,22 +1474,22 @@ GoogleのAngularチームが中心となり、個人や企業のコミュニテ�
 
 満足度の推移。Satisfaction = would use again / (would use again + would not use again)
 
-### 7-2-7.  Other Alt JS
+### 8.13. 7-2-7.  Other Alt JS
 
 他にもかなりの種類がある。ありすぎて説明しきれない。
 
-- Vanilla.js：　Vanilla JSは、超高速軽量クロスプラットフォームフレームワーク。[https://qiita.com/nobkz/items/9c79f019f93335ee5140](https://qiita.com/nobkz/items/9c79f019f93335ee5140)
-- Lit：　lit-htmlは、軽量で拡張可能なHTMLテンプレート用JavaScriptライブラリで、LitElementと合わせて、あるいは単独で使用することができる。LitElementは、軽量のWebコンポーネントを開発するためのJavaScriptライブラリ。[https://www.infoq.com/jp/news/2019/08/polymer-lit-html-element-release/](https://www.infoq.com/jp/news/2019/08/polymer-lit-html-element-release/)
+- Vanilla.js：　Vanilla JSは、超高速軽量クロスプラットフォームフレームワーク。https://qiita.com/nobkz/items/9c79f019f93335ee5140
+- Lit：　lit-htmlは、軽量で拡張可能なHTMLテンプレート用JavaScriptライブラリで、LitElementと合わせて、あるいは単独で使用することができる。LitElementは、軽量のWebコンポーネントを開発するためのJavaScriptライブラリ。https://www.infoq.com/jp/news/2019/08/polymer-lit-html-element-release/
 - Solid.js：　最近 1.0 が公開された JavaScript の UI フレームワーク。①JSX テンプレート、②仮想DOMなし、③事前コンパイルによって、フレームワークのコードが「消える」、④パフォーマンスが高い、といった特徴があります。
-[https://zenn.dev/jay_es/articles/2021-07-24-solidjs](https://zenn.dev/jay_es/articles/2021-07-24-solidjs)
-- Alpine.js：　Vue, React, Angular 等の SPAツールの 超シンプル版。当初は7kb(gzipped), 今は機能が増えてそれでも11kb。Vueの58kbよりもかなり軽い。[https://qiita.com/kohashi/items/ae8b1186567ec34b2a75](https://qiita.com/kohashi/items/ae8b1186567ec34b2a75)
-- Mithril.js：　クライアントサイドのJavaScript MVCフレームワーク。Mithrilはgzipされた状態でたったの7.8kbしかありません。Mithrilは、ハイパフォーマンスなレンダリング速度を持つ、仮想DOMの差分更新機能を持ったテンプレートエンジンや、関数型によるハイレベルなモデリングのサポート、ルーティング機能、コンポーネント化をサポート。公式に日本語ページがある。[http://mithril-ja.js.org/getting-started.html](http://mithril-ja.js.org/getting-started.html)
-- Ember.js：　幾多のクライアントサイドMVCフレームワークのひとつ。表面的にはRails臭がするのですが、中身はガチのMVCであり、データバインディングやコンポーネントなどの機能を提供。[https://dev.classmethod.jp/articles/hello-emberjs/](https://dev.classmethod.jp/articles/hello-emberjs/)
+https://zenn.dev/jay_es/articles/2021-07-24-solidjs
+- Alpine.js：　Vue, React, Angular 等の SPAツールの 超シンプル版。当初は7kb(gzipped), 今は機能が増えてそれでも11kb。Vueの58kbよりもかなり軽い。https://qiita.com/kohashi/items/ae8b1186567ec34b2a75
+- Mithril.js：　クライアントサイドのJavaScript MVCフレームワーク。Mithrilはgzipされた状態でたったの7.8kbしかありません。Mithrilは、ハイパフォーマンスなレンダリング速度を持つ、仮想DOMの差分更新機能を持ったテンプレートエンジンや、関数型によるハイレベルなモデリングのサポート、ルーティング機能、コンポーネント化をサポート。公式に日本語ページがある。http://mithril-ja.js.org/getting-started.html
+- Ember.js：　幾多のクライアントサイドMVCフレームワークのひとつ。表面的にはRails臭がするのですが、中身はガチのMVCであり、データバインディングやコンポーネントなどの機能を提供。https://dev.classmethod.jp/articles/hello-emberjs/
 - Backbone.js：　RESTfulなJSONインターフェースを備えたJavaScriptライブラリで、モデル・ビュー・コントローラのアプリケーションデザインパラダイムに基づいています。CoffeeScript, Underscore.js などの作者である Jeremy Ashkenas が作っている。あくまで Backbone（背骨）であり、骨組みを用意するのみ。
-[https://qiita.com/opengl-8080/items/36e9b380c64ba7766511](https://qiita.com/opengl-8080/items/36e9b380c64ba7766511)
-- htmx：　AJAX、CSSトランジション、WebSocket、Server Sent Events に、属性を使って HTML 内で直接アクセスできるため、ハイパーテキストのシンプルさと力強さを備えた最新のUIを構築することができます。htmx は小さく (10k min.gzipped)、依存性がなく、拡張性があり、IE11 と互換性があります。[https://htmx.org/](https://htmx.org/)
+https://qiita.com/opengl-8080/items/36e9b380c64ba7766511
+- htmx：　AJAX、CSSトランジション、WebSocket、Server Sent Events に、属性を使って HTML 内で直接アクセスできるため、ハイパーテキストのシンプルさと力強さを備えた最新のUIを構築することができます。htmx は小さく (10k min.gzipped)、依存性がなく、拡張性があり、IE11 と互換性があります。https://htmx.org/
 
-### 7-3.  Runtime for JavaScript (and TypeScript)
+### 8.14. 7-3.  Runtime for JavaScript (and TypeScript)
 
 Runtimeは実行環境。サーバーサイドもJavaScriptでやる利点は、サーバーサイドとクライアントサイドが同じ言語になり、同じ技術者がサーバーとクライアント両方を開発しやすくなり、通常なら必要となる双方の技術者間の仕様のすり合わせなどが少なくなり、開発コストが押さえやすくなること。
 
@@ -1012,33 +1497,33 @@ Runtimeは実行環境。サーバーサイドもJavaScriptでやる利点は、
 
 Which engines/runtimes/execution environments do you regularly use?
 
-[https://2020.stateofjs.com/en-US/other-tools/](https://2020.stateofjs.com/en-US/other-tools/)
+https://2020.stateofjs.com/en-US/other-tools/
 
-[https://persol-tech-s.co.jp/hatalabo/it_engineer/225.html](https://persol-tech-s.co.jp/hatalabo/it_engineer/225.html)
+https://persol-tech-s.co.jp/hatalabo/it_engineer/225.html
 
-### 7-3-1.  Node.js
+### 8.15. 7-3-1.  Node.js
 
 ブラウザの外で動くJS環境。Node.jsは、V8エンジン上で動作し、Webブラウザの外でJavaScriptコードを実行する、オープンソースでクロスプラットフォームのバックエンドJavaScript実行環境です。Node.jsは、開発者がJavaScriptを使ってコマンドラインツールを書いたり、サーバーサイドスクリプティングを行うことを可能にします。C、C++、JavaScriptで書かれており、2009年にリリースされました。イベント駆動型でノンブロッキングI/Oである。
 
 ちなみに、Node.js REPL (Read-Evaluate-Print-Loop) とは、Nodeの対話インタプリタのこと。
 
-[http://www.w3big.com/ja/nodejs/nodejs-repl.html](http://www.w3big.com/ja/nodejs/nodejs-repl.html)
+http://www.w3big.com/ja/nodejs/nodejs-repl.html
 
-[https://digitalidentity.co.jp/blog/creative/javascript-nodejs.html](https://digitalidentity.co.jp/blog/creative/javascript-nodejs.html)
+https://digitalidentity.co.jp/blog/creative/javascript-nodejs.html
 
-### 7-3-2.  Deno（ディーノ）
+### 8.16. 7-3-2.  Deno（ディーノ）
 
 Node.jsと同じ人が作って2018年に公開した。Node.jsで後悔したことを逆に詰め込んだJS/TSランタイム。Denoは、V8 JavaScriptエンジンとプログラミング言語「Rust」をベースにした、JavaScriptおよびTypeScript用の実行環境です。Node.jsの生みの親であるRyan Dahl氏によって開発されました。期待は高いが、まだまだ出たところなので、利用は少ない。
 
-[https://deno.land/](https://deno.land/)
+https://deno.land/
 
-[https://yosuke-furukawa.hatenablog.com/entry/2018/06/07/080335](https://yosuke-furukawa.hatenablog.com/entry/2018/06/07/080335)
+https://yosuke-furukawa.hatenablog.com/entry/2018/06/07/080335
 
-[https://qiita.com/azukiazusa/items/8238c0c68ed525377883](https://qiita.com/azukiazusa/items/8238c0c68ed525377883)
+https://qiita.com/azukiazusa/items/8238c0c68ed525377883
 
-[https://youtu.be/M3BM9TB-8yA](https://youtu.be/M3BM9TB-8yA)
+https://youtu.be/M3BM9TB-8yA
 
-### 7-3-3.  npm (Node Package Manager)
+### 8.17. 7-3-3.  npm (Node Package Manager)
 
 NodeやDenoなどランタイムと同じ階層の話ではありませんが。。
 
@@ -1050,13 +1535,13 @@ Node.jsで開発を行う際に欠かせない。代表的なパッケージ例�
 - async：　promise同様非同期処理を実装できます。
 - Socket.io：　双方向のリアルタイムアプリケーションを実装できます。チャットアプリなど実際に動くサービスを開発する際に必要となります
 
-[https://www.npmjs.com/](https://www.npmjs.com/)
+https://www.npmjs.com/
 
-[https://techacademy.jp/magazine/16105](https://techacademy.jp/magazine/16105)
+https://techacademy.jp/magazine/16105
 
-[https://qiita.com/shuari/items/75d8d938a80a27b4ba0a](https://qiita.com/shuari/items/75d8d938a80a27b4ba0a)
+https://qiita.com/shuari/items/75d8d938a80a27b4ba0a
 
-### 7-4.  Back-End JS Framework
+### 8.18. 7-4.  Back-End JS Framework
 
 バックエンドの分野はまだ非常に細分化されていますが、Expressは圧倒的な存在感を示しており、Next.jsは高い満足度を維持しています。
 
@@ -1068,13 +1553,13 @@ Node.jsで開発を行う際に欠かせない。代表的なパッケージ例�
 
 満足度の推移。Satisfaction = would use again / (would use again + would not use again)
 
-[https://2020.stateofjs.com/en-US/technologies/back-end-frameworks/](https://2020.stateofjs.com/en-US/technologies/back-end-frameworks/)
+https://2020.stateofjs.com/en-US/technologies/back-end-frameworks/
 
-### 7-4-1.  Express.js
+### 8.19. 7-4-1.  Express.js
 
 最小限の機能と柔軟性を備えたNode.jsのWebアプリケーションフレームワークで、Webおよびモバイルアプリケーションのための堅牢な機能を備えています。APIを提供しています。
 
-### 7-4-2.  Next.js
+### 8.20. 7-4-2.  Next.js
 
 Vercelが開発・公開。Node.jsの上に構築されたオープンソースの開発フレームワーク。GitHubスター73,200。
 
@@ -1082,37 +1567,37 @@ Vercelが開発・公開。Node.jsの上に構築されたオープンソース�
 
 ディレクトリ構造とURL構造が連動しているので、ルーティング用のファイルなどは存在しない。
 
-[https://qiita.com/jagaapple/items/faf125e28f8c2860269c](https://qiita.com/jagaapple/items/faf125e28f8c2860269c)
+https://qiita.com/jagaapple/items/faf125e28f8c2860269c
 
-[https://zenn.dev/razokulover/scraps/94844e54e519ed](https://zenn.dev/razokulover/scraps/94844e54e519ed)
+https://zenn.dev/razokulover/scraps/94844e54e519ed
 
-### 7-4-3.  Nuxt.js
+### 8.21. 7-4-3.  Nuxt.js
 
 Vue.js、Node.js、Webpack、Babel.jsをベースにした、フリーでオープンソースのWebアプリケーションフレームワークです。Nuxtは、React.jsをベースにした同様の目的のフレームワークであるNext.jsに影響を受けています。JavaScriptで書かれています。
 
 ディレクトリ構造とURL構造が連動しているので、ルーティング用のファイルなどは存在しない。
 
-[https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1
 
-[https://www.amazon.co.jp/gp/product/B07X6F1C2P/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B07X6F1C2P/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B07X6F1C2P/ref=ppx_yo_dt_b_d_asin_title_o01?ie=UTF8&psc=1
 
-### 7-4-4.  Sapper
+### 8.22. 7-4-4.  Sapper
 
 Next.jsにインスピレーションを受けて開発された、Svelteのフレームワーク。Sapperは基本的にはサーバサイドでコンポーネントをレンダリングし、HTMLとしてクライアントに送信するSSR（Server Side Rendering）を採用しています。2021年2月時点では、Svelteのバージョンはv3.32.1、Sapperのバージョンはv0.29.1です。バージョンを見てわかるとおり、Sapperはまだベータ版
 
-### 7-4-5.  SvelteKit
+### 8.23. 7-4-5.  SvelteKit
 
 現在はSapperの後継であるSvelteKitの開発がプライベートリポジトリで進んでいるようです。とはいえ、公式ドキュメントによるとSapperで構築したアプリケーションはSvelteKitに移行可能
 
-### 7-4-6.  Blitz.js
+### 8.24. 7-4-6.  Blitz.js
 
 ざっくり言うとReact版Ruby on Railsです。Reactの面倒なところを全てすっ飛ばし、技術選定なんてどうでもいいから今すぐアプリを動かしたいんだよ、という要望を叶えるのに適したフルスタックフレームワーク。技術的にはReact + Next.jsで動いています。
 
-[https://qiita.com/rana_kualu/items/69ef668e240ae9ccec87](https://qiita.com/rana_kualu/items/69ef668e240ae9ccec87)
+https://qiita.com/rana_kualu/items/69ef668e240ae9ccec87
 
-[https://qiita.com/nitaking/items/edfaae19d0b54aae7f9c](https://qiita.com/nitaking/items/edfaae19d0b54aae7f9c)
+https://qiita.com/nitaking/items/edfaae19d0b54aae7f9c
 
-### 7-5.  Build Tool / Bandler for Alt JS
+### 8.25. 7-5.  Build Tool / Bandler for Alt JS
 
 Node.jsスタイルのコードは、そのままの状態ではブラウザで動きません。 ソースコードを元にして、実際に動くプログラム（実行可能ファイル）を作ってあげる必要があります。 その作成処理のことを ビルド と言います。
 
@@ -1128,46 +1613,46 @@ webpackの優位性で議論が決着したかと思いきや、Snowpackやesbui
 
 満足度の推移。Satisfaction = would use again / (would use again + would not use again)
 
-[https://2020.stateofjs.com/en-US/technologies/build-tools/](https://2020.stateofjs.com/en-US/technologies/build-tools/)
+https://2020.stateofjs.com/en-US/technologies/build-tools/
 
-[https://qiita.com/yukibe/items/453d874eb7ce929363d6](https://qiita.com/yukibe/items/453d874eb7ce929363d6)
+https://qiita.com/yukibe/items/453d874eb7ce929363d6
 
-[https://ics.media/entry/12140/](https://ics.media/entry/12140/)
+https://ics.media/entry/12140/
 
-[https://qiita.com/TsutomuNakamura/items/70dd97dcbdc02bef2706](https://qiita.com/TsutomuNakamura/items/70dd97dcbdc02bef2706)
+https://qiita.com/TsutomuNakamura/items/70dd97dcbdc02bef2706
 
-### 7-5-1.  Webpack
+### 8.26. 7-5-1.  Webpack
 
-ウェブコンテンツを構成するファイルをまとめてしまうツール。一番多い使い方は、複数のJavaScriptを1つにまとめることでしょう。複数のJavaScriptをまとめるのは、上述した転送の最適化以外にもいろんな利点がある。Babel.jsと一緒に使われることが多い。[https://ics.media/entry/12140/](https://ics.media/entry/12140/)
+ウェブコンテンツを構成するファイルをまとめてしまうツール。一番多い使い方は、複数のJavaScriptを1つにまとめることでしょう。複数のJavaScriptをまとめるのは、上述した転送の最適化以外にもいろんな利点がある。Babel.jsと一緒に使われることが多い。https://ics.media/entry/12140/
 
-### 7-5-2.  Rollup.js
+### 8.27. 7-5-2.  Rollup.js
 
 Rich Harrisが作成。JSモジュールバンドラ。
 
-### 7-5-3.  Vite
+### 8.28. 7-5-3.  Vite
 
-Vue.jsの作者のEvan You氏が開発中のノーバンドルなビルドツールです。ネイティブのESモジュールのインポートを利用しバンドル不要で高速に動作するdevサーバーと、[Rollup.js](https://github.com/rollup/rollup)をベースとしたプロダクションビルド機能を提供します。設定不要で「.vue」のSFC（Single File Components）をコンパイルできて、さらにデフォルトで今開発中のVue3.0が使えます。しかも、vue-cliのようにVue.js限定ではなく、React、Preactにも対応
-[https://qiita.com/ryo2132/items/c1530dd590e34e68c494](https://qiita.com/ryo2132/items/c1530dd590e34e68c494)
+Vue.jsの作者のEvan You氏が開発中のノーバンドルなビルドツールです。ネイティブのESモジュールのインポートを利用しバンドル不要で高速に動作するdevサーバーと、Rollup.js をベースとしたプロダクションビルド機能を提供します。設定不要で「.vue」のSFC（Single File Components）をコンパイルできて、さらにデフォルトで今開発中のVue3.0が使えます。しかも、vue-cliのようにVue.js限定ではなく、React、Preactにも対応
+https://qiita.com/ryo2132/items/c1530dd590e34e68c494
 
-### 7-5-4.  Stencil.js
+### 8.29. 7-5-4.  Stencil.js
 
-stencilはUIフレームのionicで利用されているWeb Componentをビルドするフレームワーク。[https://blog.cntlog.net/archives/4242](https://blog.cntlog.net/archives/4242)
+stencilはUIフレームのionicで利用されているWeb Componentをビルドするフレームワーク。https://blog.cntlog.net/archives/4242
 
-### 7-6.  Transcompiler for Alt JS
+### 8.30. 7-6.  Transcompiler for Alt JS
 
-### 7-6-1.  Babel.js
+### 8.31. 7-6-1.  Babel.js
 
-マルチブラウザ対応してくれるトランスコンパイラ。Babelは、フリーでオープンソースのJavaScriptトランスコンパイラで、主にECMAScript 2015+（ES6+）のコードを、古いJavaScriptエンジンで実行可能な後方互換性のあるバージョンのJavaScriptに変換するために使用されます。2014年公開。JSで書かれている。バンドラのWebpackと一緒に使われることが多い。[https://www.cresco.co.jp/blog/entry/11716/](https://www.cresco.co.jp/blog/entry/11716/)
+マルチブラウザ対応してくれるトランスコンパイラ。Babelは、フリーでオープンソースのJavaScriptトランスコンパイラで、主にECMAScript 2015+（ES6+）のコードを、古いJavaScriptエンジンで実行可能な後方互換性のあるバージョンのJavaScriptに変換するために使用されます。2014年公開。JSで書かれている。バンドラのWebpackと一緒に使われることが多い。https://www.cresco.co.jp/blog/entry/11716/
 
-### 7-7.  CLI for Alt JS (a Command-Line Interface)
+### 8.32. 7-7.  CLI for Alt JS (a Command-Line Interface)
 
 メモ程度であまり紹介しませんが・・・
 
-- EXPO：　React用CLI。Expoは環境構築にかかる時間がほぼゼロで、エミュレーターをPCにインストールすることなくスマホにExpoというアプリをインストールするだけで開発を開始できる。しかもreact-nativeの機能を全て使える。パフォーマンスも悪くない。初学者が触るならこれだ。[https://ncdc.co.jp/columns/6959/](https://ncdc.co.jp/columns/6959/)
+- EXPO：　React用CLI。Expoは環境構築にかかる時間がほぼゼロで、エミュレーターをPCにインストールすることなくスマホにExpoというアプリをインストールするだけで開発を開始できる。しかもreact-nativeの機能を全て使える。パフォーマンスも悪くない。初学者が触るならこれだ。https://ncdc.co.jp/columns/6959/
 
-### 7-8.  State Container for JS
+### 8.33. 7-8.  State Container for JS
 
-### 7-8-1.  Redux
+### 8.34. 7-8-1.  Redux
 
 Reactが扱うUIのstate(状態)を管理をするためのフレームワーク。Reactではstateの管理するデータフローにFluxを提案していますが、ReduxはFluxの概念を拡張してより扱いやすく設計されています。下記の3つの原則がある
 
@@ -1181,49 +1666,49 @@ Reduxの主な機能は以下。
 - Reducer：　上述したが、Storeから受け取ったActionとstateに応じて、変更されたstateを返す純粋関数（同じ引数を渡されたら必ず同じ結果を返す関数）
 - Store：　アプリケーションの全てのstateを保持するオブジェクト。ActionをStoreにdispatchする手段（`store.dispatch()`）を提供する。また、stateとdispatchされたActionを、指定したReducerに渡してstateを変更する。
 
-[https://redux.js.org/](https://redux.js.org/)
+https://redux.js.org/
 
-[https://qiita.com/soarflat/items/bd319695d156654bbe86](https://qiita.com/soarflat/items/bd319695d156654bbe86)
+https://qiita.com/soarflat/items/bd319695d156654bbe86
 
-[https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7](https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7)
+https://qiita.com/kitagawamac/items/49a1f03445b19cf407b7
 
-[https://future-architect.github.io/articles/20200429/](https://future-architect.github.io/articles/20200429/)
+https://future-architect.github.io/articles/20200429/
 
-### 7-8-2.  Flux
+### 8.35. 7-8-2.  Flux
 
 Facebook社が提唱している、クライアントサイドのWebアプリケーション開発のためのアプリケーション・アーキテクチャ（設計思想）です。単方向のデータフローを構築できることが最大の特徴で、開発の規模が大きくなってもデータの流れを見失いづらいことが大きなメリットです。Reactとの併用を主に想定して生み出された。
 
 この思想に基づいて、Facebookがその方法を提供しているライブラリもまた、Fluxという。
 
-[https://codezine.jp/article/detail/10751](https://codezine.jp/article/detail/10751)
+https://codezine.jp/article/detail/10751
 
-[https://qiita.com/knhr__/items/5fec7571dab80e2dcd92](https://qiita.com/knhr__/items/5fec7571dab80e2dcd92)
+https://qiita.com/knhr__/items/5fec7571dab80e2dcd92
 
-### 7-8-3.  MobX
+### 8.36. 7-8-3.  MobX
 
 FacebookやCoinbaseなど多数のスポンサーによって運営されている団体が開発してる、React状態管理ライブラリ。
 
-[https://mobx.js.org/README.html](https://mobx.js.org/README.html)
+https://mobx.js.org/README.html
 
-### 7-8-4.  Jotai
+### 8.37. 7-8-4.  Jotai
 
 Paul Henschel 氏が開発・運営しているReact状態管理ライブラリ。読み方は日本語の「状態」。
 
-[https://jotai.pmnd.rs/](https://jotai.pmnd.rs/)
+https://jotai.pmnd.rs/
 
-[https://github.com/pmndrs/jotai](https://github.com/pmndrs/jotai)
+https://github.com/pmndrs/jotai
 
-[https://www.infoq.com/jp/news/2020/09/jotai-react-state-management/](https://www.infoq.com/jp/news/2020/09/jotai-react-state-management/)
+https://www.infoq.com/jp/news/2020/09/jotai-react-state-management/
 
-[https://zenn.dev/kkeeth/articles/studying-jotai-library](https://zenn.dev/kkeeth/articles/studying-jotai-library)
+https://zenn.dev/kkeeth/articles/studying-jotai-library
 
-### 7-8-5.  Vuex
+### 8.38. 7-8-5.  Vuex
 
 Vue用の状態管理ライブラリ。一択。
 
-[https://zenn.dev/kkeeth/scraps/dd30ae9d48f092](https://zenn.dev/kkeeth/scraps/dd30ae9d48f092)
+https://zenn.dev/kkeeth/scraps/dd30ae9d48f092
 
-### 7-9.  Virtual DOM
+### 8.39. 7-9.  Virtual DOM
 
 jQueryでは処理するたびにDOM操作をしますが、DOM操作は処理が重くたくさんやりすぎると速度低下の原因になります。
 
@@ -1233,7 +1718,7 @@ Virtual DOMの生成や変更はただのメモリ操作なので高速に処理
 
 Virtual DOMを採用したフレームワークには、代表的なものとしてReactやVue.jsがある
 
-### 7-9-1.  Shadow DOM
+### 8.40. 7-9-1.  Shadow DOM
 
 Virtual DOMと同じかと思って読み飛ばしてましたが、違うものです。（なので、Virtual DOMにネストして書くのも違うのですが、ついでにメモ）
 
@@ -1241,11 +1726,11 @@ Shadow DOM は、本来 web components において変数や CSS をスコープ
 
 Shadow DOM により、通常の DOM ツリーの要素の下に DOM ツリーを追加し隠すことができます。shadow DOM ツリーは shadow root を根とし、その下には普通の DOM ツリーと同様に任意の要素を追加できます。
 
-[https://ja.reactjs.org/docs/faq-internals.html](https://ja.reactjs.org/docs/faq-internals.html)
+https://ja.reactjs.org/docs/faq-internals.html
 
-[https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_shadow_DOM](https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_shadow_DOM)
+https://developer.mozilla.org/ja/docs/Web/Web_Components/Using_shadow_DOM
 
-### 7-10.  Source Map
+### 8.41. 7-10.  Source Map
 
 AltJSで書いても、実際にブラウザ上で実行されるのはJavaScriptである。そうすると、JavaScriptに何らかのエラーが発生した場合に、元のコードとの対応関係の特定が難しくなってくる。
 
@@ -1253,11 +1738,11 @@ AltJSで書いても、実際にブラウザ上で実行されるのはJavaScrip
 
 Source Mapに対応したブラウザであれば、その情報を読み取って実行しているJavaScriptのコードがAltJSで記述した元のコードのどこに対応しているのかを表示してくれる。
 
-[https://qiita.com/pegass85/items/b9aae1adf51646707486](https://qiita.com/pegass85/items/b9aae1adf51646707486)
+https://qiita.com/pegass85/items/b9aae1adf51646707486
 
-### 7-11.  Data Format
+### 8.42. 7-11.  Data Format
 
-### 7-11-1.  JSON (JavaScript Object Notation)
+### 8.43. 7-11-1.  JSON (JavaScript Object Notation)
 
 JavaScriptのオブジェクトの書き方を元にしたデータ定義方法。通信時のデータ形式。JSONの方が文字数が少なく可視性は低いが、その分軽い。またJSが読み込む際に、XMLの場合はDOMにしないといけないが、JSで書かれたJSONは生で扱えるため、処理が早い。
 
@@ -1277,11 +1762,11 @@ JavaScriptのオブジェクトの書き方を元にしたデータ定義方法�
 }}
 ```
 
-[https://products.sint.co.jp/topsic/blog/json](https://products.sint.co.jp/topsic/blog/json)
+https://products.sint.co.jp/topsic/blog/json
 
-[https://qiita.com/momonoki1990/items/cd9a65498c2b16b0ed55](https://qiita.com/momonoki1990/items/cd9a65498c2b16b0ed55)
+https://qiita.com/momonoki1990/items/cd9a65498c2b16b0ed55
 
-### 7-11-2.  XML (Extensible Markup Language)
+### 8.44. 7-11-2.  XML (Extensible Markup Language)
 
 XMLはHTMLの記法を元にしたデータ定義方法で、データ定義言語と呼ばれています。JSONが登場する前まではXMLというデータ構造が主に使われていました。CSVよりも複雑な構造も扱える。ただ、例えばJavaScriptの場合、扱うデータ形式がXMLだとXML構文を解析する必要がでてくるので、プログラムのパフォーマンスが低下するというデメリットがある
 
@@ -1297,11 +1782,11 @@ XMLはHTMLの記法を元にしたデータ定義方法で、データ定義言�
 </menu>
 ```
 
-[https://hnavi.co.jp/knowledge/blog/xml/](https://hnavi.co.jp/knowledge/blog/xml/)
+https://hnavi.co.jp/knowledge/blog/xml/
 
-[https://products.sint.co.jp/topsic/blog/json](https://products.sint.co.jp/topsic/blog/json)
+https://products.sint.co.jp/topsic/blog/json
 
-### 7-11-3.  BSON (Binary JSON)
+### 8.45. 7-11-3.  BSON (Binary JSON)
 
 BSONは主にMongoDB（後述）のデータストレージ及びネットワーク転送フォーマットとして利用されている、データ交換フォーマットである。 単純なデータ構造や連想配列（MongoDBではオブジェクトまたはドキュメントと表す）を示すバイナリ構造である。JSONに比べて、ストレージ容量及びスキャン速度に効率的な設計である。
 
@@ -1315,9 +1800,9 @@ hello\x00                      // field name
 \x00                           // 0x00 = type EOO ('end of object')
 ```
 
-[https://ja.wikipedia.org/wiki/BSON](https://ja.wikipedia.org/wiki/BSON)
+https://ja.wikipedia.org/wiki/BSON
 
-### 7-11-4.  YAML (YAML Ain't Markup Language)
+### 8.46. 7-11-4.  YAML (YAML Ain't Markup Language)
 
 人間が読み書きしやすい構造化データを扱う仕様です。拡張子は.yamlまたは.yml。YAML自体は仕様なので、各プログラミング言語でYAMLを扱うための実装が必要となります。JavaScriptの場合はYAMLを扱うためのライブラリとしてjs-yamlが存在。
 
@@ -1345,31 +1830,31 @@ GitHub ActionsやCIサービスの設定ファイルとしても利用されて�
    turtle-doves: two
 ```
 
-[https://yaml.org/](https://yaml.org/)
+https://yaml.org/
 
-[https://www.codegrid.net/articles/2020-yaml-1/](https://www.codegrid.net/articles/2020-yaml-1/)
+https://www.codegrid.net/articles/2020-yaml-1/
 
-[https://qiita.com/Yama-to/items/587544993fb62610528a](https://qiita.com/Yama-to/items/587544993fb62610528a)
+https://qiita.com/Yama-to/items/587544993fb62610528a
 
-[https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started](https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started)
+https://www.cloudbees.com/blog/yaml-tutorial-everything-you-need-get-started
 
-### 7-12.  Ajax (Asynchronous JavaScript and XML)
+### 8.47. 7-12.  Ajax (Asynchronous JavaScript and XML)
 
 WEBブラウザではなく、ブラウザ上で動くJavaScriptがWEBサーバーと通信を行う。JavaScriptの機能を使った非同期通信であり、リクエスト中にレスポンスを待つだけでなく、レスポンスによらない部分を更新したり、ユーザーの入力を受け付けたりできる。
 
 黎明期のJavaScriptは、Webページに多少の動きを加えるのが主な役割でした。あくまで静的なHTMLがベースで、近年のようにダイナミックな動きを伴うものではありませんでした。そこにXMLHttpRequest (XHR) という機能が実装されました。 XMLHttpRequest (XHR) を使うと、JavaScriptがサーバと通信してデータを取得できるようになります。このXMLHttpRequest (XHR) の機能を活用し、デスクトップアプリケーションと遜色ないサービスを提供したのがGoogle Mapsでした。
 
-### 7-12-1.  Google による Ajax の先行事例
+### 8.48. 7-12-1.  Google による Ajax の先行事例
 
 それまでの地図サービスは移動や拡大縮小をするたびに読み込みが発生していましたが、Google Mapsはデスクトップアプリケーションのようにマウス操作でスムーズな動きを実現することに成功したのです。 このようにXMLHttpRequest (XHR) を活用しJavaScriptがサーバと通信する技術がAjaxと呼ばれ、注目を浴びることになります。
 
 また、GoogleスプレッドシートのようなUIは、サーバーサイドの開発のみでは実現できません。「文字入力する度にリロードされてフォーカスが消し飛ぶスプレッドシートとか使ってられないですね。」こちらより抜粋。
 
-[https://teratail.com/questions/138648](https://teratail.com/questions/138648)
+https://teratail.com/questions/138648
 
-### 7-13.  Animation
+### 8.49. 7-13.  Animation
 
-### 7-13-1.  GSAP (GreenSock Animation Platform)
+### 8.50. 7-13-1.  GSAP (GreenSock Animation Platform)
 
 GreenSock 社が開発しているアニメーション制作のJavaScriptのライブラリ。ジーサップと読む。
 
@@ -1377,15 +1862,15 @@ GSAP は JavaScript が触れることのできるあらゆるもの（CSS プ�
 
 Google が JS ベースのアニメーションに GSAP を推奨しているのも、主要な広告ネットワークがファイルサイズの計算から GSAP を除外しているのも、GSAP が地球上で最も堅牢で高性能な JavaScript アニメーションライブラリであるから、らしい（公式サイトより）
 
-[https://greensock.com/gsap/](https://greensock.com/gsap/)
+https://greensock.com/gsap/
 
-[https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525](https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525)
+https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525
 
-[https://liginc.co.jp/548232](https://liginc.co.jp/548232)
+https://liginc.co.jp/548232
 
-### 7-14.  その他の JavaScript / React の概念や機能
+### 8.51. 7-14.  その他の JavaScript / React の概念や機能
 
-### 7-14-1.  Event Bubbling
+### 8.52. 7-14-1.  Event Bubbling
 
 要素上でイベントが起きると、最初にその上のハンドラが実行され、次にその親のハンドラが実行され、他の祖先に到達するまでそれらが行われます。たとえば、3つのネストされた要素 `FORM > DIV > P` があり、それぞれにハンドラがあった場合、一番ネストされたpタグのハンドラから実行される。この下から実行される感じが水中のリングの泡に似てるよね、から来てる。
 
@@ -1406,9 +1891,9 @@ Google が JS ベースのアニメーションに GSAP を推奨しているの
 </form>
 ```
 
-[https://ja.javascript.info/bubbling-and-capturing](https://ja.javascript.info/bubbling-and-capturing)
+https://ja.javascript.info/bubbling-and-capturing
 
-### 7-14-2.  Scope
+### 8.53. 7-14-2.  Scope
 
 変数がどの場所から参照できるのかを定義する概念です。言い換えれば、変数の有効範囲ということです。同じスコープ上にある変数にはアクセスできますが、スコープが違えば、別々のスコープにある変数にはお互いにアクセスすることができません。これがある理由はいくつかあります
 
@@ -1422,11 +1907,11 @@ Google が JS ベースのアニメーションに GSAP を推奨しているの
     - Function Scope：　関数（function）ごとに作られるスコープ。関数スコープ内でvar、let、constのいずれかで変数宣言をすると、関数の外部からはアクセスできない
     - Block Scope：　ブロック（{}）ごとに作られるスコープ
 
-[https://www.codegrid.net/articles/2017-js-scope-1/](https://www.codegrid.net/articles/2017-js-scope-1/)
+https://www.codegrid.net/articles/2017-js-scope-1/
 
-[https://www.w3schools.com/js/js_scope.asp](https://www.w3schools.com/js/js_scope.asp)
+https://www.w3schools.com/js/js_scope.asp
 
-### 7-14-3.  Strict Mode
+### 8.54. 7-14-3.  Strict Mode
 
 ECMAScript 5 で導入された。JavaScriptのコードをより厳しくエラーチェックすることができる仕組みです。通常エラーとなっていなかったバグになりそうなコードに対して、エラーを表示することができます。
 
@@ -1438,15 +1923,15 @@ ECMAScript 5 で導入された。JavaScriptのコードをより厳しくエラ
 "use strict";
 ```
 
-[https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Strict_mode](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Strict_mode)
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Strict_mode
 
-[https://www.sejuku.net/blog/58342](https://www.sejuku.net/blog/58342)
+https://www.sejuku.net/blog/58342
 
-### 7-14-4.  Fast Refresh
+### 8.55. 7-14-4.  Fast Refresh
 
 Fast RefreshはNext.js（または React Native）の機能で、Reactコンポーネントに加えられた編集を瞬時にフィードバックすることができます。Fast Refreshは、9.4以降のすべてのNext.jsアプリケーションでデフォルトで有効になっています。Next.jsのFast Refreshを有効にすると、コンポーネントの状態（ステート）を失うことなく、ほとんどの編集内容が1秒以内に表示されます。
 
-[https://reactnative.dev/img/homepage/ReactRefresh.mp4](https://reactnative.dev/img/homepage/ReactRefresh.mp4)
+https://reactnative.dev/img/homepage/ReactRefresh.mp4
 
 Hot Reloading との違いは、基本は似ているようですが、いくつかあり、
 
@@ -1455,21 +1940,21 @@ Hot Reloading との違いは、基本は似ているようですが、いくつ
 - Hooks付きの関数コンポーネントをサポート
 - リロードしてもStateを保持する
 
-[https://nextjs.org/docs/basic-features/fast-refresh](https://nextjs.org/docs/basic-features/fast-refresh)
+https://nextjs.org/docs/basic-features/fast-refresh
 
-[https://reactnative.dev/blog/2019/09/18/version-0.61](https://reactnative.dev/blog/2019/09/18/version-0.61)
+https://reactnative.dev/blog/2019/09/18/version-0.61
 
-[https://zenn.dev/uttk/scraps/f25adbba87e1ba](https://zenn.dev/uttk/scraps/f25adbba87e1ba)
+https://zenn.dev/uttk/scraps/f25adbba87e1ba
 
-[https://qiita.com/ryohey/items/2b6b94d00d3d2320f0e2](https://qiita.com/ryohey/items/2b6b94d00d3d2320f0e2)
+https://qiita.com/ryohey/items/2b6b94d00d3d2320f0e2
 
-### 7-14-5.  JSX
+### 8.56. 7-14-5.  JSX
 
 JavaScript を拡張して、UI 要素を記述するのに HTML のようなタグ構文が使えるようにしたもの。babelというツールで変換している。HTMLタグのように見えていたものの実態は単に関数で、単にJSでViewを構築するための簡易記法である
 
-[https://react.keicode.com/basics/jsx.php](https://react.keicode.com/basics/jsx.php)
+https://react.keicode.com/basics/jsx.php
 
-## 8.  WASM (Web Assembly)
+## 9.  WASM (Web Assembly)
 
 ブラウザ上でより高速に実行するため新しく登場したのがWasm。Wasmは高速実行するために、ブラウザ上で直接実行するようなバイナリ形式を使用します。開発者はCやRustのような別言語でプログラムを書いてWasmを出力する。ロードマップにおいても最新のテクノロジーであるが、まだ普及していないし、この次の5年間でJavaScriptに取って代わるかというとそこまではいかないのでは？と思われている。だが重たいWEBアプリなどを皮切りに、シェアは拡大すると思われる。
 
@@ -1477,21 +1962,21 @@ JavaScript を拡張して、UI 要素を記述するのに HTML のようなタ
 
 通常の開発はJavaScriptを中心に記述し、高速な処理を必要とする部分をRustで記述してWebAssemblyでブリッジすることで、使いやすさと安全面と速度を手に入れることができそう。
 
-[https://dev.classmethod.jp/articles/rust-webassembly-javascript/](https://dev.classmethod.jp/articles/rust-webassembly-javascript/)
+https://dev.classmethod.jp/articles/rust-webassembly-javascript/
 
-[https://roadmap.sh/frontend](https://roadmap.sh/frontend)
+https://roadmap.sh/frontend
 
-[https://inzkyk.xyz/mozilla_hacks/wasi/](https://inzkyk.xyz/mozilla_hacks/wasi/)
+https://inzkyk.xyz/mozilla_hacks/wasi/
 
-### 8-1.  WASMはどのくらい速いのか
+### 9.1. 8-1.  WASMはどのくらい速いのか
 
 何で測るかによりますが、シンプルな計算速度という意味で、フィボナッチ関数を何秒で計算できるかをJSと比較したサイトがありましたので、載せておきます。計算量が少なければ差はわずかですが、計算量が大きくなってくると差も歴然としてきます。やっぱり速いですね。
 
-[https://thinkit.co.jp/article/17486](https://thinkit.co.jp/article/17486)
+https://thinkit.co.jp/article/17486
 
-[https://blog.htmlhifive.com/2019/04/02/webassembly-performance/](https://blog.htmlhifive.com/2019/04/02/webassembly-performance/)
+https://blog.htmlhifive.com/2019/04/02/webassembly-performance/
 
-### 8-2.  Rust
+### 9.2. 8-2.  Rust
 
 C言語やC++に代わるオープンソースのシステムプログラミング言語です。2015年にバージョン1が登場したまだ新しい言語。Firefoxの開発元のMozillaが2009年から支援。2006年に開発がスタートした当初は、Mozilla所属のグレイドン・ホアレ氏の個人プロジェクトだった。WASMを吐き出すための言語というわけでは全然ないのですが、一緒に注目されることがあります。2016年、2017年、2018年のStack Overflow Developer Surveyで「最も愛されているプログラミング言語」で一位。見てみると2021年も1位でした。すごい愛されてる
 
@@ -1499,96 +1984,96 @@ Mozillaが2012年に開発を開始したWebレンダリングエンジン「Ser
 
 C言語に匹敵する処理速度を持っているが、習得難易度が高い言語ともいわれる。また、Rustはすべての変数が常に値を持つ構造をしているため、nullが基本的に存在しない言語でもある。Rustでの開発が適していると言えるのは、大規模なシステム開発とアプリケーション開発。
 
-[https://www.rust-lang.org/ja](https://www.rust-lang.org/ja)
+https://www.rust-lang.org/ja
 
-[https://www.pasonatech.co.jp/workstyle/column/detail.html?p=2611](https://www.pasonatech.co.jp/workstyle/column/detail.html?p=2611)
+https://www.pasonatech.co.jp/workstyle/column/detail.html?p=2611
 
-[https://atmarkit.itmedia.co.jp/ait/articles/2107/28/news010.html](https://atmarkit.itmedia.co.jp/ait/articles/2107/28/news010.html)
+https://atmarkit.itmedia.co.jp/ait/articles/2107/28/news010.html
 
-[https://qiita.com/elipmoc101/items/3c8b6d8332a9019e578c](https://qiita.com/elipmoc101/items/3c8b6d8332a9019e578c)
+https://qiita.com/elipmoc101/items/3c8b6d8332a9019e578c
 
-[https://insights.stackoverflow.com/survey/2021#technology-most-loved-dreaded-and-wanted](https://insights.stackoverflow.com/survey/2021#technology-most-loved-dreaded-and-wanted)
+https://insights.stackoverflow.com/survey/2021#technology-most-loved-dreaded-and-wanted
 
-[https://docs.microsoft.com/ja-jp/learn/modules/rust-introduction/](https://docs.microsoft.com/ja-jp/learn/modules/rust-introduction/)
+https://docs.microsoft.com/ja-jp/learn/modules/rust-introduction/
 
-[https://zenn.dev/akfm/articles/81713d4c1275ac64a75c](https://zenn.dev/akfm/articles/81713d4c1275ac64a75c)
+https://zenn.dev/akfm/articles/81713d4c1275ac64a75c
 
-### 8-3.  WASI (WebAssembly System Interface)
+### 9.3. 8-3.  WASI (WebAssembly System Interface)
 
 WASMはブラウザで動かす際のバイナリファイルですが、その実行環境はブラウザを飛び出し、Node.jsでも直接利用できるようになりました。WASIは、 WebAssembly（WASM）をウェブブラウザ以外の環境で実行するため、 ホストのファイルやネットワークなどの資源に安全にアクセスさせるための仕様、標準化の取り組みのことです。
 
 CDN事業者のFastly、Cloudflareは、彼らのエッジで実行されるFaaS的なサービスでWASMを使っています。Intelはウェブブラウザ以外でのOSSのWASM実行環境の開発を進めています。他にもWASIには現時点でMozilla、Node.js、npmが賛同している
 
-[https://wasi.dev/](https://wasi.dev/)
+https://wasi.dev/
 
-[https://medium.com/nttlabs/wasi-6060b243ac90](https://medium.com/nttlabs/wasi-6060b243ac90)
+https://medium.com/nttlabs/wasi-6060b243ac90
 
-[https://qiita.com/massie_g/items/40726e237594817bfee7](https://qiita.com/massie_g/items/40726e237594817bfee7)
+https://qiita.com/massie_g/items/40726e237594817bfee7
 
-[https://www.publickey1.jp/blog/19/webassemblywebwasimozillanodejs.html](https://www.publickey1.jp/blog/19/webassemblywebwasimozillanodejs.html)
+https://www.publickey1.jp/blog/19/webassemblywebwasimozillanodejs.html
 
-[https://inzkyk.xyz/mozilla_hacks/wasi/](https://inzkyk.xyz/mozilla_hacks/wasi/)
+https://inzkyk.xyz/mozilla_hacks/wasi/
 
-### 8-4.  WASM Runtime
+### 9.4. 8-4.  WASM Runtime
 
 サーバー側でバイナリ形式のファイルであるWASMをそのまま実行することは出来ないので、一度WASMランタイムがコード変換する必要があります。WASIをサポートするWASMのランタイムとして、
 
-- wasmtime：　Rustで作られた、リファレンス実装的なランタイム。[https://wasmtime.dev/](https://wasmtime.dev/)
+- wasmtime：　Rustで作られた、リファレンス実装的なランタイム。https://wasmtime.dev/
 - Lucet：　CDN業者Fastlyが開発するランタイム
 - WebAssembly Micro Runtime(WAMR)：　組み込みデバイスで動かすことを前提とした軽量ランタイム。
-- WASMER：　パッケージマネージャーや、PHP/Rubyなどのスクリプト言語からの呼び出しも対応。[https://wasmer.io/](https://wasmer.io/)
+- WASMER：　パッケージマネージャーや、PHP/Rubyなどのスクリプト言語からの呼び出しも対応。https://wasmer.io/
 
 などがある。
 
-[https://medium.com/nttlabs/wasi-6060b243ac90](https://medium.com/nttlabs/wasi-6060b243ac90)
+https://medium.com/nttlabs/wasi-6060b243ac90
 
-[https://qiita.com/massie_g/items/40726e237594817bfee7](https://qiita.com/massie_g/items/40726e237594817bfee7)
+https://qiita.com/massie_g/items/40726e237594817bfee7
 
-### 8-5.  Rust Web Frameworks
+### 9.5. 8-5.  Rust Web Frameworks
 
 RustのWebフレームワークをいくつか紹介していく。日本語記事もほとんどないので、薄めの情報だが、メモ程度に。
 
-[https://youtu.be/c2o9JSzgITQ](https://youtu.be/c2o9JSzgITQ)
+https://youtu.be/c2o9JSzgITQ
 
-### 8-5-1.  Rocket
+### 9.6. 8-5-1.  Rocket
 
 Rustで書かれたWebフレームワーク。Rails、Flask、Bottle、Yesod に影響を受けて開発された。2016年登場。
 
-[https://rocket.rs/](https://rocket.rs/)
+https://rocket.rs/
 
-[https://en.wikipedia.org/wiki/Rocket_(web_framework)](https://en.wikipedia.org/wiki/Rocket_(web_framework))
+https://en.wikipedia.org/wiki/Rocket_(web_framework)
 
-[https://qiita.com/yukinarit/items/c5128e67d168b4f39983](https://qiita.com/yukinarit/items/c5128e67d168b4f39983)
+https://qiita.com/yukinarit/items/c5128e67d168b4f39983
 
-### 8-5-2.  Actix-web
+### 9.7. 8-5-2.  Actix-web
 
 まず、actixとは、Rust製のActorフレームワーク。そのactixをベースとしてWeb開発用機能を追加したのが、軽量・高速なWeb開発フレームワークであるactix-web。
 
-[https://actix.rs/docs/whatis/](https://actix.rs/docs/whatis/)
+https://actix.rs/docs/whatis/
 
-[https://dev.classmethod.jp/articles/actix-web/](https://dev.classmethod.jp/articles/actix-web/)
+https://dev.classmethod.jp/articles/actix-web/
 
-[https://qiita.com/Yoshihiro-Hirose/items/2426fe5199cb1ff74bd7](https://qiita.com/Yoshihiro-Hirose/items/2426fe5199cb1ff74bd7)
+https://qiita.com/Yoshihiro-Hirose/items/2426fe5199cb1ff74bd7
 
-### 8-5-3.  Warp
+### 9.8. 8-5-3.  Warp
 
 Warpは、コードやインフラの実行、デバッグ、デプロイにおいて、チームの生産性を向上させるために作られたターミナルです。WarpはRustで作られたフルネイティブのアプリで、すべてのレンダリングをGPUで行います。Warpを使うことで、すべての開発者がCLIのベテランのように生産性を上げることがWarpの目標。
 
-[https://www.warp.dev/](https://www.warp.dev/)
+https://www.warp.dev/
 
-### 8-5-4.  Tide
+### 9.9. 8-5-4.  Tide
 
 Tideは、迅速な開発のために作られた、ミニマルで実用的なRustのWebアプリケーションフレームワークです。非同期のWebアプリケーションやAPIの構築をより簡単に、より楽しくするための堅牢な機能を備えています。
 
-[https://docs.rs/tide/0.16.0/tide/index.html](https://docs.rs/tide/0.16.0/tide/index.html)
+https://docs.rs/tide/0.16.0/tide/index.html
 
-### 8-5-5.  Gotham
+### 9.10. 8-5-5.  Gotham
 
 安定性、安全性、安心感、そしてスピードを促進する柔軟なRustのウェブフレームワークです。
 
-[https://gotham.rs/](https://gotham.rs/)
+https://gotham.rs/
 
-## 9.  Server Side Script
+## 10.  Server Side Script
 
 主にAPサーバーで活躍する。色々な言語がある。
 
@@ -1598,76 +2083,76 @@ Tideは、迅速な開発のために作られた、ミニマルで実用的なR
 - Scala：　オブジェクト指向プログラミングと関数型プログラミングの両方をサポートする、強力な静的型付けされた汎用プログラミング言語
 - Kotlin：　JetBrain社が開発。クロスプラットフォームの静的型付けされた、型推論機能を持つ汎用プログラミング言語。KotlinはJavaと完全に相互運用できるように設計されており、JVM版のKotlinの標準ライブラリはJava Class Libraryに依存していますが、型推論によって構文をより簡潔にすることができます。
 - Nim：　全然ランク外ですが、、静的型付けで型安全な上にPythonっぽい構文でコード量も少なく済む「効率的、表現力豊か、エレガント」なプログラミング言語です。コンパイラが優秀すぎて、勝手に最適化して実行バイナリのサイズを小さくしてくれるし速い。誤解を恐れずに表現するなら「Pythonの皮を被ったC/C++」。
-[https://nim-lang.org/](https://nim-lang.org/)
-[https://qiita.com/happy_packet/items/3c59abf9875f4f6869c9](https://qiita.com/happy_packet/items/3c59abf9875f4f6869c9)
-[https://ja.wikipedia.org/wiki/Nim](https://ja.wikipedia.org/wiki/Nim)
-- F#：　これまた写ってませんが・・・、OCaml という言語をベースに開発された2プログラミング言語で、C# の速度・クロスプラットフォーム性・ライブラリの多さ・開発環境、Python のオフサイドルール、Haskell のモナド文化、静的ダックタイピング(事実上のトレイト/型クラス)、コンパイル時型生成(type providers)、といった要素を兼ね備えています[https://qiita.com/cannorin/items/59d79cc9a3b64c761cd4](https://qiita.com/cannorin/items/59d79cc9a3b64c761cd4)
+https://nim-lang.org/
+https://qiita.com/happy_packet/items/3c59abf9875f4f6869c9
+https://ja.wikipedia.org/wiki/Nim
+- F#：　これまた写ってませんが・・・、OCaml という言語をベースに開発された2プログラミング言語で、C# の速度・クロスプラットフォーム性・ライブラリの多さ・開発環境、Python のオフサイドルール、Haskell のモナド文化、静的ダックタイピング(事実上のトレイト/型クラス)、コンパイル時型生成(type providers)、といった要素を兼ね備えていますhttps://qiita.com/cannorin/items/59d79cc9a3b64c761cd4
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2023.png)
 
-[https://2020.stateofjs.com/en-US/other-tools/](https://2020.stateofjs.com/en-US/other-tools/)
+https://2020.stateofjs.com/en-US/other-tools/
 
-[https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3](https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3)
+https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3
 
-### 9-1.  Python Frameworks
+### 10.1. 9-1.  Python Frameworks
 
 Pythonは機械学習の人気も相まって、今最も人気のあるサーバーサイドスクリプトです。動的型付け言語。同じ数の空白でインデントされたまとまりを一つのブロックと認識します。Webアプリケーションやデスクトップアプリケーションといった様々なシステムの開発が行えます。科学計算、機械学習の分野において採用されるケースが多い
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2024.png)
 
-[https://www.jetbrains.com/lp/python-developers-survey-2020/](https://www.jetbrains.com/lp/python-developers-survey-2020/)
+https://www.jetbrains.com/lp/python-developers-survey-2020/
 
-### 9-1-1.  Flask
+### 10.2. 9-1-1.  Flask
 
 JetBrain社のサーベイだと利用率は1位。
 
 Djangoに比べて、軽量なマイクロフレームワークです。標準で提供する機能を最小限に保っているようで、拡張性が高く、シンプルなフレームワークです。
 
-### 9-1-2.  Django
+### 10.3. 9-1-2.  Django
 
 Model-Template-View（MTV）アーキテクチャに基づいた、フルスタックフレームワークです。フレームワークに要求される機能がほとんど実装されています。PythonでWebアプリケーションを作る場合に、採用されることが多いです。
 
-### 9-1-3.  Fast API
+### 10.4. 9-1-3.  Fast API
 
-PythonのWeb frameworkで、Flaskのようなマイクロフレームワークにあたります。パフォーマンスの高さ、書きやすさ、本番運用を強く意識した設計、モダンな機能などが強みです。FastAPIは[Starlette](https://github.com/encode/starlette)の肩に乗る形で書かれており、非同期処理が扱いやすい。日本語記事あり。[https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9](https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9)
+PythonのWeb frameworkで、Flaskのようなマイクロフレームワークにあたります。パフォーマンスの高さ、書きやすさ、本番運用を強く意識した設計、モダンな機能などが強みです。FastAPI は Starlette の肩に乗る形で書かれており、非同期処理が扱いやすい。日本語記事あり。https://qiita.com/bee2/items/75d9c0d7ba20e7a4a0e9
 
-### 9-1-4.  Tornado
+### 10.5. 9-1-4.  Tornado
 
-FriendFeedで開発されたPythonのWebフレームワークであり、非同期ネットワークライブラリ。ノンブロッキングネットワークI/Oを使用することで、Tornadoは何万ものオープンコネクションに対応することができ、長時間のポーリングやWebSocketなど、各ユーザーへの長期的な接続を必要とするアプリケーションに最適。[https://www.tornadoweb.org/en/stable/](https://www.tornadoweb.org/en/stable/)
+FriendFeedで開発されたPythonのWebフレームワークであり、非同期ネットワークライブラリ。ノンブロッキングネットワークI/Oを使用することで、Tornadoは何万ものオープンコネクションに対応することができ、長時間のポーリングやWebSocketなど、各ユーザーへの長期的な接続を必要とするアプリケーションに最適。https://www.tornadoweb.org/en/stable/
 
-### 9-1-5.  Web2py
+### 10.6. 9-1-5.  Web2py
 
-高速でスケーラブル、安全でポータブルなデータベース駆動のWebベースのアプリケーションを迅速に開発するための、無料のオープンソース・フルスタックフレームワーク。[http://www.web2py.com/](http://www.web2py.com/)
+高速でスケーラブル、安全でポータブルなデータベース駆動のWebベースのアプリケーションを迅速に開発するための、無料のオープンソース・フルスタックフレームワーク。http://www.web2py.com/
 
-### 9-1-6.  Pyramid
+### 10.7. 9-1-6.  Pyramid
 
-小さなウェブアプリを大きなウェブアプリにすることを目的とした、軽量のPythonウェブフレームワークです。[https://trypyramid.com/](https://trypyramid.com/)
+小さなウェブアプリを大きなウェブアプリにすることを目的とした、軽量のPythonウェブフレームワークです。https://trypyramid.com/
 
-### 9-1-7.  Mako
+### 10.8. 9-1-7.  Mako
 
-Pythonで書かれたテンプレートライブラリです。慣れ親しんだ非XMLの構文を提供し、最大のパフォーマンスを得るためにPythonモジュールにコンパイルされます。月に10億以上のページビューがあるreddit.comで使用されている。[https://www.makotemplates.org/](https://www.makotemplates.org/)
+Pythonで書かれたテンプレートライブラリです。慣れ親しんだ非XMLの構文を提供し、最大のパフォーマンスを得るためにPythonモジュールにコンパイルされます。月に10億以上のページビューがあるreddit.comで使用されている。https://www.makotemplates.org/
 
-### 9-2.  PHP Frameworks
+### 10.9. 9-2.  PHP Frameworks
 
-- Laravel：　ウェブ開発者のためのPHPフレームワーク。[https://laravel.com/](https://laravel.com/)
-- Symfony：　Web アプリケーション、API、マイクロサービス、Web サービスを構築するための、再利用可能な PHP コンポーネントのセットであり、PHP フレームワーク。[https://symfony.com/](https://symfony.com/)
+- Laravel：　ウェブ開発者のためのPHPフレームワーク。https://laravel.com/
+- Symfony：　Web アプリケーション、API、マイクロサービス、Web サービスを構築するための、再利用可能な PHP コンポーネントのセットであり、PHP フレームワーク。https://symfony.com/
 
-### 9-3.  Java Frameworks
+### 10.10. 9-3.  Java Frameworks
 
-- Spring：　あらゆる種類のデプロイメント・プラットフォーム上で、最新のJavaベースのエンタープライズ・アプリケーションのための包括的なプログラミングおよび構成モデルを提供。[https://spring.io/projects/spring-framework](https://spring.io/projects/spring-framework)
+- Spring：　あらゆる種類のデプロイメント・プラットフォーム上で、最新のJavaベースのエンタープライズ・アプリケーションのための包括的なプログラミングおよび構成モデルを提供。https://spring.io/projects/spring-framework
 - 他にもたくさんあると思いますが、あまり使用しないので・・・
 
-### 9-4.  Async Technologies for Python / Django
+### 10.11. 9-4.  Async Technologies for Python / Django
 
 ワードの紹介にとどまりますが。Djangoから受けたアンケートの設問にも、「どういうAsync Technologiesを使っていますか？」というのがあったので、日本語記事は少ないですが、Djangoの団体は気にしてるようです。
 
-- ASGI (Asynchronous Server Gateway Interface)：　WSGIと呼ばれるPythonのWebサーバとWebアプリケーションが通信するためインタフェース定義の後継仕様となっており、WebSocketと非同期をサポートするように設計されているもの。[https://note.com/keyem/n/nc6d879ed59a4](https://note.com/keyem/n/nc6d879ed59a4)
-- AnyIO:  AnyIO は asyncio や trio の上で動作する非同期ネットワーキングおよび同時実行ライブラリです。asyncioの上にtrioのような構造化された同時実行（SC）を実装し、trio自体のネイティブなSCと調和して動作します。[https://anyio.readthedocs.io/en/stable/](https://anyio.readthedocs.io/en/stable/)
-- asgiref:  リンクのみ・・・。[https://github.com/django/asgiref](https://github.com/django/asgiref)
-- asyncio：　async/await 構文を使い 並行処理の コードを書くためのライブラリです。asyncio は、高性能なネットワークとウェブサーバ、データベース接続ライブラリ、分散タスクキューなどの複数の非同期 Python フレームワークの基盤として使われています。[https://docs.python.org/ja/3/library/asyncio.html](https://docs.python.org/ja/3/library/asyncio.html)
-- Channels:  Channels は、Django の機能を HTTP 以外にも拡張し、WebSocket やチャットプロトコル、IoT プロトコルなどを扱えるようにするプロジェクトです。ASGIと呼ばれるPythonの仕様に基づく。  [https://channels.readthedocs.io/en/stable/](https://channels.readthedocs.io/en/stable/)
-- Curio:  Curio is a coroutine-based library for concurrent Python systems programming. タスク、ソケット、ファイル、ロック、キューなどの標準的なプログラミングの抽象化を提供。[https://curio.readthedocs.io/en/latest/](https://curio.readthedocs.io/en/latest/)
-- Daphne:  DaphneはDjangoプロジェクトのメンバーによって開発されたUNIX用の純Python製ASGIサーバです。ASGI のリファレンスサーバとして機能しています。プロトコルの自動ネゴシエーションをサポートしており、WebSocketのエンドポイントとHTTPのエンドポイントを判断するためのURLプレフィックスは必要ありません。[https://pypi.org/project/daphne/](https://pypi.org/project/daphne/)
+- ASGI (Asynchronous Server Gateway Interface)：　WSGIと呼ばれるPythonのWebサーバとWebアプリケーションが通信するためインタフェース定義の後継仕様となっており、WebSocketと非同期をサポートするように設計されているもの。https://note.com/keyem/n/nc6d879ed59a4
+- AnyIO:  AnyIO は asyncio や trio の上で動作する非同期ネットワーキングおよび同時実行ライブラリです。asyncioの上にtrioのような構造化された同時実行（SC）を実装し、trio自体のネイティブなSCと調和して動作します。https://anyio.readthedocs.io/en/stable/
+- asgiref:  リンクのみ・・・。https://github.com/django/asgiref
+- asyncio：　async/await 構文を使い 並行処理の コードを書くためのライブラリです。asyncio は、高性能なネットワークとウェブサーバ、データベース接続ライブラリ、分散タスクキューなどの複数の非同期 Python フレームワークの基盤として使われています。https://docs.python.org/ja/3/library/asyncio.html
+- Channels:  Channels は、Django の機能を HTTP 以外にも拡張し、WebSocket やチャットプロトコル、IoT プロトコルなどを扱えるようにするプロジェクトです。ASGIと呼ばれるPythonの仕様に基づく。  https://channels.readthedocs.io/en/stable/
+- Curio:  Curio is a coroutine-based library for concurrent Python systems programming. タスク、ソケット、ファイル、ロック、キューなどの標準的なプログラミングの抽象化を提供。https://curio.readthedocs.io/en/latest/
+- Daphne:  DaphneはDjangoプロジェクトのメンバーによって開発されたUNIX用の純Python製ASGIサーバです。ASGI のリファレンスサーバとして機能しています。プロトコルの自動ネゴシエーションをサポートしており、WebSocketのエンドポイントとHTTPのエンドポイントを判断するためのURLプレフィックスは必要ありません。https://pypi.org/project/daphne/
 - Quart:  QuartはPythonのWebマイクロフレームワークです。Quartを使うと以下が出来る。
     1. HTMLテンプレートのレンダリングと提供
     2. RESTfulなJSON APIの作成
@@ -1675,37 +2160,37 @@ Pythonで書かれたテンプレートライブラリです。慣れ親しん�
     4. リクエストおよびレスポンスデータのストリーム
     5. HTTPまたはWebSocketプロトコル上であらゆることが可能
 
-    [https://pgjones.gitlab.io/quart/](https://pgjones.gitlab.io/quart/)
+    https://pgjones.gitlab.io/quart/
 
-- Responder：　Responder は [Requests](http://docs.python-requests.org/en/master/) や [Pipenv](https://github.com/pypa/pipenv) の開発者として知られる [Kenneth Reitz 氏](https://twitter.com/kennethreitz) によって開発された Web フレームワークです。Responder のコンセプトは、人気の Web フレームワークである [Flask](http://flask.pocoo.org/) と [Falcon](https://falcon.readthedocs.io/en/stable/) の両方から良い部分を取り入れ、さらに Kenneth Reitz 氏の持つ新しいアイデアを加えることで、新しい一つのWeb フレームワークに統合すること。[https://qiita.com/nskydiving/items/b98d5cea5a52459cb183](https://qiita.com/nskydiving/items/b98d5cea5a52459cb183)
-[https://qiita.com/y_k/items/6e4da3bef5c8d8bd2730](https://qiita.com/y_k/items/6e4da3bef5c8d8bd2730)
-- Sanic:  SanicはPython 3.7+のWebサーバとWebフレームワークで、高速に動作するように書かれています。Python 3.5で追加されたasync/await構文を使用することができ、ノンブロッキングで高速なコードを実現します。[https://github.com/sanic-org/sanic](https://github.com/sanic-org/sanic)
-- Starlette：　FastAPIが乗っている巨人のひとつである、[Starlette](https://github.com/encode/starlette)はASGI Framework/toolkitの一つです。処理が簡単になるだけでなく、効率的に実行するように非同期処理が工夫されており、高速です。[https://qiita.com/bee2/items/d629d8acc102cf92b7b2](https://qiita.com/bee2/items/d629d8acc102cf92b7b2)
-- trio：　「async I/O for humans and snake people」を名乗るライブラリ。stack overflowの「asyncioとtrioって何が違うの？[curio](http://d.hatena.ne.jp/keyword/curio)ってライブラリもあるそうなんだけど…」という質問に、trioの"primary author"で[curio](http://d.hatena.ne.jp/keyword/curio)の"contributor"でもある[Nathaniel J. Smith](https://vorpus.org/)さんが以下のように答えています。
+- Responder：　Responder は Requests や Pipenv の開発者として知られる Kenneth Reitz 氏によって開発された Web フレームワークです。Responder のコンセプトは、人気の Web フレームワークである。Flask と Falcon の両方から良い部分を取り入れ、さらに Kenneth Reitz 氏の持つ新しいアイデアを加えることで、新しい一つのWeb フレームワークに統合すること。https://qiita.com/nskydiving/items/b98d5cea5a52459cb183
+https://qiita.com/y_k/items/6e4da3bef5c8d8bd2730
+- Sanic:  SanicはPython 3.7+のWebサーバとWebフレームワークで、高速に動作するように書かれています。Python 3.5で追加されたasync/await構文を使用することができ、ノンブロッキングで高速なコードを実現します。https://github.com/sanic-org/sanic
+- Starlette：　FastAPIが乗っている巨人のひとつである、Starlette は ASGI Framework/toolkit の一つです。処理が簡単になるだけでなく、効率的に実行するように非同期処理が工夫されており、高速です。https://qiita.com/bee2/items/d629d8acc102cf92b7b2
+- trio：　「async I/O for humans and snake people」を名乗るライブラリ。stack overflowの「asyncioとtrioって何が違うの？curioってライブラリもあるそうなんだけど…」という質問に、trioの"primary author"でcurioの"contributor"でもある Nathaniel J. Smith さんが以下のように答えています。
     1. asyncioのほうが成熟したライブラリだ
-    2. trioはコードをもっとシンプルにしてくれる　など。詳細はこちら。[https://kiito.hatenablog.com/entry/2018/12/26/110317](https://kiito.hatenablog.com/entry/2018/12/26/110317)
-- Uvicorn:  The lightning-fast ASGI server.  [https://www.uvicorn.org/](https://www.uvicorn.org/)
-- Hypercorn:  Hypercornは、sans-ioのhyper, h11, h2, wsproto ライブラリをベースに、Gunicornにインスパイアされて開発されたASGI Webサーバーです。Hypercornは、HTTP/1、HTTP/2、WebSocket（HTTP/1およびHTTP/2上）、ASGI/2、ASGI/3の各仕様をサポートしています。Hypercornは、asyncio、uvloop、またはtrioのワーカータイプを利用できます。  [https://github.com/pgjones/hypercorn](https://github.com/pgjones/hypercorn)
+    2. trioはコードをもっとシンプルにしてくれる　など。詳細はこちら。https://kiito.hatenablog.com/entry/2018/12/26/110317
+- Uvicorn:  The lightning-fast ASGI server.  https://www.uvicorn.org/
+- Hypercorn:  Hypercornは、sans-ioのhyper, h11, h2, wsproto ライブラリをベースに、Gunicornにインスパイアされて開発されたASGI Webサーバーです。Hypercornは、HTTP/1、HTTP/2、WebSocket（HTTP/1およびHTTP/2上）、ASGI/2、ASGI/3の各仕様をサポートしています。Hypercornは、asyncio、uvloop、またはtrioのワーカータイプを利用できます。  https://github.com/pgjones/hypercorn
 
-## 10.  Web API
+## 11.  Web API
 
 ブラウザからではなくプログラムからWebサーバにアクセスしてデータを取得し活用したいという要望が出てきました。そこでWebのしくみを使ってデータを提供するWeb APIというしくみが登場。
 
 Web APIではプログラムに対してデータを提供するのが目的なので、レスポンスにHTMLが使われることはありません。代わりにプログラムが扱いやすいデータフォーマットを使用します。よく使われるのがJSONやXMLのようなフォーマット。
 
-### 10-1.  RESTful API
+### 11.1. 10-1.  RESTful API
 
 REST（Representational State Transfer）は、APIを定義するときに使われる設計思想です。プロトコルではない。RESTに従ったAPIのことをRESTful APIと呼びます。 RESTはステートレスなプロトコルを使って、一意に指定可能なリソースに対して操作するという方法になっています。
 
 ステートレスなプロトコルはHTTPそのものであり、一意に指定可能なリソースはURLに対応します。またリソースの操作はHTTPリクエストのメソッドに対応しています。
 
-### 10-2.  GraphQL
+### 11.2. 10-2.  GraphQL
 
 RESTはリソースに対して操作をするという設計なので、複数リソースのデータを取得しようと思った場合、APIに複数回アクセスする必要があります。データ取得の効率を考えると、APIにアクセスする回数を減らして一度に取得するデータを多くしたほうがよいです。 そこでRESTよりも効率良くAPIからデータを取得する方法としてGraphQLが考案されました。
 
 GraphQLはFacebookにより提案され標準化が進んでいます。今後はGraphQLを採用したAPIも増えていくでしょう。
 
-### 10-2-1. GraphQL のデータ例
+### 11.3. 10-2-1. GraphQL のデータ例
 
 型情報を持ったスキーマを定義し、そのスキーマに対してクエリを叩く。
 
@@ -1742,27 +2227,27 @@ query GetMe {
 }
 ```
 
-[https://graphql.org/learn/queries/](https://graphql.org/learn/queries/)
+https://graphql.org/learn/queries/
 
-[https://www.amazon.co.jp/dp/B0912GHNCN/ref=cm_sw_r_cp_api_glt_TXXAJ2N11WA8AHAPJB1D?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B0912GHNCN/ref=cm_sw_r_cp_api_glt_TXXAJ2N11WA8AHAPJB1D?_encoding=UTF8&psc=1)
+https://www.amazon.co.jp/dp/B0912GHNCN/ref=cm_sw_r_cp_api_glt_TXXAJ2N11WA8AHAPJB1D?_encoding=UTF8&psc=1
 
-### 10-2-2.  Hasura
+### 11.4. 10-2-2.  Hasura
 
 PostgreSQL サーバーから自動的に GraphQL サーバーを建てられるツール。Docker イメージとして配布されていて、対象となる PostgreSQL サーバーのアドレスや PW を設定して起動すればすぐに GraphQL サーバーとして使えます。
 
 テーブル定義から自動でGraphQL APIを生成する。柔軟な検索ができるクエリメソッドや、Create, Update, Deleteなども自動生成され、シンプルだが十分なCRUDができる。
 
-[https://hasura.io/](https://hasura.io/)
+https://hasura.io/
 
-[https://hasura.io/learn/ja/graphql/hasura/introduction/](https://hasura.io/learn/ja/graphql/hasura/introduction/)
+https://hasura.io/learn/ja/graphql/hasura/introduction/
 
-[https://qiita.com/yuno_miyako/items/4a4f68a473231f8c07cd](https://qiita.com/yuno_miyako/items/4a4f68a473231f8c07cd)
+https://qiita.com/yuno_miyako/items/4a4f68a473231f8c07cd
 
-[https://qiita.com/maaz118/items/9e198ea91ad8fc624491](https://qiita.com/maaz118/items/9e198ea91ad8fc624491)
+https://qiita.com/maaz118/items/9e198ea91ad8fc624491
 
-[https://speakerdeck.com/shinnoki/hasura-tohahe-zhe-ka-meritutodemerituto?slide=17](https://speakerdeck.com/shinnoki/hasura-tohahe-zhe-ka-meritutodemerituto?slide=17)
+https://speakerdeck.com/shinnoki/hasura-tohahe-zhe-ka-meritutodemerituto?slide=17
 
-### 10-2-3.  Apollo GraphQL
+### 11.5. 10-2-3.  Apollo GraphQL
 
 ApolloはGraphQLのフロントエンド＆バックエンドのライブラリです。バックエンド側はApollo Server、フロントエンド側は Apollo Clientを導入する必要があります。
 
@@ -1774,35 +2259,35 @@ Apollo を利用することで、あらゆるデータが GraphQL サーバー�
 
 こうすることでバックエンドの複雑性が Apollo によって隠蔽され、クライアントおよびバックエンドは Apollo サーバーとの接続にのみ注意すればよくなる
 
-[https://www.apollographql.com/](https://www.apollographql.com/)
+https://www.apollographql.com/
 
-[https://qiita.com/teradonburi/items/2ad98c7c21f1f6cc4390](https://qiita.com/teradonburi/items/2ad98c7c21f1f6cc4390)
+https://qiita.com/teradonburi/items/2ad98c7c21f1f6cc4390
 
-[https://qiita.com/jintz/items/4ddc6bf4f95238eff5e9](https://qiita.com/jintz/items/4ddc6bf4f95238eff5e9)
+https://qiita.com/jintz/items/4ddc6bf4f95238eff5e9
 
-### 10-3. Webhook
+### 11.6. 10-3. Webhook
 
 Webサービスがサービス内で起こったイベントをトリガーに、所定のURLにパラメータを渡してコールしてくれる機能。
 
 例えばGitHubのWebhookはリポジトリにプッシュ時、コミット情報をパラメータとしてPOSTリクエストする。そのため、プッシュ時にコミット情報をSlackに通知をしたり、メールに通知できる。
 
-[https://twitter.com/rapid_api/status/1436066031735300097?s=21](https://twitter.com/rapid_api/status/1436066031735300097?s=21)
+https://twitter.com/rapid_api/status/1436066031735300097?s=21
 
-[https://qiita.com/soarflat/items/ed970f6dc59b2ab76169](https://qiita.com/soarflat/items/ed970f6dc59b2ab76169)
+https://qiita.com/soarflat/items/ed970f6dc59b2ab76169
 
-### 10-4.  Postman
+### 11.7. 10-4.  Postman
 
 Postmanは、Web APIのテストクライアントサービスのひとつ。1500万人以上の開発者がPostmanを使用しています。
 
-[https://qiita.com/zaburo/items/16ac4189d0d1c35e26d1](https://qiita.com/zaburo/items/16ac4189d0d1c35e26d1)
+https://qiita.com/zaburo/items/16ac4189d0d1c35e26d1
 
-[https://www.postman.com/](https://www.postman.com/)
+https://www.postman.com/
 
-[https://qiita.com/zaburo/items/16ac4189d0d1c35e26d1](https://qiita.com/zaburo/items/16ac4189d0d1c35e26d1)
+https://qiita.com/zaburo/items/16ac4189d0d1c35e26d1
 
-## 11.  WEB Application
+## 12.  WEB Application
 
-### 11-1.  SPA (Single Page Application)
+### 12.1. 11-1.  SPA (Single Page Application)
 
 WebアプリケーションをサーバAPIとフロントエンドの構成の単一ページとして実装するのがSPAです。 最近はSPAを使ってほとんどネイティブアプリケーションと遜色のない操作性を提供するWebアプリケーションも増えてきています。
 
@@ -1812,17 +2297,17 @@ WebアプリケーションをサーバAPIとフロントエンドの構成の�
 
 このアップデートはGoogle I/O 2019にて発表され、[アメリカ版Googleウェブマスター向け公式ブログ](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)でも告知されています。
 
-[https://www.cresco.co.jp/blog/entry/11716/](https://www.cresco.co.jp/blog/entry/11716/)
+https://www.cresco.co.jp/blog/entry/11716/
 
-[https://qiita.com/ozaki25/items/41e3af4679c81a204284](https://qiita.com/ozaki25/items/41e3af4679c81a204284)
+https://qiita.com/ozaki25/items/41e3af4679c81a204284
 
-### 11-2.  SSR (Server-Side Rendering)
+### 12.2. 11-2.  SSR (Server-Side Rendering)
 
 世の中のシステムにはブラウザからではなく、プログラムからアクセスして処理するようなシステムもあります。そのようなシステムではSPAのWebアプリケーションを正常に処理できません。 SPA構成のアプリケーションでも一部サーバサイドで処理をする必要が出てきます。そういった用途のために一部サーバ側で処理をすることをSSRと言います。SPA構成のアプリケーションを開発するときはSSRをどうするかを考慮する必要は出てくるでしょう。
 
-[https://qiita.com/jagaapple/items/faf125e28f8c2860269c](https://qiita.com/jagaapple/items/faf125e28f8c2860269c)
+https://qiita.com/jagaapple/items/faf125e28f8c2860269c
 
-### 11-3.  SSG (Static Site Generator)
+### 12.3. 11-3.  SSG (Static Site Generator)
 
 アプリのビルド時にあらかじめページ表示に必要なデータを取得し、各ページごとに静的なHTMLファイルを出力しておく。そしてサーバーへのリクエスト時にはこのHTMLファイルを返却する。
 
@@ -1832,28 +2317,28 @@ WebアプリケーションをサーバAPIとフロントエンドの構成の�
 
 もはやSSRは不要で、SSGで十分だとNext.jsやVercelを開発したVercelが主張しているらしい。
 
-[https://tech.bitbank.cc/20210201/](https://tech.bitbank.cc/20210201/)
+https://tech.bitbank.cc/20210201/
 
-[https://qiita.com/jagaapple/items/faf125e28f8c2860269c](https://qiita.com/jagaapple/items/faf125e28f8c2860269c)
+https://qiita.com/jagaapple/items/faf125e28f8c2860269c
 
-### 11-3-1.  Hugo
+### 12.4. 11-3-1.  Hugo
 
 Hugoは、Goで書かれた静的サイトジェネレーターです。2013年にSteve Franciaによって作成されました。
 
-### 11-3-2.  Jekyll
+### 12.5. 11-3-2.  Jekyll
 
 静的サイトジェネレータです。好きなマークアップ言語で書かれたテキストを用意すれば、Jekyllはレイアウトを合成して静的サイトを作成する。Rubyで書かれている
-公式日本語ページはこちら。[http://jekyllrb-ja.github.io/docs/](http://jekyllrb-ja.github.io/docs/)
+公式日本語ページはこちら。http://jekyllrb-ja.github.io/docs/
 
-### 11-3-3.  ASP.NET
+### 12.6. 11-3-3.  ASP.NET
 
-無料。クロスプラットフォーム。オープンソース。.NETとC#でWebアプリケーションやサービスを構築するためのフレームワーク。[https://dotnet.microsoft.com/apps/aspnet](https://dotnet.microsoft.com/apps/aspnet)
+無料。クロスプラットフォーム。オープンソース。.NETとC#でWebアプリケーションやサービスを構築するためのフレームワーク。https://dotnet.microsoft.com/apps/aspnet
 
-### 11-3-4.  ASP.NET Core
+### 12.7. 11-3-4.  ASP.NET Core
 
-ASP.NETは、.NETプラットフォーム上でWebアプリケーションを構築するための一般的なWeb開発フレームワークです。[ASP.NET](http://asp.net/) Coreは、macOS、Linux、Windowsで動作するオープンソース版のASP.NETです。[ASP.NET](http://asp.net/) Coreは2016年に初めてリリースされ、初期のWindowsのみのバージョンのASP.NETを再設計したもの。[https://dotnet.microsoft.com/learn/aspnet/what-is-aspnet-core](https://dotnet.microsoft.com/learn/aspnet/what-is-aspnet-core)
+ASP.NETは、.NETプラットフォーム上でWebアプリケーションを構築するための一般的なWeb開発フレームワークです。ASP.NET Coreは、macOS、Linux、Windowsで動作するオープンソース版のASP.NETです。ASP.NET Coreは2016年に初めてリリースされ、初期のWindowsのみのバージョンのASP.NETを再設計したもの。https://dotnet.microsoft.com/learn/aspnet/what-is-aspnet-core
 
-### 11-3-5.  Gatsby.js
+### 12.8. 11-3-5.  Gatsby.js
 
 Reactで作られた静的サイトジェネレーター（SSG）。Gatsby社が開発・運用。2021年9月時点でGitHubスター51,300。
 
@@ -1863,11 +2348,11 @@ Reactで作られた静的サイトジェネレーター（SSG）。Gatsby社が
 
 Gatsbyでは独自のデータレイヤーを持っており、そのレイヤーとReactコンポーネントのやり取りをGraphQLというクエリ言語で行う。また、そのGraphQLを簡単に扱えるGraphiQLというIDEもついてくる。ビルド時はこのGraphQLで取得したデータも含めて静的化するので別途GraphQLサーバーは必要ない。
 
-[https://www.amazon.co.jp/dp/B0912GHNCN/ref=cm_sw_r_cp_api_glt_TXXAJ2N11WA8AHAPJB1D?_encoding=UTF8&psc=1](https://www.amazon.co.jp/dp/B0912GHNCN/ref=cm_sw_r_cp_api_glt_TXXAJ2N11WA8AHAPJB1D?_encoding=UTF8&psc=1)
-[https://qiita.com/hppRC/items/00739eaf9ae7fc95c1ca](https://qiita.com/hppRC/items/00739eaf9ae7fc95c1ca)
-[https://tech.bitbank.cc/20210201/](https://tech.bitbank.cc/20210201/)
+https://www.amazon.co.jp/dp/B0912GHNCN/ref=cm_sw_r_cp_api_glt_TXXAJ2N11WA8AHAPJB1D?_encoding=UTF8&psc=1
+https://qiita.com/hppRC/items/00739eaf9ae7fc95c1ca
+https://tech.bitbank.cc/20210201/
 
-### 11-4.  PWA (Progressive Web Apps)
+### 12.9. 11-4.  PWA (Progressive Web Apps)
 
 ブラウザ上で利用するウェブサイトですが、ユーザーはまるでパーソナライズ化されたアプリのように利用することができます。「Service Worker」というスクリプトを使用することで、様々な機能を実装することができます。たとえば、
 
@@ -1887,11 +2372,11 @@ Gatsbyでは独自のデータレイヤーを持っており、そのレイヤ�
 
 PWA.Rocksには、インスピレーションを得るためのプログレッシブアプリの例が多数あります。
 
-[https://www.e-xtreme.co.jp/topics/2238/](https://www.e-xtreme.co.jp/topics/2238/)
+https://www.e-xtreme.co.jp/topics/2238/
 
-[https://www.seleqt.net/programming/web-development-trends-2019-3/](https://www.seleqt.net/programming/web-development-trends-2019-3/)
+https://www.seleqt.net/programming/web-development-trends-2019-3/
 
-### 11-5. Hybrid Application
+### 12.10. 11-5. Hybrid Application
 
 ネイティブアプリとWebアプリのメリットを組み合わせたものが「ハイブリッドアプリ」です。WEBアプリやPWAはあくまでブラウザ上で動きますが、ハイブリッドアプリはブラウザ上で動くのではなく、OS標準搭載のWebViewで動きます。
 
@@ -1899,9 +2384,9 @@ PWAより早い？がNative Appよりは遅い。でもアップデートはサ�
 
 もちろん開発言語はネイティブと違い、いつものHTML、CSS、JSでよいので開発コストが下がりやすい。スマホのOSアップデートの影響も受けにくい。
 
-[https://www.nttcoms.com/service/mobileweb-smartphoneapp/column/20200924/](https://www.nttcoms.com/service/mobileweb-smartphoneapp/column/20200924/)
+https://www.nttcoms.com/service/mobileweb-smartphoneapp/column/20200924/
 
-### 11-5-1. Hybrid App Frameworks
+### 12.11. 11-5-1. Hybrid App Frameworks
 
 こちらも色々あるが、代表的なのは以下の3つ。
 
@@ -1913,21 +2398,21 @@ PWAより早い？がNative Appよりは遅い。でもアップデートはサ�
 
 - PhoneGap、Xamarin、NativeScript、Kendo UI、Framework7　など
 
-[https://www.mobileappdaily.com/best-hybrid-app-frameworks](https://www.mobileappdaily.com/best-hybrid-app-frameworks)
+https://www.mobileappdaily.com/best-hybrid-app-frameworks
 
 [https://www.wecode-inc.com/blog/アプリ開発のフレームワークは何を選ぶべきか/](https://www.wecode-inc.com/blog/%E3%82%A2%E3%83%97%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AE%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AF%E4%BD%95%E3%82%92%E9%81%B8%E3%81%B6%E3%81%B9%E3%81%8D%E3%81%8B/)
 
-### 11-5-2.  DART
+### 12.12. 11-5-2.  DART
 
 Googleによって開発され、2011年10月に公開されました。Webブラウザ組み込み用スクリプト言語として、JavaScriptの後継言語を目的に設計されています。GoogleではDartをChromeに統合する計画でしたが、2015年にその計画を断念。以後はDartを使ったプログラムをJavaScriptにコンパイルして、JavaScriptエンジンを搭載するWebブラウザ上で動作するようになりました。
 
 Googleが開発したので、「Google Ads」「Google Fiber」「Google Express」「Google社内セールス」などのGoogle社内チームでも使われています。しかし現在最も注目されているのは、2018年にGoogleが発表したマルチプラットフォーム・アプリケーション開発ツール「Flutter（フラッター）」用の言語として使われていること
 
-[https://dart.dev/](https://dart.dev/)
+https://dart.dev/
 
-[https://www.fenet.jp/infla/column/technology/126-2/](https://www.fenet.jp/infla/column/technology/126-2/)
+https://www.fenet.jp/infla/column/technology/126-2/
 
-### 11-6.  RIA (Rich Internet Application)
+### 12.13. 11-6.  RIA (Rich Internet Application)
 
 ソフトウェアの分類の1つであり、ブラウザなどのクライアントの機能を活かした、柔軟なインタフェースをもつWEBアプリケーションのことである。CurlやFlashのようにプラグインをベースにしたものや、GWTのような最終的にHTML＋JSに変換されるものまで様々。
 
@@ -1935,24 +2420,24 @@ Googleが開発したので、「Google Ads」「Google Fiber」「Google Expres
 
 数多く登場し流行ってはいたものの一瞬たりともWebのUIの王座には立っていないらしい。あまり見ないですし、知ってる程度でいいかも。
 
-[https://zenn.dev/koduki/articles/c07db4179bb7b86086a1](https://zenn.dev/koduki/articles/c07db4179bb7b86086a1)
+https://zenn.dev/koduki/articles/c07db4179bb7b86086a1
 
-### 11-7.  BFF (Backends For Frontends)
+### 12.14. 11-7.  BFF (Backends For Frontends)
 
 フロントエンドのためのバックエンド（サーバ）です。フロントエンドのためにAPIをコールしたり、HTMLを生成したりするサーバのことを指します。ここだけ読むと「今までのWebアプリケーションサーバと何が違うのか」と思うかもしれません。本質的にはそこまで変わりませんが、「フロントエンド専用」という役割が異なります。
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2026.png)
 
-[https://atmarkit.itmedia.co.jp/ait/articles/1803/12/news012.html](https://atmarkit.itmedia.co.jp/ait/articles/1803/12/news012.html)
+https://atmarkit.itmedia.co.jp/ait/articles/1803/12/news012.html
 
-### 11-7-1.  BFF のメリット
+### 12.15. 11-7-1.  BFF のメリット
 
 例えば、下記のようないくつかのメリットが生まれる。
 
 - APIの集約：　シンプルにクライアントはBFFに対してのみAPIを投げればよく、複数のバックエンドに対しての対応や加工などをクライアント側が気にしなくてよくなります。また、バックエンドからの複数のレスポンスをクライアントが求める形に適切に加工して返すことができるので、クライアントの処理も少なくできます
 - フロントとバックの分離：　バックエンドとクライアントが直接通信を行う場合そのプロトコルは一致させないといけませんでしたが、BFFを挟む場合はBFF <-> クライアントとBFF <-> バックエンドは全く別の通信になるので、 BFF <-> クライアントのみ GraphQLで BFF <-> バックエンドは RESTとのような柔軟な調整ができる
 
-### 11-7-2.  BFF のデメリット
+### 12.16. 11-7-2.  BFF のデメリット
 
 当然、デメリットもある
 
@@ -1960,29 +2445,29 @@ Googleが開発したので、「Google Ads」「Google Fiber」「Google Expres
 - 通信量の増大：　データを取得するために必要な経路が増えるためデータ取得にかかる時間は増える
 - コードの冗長化：　例えばユーザー一覧の取得APIなど、機能や関心ごとが一致する場合はほぼ同じコードを書かないと行けないため、コードが冗長化
 
-[https://qiita.com/souhei-etou/items/d5de99bb8cba1c59d393](https://qiita.com/souhei-etou/items/d5de99bb8cba1c59d393)
+https://qiita.com/souhei-etou/items/d5de99bb8cba1c59d393
 
-### 11-8.  Microservices
+### 12.17. 11-8.  Microservices
 
 ソフトウェアエンジニアリングの観点からみると、マイクロサービスはモノリシックに比べて開発しやすいと言えます。 アプリケーションの規模が小さいため、開発者は継続的インテグレーションと継続的デリバリー（CI/CD）によって更新や改善を容易に行うことができます。 また、マイクロサービスは任意のプログラミング言語で記述できるだけでなく、 APIを使用して他のマイクロサービスと通信することが可能。
 
 こちらの記事から例を抜粋。
 
-[https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3](https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3)
+https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3
 
-[https://www.talend.com/jp/resources/monolithic-architecture/](https://www.talend.com/jp/resources/monolithic-architecture/)
+https://www.talend.com/jp/resources/monolithic-architecture/
 
-### 11-8-1.  **Istio**
+### 12.18. 11-8-1.  Istio
 
 マイクロサービスとネットワークの間に、「サービスメッシュ」と呼ばれるレイヤを挟み、マイクロサービス間を接続するネットワークのルーティング、ロードバランシング、通信の暗号化等々を行なってくれるプラットフォームです。
 
-[https://istio.io/](https://istio.io/)
+https://istio.io/
 
-### 11-9.  MVC (Model-View-Controller)
+### 12.19. 11-9.  MVC (Model-View-Controller)
 
 フレームワークを理解する重要な概念として、MVCというものがあります。MVCを採用するとアプリケーションをきれいな構造で実装できるので、ほとんどのフレームワークではMVCを採用しています。 MVCはもともとはPCで動くアプリケーションを開発するために提唱されましたが、その有用性の高さからWebアプリケーションでも利用されるようになりました。
 
-### 11-10.  MVVM (Model-View-ViewModel)
+### 12.20. 11-10.  MVVM (Model-View-ViewModel)
 
 UIを持つソフトウェアに適用されるソフトウェアアーキテクチャの一種。Model-View-Controller (MVC) パターンの派生であり、特にPresentation Model パターンを直接の祖先に持つ。2005年に、マイクロソフトのWPFおよびSilverlightアーキテクトであったJohn Gossmanが自身のブログでModel-View-ViewModel (MVVM) パターンを発表した。
 
@@ -1992,11 +2477,11 @@ MVVMとは、プログラムを3つの要素、Model、View、ViewModel に分�
 - View：　アプリケーションの扱うデータをユーザーが見るのに適した形で表示し、ユーザーからの入力を受け取る要素である。すなわちユーザインタフェースの入出力が責務
 - ViewModel：　Viewを描画するための状態の保持と、Viewから受け取った入力を適切な形に変換してModelに伝達する役目を持つ。すなわちViewとModelの間の情報の伝達と、Viewのための状態保持のみを役割とする要素である。実装ではしばしば、Viewとの通信はデータバインディング機構のような仕組みを通じて行う。
 
-[https://ja.wikipedia.org/wiki/Model_View_ViewModel](https://ja.wikipedia.org/wiki/Model_View_ViewModel)
+https://ja.wikipedia.org/wiki/Model_View_ViewModel
 
-[https://qiita.com/ebi-toro/items/046c9a43b15b9e376198](https://qiita.com/ebi-toro/items/046c9a43b15b9e376198)
+https://qiita.com/ebi-toro/items/046c9a43b15b9e376198
 
-### 11-11.  Accessibility (a11y)
+### 12.21. 11-11.  Accessibility (a11y)
 
 可能な限り多くの人に利用してもらうようにすること。以前はハンディキャップを持つ人々のためのものだと考えていましたが、現在はそのためだけでもはなく、モバイルデバイスや遅いネットワークを利用している人々のためのものでもあると考えられています。
 
@@ -2004,11 +2489,11 @@ MVVMとは、プログラムを3つの要素、Model、View、ViewModel に分�
 
 ちなみに、a11y と略されることが多く、"a "の後に11文字、そして "y "という意味です。
 
-[https://developer.mozilla.org/ja/docs/Learn/Accessibility/What_is_accessibility](https://developer.mozilla.org/ja/docs/Learn/Accessibility/What_is_accessibility)
+https://developer.mozilla.org/ja/docs/Learn/Accessibility/What_is_accessibility
 
-[https://developer.mozilla.org/ja/docs/Learn/Accessibility/HTML](https://developer.mozilla.org/ja/docs/Learn/Accessibility/HTML)
+https://developer.mozilla.org/ja/docs/Learn/Accessibility/HTML
 
-## 12.  RDBMS (Relational DataBase Management System)
+## 13.  RDBMS (Relational DataBase Management System)
 
 アーキテクチャは下記の層になっている
 
@@ -2019,18 +2504,18 @@ MVVMとは、プログラムを3つの要素、Model、View、ViewModel に分�
 - Buffer Pool Manager：　データの塊をメモリにキャッシュする。実際のディスクの読み書きはしない。ディスクの読み書きは遅いので、メモリにキャッシュすることで早く見せる役割。ファイルシステムにもキャッシュ機能はあるが、自分でやるために、あえてファイルシステムの方のキャッシュ機能は無効にする場合もある
 - Disc Manager：　ディスクの読み書きをする。ヒープファイルという、ファイルを固定のバイトでページに区切ったファイルに書く。1ページが4096バイト。ページ単位でしか読み書きできない。ファイルはファイルシステムによって、HDDやSSDに書き込まれる
 
-### 12-1.  RDBMSの種類
+### 13.1. 12-1.  RDBMSの種類
 
-- PostgreSQL：　PostgreSQLは、拡張性とSQL準拠を重視したフリーでオープンソースのリレーショナルデータベース管理システムで、Postgresとも呼ばれています。元々はPOSTGRESという名前で、カリフォルニア大学バークレー校で開発されたIngresデータベースの後継として開発されたことに由来しています。[https://www.postgresql.org/](https://www.postgresql.org/)
+- PostgreSQL：　PostgreSQLは、拡張性とSQL準拠を重視したフリーでオープンソースのリレーショナルデータベース管理システムで、Postgresとも呼ばれています。元々はPOSTGRESという名前で、カリフォルニア大学バークレー校で開発されたIngresデータベースの後継として開発されたことに由来しています。https://www.postgresql.org/
 - Oracle Database：　OracleのRDBMS
 - SQL Server：　MicrosoftのRDBMS
 - MySQL：　オープンソースのRDBMS。イルカのやつ
-- MariaDB：　MariaDBサーバーは、最も人気のあるオープンソースのリレーショナルデータベースの一つです。MySQLのオリジナル開発者によって作られており、オープンソースであることが保証されています。[https://mariadb.org/](https://mariadb.org/)
+- MariaDB：　MariaDBサーバーは、最も人気のあるオープンソースのリレーショナルデータベースの一つです。MySQLのオリジナル開発者によって作られており、オープンソースであることが保証されています。https://mariadb.org/
 - SQLite：　小型、高速、自己完結型、高信頼性、フル機能を備えたSQLデータベースエンジンを実装したC言語ライブラリ（と本家が言ってる）。
-[https://www.sqlite.org/index.html](https://www.sqlite.org/index.html)
-[https://products.sint.co.jp/topsic/blog/sqlite](https://products.sint.co.jp/topsic/blog/sqlite)
+https://www.sqlite.org/index.html
+https://products.sint.co.jp/topsic/blog/sqlite
 
-### 12-2.  DBの冗長化
+### 13.2. 12-2.  DBの冗長化
 
 データの永続性を満たすためには冗長化が必要。冗長化の方法にはいくつかある
 
@@ -2038,29 +2523,29 @@ MVVMとは、プログラムを3つの要素、Model、View、ViewModel に分�
 - Replication：　マスタDBで受けたクエリを実行した後の内容を、スレーブDBにコピー。即時ではない。スレーブとはSlave（奴隷）のことで副を指す
 - Shared Disk：　DBサーバーだけ冗長で、ディスクは共有型
 
-### 12-3.  Query Cache
+### 13.3. 12-3.  Query Cache
 
 APサーバーからのクエリと、それに対するレスポンスを一定期間記憶し、期間内に同じクエリが来たら同じ結果を返す。それによりレスポンスが速くなる。
 
 DBサーバー内のメモリに作られる共有バッファという領域にデータが確保されることで、やりとりの遅いディスクに比較して、速い応答を実現している
 
-[https://www.postgresql.jp/sites/default/files/2016-12/kataoka_check_your_config.pdf](https://www.postgresql.jp/sites/default/files/2016-12/kataoka_check_your_config.pdf)
+https://www.postgresql.jp/sites/default/files/2016-12/kataoka_check_your_config.pdf
 
-[https://gihyo.jp/dev/feature/01/dex_postgresql/0002](https://gihyo.jp/dev/feature/01/dex_postgresql/0002)
+https://gihyo.jp/dev/feature/01/dex_postgresql/0002
 
-[https://thinkit.co.jp/cert/tech/10/1/3.htm](https://thinkit.co.jp/cert/tech/10/1/3.htm)
+https://thinkit.co.jp/cert/tech/10/1/3.htm
 
-### 12-4.  ORM (Object-Relational Mapper)
+### 13.4. 12-4.  ORM (Object-Relational Mapper)
 
 プログラミング言語からRDBMSにクエリを発行しようと思ったら、SQLを生成する必要があります。SQLは文字列として生成しなければならず、SQL自体をしっかり把握していないといけません。またSQLの文字列生成は、プログラミングの処理としては扱いづらい方法です。 そこでデータベースに問い合わせをする専用のライブラリとしてO/Rマッパーが登場しました。
 
 サーバサイドフレームワークではRDBMSと組み合わせて使うことが多く、RDBMSへのクエリを簡単に行うためO/Rマッパーを提供していることがほとんどです。O/Rマッパーを使うと開発者はSQLのことを意識することなく、データベースへのアクセスが簡単にできるようになります。
 
-### 12-5.  SQL Antipatterns
+### 13.5. 12-5.  SQL Antipatterns
 
 という名前のオライリーの本が出版されてもいる。その中でもMENTORの原則というものがあり、紹介しておく。
 
-### 12-5-1.  MENTOR Your Indexes
+### 13.6. 12-5-1.  MENTOR Your Indexes
 
 MENTORとは下記のこと。
 
@@ -2071,19 +2556,19 @@ MENTORとは下記のこと。
 5. Optimize：　インデックスをメモリ上にキャッシュせよ
 6. Repair：　定期的にデフラグせよ
 
-[https://note.com/usop/n/n6f56220ebd85](https://note.com/usop/n/n6f56220ebd85)
+https://note.com/usop/n/n6f56220ebd85
 
-[https://kyabatalian.hatenablog.com/entry/2016/12/23/172700](https://kyabatalian.hatenablog.com/entry/2016/12/23/172700)
+https://kyabatalian.hatenablog.com/entry/2016/12/23/172700
 
-### 12-6.  Dump
+### 13.7. 12-6.  Dump
 
 テーブルの中身をバックアップすること。
 
 ただし、対象データの容量が大きいと、dumpしてる間に更新されたりしてしまうので、アクセスがない時間帯にやるか、その間テーブルロックする必要がある。dumpファイルはテキスト情報なのでエディターで中身を見ることも可能。これをもとに復元することをRestoreという。
 
-[https://www.sejuku.net/blog/82770](https://www.sejuku.net/blog/82770)
+https://www.sejuku.net/blog/82770
 
-### 12-7.  ERD (Entity Relationship Diagram)
+### 13.8. 12-7.  ERD (Entity Relationship Diagram)
 
 通称、ER図。実体関連モデル。主にデータベースや情報システムでデータを編成するときの設計図として使われています。
 
@@ -2091,35 +2576,35 @@ ER図では、データベースを構成するデータのまとまりを「エ
 
 ER図は、実体そのものの間の関連ではなく、実体内の要素の関連に重きを置いたデータ構造図 (DSD) に関連した図です。また、ER 図はしばしば、プロセスやシステムの流れを描き出すデータフロー図 (DFD) とも関連して用いられます。
 
-[https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/](https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/)
+https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/
 
-[https://www.lucidchart.com/pages/ja/er-diagram](https://www.lucidchart.com/pages/ja/er-diagram)
+https://www.lucidchart.com/pages/ja/er-diagram
 
-### 12-7-1.  Conceptual Data Model
+### 13.9. 12-7-1.  Conceptual Data Model
 
 概念データモデル。システム全体をモデル化し、シンボルを用いて事象を大まかな分類した図
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2027.png)
 
-[https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/](https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/)
+https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/
 
-### 12-7-2.  Logical Data Model
+### 13.10. 12-7-2.  Logical Data Model
 
 論理データモデル。概念データモデルを詳細に落とし込んで、画面や帳票などのシステムで必要とする属性を付与したモデル図
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2028.png)
 
-[https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/](https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/)
+https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/
 
-### 12-7-3.  Physical Data Model
+### 13.11. 12-7-3.  Physical Data Model
 
 物理データモデル。論理データモデルさらに詳細に落とし込んだ図で、実際のデータベースの情報と1対1の関係になっています。
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2029.png)
 
-[https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/](https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/)
+https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/
 
-### 12-8.  EERD (Enhanced / Extended ERD)
+### 13.12. 12-8.  EERD (Enhanced / Extended ERD)
 
 ER図を拡張した「拡張実体関連モデル」。EER図は、ER図に以下のような要素を追加しています。
 
@@ -2140,17 +2625,17 @@ ER図を拡張した「拡張実体関連モデル」。EER図は、ER図に以�
 
 カテゴリーまたはユニオン
 
-[https://www.tutorialspoint.com/Extended-Entity-Relationship-EE-R-Model](https://www.tutorialspoint.com/Extended-Entity-Relationship-EE-R-Model)
+https://www.tutorialspoint.com/Extended-Entity-Relationship-EE-R-Model
 
-[https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/](https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/)
+https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/
 
-[https://www.lucidchart.com/pages/enhanced-entity-relationship-diagram](https://www.lucidchart.com/pages/enhanced-entity-relationship-diagram)
+https://www.lucidchart.com/pages/enhanced-entity-relationship-diagram
 
-### 12-9.  Drawing Tools
+### 13.13. 12-9.  Drawing Tools
 
 作図ツール。ERDを書くためだけとも限らないのですが、ここにメモしていきます。デザインを伴わない画面遷移図などにも使えます。脱Excel！！
 
-### 12-9-1.  Draw.io
+### 13.14. 12-9-1.  Draw.io
 
 「draw.io」とは、*フローチャートやオフィスのレイアウト図、ネットワーク図を作成できる無料の作図ツール*です。GoogleChromeのようなブラウザ上で操作ができ、作成した図はGoogleドライブやGithubと連携させて保存が可能です。
 
@@ -2161,29 +2646,29 @@ ER図を拡張した「拡張実体関連モデル」。EER図は、ER図に以�
 - アイコンが豊富で、テキスト検索でだいたいヒットする
 - 最初から背景が方眼紙の状態であり、かつグリッドに対してオブジェクトがぴたっとなる
 
-AWSもサービスの概念モデルに [draw.io](http://draw.io) で作図した図を使ってるのを見たことがあります。
+AWSもサービスの概念モデルに draw.io で作図した図を使ってるのを見たことがあります。
 
-[https://qiita.com/G-awa/items/8fd414700b68b2bcafcc](https://qiita.com/G-awa/items/8fd414700b68b2bcafcc)
+https://qiita.com/G-awa/items/8fd414700b68b2bcafcc
 
-[https://ferret-plus.com/8408](https://ferret-plus.com/8408)
+https://ferret-plus.com/8408
 
-### 12-9-2.  Lucidchart
+### 13.15. 12-9-2.  Lucidchart
 
-[draw.io](http://draw.io) と同じくらい有名だと個人的に思う。Lucidchart（ルシドチャート）は，図や表の描画，修正，共有を共同で行うことができるWebベースの独自プラットフォームである。 米国ユタ州に本拠地を置くLucid Software Inc.が制作している。
+draw.io と同じくらい有名だと個人的に思う。Lucidchart（ルシドチャート）は，図や表の描画，修正，共有を共同で行うことができるWebベースの独自プラットフォームである。 米国ユタ州に本拠地を置くLucid Software Inc.が制作している。
 
 2011年、Lucid社は「エンジェル・ファンディング」で100万ドルを調達。2018年、Lucid社はMeritech CapitalとICONIQ Capitalから7,200万ドルの追加調達を発表。
 
-[https://en.wikipedia.org/wiki/Lucidchart](https://en.wikipedia.org/wiki/Lucidchart)
+https://en.wikipedia.org/wiki/Lucidchart
 
-### 12-9-3.  Cacoo
+### 13.16. 12-9-3.  Cacoo
 
 カクー。2009年登場の国産のオンライン作図ツール。Backlogなどを展開するNulab Inc.が開発・運営している。
 
-[https://cacoo.com/ja/](https://cacoo.com/ja/)
+https://cacoo.com/ja/
 
-[https://en.wikipedia.org/wiki/Cacoo_(software)](https://en.wikipedia.org/wiki/Cacoo_(software))
+https://en.wikipedia.org/wiki/Cacoo_(software)
 
-## 13.  NoSQL DB (Not Only SQL DataBase)
+## 14.  NoSQL DB (Not Only SQL DataBase)
 
 RDBMSの場合、書籍レコードはしばしば分解 (「正規化」) されて別々のテーブルに格納され、それらの関係がプライマリキーと外部キーの制約によって定義されます。
 
@@ -2200,9 +2685,9 @@ NoSQL の特徴は下記。
 - トランザクションがないので、有事の際にデータ復旧出来ない
 - 水平スケールアウトが容易
 
-[https://www.amazon.co.jp/dp/B07BGC4MJ1/ref=cm_sw_r_cp_api_glt_TH4H5DR153PR5HA7AF49](https://www.amazon.co.jp/dp/B07BGC4MJ1/ref=cm_sw_r_cp_api_glt_TH4H5DR153PR5HA7AF49)
+https://www.amazon.co.jp/dp/B07BGC4MJ1/ref=cm_sw_r_cp_api_glt_TH4H5DR153PR5HA7AF49
 
-### 13-1. NoSQL DB の種類
+### 14.1. 13-1. NoSQL DB の種類
 
 NoSQL DBには大きく4種類ある。
 
@@ -2211,15 +2696,15 @@ NoSQL DBには大きく4種類ある。
 3. Document-Oriented DB：　ドキュメント指向DB。キーに対してJSONあるいはXMLを格納する。代表的なOSSは、mongoDB、Apache couchDB
 4. Graph-Oriented DB：　グラフ指向DB。グラフ理論に基づいて関連性を持たせる。代表的なOSSは、neo4j、TITAN
 
-[https://aws.amazon.com/jp/nosql/](https://aws.amazon.com/jp/nosql/)
+https://aws.amazon.com/jp/nosql/
 
-[https://qiita.com/gold-kou/items/966d9a0332f4e110c4f8](https://qiita.com/gold-kou/items/966d9a0332f4e110c4f8)
+https://qiita.com/gold-kou/items/966d9a0332f4e110c4f8
 
-[https://youtu.be/W2Z7fbCLSTw](https://youtu.be/W2Z7fbCLSTw)
+https://youtu.be/W2Z7fbCLSTw
 
-### 13-1.  KVS (Key-Value Store)
+### 14.2. 13-1.  KVS (Key-Value Store)
 
-### 13-1-1.  Redis
+### 14.3. 13-1-1.  Redis
 
 Remote Dictionary Serverの略。DB、キャッシュ、メッセージブローカー、およびキューとして使用するための、高速でオープンソースのメモリ内 Key-Value 型のNoSQL データベース。
 
@@ -2227,25 +2712,25 @@ Remote Dictionary Serverの略。DB、キャッシュ、メッセージブロー
 
 Redis は今、ミリ秒未満の応答時間を実現し、1 秒間に数百万件のリクエストを処理できます。キャッシング、セッション管理、ゲーム、リーダーボード、リアルタイムアナリティクス、地理空間、ライドヘイリング、チャット/メッセージング、メディアストリーミング、およびパブ/サブアプリケーションに広く使用されています。
 
-[https://agency-star.co.jp/column/redis/](https://agency-star.co.jp/column/redis/)
+https://agency-star.co.jp/column/redis/
 
-[https://youtu.be/G1rOthIU-uo](https://youtu.be/G1rOthIU-uo)
+https://youtu.be/G1rOthIU-uo
 
-[https://qiita.com/wind-up-bird/items/f2d41d08e86789322c71](https://qiita.com/wind-up-bird/items/f2d41d08e86789322c71)
+https://qiita.com/wind-up-bird/items/f2d41d08e86789322c71
 
-### 13-1-2.  Memcached
+### 14.4. 13-1-2.  Memcached
 
 Redisとよく似ているが、Memcached はシンプルに、また Redis は幅広いユースケースに対して効果的とされる。Memcached はマルチスレッドであるため、複数の処理コアを使用できます。これは、コンピューティング性能をスケールアップすることで、より多くの操作を処理できることを意味します。
 
 AWSのサイトなどでの比較ではRedisの方が高機能である。
 
-[https://aws.amazon.com/jp/elasticache/redis-vs-memcached/](https://aws.amazon.com/jp/elasticache/redis-vs-memcached/)
+https://aws.amazon.com/jp/elasticache/redis-vs-memcached/
 
-[https://dev.classmethod.jp/articles/which-choice-redis-memcached/](https://dev.classmethod.jp/articles/which-choice-redis-memcached/)
+https://dev.classmethod.jp/articles/which-choice-redis-memcached/
 
-### 13-2.  Column-Oriented DB（カラム指向DB）
+### 14.5. 13-2.  Column-Oriented DB（カラム指向DB）
 
-### 13-2-1.  Apache Cassandra
+### 14.6. 13-2-1.  Apache Cassandra
 
 フリーでオープンソースの分散型ワイドカラムストアNoSQLデータベース管理システム。Apache Software Foundation が開発、2008年に初公開。開発言語は Java。
 
@@ -2253,17 +2738,17 @@ AWSのサイトなどでの比較ではRedisの方が高機能である。
 
 AmazonのDynamoの作者の一人である Avinash Lakshman と Prashant Malik は、当初Facebookの受信トレイ検索機能を動かすためにFacebookでCassandraを開発。Facebookは2008年7月にCassandraをGoogle Code上のオープンソースプロジェクトとして公開し、2009年3月にはApache Incubatorプロジェクトとなり、2010年2月17日にはトップレベルのプロジェクトに昇格した。
 
-[https://cassandra.apache.org/_/index.html](https://cassandra.apache.org/_/index.html)
+https://cassandra.apache.org/_/index.html
 
-[https://en.wikipedia.org/wiki/Apache_Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)
+https://en.wikipedia.org/wiki/Apache_Cassandra
 
-[https://www.nttpc.co.jp/technology/cassandra.html](https://www.nttpc.co.jp/technology/cassandra.html)
+https://www.nttpc.co.jp/technology/cassandra.html
 
-[https://techblog.yahoo.co.jp/entry/20200129803067/](https://techblog.yahoo.co.jp/entry/20200129803067/)
+https://techblog.yahoo.co.jp/entry/20200129803067/
 
-### 13-3.  Document-Oriented DB（ドキュメント指向DB）
+### 14.7. 13-3.  Document-Oriented DB（ドキュメント指向DB）
 
-### 13-3-1.  MongoDB
+### 14.8. 13-3-1.  MongoDB
 
 NoSQL では一番有名。
 
@@ -2279,54 +2764,54 @@ MongoDBは、MongoDB Inc.によって開発されています。開発言語は�
 - オープンソースなので無料
 - 簡単な設定だけでスケールアウト（負荷分散）が可能
 
-[https://www.mongodb.com/](https://www.mongodb.com/)
+https://www.mongodb.com/
 
-[https://www.amazon.co.jp/dp/B07BGC4MJ1/ref=cm_sw_r_cp_api_glt_TH4H5DR153PR5HA7AF49](https://www.amazon.co.jp/dp/B07BGC4MJ1/ref=cm_sw_r_cp_api_glt_TH4H5DR153PR5HA7AF49)
+https://www.amazon.co.jp/dp/B07BGC4MJ1/ref=cm_sw_r_cp_api_glt_TH4H5DR153PR5HA7AF49
 
-### 13-3-2.  Robomongo
+### 14.9. 13-3-2.  Robomongo
 
 MongoDB の GUI ツール。
 
-### 13-3-3.  Apache Couch DB
+### 14.10. 13-3-3.  Apache Couch DB
 
 Apache CouchDB（読み：アパッチ カウチディービー）とは、ドキュメント指向のオープンソースデータベース。2005年登場。開発言語は、Erlang, JavaScript, C, C++。主にErlang。
 
-[https://ja.wikipedia.org/wiki/Apache_CouchDB](https://ja.wikipedia.org/wiki/Apache_CouchDB)
+https://ja.wikipedia.org/wiki/Apache_CouchDB
 
-### 13-3-4.  Realm
+### 14.11. 13-3-4.  Realm
 
 オープンソースのオブジェクトデータベース管理システムで、当初はモバイルOS（Android/iOS）向けでしたが、Xamarin、React Native などのプラットフォーム、デスクトップアプリケーション（Windows）も含めて利用可能。
 
 2016年9月には「Realm Mobile Platform」が発表され、続いて2017年1月に最初の安定版がリリースされました。Realm Object Serverと、所定のログインユーザーに属するクライアント側のデータベースとの間で双方向の同期が可能。2019年春、MongoDBはRealmを3,900万米ドルで買収した
 
-[https://realm.io/](https://realm.io/)
+https://realm.io/
 
-[https://en.wikipedia.org/wiki/Realm_(database)](https://en.wikipedia.org/wiki/Realm_(database))
+https://en.wikipedia.org/wiki/Realm_(database)
 
-### 13-4.  Multi-Model DB
+### 14.12. 13-4.  Multi-Model DB
 
 単一の統合されたバックエンドに対して複数のデータモデルをサポートするように設計されたデータベース管理システムを指します。Multi-Model DB がサポートするデータモデルの例としては、上述した Document-Model、Graph-Model、Relational-Model、Key-Value-Modelなどがあります。
 
 対になる概念は、Polyglot Persistence で、アプリケーションで複数のデータベースモデルを統合する考え方である。
 
-- ArangoDB：　ArangoDB GmbHが開発した、フリーでオープンソースのネイティブマルチモデルデータベースシステム。2011年に登場。開発言語は、C++、JavaScript。[https://en.wikipedia.org/wiki/ArangoDB](https://en.wikipedia.org/wiki/ArangoDB)
-- Azure Cosmos DB：　マイクロソフトによるグローバル分散型マルチモデルデータベースサービス。2017年5月に登場。[https://en.wikipedia.org/wiki/Cosmos_DB](https://en.wikipedia.org/wiki/Cosmos_DB)
-- CrateIO：　ドキュメント指向のデータストアを統合した分散型SQLデータベース管理システム。開発言語はJava。[https://en.wikipedia.org/wiki/CrateDB](https://en.wikipedia.org/wiki/CrateDB)
-- MarkLogic：　MarkLogic社の製品は、JSONやXMLドキュメント、セマンティックデータ（RDFトリプル）を保存、管理、検索できることから、マルチモデルのNoSQLデータベースとされています。[https://en.wikipedia.org/wiki/MarkLogic](https://en.wikipedia.org/wiki/MarkLogic)
+- ArangoDB：　ArangoDB GmbHが開発した、フリーでオープンソースのネイティブマルチモデルデータベースシステム。2011年に登場。開発言語は、C++、JavaScript。https://en.wikipedia.org/wiki/ArangoDB
+- Azure Cosmos DB：　マイクロソフトによるグローバル分散型マルチモデルデータベースサービス。2017年5月に登場。https://en.wikipedia.org/wiki/Cosmos_DB
+- CrateIO：　ドキュメント指向のデータストアを統合した分散型SQLデータベース管理システム。開発言語はJava。https://en.wikipedia.org/wiki/CrateDB
+- MarkLogic：　MarkLogic社の製品は、JSONやXMLドキュメント、セマンティックデータ（RDFトリプル）を保存、管理、検索できることから、マルチモデルのNoSQLデータベースとされています。https://en.wikipedia.org/wiki/MarkLogic
 - OrientDB：　Javaで書かれたオープンソースのNoSQLデータベース管理システムです。グラフモデル、ドキュメントモデル、キー／バリューモデル、オブジェクトモデルをサポートするマルチモデルデータベースであるが[2]、リレーションシップの管理はグラフデータベースのようにレコード間を直接接続して行う。
-- Virtuoso：　従来のリレーショナルデータベース管理システム（RDBMS）、オブジェクトリレーショナルデータベース（ORDBMS）、仮想データベース、RDF、XML、フリーテキスト、Webアプリケーションサーバー、ファイルサーバーなどの機能を一つのシステムにまとめたミドルウェアとデータベースエンジンのハイブリッドです。[https://en.wikipedia.org/wiki/Virtuoso_Universal_Server](https://en.wikipedia.org/wiki/Virtuoso_Universal_Server)
+- Virtuoso：　従来のリレーショナルデータベース管理システム（RDBMS）、オブジェクトリレーショナルデータベース（ORDBMS）、仮想データベース、RDF、XML、フリーテキスト、Webアプリケーションサーバー、ファイルサーバーなどの機能を一つのシステムにまとめたミドルウェアとデータベースエンジンのハイブリッドです。https://en.wikipedia.org/wiki/Virtuoso_Universal_Server
 
-[https://en.wikipedia.org/wiki/Multi-model_database](https://en.wikipedia.org/wiki/Multi-model_database)
+https://en.wikipedia.org/wiki/Multi-model_database
 
-[https://docs.microsoft.com/ja-jp/azure/azure-sql/multi-model-features](https://docs.microsoft.com/ja-jp/azure/azure-sql/multi-model-features)
+https://docs.microsoft.com/ja-jp/azure/azure-sql/multi-model-features
 
-[https://jp.marklogic.com/product/marklogic-database-overview/database-features/multi-model-database/](https://jp.marklogic.com/product/marklogic-database-overview/database-features/multi-model-database/)
+https://jp.marklogic.com/product/marklogic-database-overview/database-features/multi-model-database/
 
-[https://martinfowler.com/bliki/PolyglotPersistence.html](https://martinfowler.com/bliki/PolyglotPersistence.html)
+https://martinfowler.com/bliki/PolyglotPersistence.html
 
-[https://en.wikipedia.org/wiki/Comparison_of_multi-model_databases](https://en.wikipedia.org/wiki/Comparison_of_multi-model_databases)
+https://en.wikipedia.org/wiki/Comparison_of_multi-model_databases
 
-### 13-3-1.  Fauna DB
+### 14.13. 13-3-1.  Fauna DB
 
 特に注目度が高いのはこの Fauna DB でしょうか。
 
@@ -2334,41 +2819,41 @@ Apache CouchDB（読み：アパッチ カウチディービー）とは、ド�
 
 元 Twitter のエンジニアの Evan Weaver と Matt Freels によって立ち上げられたクラウドサービスで、アーキテクチャは2012年に発表されたCalvinの論文からインスパイアされている。
 
-[https://fauna.com/](https://fauna.com/)
+https://fauna.com/
 
-[https://youtu.be/2CipVwISumA](https://youtu.be/2CipVwISumA)
+https://youtu.be/2CipVwISumA
 
-[https://bagelee.com/programming/faunadb-graphql-trial/](https://bagelee.com/programming/faunadb-graphql-trial/)
+https://bagelee.com/programming/faunadb-graphql-trial/
 
-[https://dev.classmethod.jp/articles/faunadb-with-graphql/](https://dev.classmethod.jp/articles/faunadb-with-graphql/)
+https://dev.classmethod.jp/articles/faunadb-with-graphql/
 
-## 14.  Version Control System
+## 15.  Version Control System
 
-### 14-1.  GitHub
+### 15.1. 14-1.  GitHub
 
 特に事情もなく新しく選ぶならGitHub一択。といっても中にいくつかサービスがある
 
-### 14-1-1.  GitHub Actions
+### 15.2. 14-1-1.  GitHub Actions
 
 GitHub上のリポジトリやイシューに対するさまざまな操作をトリガーとしてあらかじめ定義しておいた処理を実行できる機能で、今まで外部サービスとの連携が必要だった自動テストや自動ビルドなどがGitHubだけで実現できるようになる。
 
-GitHub Actionsは2018年に発表された機能で、しばらくは利用申請をした一部のユーザーのみが利用できる機能だったが、2019年11月には正式版の機能となり、現在はGitHubを利用するすべてのユーザーが特に申請や手続きを行うことなく利用できるようになっている。GitHub Actionsでは、実行する処理とその処理を実行する条件を定義したものを「Workflow（ワークフロー）」と呼ぶ。ワークフローはYAML形式で記述し、リポジトリ内の.github/workflowsディレクトリ内に保存することで実行できるようになる。[https://knowledge.sakura.ad.jp/23478/](https://knowledge.sakura.ad.jp/23478/)
+GitHub Actionsは2018年に発表された機能で、しばらくは利用申請をした一部のユーザーのみが利用できる機能だったが、2019年11月には正式版の機能となり、現在はGitHubを利用するすべてのユーザーが特に申請や手続きを行うことなく利用できるようになっている。GitHub Actionsでは、実行する処理とその処理を実行する条件を定義したものを「Workflow（ワークフロー）」と呼ぶ。ワークフローはYAML形式で記述し、リポジトリ内の.github/workflowsディレクトリ内に保存することで実行できるようになる。https://knowledge.sakura.ad.jp/23478/
 
-### 14-1-2.  GitHub Webhooks
+### 15.3. 14-1-2.  GitHub Webhooks
 
 Webhook 自体は上述。
 
 GitHub Webhook はリポジトリへのpushを検知して、任意のURLにコミット内容などの情報をパラメータにのせて送り込んでもらえます。GitHubのプルリクエスト通知をSlackに投げるといった具合です。
 
-[https://www.blog.danishi.net/2019/05/22/post-1195/](https://www.blog.danishi.net/2019/05/22/post-1195/)
+https://www.blog.danishi.net/2019/05/22/post-1195/
 
-### 14-1-3.  GitHub Marketplace
+### 15.4. 14-1-3.  GitHub Marketplace
 
 GitHub Marketplaceは、プロジェクト管理からコードレビューまで、開発プロセス全般で使えるツールを販売するウェブサイト。これまでも同様のツールは入手可能だったが、提供元がばらばらだったため、複数のアカウントを取得し、異なる決済方法に対応する必要があった。GitHub Marketplaceに集約することでユーザーの手間を軽減し、開発ワークフローのブラッシュアップやカスタマイズの容易化を支援するとしている。
 
-[https://japan.cnet.com/article/35101578/](https://japan.cnet.com/article/35101578/)
+https://japan.cnet.com/article/35101578/
 
-### 14-1-4.  GitHub Enterprise
+### 15.5. 14-1-4.  GitHub Enterprise
 
 企業の導入に適したGitです。履歴管理やブランチの作成といった基本機能はGitと変わりません。
 
@@ -2378,19 +2863,19 @@ GitHub Marketplaceは、プロジェクト管理からコードレビューま�
 
 これらを容易に解消してくれるのが、GitHub Enterprise。
 
-[https://style.potepan.com/articles/8570.html](https://style.potepan.com/articles/8570.html)
+https://style.potepan.com/articles/8570.html
 
-### 14-1-5.  GitHub Copilot
+### 15.6. 14-1-5.  GitHub Copilot
 
 VSCodeの拡張機能として使える。関数名とコメントから、関数のコードを丸ごと自動補完するAIプログラミング機能。
 
 OPEN AIが開発した技術「GPT-3」をベースとしている。OPEN AIも、GitHubも、VSCodeもMicrosoft傘下の企業や製品なので、一番最初に実現したと思われる。
 
-[https://copilot.github.com/](https://copilot.github.com/)
+https://copilot.github.com/
 
-[https://www.itmedia.co.jp/news/articles/2106/30/news063.html](https://www.itmedia.co.jp/news/articles/2106/30/news063.html)
+https://www.itmedia.co.jp/news/articles/2106/30/news063.html
 
-### 14-2.  Git Command
+### 15.7. 14-2.  Git Command
 
 よく聞くコマンドだが、時々反対になってたり、間違ってたり、こんがらがってたりする。フェッチって英単語がマイナーなせいなのか、使ってない率が高い気がする
 
@@ -2405,45 +2890,45 @@ OPEN AIが開発した技術「GPT-3」をベースとしている。OPEN AIも�
 - git switch {ブランチ名}：　対象ブランチに切り替える
 - git commit：　指定したエディタでメッセージを書き、インデックスにある全ファイルをコミットする
 
-[https://git-scm.com/about](https://git-scm.com/about)
+https://git-scm.com/about
 
-[https://qiita.com/usamik26/items/28be7d2c221a7a53c2c3](https://qiita.com/usamik26/items/28be7d2c221a7a53c2c3)
+https://qiita.com/usamik26/items/28be7d2c221a7a53c2c3
 
-[https://qiita.com/uhooi/items/c26c7c1beb5b36e7418e](https://qiita.com/uhooi/items/c26c7c1beb5b36e7418e)
+https://qiita.com/uhooi/items/c26c7c1beb5b36e7418e
 
 [https://nobwak.github.io/posts/2019-06-06-わたしにgit_pullとgit_cloneの違いを教えてください/](https://nobwak.github.io/posts/2019-06-06-%E3%82%8F%E3%81%9F%E3%81%97%E3%81%ABgit_pull%E3%81%A8git_clone%E3%81%AE%E9%81%95%E3%81%84%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84/)
 
-[https://next.rikunabi.com/journal/20170120_t12_iq/](https://next.rikunabi.com/journal/20170120_t12_iq/)
+https://next.rikunabi.com/journal/20170120_t12_iq/
 
-## 15.  CI/CD (Continuous Integration and Continuous Delivery)
+## 16.  CI/CD (Continuous Integration and Continuous Delivery)
 
 継続的インティグレーション／継続的デリバリーといいます。CI/CDは1つの技術を指すものでなく、ソフトウェアの変更を常にテストして自動で本番環境にリリース可能な状態にしておく、ソフトウェア開発の手法を意味します。なので根本的には概念の話だが、それをサポートするツールの一部として下記を紹介する。
 
 ツールを使うと、GitHub等へのpushをトリガーとして、テスト・コード解析・ビルド・デプロイを自動化することができます。GitHub Actionsが今は利用できるので、別のサービスを利用する必要性は下がったかも。
 
-[https://codezine.jp/article/detail/11083](https://codezine.jp/article/detail/11083)
+https://codezine.jp/article/detail/11083
 
-[https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3](https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3)
+https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3
 
-### 15-1.  CI/CD Tools
+### 16.1. 15-1.  CI/CD Tools
 
-### 15-1-1.  **CircleCI**
+### 16.2. 15-1-1.  **CircleCI**
 
-クラウド型のCIツールです。CIツールの中でも、国内の採用事例が最も多いサービスだと思います。[https://circleci.com/ja/](https://circleci.com/ja/)
+クラウド型のCIツールです。CIツールの中でも、国内の採用事例が最も多いサービスだと思います。https://circleci.com/ja/
 
-### 15-1-2.  **Travis CI**
+### 16.3. 15-1-2.  **Travis CI**
 
-クラウド型のCIツールです。[https://travis-ci.org/](https://travis-ci.org/)
+クラウド型のCIツールです。https://travis-ci.org/
 
-### 15-1-3.  **Jenkins**
+### 16.4. 15-1-3.  **Jenkins**
 
-Javaで書かれたオープンソースのCIツールです。オープンソースなため、好きな環境にインストール可能です。無料。日本人が開発。[https://jenkins.io/](https://jenkins.io/)
+Javaで書かれたオープンソースのCIツールです。オープンソースなため、好きな環境にインストール可能です。無料。日本人が開発。https://jenkins.io/
 
-### 15-1-4.  **GitHub Actions**
+### 16.5. 15-1-4.  **GitHub Actions**
 
-上述。[https://github.com/features/actions](https://github.com/features/actions)
+上述。https://github.com/features/actions
 
-### 15-1-5.  Other CI/CD
+### 16.6. 15-1-5.  Other CI/CD
 
 他にも以下のがある
 
@@ -2452,7 +2937,7 @@ Javaで書かれたオープンソースのCIツールです。オープンソ�
 - Hudson
 - TeamCity
 
-### 15-2.  DevOps
+### 16.7. 15-2.  DevOps
 
 CI/CDをするためにDevOpsという考え方があるのか、はたまた、その逆なのかはさておき・・・。このDevOpsという言葉はよく聞きますが、その使われ方に違和感がありました。
 
@@ -2460,13 +2945,13 @@ CI/CDをするためにDevOpsという考え方があるのか、はたまた、
 
 AWSのサイトによると、最近はここにセキュリティや品質チームなども合体した、DevSecOpsという言葉も紹介している。またAWS自体も文化と考え方の変化について言及している
 
-[https://www.buildinsider.net/enterprise/devops/01](https://www.buildinsider.net/enterprise/devops/01)
+https://www.buildinsider.net/enterprise/devops/01
 
-[https://aws.amazon.com/jp/devops/what-is-devops/](https://aws.amazon.com/jp/devops/what-is-devops/)
+https://aws.amazon.com/jp/devops/what-is-devops/
 
-[https://qiita.com/bremen/items/44c3de10413f45f9f41e](https://qiita.com/bremen/items/44c3de10413f45f9f41e)
+https://qiita.com/bremen/items/44c3de10413f45f9f41e
 
-### 15-3.  SRE (Site Reliability Engineering)
+### 16.8. 15-3.  SRE (Site Reliability Engineering)
 
 回復力の高い分散システムを構築・運用するために使用される、システムおよびソフトウェア・エンジニアリングの複数の原則から成る方法論のこと。
 
@@ -2474,11 +2959,11 @@ SREチームの具体的な業務内容は「インシデント管理」「問�
 
 ガートナーの調査では海外の大企業の41％がすでにSREを採用。国内でもメルカリやクックパッド、ビズリーチなど、クラウド・ネイティブ企業や先進企業を中心に利用が加速中。
 
-[https://www.sbbit.jp/article/cont1/48848](https://www.sbbit.jp/article/cont1/48848)
+https://www.sbbit.jp/article/cont1/48848
 
-[https://codezine.jp/article/detail/11002](https://codezine.jp/article/detail/11002)
+https://codezine.jp/article/detail/11002
 
-## 16.  Static Code Analysis（静的規約チェックツール）
+## 17.  Static Code Analysis（静的規約チェックツール）
 
 そもそも、テストとは下記のように分類される。静的テストを特に分解するとこうなる
 
@@ -2489,41 +2974,41 @@ SREチームの具体的な業務内容は「インシデント管理」「問�
     - 脆弱性になりうるもの、パフォーマンスを落とすもの、メモリリークを引き起こすものなどのバグになりうる問題のある箇所をチェック
 - Dynamic Analysis：　動的解析。実際に動かしてみるテスト
 
-[https://qiita.com/s-tanoue/items/7eb485409765442fcb54](https://qiita.com/s-tanoue/items/7eb485409765442fcb54)
+https://qiita.com/s-tanoue/items/7eb485409765442fcb54
 
-[https://hldc.co.jp/blog/2018/03/29/1211/](https://hldc.co.jp/blog/2018/03/29/1211/)
+https://hldc.co.jp/blog/2018/03/29/1211/
 
 独自に会社内で定義された規約もあれば、公開されているものもある
 
-### 16-1.  Coding Standards for C
+### 17.1. 16-1.  Coding Standards for C
 
-### 16-1-1.  MISRA-C
+### 17.2. 16-1-1.  MISRA-C
 
 C言語のためのコーディング・ガイドラインです。MISRA-Cは、より安全なC言語サブセット。車載機器や産業機器、医療機器といったミッションクリティカル分野の組み込みソフトウェア開発では、MISRA などのコーディング規約の遵守が求められています。
 
-[http://www.c-lang.org/detail/misra_c.html](http://www.c-lang.org/detail/misra_c.html)
+http://www.c-lang.org/detail/misra_c.html
 
-[https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html](https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html)
+https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html
 
-### 16-1-2.  CERT-C
+### 17.3. 16-1-2.  CERT-C
 
 C言語を使ってセキュアコーディングを行うためのルール (Rule) とレコメンデーション (Recommendation) を定めています。CERT が提案しているセキュアコーディングスタンダードは、標準化団体が定める明文化された標準言語に基づく。C以外にもC++やJava用の規約も提供する。
 
 さまざまな機器がIoT化する流れの中で、サイバーセキュリティを確保するためのコーディング規約として、CERTへの対応なども求められつつあります。
 
-[https://www.jpcert.or.jp/sc-rules/](https://www.jpcert.or.jp/sc-rules/)
+https://www.jpcert.or.jp/sc-rules/
 
-[https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html](https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html)
+https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html
 
-### 16-2.  Coding Standards for JS
+### 17.4. 16-2.  Coding Standards for JS
 
 - Google JavaScript Style Guide：　Googleによる、最も代表的なスタイルガイド
 - Airbnb JavaScript Style Guide：　GitHub上で最も人気のある、Airbnbのスタイルガイド
 - Node.js Style Guide：　GitHub上で人気のある、Mr.felixge によるNode.jsのスタイルガイド
 
-[https://qiita.com/takeharu/items/dee0972e5f39bfd4d7c8](https://qiita.com/takeharu/items/dee0972e5f39bfd4d7c8)
+https://qiita.com/takeharu/items/dee0972e5f39bfd4d7c8
 
-## 17.  Code Formatter
+## 18.  Code Formatter
 
 コードの整形。コードフォーマッターは、WebStormやVisual Studio Codeなどのエディターにも付属していますが、これらはユーザー環境に依存する。PrettierはNode.js上で動作するため、ユーザー環境に依存することなく、プロジェクト単位でコードフォーマットを統一できます。
 
@@ -2533,33 +3018,33 @@ C言語を使ってセキュアコーディングを行うためのルール (Ru
 - 正しいインデント
 - 空白、行の折り返しの整合性　などなど
 
-[https://ics.media/entry/17030/](https://ics.media/entry/17030/)
+https://ics.media/entry/17030/
 
-[https://www.digitalocean.com/community/tutorials/how-to-format-code-with-prettier-in-visual-studio-code-ja](https://www.digitalocean.com/community/tutorials/how-to-format-code-with-prettier-in-visual-studio-code-ja)
+https://www.digitalocean.com/community/tutorials/how-to-format-code-with-prettier-in-visual-studio-code-ja
 
-[https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis](https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis)
+https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis
 
-### 17-1.  Code Formatter のサービス例
+### 18.1. 17-1.  Code Formatter のサービス例
 
-### 17-1-1.  Prettier (for JS)
+### 18.2. 17-1-1.  Prettier (for JS)
 
 Node.js上で動作するコードフォーマッターです。2017年1月にリポジトリが開設されてからわずか1年で2万Starを集めており、ReactやBabel、Material-UIなど著名なプロダクトでも採用され話題になっています。
 
-[https://ics.media/entry/17030/](https://ics.media/entry/17030/)
+https://ics.media/entry/17030/
 
-### 17-1-2.  autopep8
+### 18.3. 17-1-2.  autopep8
 
 PEP8 コーディングスタイルに準拠した Python のコードフォーマッタ。
 
-[https://qiita.com/genbu-jp/items/c25b67c95425b733fb7d](https://qiita.com/genbu-jp/items/c25b67c95425b733fb7d)
+https://qiita.com/genbu-jp/items/c25b67c95425b733fb7d
 
-### 17-1-3.  Black
+### 18.4. 17-1-3.  Black
 
 Pythonのコードフォーマッター。PEP8に準拠。autopep8 や yapf などありますが、blackはより制限が強く、自由に設定ができないのが特徴。PEP8では触れられていない、改行の仕方や、シングルクォートとダブルクォートの統一、末尾カンマの統一、余計な丸括弧の削除、数値リテラルの書き方統一などをしてくれます。
 
-[https://blog.hirokiky.org/entry/2019/06/03/202745](https://blog.hirokiky.org/entry/2019/06/03/202745)
+https://blog.hirokiky.org/entry/2019/06/03/202745
 
-### 17-1-4.  isort
+### 18.5. 17-1-4.  isort
 
 Python PEP8に準拠したpackageの並びにしてくれる。具体的には、PEP8では、importは次の順序でグループ化して、なおかつ、グループの間には空行を挿入する必要がある。
 
@@ -2567,67 +3052,67 @@ Python PEP8に準拠したpackageの並びにしてくれる。具体的には�
 2. Related third party imports.（サードパーティ関連）
 3. Local application/library specific imports.（ローカルアプリケーション/ライブラリ固有）
 
-[https://dev2prod.site/python/install-isort/](https://dev2prod.site/python/install-isort/)
+https://dev2prod.site/python/install-isort/
 
-### 17-1-5.  YAPF
+### 18.6. 17-1-5.  YAPF
 
 Pythonコードフォーマッタ。Yet Another Python Formatterの略。
 
-[https://wonderwall.hatenablog.com/entry/2017/09/03/224500](https://wonderwall.hatenablog.com/entry/2017/09/03/224500)
+https://wonderwall.hatenablog.com/entry/2017/09/03/224500
 
-## 18.  Code Linter
+## 19.  Code Linter
 
 Code Formatterとも重複する部分はあるが、Code Linterは、より良い構文、新しい機能、そして可能性のあるエラーをキャッチするために利用されるため、Code FormatterとCode Linterでそれぞれツールを入れることも多い。
 
-[https://qiita.com/s-tanoue/items/7eb485409765442fcb54](https://qiita.com/s-tanoue/items/7eb485409765442fcb54)
+https://qiita.com/s-tanoue/items/7eb485409765442fcb54
 
-[https://medium.com/@awesomecode/format-code-vs-and-lint-code-95613798dcb3](https://medium.com/@awesomecode/format-code-vs-and-lint-code-95613798dcb3)
+https://medium.com/@awesomecode/format-code-vs-and-lint-code-95613798dcb3
 
-[https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis](https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis)
+https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis
 
-### 18-1.  Code Linter for JS
+### 19.1. 18-1.  Code Linter for JS
 
-### 18-1-1.  ESLint
+### 19.2. 18-1-1.  ESLint
 
 恐らく最も使われている。初期リリースは 2013 年頃。 作者は Nicholas C. Zakas です。 ルールの拡張を自由に行えることが特徴で、これを Pluggable と読んでいます。 JSLint/JSHint 互換のルールも、デフォルトで Pluggable なルールとして用意されています。 実装的には、Esprima でパースした結果の AST (Abstract Syntax Tree) をそれぞれの Lint ルールに渡すようになっているため、ESLint の本体はクリーンな実装がキープされるようになっています（1-pass で実行されないため若干遅いところが欠点）。 それぞれのルールはルール名で区別され、個別に ON/OFF することができます
 
-[https://maku77.github.io/js/tool/static-analysis-tools.html](https://maku77.github.io/js/tool/static-analysis-tools.html)
+https://maku77.github.io/js/tool/static-analysis-tools.html
 
-[https://www.cresco.co.jp/blog/entry/11716/](https://www.cresco.co.jp/blog/entry/11716/)
+https://www.cresco.co.jp/blog/entry/11716/
 
-### 18-1-2.  JSHint
+### 19.3. 18-1-2.  JSHint
 
 初期リリースは 2011 年頃。 作者は Anton Kovalyov（アントン・コバリャノフ）で、JSLint の fork として作られました。 ベースとなった JSLint は便利である一方で、作者 Douglas Crockford の頑固な設定（var 宣言は 1 つにまとめないと必ずエラーなど）が強制されるため、開発者から敬遠される部分が多くありました。 そこで、Anton は、より柔軟な設定を行える JSLint となることを目指して 2011 年に JSHint の開発を始めました。
 
-[https://maku77.github.io/js/tool/static-analysis-tools.html](https://maku77.github.io/js/tool/static-analysis-tools.html)
+https://maku77.github.io/js/tool/static-analysis-tools.html
 
-### 18-1-3.  JSLint
+### 19.4. 18-1-3.  JSLint
 
 初期リリースは 2007 年頃。 作者は Douglas Crockford で、著書に JavaScript Good Parts があり、JSON RFC4627 の仕様策定などを行っている人です。 後出の JSHint に比べると、デフォルトのチェックが厳しいです。
 
-[https://maku77.github.io/js/tool/static-analysis-tools.html](https://maku77.github.io/js/tool/static-analysis-tools.html)
+https://maku77.github.io/js/tool/static-analysis-tools.html
 
-### 18-2.  Code Linter for CSS
+### 19.5. 18-2.  Code Linter for CSS
 
-### 18-2-1.  Stylelint
+### 19.6. 18-2-1.  Stylelint
 
 CSSのLinterといえば、これ。デファクトスタンダード。
 
-[https://stylelint.io/](https://stylelint.io/)
+https://stylelint.io/
 
-[https://qiita.com/jagaapple/items/7f74fc32c69f5b731159](https://qiita.com/jagaapple/items/7f74fc32c69f5b731159)
+https://qiita.com/jagaapple/items/7f74fc32c69f5b731159
 
-### 18-2.  Code Linter for Java
+### 19.7. 18-2.  Code Linter for Java
 
-### 18-2-1.  SpotBugs
+### 19.8. 18-2-1.  SpotBugs
 
 SpotBugsは、Javaプログラムの中のバグを見つけるプログラムです。このプログラムは「バグパターン」のインスタンスを探します。「バグパターン」とは、エラーとなる可能性の高いコードのインスタンスです。
 
-[https://spotbugs.readthedocs.io/ja/latest/introduction.html](https://spotbugs.readthedocs.io/ja/latest/introduction.html)
+https://spotbugs.readthedocs.io/ja/latest/introduction.html
 
-### 18-3.  Code Linter for Multi-Languages
+### 19.9. 18-3.  Code Linter for Multi-Languages
 
-### 18-3-1.  Coverity
+### 19.10. 18-3-1.  Coverity
 
 シノプシス社のCoverityは、ソースコードに潜在する重大な不具合やセキュリティ脆弱性を、高精度で検出するソースコード静的解析プラットフォームです。様々な言語に対応している
 
@@ -2635,9 +3120,9 @@ SpotBugsは、Javaプログラムの中のバグを見つけるプログラム�
 
 他のツールもそうかもしれませんが、15％となると、ユーザー側にも誤検出であることを見抜くスキルが求められますね
 
-[https://www.hitachi-solutions.co.jp/coverity/](https://www.hitachi-solutions.co.jp/coverity/)
+https://www.hitachi-solutions.co.jp/coverity/
 
-## 19.  Test Frameworks
+## 20.  Test Frameworks
 
 こちらも言語ごとに色々あります。JSだと利用実績と満足度はこんな感じ。
 
@@ -2649,31 +3134,31 @@ SpotBugsは、Javaプログラムの中のバグを見つけるプログラム�
 
 満足度の推移。Satisfaction = would use again / (would use again + would not use again)
 
-[https://2020.stateofjs.com/en-US/technologies/testing/](https://2020.stateofjs.com/en-US/technologies/testing/)
+https://2020.stateofjs.com/en-US/technologies/testing/
 
-### 19-1.  Test Frameworks for JS
+### 20.1. 19-1.  Test Frameworks for JS
 
-### 19-1-1.  Jest
+### 20.2. 19-1-1.  Jest
 
 利用実績も満足度も1位。（満足度は僅差でTesting Libraryが上だが）
 
 シンプルさを重視した、快適な JavaScript テスティングフレームワーク。Babel、TypeScript、Node、React、Angular、Vueなどを使ったプロジェクトに対応しています。
 
-[https://jestjs.io/ja/](https://jestjs.io/ja/)
+https://jestjs.io/ja/
 
-### 19-1-2.  Mocha
+### 20.3. 19-1-2.  Mocha
 
 Node.js 上とブラウザ上で動作する機能豊富な JavaScript テストフレームワークで、非同期テストを簡単かつ楽しく行うことができます。Mochaのテストは連続して実行されるため、柔軟で正確なレポートを作成することができ、キャッチされなかった例外を正しいテストケースにマッピングすることができます。GitHubで公開されています。
 
-[https://mochajs.org/](https://mochajs.org/)
+https://mochajs.org/
 
-[https://qiita.com/hietahappousai/items/35bef9a16333ba84e46f](https://qiita.com/hietahappousai/items/35bef9a16333ba84e46f)
+https://qiita.com/hietahappousai/items/35bef9a16333ba84e46f
 
-### 19-1-3.  Selenium
+### 20.4. 19-1-3.  Selenium
 
-JS専用というわけではありませんが、Selenium は Web ブラウザの操作を自動化するためのフレームワークです。2004 年に ThoughtWorks 社によって Web アプリケーションの UI テストを自動化する目的で開発されました。テスト以外にもタスクの自動化や Web サイトのクローリングなど様々な用途で利用されています。[https://qiita.com/Chanmoro/items/9a3c86bb465c1cce738a](https://qiita.com/Chanmoro/items/9a3c86bb465c1cce738a)
+JS専用というわけではありませんが、Selenium は Web ブラウザの操作を自動化するためのフレームワークです。2004 年に ThoughtWorks 社によって Web アプリケーションの UI テストを自動化する目的で開発されました。テスト以外にもタスクの自動化や Web サイトのクローリングなど様々な用途で利用されています。https://qiita.com/Chanmoro/items/9a3c86bb465c1cce738a
 
-## 20.  Development Methods（開発手法）
+## 21.  Development Methods（開発手法）
 
 ここも大きな章で、1つ1つにたくさんの本が出ていますが、大きくこういうものがあります。海外ソースも含めて調べると分かりますが、カテゴリ定義自体も結構曖昧です。。
 
@@ -2684,59 +3169,59 @@ JS専用というわけではありませんが、Selenium は Web ブラウザ�
 
 あの会社はいまだにウォーターフォールだ！（だからレガシーなのよ）、とか、うちの開発はアジャイル（だからモダン）だよ！、とか聞きますよね。しかし、知れば知るほど、そんな簡単にどれだなんて言えるのか、とも思う奥の深い概念でもあります。真の問題の所在は単にこの開発手法にはない場合もあるので、良い悪いを特に明言しにくいパートですね。ではそれぞれ簡単に紹介していきましょう。
 
-### 20-1.  Waterfall
+### 21.1. 20-1.  Waterfall
 
 要件定義から外部・内部設計、コーディング、テスト、運用まで順番にフェーズを区切りながら、次のフェーズに進む際は、前フェーズを凍結しながら進む、後戻りをしない開発方法。
 
-[https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101](https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101)
+https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101
 
 とはいえ、言葉で書くほど簡単にその通り出来るものではなく、往々にして後戻りすることが多いことが、長年の課題だった。逆にこの思想を盾に、今更仕様変更できないよと、その大小に関係なく、開発者が要求をはねつける、という場面もよく見る。
 
 全面的にだめな手法というわけではなく、誰もがイメージしやすいという利点もあるし、部分的に活用するなども可能だし、最初のローンチやリリースでは管理上向いている等の見方もある。
 
-### 20-2.  Prototype
+### 21.2. 20-2.  Prototype
 
 ウォーターフォール・モデルの問題点を改善した手法がプロトタイプ・モデルです。プロジェクトの途中で試作品を開発し、発注者の要望と相違がないか確認しながらシステム開発するのが特徴。MVP（Minimum Viable Product）といわれる概念も近いですが、MVPは「実用最小限の製品」を実際に市場に投入することなのでプロトタイプ・モデルはあくまでも内部の開発プロセスという違いがあります。
 
-[https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101](https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101)
+https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101
 
 これまた言葉で書く以上に難しいことで、これは途中の状態だよ、だけど認識齟齬のないように見せるよ！と言ったところで、それを忘れてしまう、理解できないことは往々にしてあり、後工程でやるはずのことばかり指摘されてしまう、またそうなってしまうのではと尻込みしてしまう、なんてことも多いイメージです。見せる側・見る側に適切な知識が必要です。
 
-### 20-3.  Agile
+### 21.3. 20-3.  Agile
 
 発注者と開発者がよりコミュニケーションしながらシステム開発を進める手法がアジャイル開発です。開発するシステムを小さく区切り、機能ごとに繰り返し開発していくのが特徴です。発注者が開発途中のシステムを試せるため、隠れたニーズや仕様の不満を見つけやすいのがメリット。優先度の高いところから開発することで、発注者が求めるシステムを効率的に提供できます。ただ、アジャイル開発は計画を立てるのが難しく、発注側にも適切な知識がないと管理上の問題が起きやすいです。
 
-[https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101](https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101)
+https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101
 
 個人的には、アジャイルだから計画できないんだと、まったく未来のスケジュールを見せなくなるのも違うなあという感覚です。変化を許容する、歓迎するという大前提の概念は維持しつつも、その上で時間的コストをかけすぎないように計画を可視化することもまた大事でしょう。まさにこの塩梅が難しくて俗人的なので、開発者にとって人気の高い手法ですが、ベストアンサーになり切れないところなのかなと思います。
 
 少なくとも「うちはアジャイルだよ！」の後に、「具体的にはこういうところがアジャイルだよ！」というドキュメントが続くようになってるといいなと思います。
 
-### 20-4.  Spiral
+### 21.4. 20-4.  Spiral
 
 ウォーターフォール・モデルとアジャイル開発のメリットを組み合わせた開発手法がスパイラル・モデルです。システムの設計とプロトタイピングを繰り返して成果物の完成を目指します。
 
 言葉が定義されてることは初めて知りましたが、現実的にはむしろ、ほとんどのケースで、ウォーターフォールとアジャイルな要素が混ざり合うので、この開発手法に該当するような気もしました。
 
-[https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101](https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101)
+https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101
 
-### 20-5.  Other Development Methods（その他）
+### 21.5. 20-5.  Other Development Methods（その他）
 
 同列ではないのですが・・・他にも開発手法の1つ上の概念の原則もあります。ここで少しだけ紹介します。
 
 [https://プログラマが知るべき97のこと.com/エッセイ/DRY原則/](https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/DRY%E5%8E%9F%E5%89%87/)
 
-[https://qiita.com/yatmsu/items/b4a84c4ae78fd67a364c](https://qiita.com/yatmsu/items/b4a84c4ae78fd67a364c)
+https://qiita.com/yatmsu/items/b4a84c4ae78fd67a364c
 
-### 20-5-1.  DRY (Don’t Repeat Your Self)
+### 21.6. 20-5-1.  DRY (Don’t Repeat Your Self)
 
 Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱した原則。単に「コードを重複させない」という原則ではなく、DBスキーマ、テスト、ビルドシステム、ドキュメントなども対象になっており、「ソフトウェア開発全体において情報を重複させない」という原則。DRYは素晴らしい考えですが、やり過ぎると密結合を生んでしまう。
 
-### 20-5-2.  OAOO (Once And Only Once)
+### 21.7. 20-5-2.  OAOO (Once And Only Once)
 
 「コードを重複させない」という原則。
 
-### 20-5-3.  SOLID
+### 21.8. 20-5-3.  SOLID
 
 単一責任の原則。以下の頭文字をとった言葉である。詳細は参照リンクが詳しいのですが、概念には納得できたとしても、日々の業務の中で善管的に実行するのは難しいですね。しかし、あくまで原則であり、適用できないケースがまさにケースバイケースなのだとすると、ツールに仕込むことも難しいのかもしれません。
 
@@ -2746,31 +3231,31 @@ Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱し
 4. Interface segregation principle：インターフェース分離の原則
 5. Dependency inversion principle：依存性逆転の原則
 
-[https://note.com/erukiti/n/n67b323d1f7c5](https://note.com/erukiti/n/n67b323d1f7c5)
+https://note.com/erukiti/n/n67b323d1f7c5
 
-[https://qiita.com/baby-degu/items/d058a62f145235a0f007](https://qiita.com/baby-degu/items/d058a62f145235a0f007)
+https://qiita.com/baby-degu/items/d058a62f145235a0f007
 
-### 20-5-4.  KISS (Keep It Simple, Stupid)
+### 21.9. 20-5-4.  KISS (Keep It Simple, Stupid)
 
 シンプルにしておけ、愚か者よ。の意。コードを書くとき、「単純性」や「簡潔性」を最重要視せよということ。
 
-[https://qiita.com/DeployCat/items/09bb6831b029f5185b33](https://qiita.com/DeployCat/items/09bb6831b029f5185b33)
+https://qiita.com/DeployCat/items/09bb6831b029f5185b33
 
-[https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a](https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a)
+https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a
 
-### 20-5-5.  YAGNI (You Aren't Going to Need it.)
+### 21.10. 20-5-5.  YAGNI (You Aren't Going to Need it.)
 
 それはきっと必要にならない、の意。コードが必要最低限にしろということ。
 
 あらかじめ、いろいろな事態に備えてコードを盛り込んでおいても、結局は利用されないことが多い。そして、それによってコードに「余計な」複雑性を盛り込んでしまうことになり、KISSに思想にも反する
 
-[https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a](https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a)
+https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a
 
-[https://hawk-tech-blog.com/principle-yagni/](https://hawk-tech-blog.com/principle-yagni/)
+https://hawk-tech-blog.com/principle-yagni/
 
-[http://sukikoba.com/2018/05/11/yagni/](http://sukikoba.com/2018/05/11/yagni/)
+http://sukikoba.com/2018/05/11/yagni/
 
-## 21.  Agile Development Practices
+## 22.  Agile Development Practices
 
 こちらはアジャイル開発の中の、より具体的なプラクティスになるので、上述の概念よりは分かりやすいかもです。しかし、上位の概念のせいか、こちらもカテゴライズの定義自体がすごく曖昧です。TDDなどが何かメモしたいので用意した章です。例えばこういうものがあります。開発だとか設計だとか若干入り乱れてるのですが、あしからず。
 
@@ -2787,9 +3272,9 @@ Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱し
 - UCDD (Use Case Driven Development)：　ユースケース駆動開発
 - PDD (Proof Driven Development)：　証明駆動開発
 
-[https://en.wikipedia.org/wiki/Agile_software_development#Agile_software_development_practices](https://en.wikipedia.org/wiki/Agile_software_development#Agile_software_development_practices)
+https://en.wikipedia.org/wiki/Agile_software_development#Agile_software_development_practices
 
-### 21-1.  TDD (Test Driven Development)
+### 22.1. 21-1.  TDD (Test Driven Development)
 
 テスト駆動開発。主に開発者が対象。
 
@@ -2797,13 +3282,13 @@ Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱し
 
 TDDに続く開発者にとって最も難しいことは、コードを書く前にテストケースを書くことです。基本的に自動テストを想定しています。TDDをサポートするツールには、JUnit、TestNG、NUnitなどがあります。
 
-[https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples](https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples)
+https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-[https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd](https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd)
+https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd
 
-### 21-2.  BDD (Behavior Driven Development)
+### 22.2. 21-2.  BDD (Behavior Driven Development)
 
 振舞駆動開発。開発者、利用者、QA（Quality Assurance：品質管理）の全員が対象。
 
@@ -2811,35 +3296,35 @@ TDDがテストという言葉が先行してしまったので、改めて提�
 
 プロセスは、予想される動作に従ってシナリオを作成することから始まります。シナリオは単純な英語形式で記述されているため、TDDと比較すると読みやすくなっています。テストケースにしてもシナリオ自体は最初は文章で書くはずなんですがね。。そのあたりはちょっと謎。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
 [https://www.it-mure.jp.net/ja/tdd/bddとtddのテストケースの作成の違いは何ですか？/l967293690/](https://www.it-mure.jp.net/ja/tdd/bdd%E3%81%A8tdd%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AE%E9%81%95%E3%81%84%E3%81%AF%E4%BD%95%E3%81%A7%E3%81%99%E3%81%8B%EF%BC%9F/l967293690/)
 
-[https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples](https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples)
+https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples
 
-[https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd](https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd)
+https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd
 
-### 21-2-1.  BDD Tools and Frameworks
+### 22.3. 21-2-1.  BDD Tools and Frameworks
 
 下記のような自然言語で実装できるフレームワークが登場しています。xSpecとは、Rubyの「RSpec」を始祖とするテスティングフレームワークの総称で、JBehaveと比較してよりコードの見やすさやドキュメンテーションの作りやすさに注力している。SpecとはTestを指す。
 
-- Cucumber：　JS用のBDDフレームワーク。[https://cucumber.io/](https://cucumber.io/)
-- JBehave：　Java用のBDDフレームワーク。[https://jbehave.org/](https://jbehave.org/)
+- Cucumber：　JS用のBDDフレームワーク。https://cucumber.io/
+- JBehave：　Java用のBDDフレームワーク。https://jbehave.org/
 - RSpec：　Ruby用のBDDフレームワーク。
-- CSpec / C++Spec：　CやC++用のBDDフレームワーク。[https://toroidal-code.github.io/cppspec/](https://toroidal-code.github.io/cppspec/)
-- SpecFlow：　.NET用のBDDフレームワーク。[https://specflow.org/](https://specflow.org/)
+- CSpec / C++Spec：　CやC++用のBDDフレームワーク。https://toroidal-code.github.io/cppspec/
+- SpecFlow：　.NET用のBDDフレームワーク。https://specflow.org/
 
-[https://xspec.io/about/](https://xspec.io/about/)
+https://xspec.io/about/
 
-[https://atmarkit.itmedia.co.jp/ait/articles/1403/25/news033_3.html](https://atmarkit.itmedia.co.jp/ait/articles/1403/25/news033_3.html)
+https://atmarkit.itmedia.co.jp/ait/articles/1403/25/news033_3.html
 
-### 21-3.  DDD (Domain Driven Design)
+### 22.4. 21-3.  DDD (Domain Driven Design)
 
 ドメインとはシステムが対象とする業務知識や適応範囲です。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-### 21-4.  ATDD (Acceptance Test Driven Development)
+### 22.5. 21-4.  ATDD (Acceptance Test Driven Development)
 
 受入テスト駆動開発。開発者、利用者、QA（Quality Assurance：品質管理）の全員が対象。
 
@@ -2847,51 +3332,51 @@ TDDがテストという言葉が先行してしまったので、改めて提�
 
 ATDDを導入するとこによって、書いた仕様書（受入基準）と受入テストが連動されるので、ドキュメントとソースコードのズレが生じにくいです。これは本当ならばかなりでかいですね。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-[https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e](https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e)
+https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e
 
-[https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd](https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd)
+https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd
 
-### 21-4-1.  ATDD Tools and Frameworks
+### 22.6. 21-4-1.  ATDD Tools and Frameworks
 
 主なテストフレームワークは、
 
-- Cucumber：　有名なBDDツール。Gherkin Syntax。[https://cucumber.io/](https://cucumber.io/)
-- Gauge：　ThoughtWorks社がメンテしているGo製の受入テスト自動化フレームワーク。Markdownベースのシンプルな仕様記述Syntax。ステップ実装のための言語は Java/JS/TS/Python/Ruby/C# をサポート。[https://gauge.org/](https://gauge.org/)
+- Cucumber：　有名なBDDツール。Gherkin Syntax。https://cucumber.io/
+- Gauge：　ThoughtWorks社がメンテしているGo製の受入テスト自動化フレームワーク。Markdownベースのシンプルな仕様記述Syntax。ステップ実装のための言語は Java/JS/TS/Python/Ruby/C# をサポート。https://gauge.org/
 - その他：　Serenity、Concordion、KARMA、FitNesse、Robot Framework など
 
-### 21-5.  ADD (Attribute Driven Design)
+### 22.7. 21-5.  ADD (Attribute Driven Design)
 
 品質特性を基にモジュール分割を再帰的に行う開発プロセス。
 
 [https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf#:~:text=%E5%93%81%E8%B3%AA%E7%89%B9%E6%80%A7%E9%A7%86%E5%8B%95%E5%9E%8B%E8%A8%AD%E8%A8%88,%E3%81%AB%E8%90%BD%E3%81%A8%E3%81%97%E8%BE%BC%E3%82%93%E3%81%A7%E3%81%84%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82)
 
-### 21-6.  FDD (Feature Driven Development)
+### 22.8. 21-6.  FDD (Feature Driven Development)
 
 ユーザーには価値を提供しなければなりません。概念モデルからユーザーに提供する価値を抽出し、インクリメンタルな開発を行う手法。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-### 21-7.  MDD (Model Driven Development)
+### 22.9. 21-7.  MDD (Model Driven Development)
 
 設計とアーキテクチャがそれぞれ独立して変更するための開発手法。ドメイン固有言語(domain-specific language; DSL)を使ってシステムに依存しない設計を行い、プラットフォームに特化したモデルに変換する。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-### 21-8.  UCDD (Use Case Driven Development)
+### 22.10. 21-8.  UCDD (Use Case Driven Development)
 
 システムに関わるアクターを識別し、アクターの振舞をユースケースとして定義します。ユースケースを実現するためにロバストネス分析を行い、システム設計に落とし込んでいきます。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-### 21-9.  PDD (Proof Driven Development)
+### 22.11. 21-9.  PDD (Proof Driven Development)
 
 証明によってプログラムが期待通りの性質を有しているかを確かめながら開発していきます。数学的な観点ですね。Coq/Gallina といった定理証明支援系言語を使ってテストを行います。
 
-[https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf)
+https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf
 
-## 22.  Testing Pyramid
+## 23.  Testing Pyramid
 
 Mike Cohn が2009年に提唱した概念。これは言葉としては聞いたことがなくても、開発をしたことがあれば通ったことのある道です。ピラミッドの下から書くと、
 
@@ -2899,11 +3384,11 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 - Integration Test：　結合テスト。Service Test ともいう。他システムとのデータ連携などがある場合は、内部結合と外部結合とわかれることもある。
 - E2E Test：　総合テスト。UI Test (User Interface Test) ともいう
 
-[https://speakerdeck.com/hgsgtk/atdd-by-genba-example?slide=24](https://speakerdeck.com/hgsgtk/atdd-by-genba-example?slide=24)
+https://speakerdeck.com/hgsgtk/atdd-by-genba-example?slide=24
 
-[https://www.amazon.co.jp/dp/B002TIOYWQ](https://www.amazon.co.jp/dp/B002TIOYWQ)
+https://www.amazon.co.jp/dp/B002TIOYWQ
 
-### 22-1.  Unit Test
+### 23.1. 22-1.  Unit Test
 
 単体テスト。プログラムを構成する比較的小さな単位（ユニット）が個々の機能を正しく果たしているかどうかを検証するテスト。プログラムが全体として正しく動作しているかを検証する結合テストは、開発の比較的後の段階でQAチームなどによって行なわれることが多いのとは対照的に、単体テストは、コード作成時などの早い段階で開発者によって実施されることが多いのが特徴。
 
@@ -2912,9 +3397,9 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 - White-Box Testing
 - Black-Box Testing
 
-[https://www.techmatrix.co.jp/t/quality/unittest.html](https://www.techmatrix.co.jp/t/quality/unittest.html)
+https://www.techmatrix.co.jp/t/quality/unittest.html
 
-### 22-1-1.  White-Box Testing
+### 23.2. 22-1-1.  White-Box Testing
 
 開発者などコードレベルで理解してる人が作る場合。
 
@@ -2925,21 +3410,21 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 
 などがあります。そのため、網羅率の測定（カバレッジ解析）や条件を網羅するためのテスト値の抽出などが必要。
 
-[https://www.techmatrix.co.jp/t/quality/unittest.html](https://www.techmatrix.co.jp/t/quality/unittest.html)
+https://www.techmatrix.co.jp/t/quality/unittest.html
 
-[https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10](https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10)
+https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10
 
-[https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637](https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637)
+https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637
 
-### 22-1-2.  Automated Testing
+### 23.3. 22-1-2.  Automated Testing
 
 自動化テスト。特に単体テストレベルであれば、自動化を行えると大きい。自動化のタイミングは夜間の間や、デプロイ時、手動トリガーなど色々ある。完全手動の場合、現実問題、やられないことが起きやすい。
 
 自動化テストのためのフレームワークは各言語ごとに色々あるが、総称して、xUnitフレームワークとカテゴライズされている。xUnitフレームワークは、テストの実行および結果の検証機能を提供します。テストケースはすべてコードとして作成されるので、もちろん自動実行が可能です。ただし、基本的にはテストケースの生成機能は提供しないため、自力でテストケースを作成する必要がある
 
-[https://www.techmatrix.co.jp/t/quality/unittest.html](https://www.techmatrix.co.jp/t/quality/unittest.html)
+https://www.techmatrix.co.jp/t/quality/unittest.html
 
-### 22-1-3.  Coding Coverage
+### 23.4. 22-1-3.  Coding Coverage
 
 ホワイトボックステストに対する計測指標。どれがいい悪いもあるでしょうが、これまで不具合が多いにもかかわらず、何も測ってなかったのであれば、まずは測れそうなものから測っていくことが肝要。
 
@@ -2976,15 +3461,15 @@ if(条件文b1 || 条件文b2){ // 判定条件B
 
 などがあります。できれば、1つの指標だけではなく、2つ以上の指標で多角的に見たいですね。
 
-[https://www.techmatrix.co.jp/t/quality/coverage.html](https://www.techmatrix.co.jp/t/quality/coverage.html)
+https://www.techmatrix.co.jp/t/quality/coverage.html
 
-[https://qiita.com/bremen/items/8b6542467d2a0066e5af](https://qiita.com/bremen/items/8b6542467d2a0066e5af)
+https://qiita.com/bremen/items/8b6542467d2a0066e5af
 
-[https://www.browserstack.com/guide/code-coverage-vs-test-coverage](https://www.browserstack.com/guide/code-coverage-vs-test-coverage)
+https://www.browserstack.com/guide/code-coverage-vs-test-coverage
 
-[https://phpunit.readthedocs.io/ja/latest/code-coverage-analysis.html](https://phpunit.readthedocs.io/ja/latest/code-coverage-analysis.html)
+https://phpunit.readthedocs.io/ja/latest/code-coverage-analysis.html
 
-### 22-2.  Integration Test
+### 23.5. 22-2.  Integration Test
 
 結合テスト。自社システム内のモジュール間の結合テストであれば内部結合テスト、社外の外部システムも含めた結合テストであれば外部結合テストと言ったりする。
 
@@ -2992,19 +3477,19 @@ if(条件文b1 || 条件文b2){ // 判定条件B
 
 外部システムとの結合テストがない場合は、内部結合テストが事実上の総合テストやE2Eテストに該当する場合もある。いずれにしても、内外に定義を文章として明確にするのは最低限必要であると思われる。
 
-### 22-3.  E2E Test (End to End Test)
+### 23.6. 22-3.  E2E Test (End to End Test)
 
 E2E (End to End) テストとは、システム全体が正しく動作することを確認するものです。具体的には「利用者による画面操作（Web ブラウザの操作）により、想定通りの動作となっていることを確認する」ことを指します。
 
 E2E テストは「総合テスト」フェーズで実施されます。多くの開発現場で E2E テストはテスト仕様書を元に、人手でテストを行っています。そのためテスト工数の削減は大きな課題となっていました。そう、まさにその通りで、開発現場によっては納期を守るために「ウソ」が発生することもあります。また自動化されていなければ、総合テスト中に追加機能が実装されて（それもどうなのというのはさておき、ありうる）、その部分は結局総合テストしきれなくて無視される、なんてことも起こりうるでしょう。
 
-[https://wagby.com/manual9/wtf.html](https://wagby.com/manual9/wtf.html)
+https://wagby.com/manual9/wtf.html
 
-[https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e](https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e)
+https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e
 
-[https://qiita.com/mt0m/items/7e18d8802843d9f60d28](https://qiita.com/mt0m/items/7e18d8802843d9f60d28)
+https://qiita.com/mt0m/items/7e18d8802843d9f60d28
 
-### 22-3-1.  Black-Box Testing
+### 23.7. 22-3-1.  Black-Box Testing
 
 主に総合テストや受入テストなど後半のテストが該当。
 
@@ -3012,21 +3497,21 @@ E2E テストは「総合テスト」フェーズで実施されます。多く�
 
 内部構造はさておき、そもそも元々達成したかった○○は出来てんの？という視点で行う。
 
-[https://www.techmatrix.co.jp/t/quality/unittest.html](https://www.techmatrix.co.jp/t/quality/unittest.html)
+https://www.techmatrix.co.jp/t/quality/unittest.html
 
-[https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10](https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10)
+https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10
 
-[https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637](https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637)
+https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637
 
-### 22-3-2.  E2E Test Frameworks
+### 23.8. 22-3-2.  E2E Test Frameworks
 
 主なテストフレームワークは、selenideなど。本家のselenium自体はテストクレームワークではないので、テストを書くのはつらいですが、selenideはseleniumをうまいことwrapして、テストに特化するlibraryで、使い心地がseleniumよりよいです。他にも、WebdriverIOや、Nightmareなどがあります。
 
-### 22-3-3.  E2E Test の不安定さ
+### 23.9. 22-3-3.  E2E Test の不安定さ
 
 テストケースが不安定になると工数が増大しますが、その例としてテスト時のアカウント共有などがあります。「ログイン状態であることをテストしようとしたら、別の人が実行しているテストでログアウトしていて失敗する」「登録できることをテストしようとしたら、別の人が実行しているテストですでに登録しているので失敗する」などです。これはテストケース毎にユーザアカウントを分離したり、アカウントIDにタイムスタンプをつけてテスト実行毎にユニークなアカウントを作成して対応するケースが多いようです。
 
-### 22-4.  Feedback Cycle
+### 23.10. 22-4.  Feedback Cycle
 
 テストしたら、その結果を早く知り、原因を探し、修正して、再度テスト！というサイクルを早く回す必要があります。だいたいの場合、当初スケジュールに比較して、開発が遅れていて、テスト開始日が遅れていて、でも納期は変わってない、なんてことが起こります。また、テスト工数の見積もり時に、何回もテストが失敗し、何回もコードを修正するような見積もりはされてないことが多いです。そのため、このフィードバックサイクルは仕組みとしてあった方がよいでしょう。
 
@@ -3035,127 +3520,127 @@ E2E テストは「総合テスト」フェーズで実施されます。多く�
 - テスト結果のエビデンス作成：　脱Excelにぺたぺた
 - テスト結果のレビュー：　基準を決めて人が見るべきものと、見ないものとわけられるといいです。全部見るべき！とか言ってると、結局現場ではどれも見てない、なんてこともありえます
 
-[https://qiita.com/mt0m/items/7e18d8802843d9f60d28](https://qiita.com/mt0m/items/7e18d8802843d9f60d28)
+https://qiita.com/mt0m/items/7e18d8802843d9f60d28
 
-## 23.  Infrastructure
+## 24.  Infrastructure
 
 インフラパート。クラウドだと、AWSやGCP、Microsoft Azureなど。AWSを例にメモしていきます。
 
-### 23-1.  AWS Service
+### 24.1. 23-1.  AWS Service
 
 AWSの全体像はこんな感じ。落ちてるものから分かりやすかったものをいくつか拾ってきた。まずは公式サイトのAmazonにあるWEBアプリケーションのよくある構成。（AWSのサイトで拾ったので、全部AWSサービスで構成されているが・・・）
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2035.png)
 
-[https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html](https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html)
+https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html
 
-### 23-2.  AWSの各種用語
+### 24.2. 23-2.  AWSの各種用語
 
-### 23-2-1.  VPC (Virtual Private Cloud)
+### 24.3. 23-2-1.  VPC (Virtual Private Cloud)
 
 AWS内の自分用の領域
 
-### 23-2-2.  Internet Gateway
+### 24.4. 23-2-2.  Internet Gateway
 
 図には載ってないが、VPCとインターネットをつなぐGateway。これを使うことで、VPC内のシステムがグローバルIPを使えるようになります。
 
-### 23-2-3.  Virtual Private Gateway
+### 24.5. 23-2-3.  Virtual Private Gateway
 
 インターネットGatewayがインターネットに接続するのに対し、こちらはオンプレミス環境に接続するためのゲートウェイ
 
-### 23-2-4.  NAT Gateway (a Network Address Translation Gateway)
+### 24.6. 23-2-4.  NAT Gateway (a Network Address Translation Gateway)
 
 VPC内に構成した「プライベートサブネット」からインターネットに接続するためのゲートウェイ。公式サイトから持ってきた上図とはなんか逆ですが、調べる限り、「プライベートサブネットから」出るため用のようです
-[https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-nat-gateway.html](https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-nat-gateway.html)
+https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-nat-gateway.html
 
-### 23-2-5.  Subnet
+### 24.7. 23-2-5.  Subnet
 
 サブネット。VPCという大きなネットワークをIPアドレスの範囲で分割した小さなネットワークのこと
 
 - Public Subnet：　インターネットゲートウェイに接続ができるサブネット
 - Private Subnet：　インターネットに接続できないサブネットの中に配置したシステム
 
-### 23-2-6.  Route Table
+### 24.8. 23-2-6.  Route Table
 
 サブネット内のリソースがどこに通信するのか？というルールを定めた表のこと。サブネットを作成すると、ローカル（作成したVPC内）と通信できますよ〜という設定がされたルートテーブルが自動で作成されます。サブネットによっては、ここにインターネットとも通信ができるようなルートも追加する
 
-### 23-2-7.  Amazon Route 53
+### 24.9. 23-2-7.  Amazon Route 53
 
 DNSサーバー。
 
-### 23-2-8.  Amazon S3 (Amazon Simple Storage Service)
+### 24.10. 23-2-8.  Amazon S3 (Amazon Simple Storage Service)
 
 データためるところ。「オブジェクトストレージ」というタイプのストレージサービスであり、データを「オブジェクト」と呼ばれる単位で読み書きするためのHTTPSなどでアクセス可能なエンドポイントを提供。Amazon EFSに比べると安い分、直接読むことは出来ず、一度SCP（コピー）してこないと取り出せない
 
-### 23-2-9.  Amazon EFS (Amazon Elastic File System)
+### 24.11. 23-2-9.  Amazon EFS (Amazon Elastic File System)
 
 ファイルサーバー。S3より高い。「ファイルストレージ」というタイプのストレージサービスであり、LinuxなどのOSでマウント可能なファイルシステムを提供。マウントすることで複数のEC2インスタンスから参照が可能。読み書きスピードは若干遅い
 
-### 23-2-10.  Amazon EBS (Amazon Elastic Block Store)
+### 24.12. 23-2-10.  Amazon EBS (Amazon Elastic Block Store)
 
 直接上には出てこないが、別の種類のストレージ。「ブロックストレージ」というタイプのストレージサービスであり、Amazon Elastic Compute Cloud (EC2)のインスタンス(仮想マシン)にアタッチするためのボリュームを提供。
 
-### 23-2-11.  Amazon ECS (Amazon Elastic Container Service)
+### 24.13. 23-2-11.  Amazon ECS (Amazon Elastic Container Service)
 
-完全マネージド型コンテナオーケストレーションサービスであり、コンテナ化されたアプリケーションを簡単にデプロイ、管理、スケール。AWS Fargate のサーバーレス技術を利用して、自律型のコンテナ運用を実現し、設定やパッチ適用、セキュリティに要する時間を削減。[https://aws.amazon.com/jp/ecs/](https://aws.amazon.com/jp/ecs/)
+完全マネージド型コンテナオーケストレーションサービスであり、コンテナ化されたアプリケーションを簡単にデプロイ、管理、スケール。AWS Fargate のサーバーレス技術を利用して、自律型のコンテナ運用を実現し、設定やパッチ適用、セキュリティに要する時間を削減。https://aws.amazon.com/jp/ecs/
 
-### 23-2-12.  Amazon ElastiCache
+### 24.14. 23-2-12.  Amazon ElastiCache
 
 AmazonでRedisやMemcachedを使えるサービス。綴りはCが足りてないが、間違いではない。
 
-### 23-2-13.  Amazon DynamoDB
+### 24.15. 23-2-13.  Amazon DynamoDB
 
 キーバリューおよびドキュメントデータ構造をサポートする、フルマネージドな独自のNoSQLデータベースサービスで、Amazon.comがAmazon Web Servicesポートフォリオの一部として提供しています。
 
-### 23-2-14.  Amazon API Gateway
+### 24.16. 23-2-14.  Amazon API Gateway
 
-あらゆる規模の REST、HTTP、および WebSocket API を作成、公開、維持、モニタリング、およびセキュア化するための AWS のサービス。[https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html)
+あらゆる規模の REST、HTTP、および WebSocket API を作成、公開、維持、モニタリング、およびセキュア化するための AWS のサービス。https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html
 
-### 23-2-15.  AWS Lambda
+### 24.17. 23-2-15.  AWS Lambda
 
-サーバーレスコンピューティングサービスで、サーバーのプロビジョニングや管理、ワークロード対応のクラスタースケーリングロジックの作成、イベント統合の維持、ランタイムの管理を行わずにコードを実行できます。Lambda を使用すれば、実質どのようなタイプのアプリケーションやバックエンドサービスでも管理を必要とせずに実行できます。[https://aws.amazon.com/jp/lambda/](https://aws.amazon.com/jp/lambda/)
+サーバーレスコンピューティングサービスで、サーバーのプロビジョニングや管理、ワークロード対応のクラスタースケーリングロジックの作成、イベント統合の維持、ランタイムの管理を行わずにコードを実行できます。Lambda を使用すれば、実質どのようなタイプのアプリケーションやバックエンドサービスでも管理を必要とせずに実行できます。https://aws.amazon.com/jp/lambda/
 
-### 23-2-16.  Amazon CloudFront
+### 24.18. 23-2-16.  Amazon CloudFront
 
 CDN機能を提供。それ以外にも利点が2つある。1つ目はCloudFrontが、リクエストに応じて各AWSサービスに振り分ける、リバースプロキシの役割を提供する点。2つ目は静的コンテンツからAPIを実行した場合にクリアしなければいけないCORS（Cross-Origin Resource Sharing）の課題が回避できる点
 
-### 23-2-17.  AWS Certificate Manager
+### 24.19. 23-2-17.  AWS Certificate Manager
 
 パブリックおよびプライベートのSSL/TLS（Secure Sockets Layer/Transport Layer Security）証明書を簡単にプロビジョニング、管理、導入して、AWSサービスや社内の接続リソースで使用できるようにするサービス。プロビジョニングは、IT インフラストラクチャをセットアップするプロセスです。また、データとリソースへのアクセスを管理し、ユーザーとシステムによる利用を可能にするために必要なステップを指すこともあります。
 
-[https://business.ntt-east.co.jp/content/cloudsolution/column-64.html](https://business.ntt-east.co.jp/content/cloudsolution/column-64.html)
+https://business.ntt-east.co.jp/content/cloudsolution/column-64.html
 
-[https://zenn.dev/tomoshimizu/articles/6945b7ac472ca0](https://zenn.dev/tomoshimizu/articles/6945b7ac472ca0)
+https://zenn.dev/tomoshimizu/articles/6945b7ac472ca0
 
-[https://www.bit-drive.ne.jp/managed-cloud/column/column_31.html](https://www.bit-drive.ne.jp/managed-cloud/column/column_31.html)
+https://www.bit-drive.ne.jp/managed-cloud/column/column_31.html
 
-### 23-2-18.  Amazon Cognito
+### 24.20. 23-2-18.  Amazon Cognito
 
 Amazon Cognito を使用すれば、ウェブアプリケーションおよびモバイルアプリに素早く簡単にユーザーのサインアップ/サインインおよびアクセスコントロールの機能を追加できます。
 
-[https://aws.amazon.com/jp/cognito/](https://aws.amazon.com/jp/cognito/)
+https://aws.amazon.com/jp/cognito/
 
-[https://dev.classmethod.jp/articles/re-introduction-2020-amazon-cognito/](https://dev.classmethod.jp/articles/re-introduction-2020-amazon-cognito/)
+https://dev.classmethod.jp/articles/re-introduction-2020-amazon-cognito/
 
-### 23-2-19.  AWS Fargate
+### 24.21. 23-2-19.  AWS Fargate
 
 コンテナ向けサーバーレスコンピューティング。サーバーのスケーリング、パッチ適用、セキュリティ、管理などの運用上のオーバーヘッドを取り除きます。
 
-[https://aws.amazon.com/jp/fargate/](https://aws.amazon.com/jp/fargate/)
+https://aws.amazon.com/jp/fargate/
 
-### 23-2-20.  Amazon Aurora
+### 24.22. 23-2-20.  Amazon Aurora
 
 クラウド向けに構築された、MySQL および PostgreSQL と互換性のあるリレーショナルデータベースです。商用データベースと同等のパフォーマンスと可用性を、10 分の 1 のコストで実現。
 
-[https://aws.amazon.com/jp/rds/aurora/?aurora-whats-new.sort-by=item.additionalFields.postDateTime&aurora-whats-new.sort-order=desc](https://aws.amazon.com/jp/rds/aurora/?aurora-whats-new.sort-by=item.additionalFields.postDateTime&aurora-whats-new.sort-order=desc)
+https://aws.amazon.com/jp/rds/aurora/?aurora-whats-new.sort-by=item.additionalFields.postDateTime&aurora-whats-new.sort-order=desc
 
-### 23-2-21.  Amazon Kinesis Data Firehose
+### 24.23. 23-2-21.  Amazon Kinesis Data Firehose
 
 リアルタイム配信用の完全マネージド型サービス
 
-[https://docs.aws.amazon.com/ja_jp/firehose/latest/dev/what-is-this-service.html](https://docs.aws.amazon.com/ja_jp/firehose/latest/dev/what-is-this-service.html)
+https://docs.aws.amazon.com/ja_jp/firehose/latest/dev/what-is-this-service.html
 
-### 23-3.  Managed Services
+### 24.24. 23-3.  Managed Services
 
 Managed Servicesのメリットは以下。
 
@@ -3164,15 +3649,15 @@ Managed Servicesのメリットは以下。
 - インフラ、OS、ミドルウェアのメンテナンスが不要
 - サーバ自体がないため、セキュリティのリスクや対処負担が減る
 
-### 23-4.  Load Balancer
+### 24.25. 23-4.  Load Balancer
 
 サーバーにかかる負荷を、平等に振り分けるための装置のことを指します。これによって1つのサーバーにかかる負担を軽減したり、停止状態を防ぐことができたりします。SSLアクセラレーターを使用することにより、本来サーバーごとに必要なSSL証明書を1本化したり、暗号化通信の負荷を軽減できたりします。
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2036.png)
 
-[https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/](https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/)
+https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/
 
-### 23-4-1.  LBの負荷分散方法
+### 24.26. 23-4-1.  LBの負荷分散方法
 
 負荷分散の方法はいくつかある
 
@@ -3180,7 +3665,7 @@ Managed Servicesのメリットは以下。
 - 動的分散方式：　サーバーのCPUやメモリ使用率などの負荷状況を加味して軽いところに振り分ける
 - パーシステンス：　ログイン情報など同じユーザーは同じWEBサーバーの方がありがたい場合がある。これを加味する
 
-## 24.  Serverless Hosting Service
+## 25.  Serverless Hosting Service
 
 AWSやGCPもサーバーレスを提供しているが、使い勝手の良いサーバーレスなホスティングサービスは他にもある。ちなみにホスティングとは、サーバーを貸し出すこと。日本だとレンタルサーバーのことだが、クラウドも含む広義な言葉。
 
@@ -3191,31 +3676,31 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 - Supabase
 - Gatsby Cloud
 
-[https://qiita.com/asahi13/items/84582438371ca6ecd834](https://qiita.com/asahi13/items/84582438371ca6ecd834)
+https://qiita.com/asahi13/items/84582438371ca6ecd834
 
-[https://qiita.com/fussy113/items/ba204747e3f0e6c59af0](https://qiita.com/fussy113/items/ba204747e3f0e6c59af0)
+https://qiita.com/fussy113/items/ba204747e3f0e6c59af0
 
-[https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0](https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0)
+https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0
 
-[https://www.jaipa.or.jp/hosting/about2.html](https://www.jaipa.or.jp/hosting/about2.html)
+https://www.jaipa.or.jp/hosting/about2.html
 
-### 24-1.  Firebase
+### 25.1. 24-1.  Firebase
 
 Googleが管理・開発しているBaaS（Backend as a service）。対応言語：Node.js, C++. Kotlin, Java, Object-C, Swift。モバイルアプリ開発に使われることも多いので、mBaaS(mobile backend as a Service)と呼ばれたりもします。例えばNuxt.jsを利用して開発したSPAをインターネット上で配信する際にバックエンドで必要となる機能は、大きく分けて下記の点。
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2037.png)
 
-[https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1
 
-[https://zenn.dev/razokulover/scraps/94844e54e519ed](https://zenn.dev/razokulover/scraps/94844e54e519ed)
+https://zenn.dev/razokulover/scraps/94844e54e519ed
 
-[https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0](https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0)
+https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0
 
-### 24-1-1.  Firebase Hosting
+### 25.2. 24-1-1.  Firebase Hosting
 
 ホスティングサービス。
 
-### 24-1-2.  Firestore
+### 25.3. 24-1-2.  Firestore
 
 非常に強力な機能性を備えたマネージド・データベースです。
 
@@ -3225,11 +3710,11 @@ Authenticationのサポートを得て、クライアントから直接アクセ
 
 Firestoreは本質がデータベースでありながら、従来のREST APIの役割を代替することができます。それは「クライアントからセキュアに直接読み書きが可能」「ドキュメント指向でありO/Rマッピング不要」「強い整合性」という特性を獲得し、極めて高い可用性とスケーラビリティーを持っているからです。もはや、バックエンドとデータのやり取りをするために、REST APIを用意する必要はなくなりました。
 
-### 24-1-3.  Firebase Authentication
+### 25.4. 24-1-3.  Firebase Authentication
 
 ユーザー認証基盤
 
-### 24-2.  Netlify
+### 25.5. 24-2.  Netlify
 
 最新のWebプロジェクトを自動化するためのオールインワンプラットフォーム。対応言語：Node.js, Golangなど。
 
@@ -3237,78 +3722,78 @@ Firestoreは本質がデータベースでありながら、従来のREST APIの
 
 mainブランチが新しくなる度に都度デプロイするが、その他にHTTPリクエストを受けてデプロイを行う Build Hooksという仕組みもある
 
-[https://megumu.me/posts/20210212/](https://megumu.me/posts/20210212/)
+https://megumu.me/posts/20210212/
 
-[https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0](https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0)
+https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0
 
-### 24-3.  Vercel
+### 25.6. 24-3.  Vercel
 
 Vercel（企業名）によって運営/開発されている、FaaS（Function as a Service）。DNSやCDNサービスも展開しているため、PaaS（Platform as a Service）と言っても良いかもしれません。対応言語：Next.js, Node.js, Python, Golang, Rubyなど
 
 16ものエッジロケーションを備えるCDNやサーバレスファンクションは、AWSまたはGCPなどの大手クラウドコンピューティングプラットフォームのリソースを抽象化したもので、利用者がAWSやGCPを意識することはほとんどありません。また従来の“サーバレスアーキテクチャ”を謳うSaaSとは異なり、サーバのスペックを選択できなかったり、ほとんどの設定が自動で行われ、かつ無効にすることができなかったりと、サーバの存在がほとんど隠蔽されているサービス
 
-[https://qiita.com/jagaapple/items/faf125e28f8c2860269c](https://qiita.com/jagaapple/items/faf125e28f8c2860269c)
+https://qiita.com/jagaapple/items/faf125e28f8c2860269c
 
-[https://zenn.dev/razokulover/scraps/94844e54e519ed](https://zenn.dev/razokulover/scraps/94844e54e519ed)
+https://zenn.dev/razokulover/scraps/94844e54e519ed
 
-[https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0](https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0)
+https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0
 
-### 24-4.  Heroku
+### 25.7. 24-4.  Heroku
 
 Salesforceが買収した、PaaS(Platform as a Service)です。ユーザーのインフラ管理が不要で、「git push」を行うだけでリリースが行えたり、各種アドオンの追加で、ミドルウェアのインストールを行うことができます。
 
-[https://jp.heroku.com/](https://jp.heroku.com/)
+https://jp.heroku.com/
 
-[https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0](https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0)
+https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0
 
-### 24-5.  Supabase
+### 25.8. 24-5.  Supabase
 
 オープンソースFirebaseの代替。2分以内にバックエンドを作成できます。Postgresデータベース、認証、インスタントAPI、リアルタイムサブスクリプション、ストレージを備えたプロジェクトを開始できます。
-[https://supabase.io/](https://supabase.io/)
+https://supabase.io/
 
-### 24-6.  Gatsby Cloud
+### 25.9. 24-6.  Gatsby Cloud
 
 特にGatsbyのビルド・ホスティングに特化したサービス。ビルド時にGoogle Lighthouse のレポート作成までしてくれる。Gatsbyを使うなら使いたい。ホスティングには裏でFastlyというCDNを利用している
 
-## 25.  インフラ監視・分析
+## 26.  インフラ監視・分析
 
 限りなく100%に近い稼動を必要とするシステムの場合、ハードウェアやソフトウェアの保守管理はもちろん、システムそのものが常に正常に稼動しているかを見守る必要があります。そして、もしもシステムに問題が発生したときにはいち早くそれを発見して対応する必要があります。
 
 システム監視とは、システム内で動作しているサーバ、アプリケーション、ネットワークなどが正常に稼働しているか定期的に確認することによって、システムで発生した障害やリソース不足を検知し、システム管理者に通知を行うための作業や仕組みのこと
 
-[https://www.itmanage.co.jp/column/system-monitoring-item-list/](https://www.itmanage.co.jp/column/system-monitoring-item-list/)
+https://www.itmanage.co.jp/column/system-monitoring-item-list/
 
-[https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html](https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html)
+https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html
 
-[https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3](https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3)
+https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3
 
-### 25-1.  監視の種類
+### 26.1. 25-1.  監視の種類
 
-### 25-1-1.  死活監視
+### 26.2. 25-1-1.  死活監視
 
 対象機器にPINGをおくり、それを受け取った機器が送り返す応答を確認することで機器が動作しているとみなす監視方法で、稼働監視とも呼びます。サーバやネットワークの監視によく使われる方法で、PING応答がなかった場合、対象機器か経路のネットワークかのどちらかに問題があります。
 
-### 25-1-2.  リソース監視
+### 26.3. 25-1-2.  リソース監視
 
 CPU、メモリ、ディスク、ネットワークなど、OSやサーバ、ハードウェア、ネットワーク機器などのリソース使用状況をチェックすることで、性能監視とも呼ばれます。
 
-### 25-1-3.  接続監視
+### 26.4. 25-1-3.  接続監視
 
 ネットワークの指定ポートへ接続をし応答があることを監視することです。ネットワークがダウンしていないか、あるいは性能低下でレスポンスが悪化していないかを調べる目的で行われます。
 
-### 25-1-4.  ログ監視
+### 26.5. 25-1-4.  ログ監視
 
 サーバからの収集したログを監視することです。予めログに含まれる文字列やキーワードをもとに監視をし、設定したキーワードのログが検知するとアラートがでる仕組み
 
-### 25-1-5.  プロセス/サービス監視
+### 26.6. 25-1-5.  プロセス/サービス監視
 
 サーバ上で稼働をするプロセスやサービスをまとめてアプリケーションとして定義をしプロセスの生死やWindowsサービスの状態によってアプリケーションが正常に動作しているかを監視すること。
 
-[https://www.itmanage.co.jp/column/system-monitoring-item-list/](https://www.itmanage.co.jp/column/system-monitoring-item-list/)
+https://www.itmanage.co.jp/column/system-monitoring-item-list/
 
-### 25-2.  監視サービス
+### 26.7. 25-2.  監視サービス
 
-### 25-2-1.  CloudWatch
+### 26.8. 25-2-1.  CloudWatch
 
 AWSが提供する「フルマネージド運用監視サービス」で、AWSの各種リソースを監視してくれるもの。AWSでやるなら、せっかく用意してくれてるわけだし、これでいいかも。
 
@@ -3316,58 +3801,58 @@ AWSが提供する「フルマネージド運用監視サービス」で、AWS�
 - CloudWatch Logs：　ログを集めて監視する。Amazon Linux、RedHat、Windowsなどに対応し、インスタンスにエージェントを入れることで各種ログを取得します。OSに加えて、アプリケーションのログも対応していて、キーワードでアラート通知させることもできます。つまり「アプリケーションやOSがエラーログ吐いたら管理者のメールに通知」が実現できる
 - CloudWatch Events：　APIのイベントをトリガーに何らかのアクションを実行させる、というサービスです。APIというとなにか特殊な用途に思えますが、AWSはさまざまな処理をAPIで実行しています。たとえばEC2インスタンスの起動停止もAPIで実行するんですね。こういったイベントを監視するのがCloudWatch Events、ということです。具体的には、インスタンスのterminate（削除）でアラート通知する、コンソールに特定のユーザがサインインしたときにアラート通知する、ということなんかができるそう。
 
-[https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html](https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html)
+https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html
 
-### 25-2-2.  **Datadog**
+### 26.9. 25-2-2.  **Datadog**
 
-クラウド型の監視アプリケーションサービスです。SaaSベースのデータ分析プラットフォームを介してサーバー、データベース、ツール、およびサービスの監視を提供します。[https://www.datadoghq.com/ja/](https://www.datadoghq.com/ja/)
+クラウド型の監視アプリケーションサービスです。SaaSベースのデータ分析プラットフォームを介してサーバー、データベース、ツール、およびサービスの監視を提供します。https://www.datadoghq.com/ja/
 
-### 25-2-3.  **Mackerel**
+### 26.10. 25-2-3.  **Mackerel**
 
-はてなが開発したサーバー管理・監視サービスです。仮想サーバーなどクラウドサービスをMackerelで統合管理および監視することができます。[https://mackerel.io/ja/](https://mackerel.io/ja/)
+はてなが開発したサーバー管理・監視サービスです。仮想サーバーなどクラウドサービスをMackerelで統合管理および監視することができます。https://mackerel.io/ja/
 
-### 25-2-4.  **Prometheus**
+### 26.11. 25-2-4.  **Prometheus**
 
-SoundCloudが中心になって開発しているプル型のリソース監視ツールです。サーバー管理・監視や、しきい値を超えた場合のアラート等を行うことができます。UIがかっこいいです。[https://prometheus.io/](https://prometheus.io/)
+SoundCloudが中心になって開発しているプル型のリソース監視ツールです。サーバー管理・監視や、しきい値を超えた場合のアラート等を行うことができます。UIがかっこいいです。https://prometheus.io/
 
-### 25-2-5.  **Zabbix**
+### 26.12. 25-2-5.  **Zabbix**
 
-ネットワーク管理のソフトウェアです。こちらもサーバー管理・監視や、しきい値を超えた場合のアラート等を行うことができます。C言語、PHP、JavaScriptで記述されてるらしいです。2004年に初版がリリースされ、比較的歴史が長いツールです。[https://www.zabbix.com/jp](https://www.zabbix.com/jp)
+ネットワーク管理のソフトウェアです。こちらもサーバー管理・監視や、しきい値を超えた場合のアラート等を行うことができます。C言語、PHP、JavaScriptで記述されてるらしいです。2004年に初版がリリースされ、比較的歴史が長いツールです。https://www.zabbix.com/jp
 
-### 25-2-6.  **Sentry**
+### 26.13. 25-2-6.  **Sentry**
 
-イベントログ収集(エラー検知)のSaaSサービスになります。バックエンドのエラーのみならず、フロントエンドのエラーを収集して、可視化することができます。[https://sentry.io/](https://sentry.io/)
+イベントログ収集(エラー検知)のSaaSサービスになります。バックエンドのエラーのみならず、フロントエンドのエラーを収集して、可視化することができます。https://sentry.io/
 
-### 25-2-7.  **New Relic**
+### 26.14. 25-2-7.  **New Relic**
 
-インフラからアプリケーションまで監視・分析してくれるSaaSサービスになります。[https://newrelic.co.jp/](https://newrelic.co.jp/)
+インフラからアプリケーションまで監視・分析してくれるSaaSサービスになります。https://newrelic.co.jp/
 
-## 26.  仮想化とコンテナ
+## 27.  仮想化とコンテナ
 
 仮想化とコンテナ化は似ているが異なる。
 
-- 仮想化：　ソフトウェアによって複数のハードウェアを統合し、自由なスペックでハードウェアを再現する技術で、限られた数量の物理リソース（CPU、メモリ、ハードディスク、ネットワーク等）を、実際の数量以上のリソース（論理リソース）が稼働しているかのように見せかけること。[https://www.fsi.co.jp/solution/vmware/knowledge/virtualization.html](https://www.fsi.co.jp/solution/vmware/knowledge/virtualization.html)
-- コンテナ化：　ソフトウェアのコードをライブラリやフレームワークなどの依存関係にあるすべてのコンポーネントとともにパッケージ化し、それぞれの入れ物、「コンテナ」に隔離すること。[https://www.redhat.com/ja/topics/cloud-native-apps/what-is-containerization](https://www.redhat.com/ja/topics/cloud-native-apps/what-is-containerization)
+- 仮想化：　ソフトウェアによって複数のハードウェアを統合し、自由なスペックでハードウェアを再現する技術で、限られた数量の物理リソース（CPU、メモリ、ハードディスク、ネットワーク等）を、実際の数量以上のリソース（論理リソース）が稼働しているかのように見せかけること。https://www.fsi.co.jp/solution/vmware/knowledge/virtualization.html
+- コンテナ化：　ソフトウェアのコードをライブラリやフレームワークなどの依存関係にあるすべてのコンポーネントとともにパッケージ化し、それぞれの入れ物、「コンテナ」に隔離すること。https://www.redhat.com/ja/topics/cloud-native-apps/what-is-containerization
 
-### 26-1.  仮想化技術
+### 27.1. 26-1.  仮想化技術
 
-### 26-1-1.  VirtualBox
+### 27.2. 26-1-1.  VirtualBox
 
 オラクルが開発。無料で高機能。
 
-[https://eng-entrance.com/vm-list#VirtualBox-2](https://eng-entrance.com/vm-list#VirtualBox-2)
+https://eng-entrance.com/vm-list#VirtualBox-2
 
-### 26-1-2.  VMware
+### 27.3. 26-1-2.  VMware
 
 カリフォルニア州にあるVMware社が販売。
 
-### 26-1-3.  AWS EC2
+### 27.4. 26-1-3.  AWS EC2
 
 これも仮想化環境である。ただインスタンスはAMIというイメージから作成するところが、コンテナと似ている
 
-### 26-2.  コンテナ化技術
+### 27.5. 26-2.  コンテナ化技術
 
-### 26-2-1.  Docker
+### 27.6. 26-2-1.  Docker
 
 コンテナと呼ばれるOSレベルの仮想化環境を提供するオープンソースソフトウェアです。2013年にDocker社が公開。
 
@@ -3375,33 +3860,33 @@ SoundCloudが中心になって開発しているプル型のリソース監視�
 
 イメージからコンテナ、コンテナからイメージを作れる。イメージは0から作ることは稀で、Docker Hubという公式が運営するDockerレジストリで取得可能。基本は1コンテナ＝1アプリ。
 
-[https://www.docker.com/](https://www.docker.com/)
+https://www.docker.com/
 
-[https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1
 
-### 26-2-2.  Kubernetes (k8s)
+### 27.7. 26-2-2.  Kubernetes (k8s)
 
 コンテナ化したアプリケーションのデプロイ、スケーリング、および管理を行うための、コンテナオーケストレーションシステムです。Docker等で構築されたコンテナの管理を行うことができます。
 
 2014年にGoogleによって初めて公開され、その後、Cloud Native Computing Foundation に引き継がれ、オープンソースとして開発・運用がなされている。Googleが開発したのでGOで書かれている。Kubernetes とはギリシャ語で操縦者や統治者を意味する。
 
-[https://kubernetes.io/ja/](https://kubernetes.io/ja/)
+https://kubernetes.io/ja/
 
-[https://en.wikipedia.org/wiki/Kubernetes](https://en.wikipedia.org/wiki/Kubernetes)
+https://en.wikipedia.org/wiki/Kubernetes
 
-[https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1](https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1)
+https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1
 
-### 26-2-3.  Micro Kubernetes (Micro k8s)
+### 27.8. 26-2-3.  Micro Kubernetes (Micro k8s)
 
 ローオペ（低運用コスト）、ミニマムプロダクションのKubernetes。開発者、クラウド、クラスター、ワークステーション、エッジ、IoT向け。Canonical社が開発。
 
 MicroK8sは、Kubernetesのデータストアに最適なノードを自動的に選択します。クラスタのデータベースノードを失っても、別のノードが昇格します。防弾エッジに管理者は必要ありません。
 
-[https://microk8s.io/](https://microk8s.io/)
+https://microk8s.io/
 
-[https://qiita.com/ynott/items/89941c36c606a8384028](https://qiita.com/ynott/items/89941c36c606a8384028)
+https://qiita.com/ynott/items/89941c36c606a8384028
 
-### 26-2-4.  Lightweight Kubernetes (k3s)
+### 27.9. 26-2-4.  Lightweight Kubernetes (k3s)
 
 IoTとエッジコンピューティングのために作られた認定Kubernetesディストリビューション。Rancher Labs社が開発。
 
@@ -3409,13 +3894,13 @@ IoTとエッジコンピューティングのために作られた認定Kubernet
 
 10文字でなるKubernetesの「半分の大きさ」のもの、という意味で5文字のものとなり、それを表現する際に、間の3文字を数字に変えて、k3s となった。
 
-[https://k3s.io/](https://k3s.io/)
+https://k3s.io/
 
-[https://github.com/k3s-io/k3s](https://github.com/k3s-io/k3s)
+https://github.com/k3s-io/k3s
 
-[https://qiita.com/ynott/items/89941c36c606a8384028](https://qiita.com/ynott/items/89941c36c606a8384028)
+https://qiita.com/ynott/items/89941c36c606a8384028
 
-## 27.  IaC (Infrastructure as Code / 構成管理ツール)
+## 28.  IaC (Infrastructure as Code / 構成管理ツール)
 
 あらかじめ設定ファイルを作成することで、それを元にミドルウェアやリソースの配置を行う技術です。一つ設定ファイルを作っておけば、同様の環境を複数立ち上げることができます。
 
@@ -3426,88 +3911,88 @@ IoTとエッジコンピューティングのために作られた認定Kubernet
 
 こんな悲劇を未然に防ぐのが構成管理ツールです。
 
-[https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3](https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3)
+https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3
 
-[https://qiita.com/pottava/items/5b386a952bf1d26ea387](https://qiita.com/pottava/items/5b386a952bf1d26ea387)
+https://qiita.com/pottava/items/5b386a952bf1d26ea387
 
-### 27-1.  Terraform
+### 28.1. 27-1.  Terraform
 
-クラウド上のリソース(AWSのインスタンス等々)を定義ファイルに沿った形になるように生成・配置してくれるツールです。構築手順を書くのではなく、完成系を定義ファイルに宣言することで、その構成にしてくれます。[https://www.terraform.io/](https://www.terraform.io/)
+クラウド上のリソース(AWSのインスタンス等々)を定義ファイルに沿った形になるように生成・配置してくれるツールです。構築手順を書くのではなく、完成系を定義ファイルに宣言することで、その構成にしてくれます。https://www.terraform.io/
 
-### 27-2.  Ansible
+### 28.2. 27-2.  Ansible
 
-レッドハットが開発するオープンソースの構成管理ツールです。あらかじめ用意した設定ファイルに従って、ソフトウェアのインストールや設定を自動的に実行する事が出来ます。Pythonで作成されています。エージェントレス(設定先サーバーにエージェントを入れる必要がない)なことが特徴です。[https://github.com/ansible/ansible](https://github.com/ansible/ansible)
+レッドハットが開発するオープンソースの構成管理ツールです。あらかじめ用意した設定ファイルに従って、ソフトウェアのインストールや設定を自動的に実行する事が出来ます。Pythonで作成されています。エージェントレス(設定先サーバーにエージェントを入れる必要がない)なことが特徴です。https://github.com/ansible/ansible
 
-### 27-3.  Chef
+### 28.3. 27-3.  Chef
 
-Ruby、Erlangで記述された構成管理ツールです。Ansibleとは異なり、設定先サーバーにエージェントを入れる必要があります。Rubyで記述するため、Rubyが好きな方にはぴったりです。[https://github.com/chef/chef](https://github.com/chef/chef)
+Ruby、Erlangで記述された構成管理ツールです。Ansibleとは異なり、設定先サーバーにエージェントを入れる必要があります。Rubyで記述するため、Rubyが好きな方にはぴったりです。https://github.com/chef/chef
 
-## 28.  Security
+## 29.  Security
 
 リスクの種類とその対策についてメモ
 
-### 28-1.  様々なセキュリティリスク
+### 29.1. 28-1.  様々なセキュリティリスク
 
-### 28-1-1.  Password Cracking
+### 29.2. 28-1-1.  Password Cracking
 
 よく使われる文字列を試す辞書攻撃と、手当たり次第に試すブルートフォース攻撃などがある。ブラウザが推奨するパスワードで入力させるような工夫が求められる
 
-### 28-1-2.  DOS (Denial of Service) 攻撃
+### 29.3. 28-1-2.  DOS (Denial of Service) 攻撃
 
 SYNパケットを送りまくることでサーバーを接続待ち状態にさせることで別のユーザーが繋げなくするSYN flood攻撃や、リクエストしまくることでサーバー負荷を障害レベルまであげるF5攻撃がある。（F5は画面リロードなので）
 
-### 28-1-3.  DDOS (Distributed DOS) 攻撃
+### 29.4. 28-1-3.  DDOS (Distributed DOS) 攻撃
 
 単一ではない大量のクライアントからのDOS攻撃。Amazonなど防御システムを提供している
 
-### 28-1-4.  Session Hijacking（セッションハイジャック）
+### 29.5. 28-1-4.  Session Hijacking（セッションハイジャック）
 
 CookieやセッションIDからログイン情報などを盗まれる。急に異なるIPアドレスからのリクエストを察知する必要あり
 
-### 28-1-5.  Directory Traversal（ディレクトリトラバーサル）
+### 29.6. 28-1-5.  Directory Traversal（ディレクトリトラバーサル）
 
 WEBで公開されてないディレクトリに侵入し、WEBサーバー自体のログイン情報を盗む。リクエストに対するURLのチェックが必要
 
-### 28-1-6.  XSS (Cross Site Scripting)
+### 29.7. 28-1-6.  XSS (Cross Site Scripting)
 
 攻撃者がリンクを用意。これを踏むとクライアントサイドスクリプトが実行され、cookieやセッションIDが盗まれたり、ウィルスがダウンロードされたりする
 
-### 28-1-7.  CSRF (Cross Site Request Forgeries)
+### 29.8. 28-1-7.  CSRF (Cross Site Request Forgeries)
 
 通称、シーサーフともいう。XSSと同じだが、目的はなりすましログイン
 
-### 28-1-8.  SQL Injection
+### 29.9. 28-1-8.  SQL Injection
 
 DBサーバーに送るクエリに悪意あるクエリを混ぜる
 
-### 28-2.  Security Policy
+### 29.10. 28-2.  Security Policy
 
-### 28-2-1.  Same-Origin Policy
+### 29.11. 28-2-1.  Same-Origin Policy
 
 様々なポリシーがあるが、Web セキュリティの重要なポリシーの一つに、Same-Origin Policy (同一オリジンポリシー)があります。これは、オリジン間のリソース共有に制限をかけるもので、上述のXSSやCSRFのような脆弱性を防ぐことを目的としたものです。
 
-### 28-2-2.  CORS (Cross-Origin Resource Sharing)
+### 29.12. 28-2-2.  CORS (Cross-Origin Resource Sharing)
 
 読み方: コルス or シーオーアールエス。「オリジン間リソース共有」。オリジンとは、
 
-> [https://yahoo.co.jp:443](https://yahoo.co.jp/)
+> https://yahoo.co.jp/
 
 のようなドメインに、プロトコルとポート番号がついたもののこと（URLとだいたい同じ）。CORS とは、あるオリジンで動いている Web アプリケーションに対して、別のオリジンのサーバーへのアクセスをオリジン間 HTTP リクエストによって許可できる仕組みのこと
 
-[https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
-[https://qiita.com/att55/items/2154a8aad8bf1409db2b](https://qiita.com/att55/items/2154a8aad8bf1409db2b)
+https://qiita.com/att55/items/2154a8aad8bf1409db2b
 
-[https://zenn.dev/kkeeth/scraps/dd30ae9d48f092](https://zenn.dev/kkeeth/scraps/dd30ae9d48f092)
+https://zenn.dev/kkeeth/scraps/dd30ae9d48f092
 
-### 28-3.  WAF (Web Application Firewall)
+### 29.13. 28-3.  WAF (Web Application Firewall)
 
 一般的に高機能だが高い。後述するIDSやIPSは中身をチェックするわけではないので、一見正常に見える攻撃は防げない。そこでWAFが必要になる。
 
 - ブラックリスト型
 - ホワイトリスト型
 
-### 28-4.  不正アクセスを防ぐ仕組み
+### 29.14. 28-4.  不正アクセスを防ぐ仕組み
 
 ファイアウォールで防ぎきれない攻撃を防ぐ手段としてIDSとIPSがある。通信を監視するネットワーク型とサーバー上のユーザーの動きを監視するホスト型がある。ネットワーク型だと
 
@@ -3519,21 +4004,21 @@ DBサーバーに送るクエリに悪意あるクエリを混ぜる
 - Signature型（不正検知型）：　データベースに登録された既知の攻撃と照らし合わせる。SYN flood攻撃などを特定できる
 - Anomaly型（異常検知型）：　通常を定義して外れる異常なものを検知する。F5攻撃を特定できる
 
-### 28-5.  公開鍵証明書
+### 29.15. 28-5.  公開鍵証明書
 
 WEBの世界の身分証明書。
 
 - SSL証明書：　認証局が発行する。発行費や時間がかかる
 - オレオレ証明書：　自己証明書。自らが発行するため費用や時間はかからないが、暗号化通信は可能。ブラウザ側で警告が出る
 
-### 28-6.  Authentication（認証）
+### 29.16. 28-6.  Authentication（認証）
 
 本人確認処理のこと。元々は各サイトで実装していたが、GoogleやFacebookなどが開発した認証を使うようになってきた。
 
 - 認証API方式：　Googleなど各社が提供するAPIに個別に合わせる方法
 - OPEN ID方式：　個別の認証処理を標準化したプロトコル。同じ手順で複数の認証処理が使える
 
-### 28-6-1.  Open ID
+### 29.17. 28-6-1.  Open ID
 
 Open IDの処理は下記
 
@@ -3544,25 +4029,25 @@ Open IDの処理は下記
 5. Open IDサイトからWEBアプリへ認証完了通知
 6. WEBアプリからユーザーにログイン成功を通知
 
-[https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b](https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b)
+https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b
 
-### 28-7.  Authorization（認可）
+### 29.18. 28-7.  Authorization（認可）
 
 サービスをまたいだ機能の利用
 
-[https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b](https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b)
+https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b
 
-### 28-7-1.  OAuth
+### 29.19. 28-7-1.  OAuth
 
 オーオースと読む。（オースじゃないよ）
 
 サイトを跨いだ認可を実現するために標準化されたプロトコル。認可のみで認証は行わない。利用したいサービスをリソース、サービスを提供するサーバーはリソースサーバー、ユーザーをリソースオーナー、認可を受けてリソースを使うアプリなどをクライアントと言う。リソースの使用時は合言葉（トークン）を使う
 
-### 28-7-2.  Open ID Connect
+### 29.20. 28-7-2.  Open ID Connect
 
 OAuth2.0をベースに認証機能を追加したプロトコル。
 
-### 28-7-3.  JWT (JSON Web Tokens)
+### 29.21. 28-7-3.  JWT (JSON Web Tokens)
 
 JSON Web Token (JWT) はオープンスタンダード (RFC 7519) で、当事者間で情報を JSON オブジェクトとして安全に送信するための、コンパクトで自己完結的な方法のこと。このやりとりされる情報は、デジタル署名されているため、検証および信頼することができます。JWTは、秘密鍵（HMAC アルゴリズムを使用）、またはRSAやECDSAを使用した公開鍵/秘密鍵ペアを用いて署名することができます。
 
@@ -3570,29 +4055,29 @@ JSON Web Token (JWT) はオープンスタンダード (RFC 7519) で、当事�
 
 あまり深堀りしません。。セキュリティは事前に学習するにしては、どうしても意識が高まりにくいですね。
 
-[https://jwt.io/introduction](https://jwt.io/introduction)
+https://jwt.io/introduction
 
-[https://qiita.com/Naoto9282/items/8427918564400968bd2b](https://qiita.com/Naoto9282/items/8427918564400968bd2b)
+https://qiita.com/Naoto9282/items/8427918564400968bd2b
 
-### 28-7-4.  Auth0
+### 29.22. 28-7-4.  Auth0
 
 クラウドにもオンプレミスでも、あらゆるアプリ、APIに柔軟に対応可能な次世代型の認証基盤サービスです。世界での導入実績は10,000社を越え、毎月40億回以上のセキュアなログインを支えています。Auth0, Inc. が開発。
 
-Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心に創業した会社で、Washington州Bellevueに本社があります。創業メンバーはEugenio Pace(CEO), Matias Woloski(CTO)　などMicrosoftに在籍していたメンバーのほか、Node.jsの認証フレームワークである"Passport"の開発者であった Jered Hanson, AT&T, [Amazon.com](http://amazon.com/), 国防総省での勤務経験のある Eugen Koganも創業メンバーです。
+Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心に創業した会社で、Washington州Bellevueに本社があります。創業メンバーはEugenio Pace(CEO), Matias Woloski(CTO)　などMicrosoftに在籍していたメンバーのほか、Node.jsの認証フレームワークである"Passport"の開発者であった Jered Hanson, AT&T, Amazon.com, 国防総省での勤務経験のある Eugen Koganも創業メンバーです。
 
 ![Untitled](%E3%80%90%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91WEB%E3%82%A2%E3%83%95%E3%82%9A%E3%83%AA%E9%96%8B%E7%99%BA%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%9F%BA%E7%A4%8E%EF%BD%9E%E6%9C%80%E6%96%B0%EF%BC%882021%E5%B9%B49%E6%9C%88%EF%BC%89%2037d1d1f02b5e4cf0b2eb0df603ae414d/Untitled%2038.png)
 
-[https://auth0.com/](https://auth0.com/)
+https://auth0.com/
 
-[https://classmethod.jp/partner/auth0/](https://classmethod.jp/partner/auth0/)
+https://classmethod.jp/partner/auth0/
 
-[https://qiita.com/furuth/items/68c3caa3127cbf4f6b77](https://qiita.com/furuth/items/68c3caa3127cbf4f6b77)
+https://qiita.com/furuth/items/68c3caa3127cbf4f6b77
 
-### 28-8.  脆弱性診断
+### 29.23. 28-8.  脆弱性診断
 
 ペネトレーションテスト。ツールやセキュリティ企業への依頼など方法がある。
 
-## 29.  Log運用
+## 30.  Log運用
 
 ログは重要。ログにも種類がある
 
@@ -3605,7 +4090,7 @@ Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心
 - ログローテーション：　ログファイルの切り替え間隔など
 - アクセスログ解析：　ApacheLogViewerやVisitorsなどのソフトもある
 
-## 30.  Performance
+## 31.  Performance
 
 指標は色々。非常に重要、むしろかなり重要なんですが、軽く。
 
@@ -3614,31 +4099,31 @@ Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心
 - ページ読み込み時間：　ページの読み込み開始から完了までの時間
 - 可用性：　エラーなくWEBサイトにアクセスできた確率
 
-### 30-1. Performance 計測ツール
+### 31.1. 30-1. Performance 計測ツール
 
-### 30-1-1. Google Lighthouse
+### 31.2. 30-1-1. Google Lighthouse
 
 Webページの品質を測定するためのオープンソースの自動化ツール。
 
 公開されているかどうかに関わらず、認証を必要とするあらゆるウェブページに対して実行することができます。Webページのパフォーマンス、アクセシビリティ、検索エンジン最適化を監査します。
 
-[https://developers.google.com/web/tools/lighthouse](https://developers.google.com/web/tools/lighthouse)
+https://developers.google.com/web/tools/lighthouse
 
-## 31.  Text Editor
+## 32.  Text Editor
 
 ついでにこちらも扱っておきます。意外とこういうところで無駄に時間を使って調べたりする人も多いと思います（かくゆう私も・・・）
 
-### 31-1.  VSCode (Visual Studio Code)
+### 32.1. 31-1.  VSCode (Visual Studio Code)
 
 エディターで悩むなら、これ使っておくべし。Microsoftのエディターで、どの調査でもだいたい1位である。拡張機能やプラグインが豊富。前述の Prettier Code Formatter など。
 
 VSCode自体の主な開発言語は、TypeScript、JavaScript、CSS。Wikiから引用したところによると、2016年のStack Overflowによる調査では、Visual Studio Codeは、13番目に人気のある開発ツールで、46,613人のうち、7.2%がこれを使っていた[19]。しかしながら、2019年の調査では、Visual Studio Codeは1位に位置し、87,317人の開発者のうち、50.7%がこれを使っていた。これは2021年も変わらないトレンドである。
 
-[https://ja.wikipedia.org/wiki/Visual_Studio_Code](https://ja.wikipedia.org/wiki/Visual_Studio_Code)
+https://ja.wikipedia.org/wiki/Visual_Studio_Code
 
-[https://qiita.com/kumapo0313/items/a59df3d74a7eaaaf3137](https://qiita.com/kumapo0313/items/a59df3d74a7eaaaf3137)
+https://qiita.com/kumapo0313/items/a59df3d74a7eaaaf3137
 
-### 31-1-1.  VSCode Extensions
+### 32.2. 31-1-1.  VSCode Extensions
 
 数多くのブログやYouTubeでまとめられていますので、そちらを基本は見て、がしがし入れていくとよいでしょう。
 
@@ -3656,19 +4141,19 @@ VSCode自体の主な開発言語は、TypeScript、JavaScript、CSS。Wikiか�
 - Code Spell Checker：　スペルミスがあったときに警告が表示されます
 - VSCode Icon：　ファイルの拡張子に応じて、さまざまなファイルタイプを美しく視覚的に表現してくれる
 
-[https://codeforgeek.com/best-visual-studio-code-extensions-web-development/](https://codeforgeek.com/best-visual-studio-code-extensions-web-development/)
+https://codeforgeek.com/best-visual-studio-code-extensions-web-development/
 
-[https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development](https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development)
+https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development
 
-[https://towardsdatascience.com/20-best-vs-code-extensions-for-productive-web-development-in-2020-95bf904ceb69](https://towardsdatascience.com/20-best-vs-code-extensions-for-productive-web-development-in-2020-95bf904ceb69)
+https://towardsdatascience.com/20-best-vs-code-extensions-for-productive-web-development-in-2020-95bf904ceb69
 
-### 31-2.  Atom
+### 32.3. 31-2.  Atom
 
 GitHubが開発したオープンソースのテキストエディタ。MicrosoftはGitHubの親会社でもあるので、VSCodeとは兄弟的な関係になった。開発言語は、C++ / Node.js / CoffeeScript / JS / CSS / HTML。Electronを使用したデスクトップアプリケーションである。
 
 [https://ja.wikipedia.org/wiki/Atom_(テキストエディタ)](https://ja.wikipedia.org/wiki/Atom_(%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF))
 
-### 31-2.  Eclipse IDE
+### 32.4. 31-2.  Eclipse IDE
 
 Eclipse Foundation が提供する統合開発環境。
 
@@ -3676,19 +4161,19 @@ Eclipse Foundation が提供する統合開発環境。
 
 [https://ja.wikipedia.org/wiki/Eclipse_(統合開発環境)](https://ja.wikipedia.org/wiki/Eclipse_(%E7%B5%B1%E5%90%88%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83))
 
-[https://www.eclipse.org/](https://www.eclipse.org/)
+https://www.eclipse.org/
 
-### 31-3.  Web Storm
+### 32.5. 31-3.  Web Storm
 
 JetBrains 社製の有料のIDE。
 
 WebStormは、JavaScriptとその関連技術のための統合開発環境です。他のJetBrainsのIDEと同様に、ルーチンワークを自動化し、複雑なタスクを簡単に処理できるようにすることで、開発体験をより楽しいものにします。
 
-[https://www.jetbrains.com/webstorm/](https://www.jetbrains.com/webstorm/)
+https://www.jetbrains.com/webstorm/
 
-[https://ics.media/entry/11642/](https://ics.media/entry/11642/)
+https://ics.media/entry/11642/
 
-## 32.  まとめ
+## 33.  まとめ
 
 自分や仲間用にまとめていたら、たいそうなボリュームになってしまいました。ここまで読んで、すべて知っていた人もなかなか少ないのではないでしょうか？私は正直、ほとんど知りませんでした。
 
