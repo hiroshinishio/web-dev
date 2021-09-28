@@ -1462,7 +1462,9 @@ Runtimeは実行環境。サーバーサイドもJavaScriptでやる利点は、
 
 #### 8.4.1. Node.js
 
-ブラウザの外で動くJS環境。Node.jsは、V8エンジン上で動作し、Webブラウザの外でJavaScriptコードを実行する、オープンソースでクロスプラットフォームのバックエンドJavaScript実行環境です。Node.jsは、開発者がJavaScriptを使ってコマンドラインツールを書いたり、サーバーサイドスクリプティングを行うことを可能にします。C、C++、JavaScriptで書かれており、2009年にリリースされました。イベント駆動型でノンブロッキングI/Oである。
+ブラウザの外で動くJS環境。Node.jsは、V8エンジン上で動作し、Webブラウザの外でJavaScriptコードを実行する、オープンソースでクロスプラットフォームのバックエンドJavaScript実行環境です。サーバーも該当するが、ブラウザ外ならばローカルでもよい。
+
+Node.jsは、開発者がJavaScriptを使ってコマンドラインツールを書いたり、サーバーサイドスクリプティングを行うことを可能にします。C、C++、JavaScriptで書かれており、2009年にリリースされました。イベント駆動型でノンブロッキングI/Oである。
 
 ちなみに、Node.js REPL (Read-Evaluate-Print-Loop) とは、Nodeの対話インタプリタのこと。
 
@@ -3624,7 +3626,7 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 
 ### 25.1. Firebase
 
-2011年設立。米有力VCのYCombinator卒業。2014年にGoogleが買収。以降、Googleが管理・開発しているBaaS（Backend as a service）。
+2011年設立。米有力VCのYCombinator卒業。2014年にGoogleが買収。以降、Googleが管理・開発しているBaaS（Backend as a service）。なので、がっつりGoogleがバックにサポートしたサービスになってます。Spark Planが無料プラン。
 
 対応言語：Node.js, C++. Kotlin, Java, Object-C, Swift。モバイルアプリ開発に使われることも多いので、mBaaS(mobile backend as a Service)と呼ばれたりもします。例えばNuxt.jsを利用して開発したSPAをインターネット上で配信する際にバックエンドで必要となる機能は、大きく分けて下記の点。
 
