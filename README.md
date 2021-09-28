@@ -444,7 +444,7 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
 - [28. IaC (Infrastructure as Code)](#28-iac-infrastructure-as-code)
   - [28.1. Terraform](#281-terraform)
   - [28.2. Ansible](#282-ansible)
-  - [28.3. 27-3.  Chef](#283-27-3--chef)
+  - [28.3. Chef](#283-chef)
 - [29. Security](#29-security)
   - [29.1. Security Risks](#291-security-risks)
     - [29.1.1. Password Cracking](#2911-password-cracking)
@@ -3624,10 +3624,14 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 
 ### 25.1. Firebase
 
-Googleが管理・開発しているBaaS（Backend as a service）。対応言語：Node.js, C++. Kotlin, Java, Object-C, Swift。モバイルアプリ開発に使われることも多いので、mBaaS(mobile backend as a Service)と呼ばれたりもします。例えばNuxt.jsを利用して開発したSPAをインターネット上で配信する際にバックエンドで必要となる機能は、大きく分けて下記の点。
+2011年設立。米有力VCのYCombinator卒業。2014年にGoogleが買収。以降、Googleが管理・開発しているBaaS（Backend as a service）。
+
+対応言語：Node.js, C++. Kotlin, Java, Object-C, Swift。モバイルアプリ開発に使われることも多いので、mBaaS(mobile backend as a Service)と呼ばれたりもします。例えばNuxt.jsを利用して開発したSPAをインターネット上で配信する際にバックエンドで必要となる機能は、大きく分けて下記の点。
 
 ![Firebaseのイメージ](2021-09-27-23-09-55.png)
 
+<https://firebase.google.com/>
+<https://www.ycombinator.com/companies/firebase>
 <https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&psc=1>
 <https://zenn.dev/razokulover/scraps/94844e54e519ed>
 <https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0>
@@ -3680,8 +3684,10 @@ Salesforceが買収した、PaaS(Platform as a Service)です。ユーザーの�
 
 ### 25.5. Supabase
 
-オープンソースFirebaseの代替。2分以内にバックエンドを作成できます。Postgresデータベース、認証、インスタントAPI、リアルタイムサブスクリプション、ストレージを備えたプロジェクトを開始できます。
+同じくYC卒業。オープンソースFirebaseの代替。2分以内にバックエンドを作成できます。Postgresデータベース、認証、インスタントAPI、リアルタイムサブスクリプション、ストレージを備えたプロジェクトを開始できます。
+
 <https://supabase.io/>
+<https://techcrunch.com/2020/12/15/supabase-raises-6m-for-its-open-source-firebase-alternative/>
 
 ### 25.6. Gatsby Cloud
 
@@ -3861,7 +3867,7 @@ HashiCorp社が提供するオープンソース。クラウド上のリソー�
 
 <https://github.com/ansible/ansible>
 
-### 28.3. 27-3.  Chef
+### 28.3. Chef
 
 Ruby、Erlangで記述された構成管理ツールです。Ansibleとは異なり、設定先サーバーにエージェントを入れる必要があります。Rubyで記述するため、Rubyが好きな方にはぴったりです。<https://github.com/chef/chef>
 
