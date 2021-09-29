@@ -317,176 +317,181 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
     - [16.1.5. Other CI/CD](#1615-other-cicd)
   - [16.2. DevOps (Software Development and IT Operations)](#162-devops-software-development-and-it-operations)
   - [16.3. SRE (Site Reliability Engineering)](#163-sre-site-reliability-engineering)
-- [17. Static Code Analysis](#17-static-code-analysis)
-  - [17.1. Coding Standards for C](#171-coding-standards-for-c)
-    - [17.1.1. MISRA-C](#1711-misra-c)
-    - [17.1.2. CERT-C](#1712-cert-c)
-    - [17.1.3. Coding Standards for JS](#1713-coding-standards-for-js)
-- [18. Code Formatter](#18-code-formatter)
-  - [18.1. Code Formatter のサービス例](#181-code-formatter-のサービス例)
-    - [18.1.1. Prettier (for JS)](#1811-prettier-for-js)
-    - [18.1.2. autopep8 (for Python)](#1812-autopep8-for-python)
-    - [18.1.3. Black (for Python)](#1813-black-for-python)
-    - [18.1.4. isort (for Python)](#1814-isort-for-python)
-    - [18.1.5. YAPF (for Python)](#1815-yapf-for-python)
-- [19.  Code Linter](#19--code-linter)
-  - [19.1. Code Linter for JS](#191-code-linter-for-js)
-    - [19.1.1. ESLint](#1911-eslint)
-    - [19.1.2. JSHint](#1912-jshint)
-    - [19.1.3. JSLint](#1913-jslint)
-  - [19.2. Code Linter for CSS](#192-code-linter-for-css)
-    - [19.2.1. Stylelint](#1921-stylelint)
-  - [19.3. Code Linter for Java](#193-code-linter-for-java)
-    - [19.3.1. SpotBugs](#1931-spotbugs)
-  - [19.4. Code Linter for Multi-Languages](#194-code-linter-for-multi-languages)
-    - [19.4.1. Coverity](#1941-coverity)
-- [20. Test Frameworks](#20-test-frameworks)
-  - [20.1. Test Frameworks for JS](#201-test-frameworks-for-js)
-    - [20.1.1. Jest](#2011-jest)
-    - [20.1.2. Mocha](#2012-mocha)
-    - [20.1.3. Selenium](#2013-selenium)
-- [21. Development Methods](#21-development-methods)
-  - [21.1. Waterfall](#211-waterfall)
-  - [21.2. Prototype](#212-prototype)
-  - [21.3. Agile](#213-agile)
-  - [21.4. Spiral](#214-spiral)
-  - [21.5. Other Development Methods](#215-other-development-methods)
-    - [21.5.1. DRY (Don’t Repeat Your Self)](#2151-dry-dont-repeat-your-self)
-    - [21.5.2. OAOO (Once And Only Once)](#2152-oaoo-once-and-only-once)
-    - [21.5.3. SOLID](#2153-solid)
-    - [21.5.4. KISS (Keep It Simple, Stupid)](#2154-kiss-keep-it-simple-stupid)
-    - [21.5.5. YAGNI (You Aren't Going to Need it.)](#2155-yagni-you-arent-going-to-need-it)
-- [22. Agile Development Practices](#22-agile-development-practices)
-  - [22.1. TDD (Test Driven Development)](#221-tdd-test-driven-development)
-  - [22.2. BDD (Behavior Driven Development)](#222-bdd-behavior-driven-development)
-    - [22.2.1. BDD Tools and Frameworks](#2221-bdd-tools-and-frameworks)
-  - [22.3. DDD (Domain Driven Design)](#223-ddd-domain-driven-design)
-  - [22.4. ATDD (Acceptance Test Driven Development)](#224-atdd-acceptance-test-driven-development)
-    - [22.4.1. ATDD Tools and Frameworks](#2241-atdd-tools-and-frameworks)
-  - [22.5. ADD (Attribute Driven Design)](#225-add-attribute-driven-design)
-  - [22.6. FDD (Feature Driven Development)](#226-fdd-feature-driven-development)
-  - [22.7. MDD (Model Driven Development)](#227-mdd-model-driven-development)
-  - [22.8. UCDD (Use Case Driven Development)](#228-ucdd-use-case-driven-development)
-  - [22.9. PDD (Proof Driven Development)](#229-pdd-proof-driven-development)
-- [23. Testing Pyramid](#23-testing-pyramid)
-  - [23.1. Unit Test](#231-unit-test)
-    - [23.1.1. White-Box Testing](#2311-white-box-testing)
-    - [23.1.2. Automated Testing](#2312-automated-testing)
-    - [23.1.3. Coding Coverage](#2313-coding-coverage)
-  - [23.2. Integration Test](#232-integration-test)
-  - [23.3. E2E Test (End to End Test)](#233-e2e-test-end-to-end-test)
-    - [23.3.1. Black-Box Testing](#2331-black-box-testing)
-    - [23.3.2. E2E Test Frameworks](#2332-e2e-test-frameworks)
-    - [23.3.3. E2E Test の不安定さ](#2333-e2e-test-の不安定さ)
-  - [23.4. Feedback Cycle](#234-feedback-cycle)
-- [24. Infrastructure](#24-infrastructure)
-  - [24.1. AWS Service](#241-aws-service)
-  - [24.2. AWSの各種用語](#242-awsの各種用語)
-    - [24.2.1. VPC (Virtual Private Cloud)](#2421-vpc-virtual-private-cloud)
-    - [24.2.2. Internet Gateway](#2422-internet-gateway)
-    - [24.2.3. Virtual Private Gateway](#2423-virtual-private-gateway)
-    - [24.2.4. NAT Gateway (a Network Address Translation Gateway)](#2424-nat-gateway-a-network-address-translation-gateway)
-    - [24.2.5. Subnet](#2425-subnet)
-    - [24.2.6. Route Table](#2426-route-table)
-    - [24.2.7. Amazon Route 53](#2427-amazon-route-53)
-    - [24.2.8. Amazon S3 (Amazon Simple Storage Service)](#2428-amazon-s3-amazon-simple-storage-service)
-    - [24.2.9. Amazon EFS (Amazon Elastic File System)](#2429-amazon-efs-amazon-elastic-file-system)
-    - [24.2.10. Amazon EBS (Amazon Elastic Block Store)](#24210-amazon-ebs-amazon-elastic-block-store)
-    - [24.2.11. Amazon ECS (Amazon Elastic Container Service)](#24211-amazon-ecs-amazon-elastic-container-service)
-    - [24.2.12. Amazon ElastiCache](#24212-amazon-elasticache)
-    - [24.2.13. Amazon DynamoDB](#24213-amazon-dynamodb)
-    - [24.2.14. Amazon API Gateway](#24214-amazon-api-gateway)
-    - [24.2.15. AWS Lambda](#24215-aws-lambda)
-    - [24.2.16. Amazon CloudFront](#24216-amazon-cloudfront)
-    - [24.2.17. AWS Certificate Manager](#24217-aws-certificate-manager)
-    - [24.2.18. Amazon Cognito](#24218-amazon-cognito)
-    - [24.2.19. AWS Fargate](#24219-aws-fargate)
-    - [24.2.20. Amazon Aurora](#24220-amazon-aurora)
-    - [24.2.21. Amazon Kinesis Data Firehose](#24221-amazon-kinesis-data-firehose)
-  - [24.3. Managed Services](#243-managed-services)
-  - [24.4. Load Balancer](#244-load-balancer)
-    - [24.4.1. LBの負荷分散方法](#2441-lbの負荷分散方法)
-- [25. Serverless Hosting Service](#25-serverless-hosting-service)
-  - [25.1. Firebase](#251-firebase)
-    - [25.1.1. Firebase Hosting](#2511-firebase-hosting)
-    - [25.1.2. Firestore](#2512-firestore)
-    - [25.1.3. Firebase Authentication](#2513-firebase-authentication)
-  - [25.2. Netlify](#252-netlify)
-  - [25.3. Vercel](#253-vercel)
-  - [25.4. Heroku](#254-heroku)
-  - [25.5. Supabase](#255-supabase)
-  - [25.6. Gatsby Cloud](#256-gatsby-cloud)
-- [26. Infrastructure Monitoring](#26-infrastructure-monitoring)
-  - [26.1. Monitoring の種類](#261-monitoring-の種類)
-    - [26.1.1. 死活監視](#2611-死活監視)
-    - [26.1.2. リソース監視](#2612-リソース監視)
-    - [26.1.3. 接続監視](#2613-接続監視)
-    - [26.1.4. ログ監視](#2614-ログ監視)
-    - [26.1.5. プロセス/サービス監視](#2615-プロセスサービス監視)
-  - [26.2. 監視サービス](#262-監視サービス)
-    - [26.2.1. Amazon CloudWatch](#2621-amazon-cloudwatch)
-    - [26.2.2. Datadog](#2622-datadog)
-    - [26.2.3. Mackerel](#2623-mackerel)
-    - [26.2.4. Prometheus](#2624-prometheus)
-    - [26.2.5. Zabbix](#2625-zabbix)
-    - [26.2.6. Sentry](#2626-sentry)
-    - [26.2.7. New Relic](#2627-new-relic)
-- [27. Virtualization vs Containerization](#27-virtualization-vs-containerization)
-  - [27.1. Virtualization](#271-virtualization)
-    - [27.1.1. VirtualBox](#2711-virtualbox)
-    - [27.1.2. VMware](#2712-vmware)
-    - [27.1.3. AWS EC2](#2713-aws-ec2)
-  - [27.2. Containerization](#272-containerization)
-    - [27.2.1. Docker](#2721-docker)
-    - [27.2.2. Kubernetes (K8s)](#2722-kubernetes-k8s)
-    - [27.2.3. Micro Kubernetes (Micro K8s)](#2723-micro-kubernetes-micro-k8s)
-    - [27.2.4. Lightweight Kubernetes (K3s)](#2724-lightweight-kubernetes-k3s)
-- [28. IaC (Infrastructure as Code)](#28-iac-infrastructure-as-code)
-  - [28.1. Terraform](#281-terraform)
-  - [28.2. Ansible](#282-ansible)
-  - [28.3. Chef](#283-chef)
-- [29. Security](#29-security)
-  - [29.1. Security Risks](#291-security-risks)
-    - [29.1.1. Password Cracking](#2911-password-cracking)
-    - [29.1.2. DOS Attack (Denial of Service)](#2912-dos-attack-denial-of-service)
-    - [29.1.3. DDOS Attack (Distributed DOS)](#2913-ddos-attack-distributed-dos)
-    - [29.1.4. Session Hijacking](#2914-session-hijacking)
-    - [29.1.5. Directory Traversal](#2915-directory-traversal)
-    - [29.1.6. XSS (Cross Site Scripting)](#2916-xss-cross-site-scripting)
-    - [29.1.7. CSRF (Cross Site Request Forgeries)](#2917-csrf-cross-site-request-forgeries)
-    - [29.1.8. SQL Injection](#2918-sql-injection)
-  - [29.2. Security Policies](#292-security-policies)
-    - [29.2.1. Same-Origin Policy](#2921-same-origin-policy)
-    - [29.2.2. CORS (Cross-Origin Resource Sharing)](#2922-cors-cross-origin-resource-sharing)
-  - [29.3. WAF (Web Application Firewall)](#293-waf-web-application-firewall)
-  - [29.4. 不正アクセスを防ぐ仕組み](#294-不正アクセスを防ぐ仕組み)
-  - [29.5. PKA (Public Key Authentication)](#295-pka-public-key-authentication)
-  - [29.6. Authentication](#296-authentication)
-    - [29.6.1. Open ID](#2961-open-id)
-  - [29.7. Authorization](#297-authorization)
-    - [29.7.1. OAuth (Open Authorization)](#2971-oauth-open-authorization)
-    - [29.7.2. Open ID Connect](#2972-open-id-connect)
-    - [29.7.3. JWT (JSON Web Tokens)](#2973-jwt-json-web-tokens)
-    - [29.7.4. Auth0](#2974-auth0)
-  - [29.8. Pen Test (Penetration Testing)](#298-pen-test-penetration-testing)
-  - [29.9. Pen Test Tools](#299-pen-test-tools)
-    - [29.9.1. Kali Linux](#2991-kali-linux)
-    - [29.9.2. NMAP (Network Mapper)](#2992-nmap-network-mapper)
-    - [29.9.3. Metasploit](#2993-metasploit)
-    - [29.9.4. Wireshark](#2994-wireshark)
-    - [29.9.5. Burp Suite](#2995-burp-suite)
-    - [29.9.6. OWASP ZAP (Zed Attack Proxy)](#2996-owasp-zap-zed-attack-proxy)
-- [30. Log運用](#30-log運用)
-- [31. Performance](#31-performance)
-  - [31.1. Performance 計測ツール](#311-performance-計測ツール)
-    - [31.1.1. Google Lighthouse](#3111-google-lighthouse)
-- [32. Text Editor](#32-text-editor)
-  - [32.1. VSCode (Visual Studio Code)](#321-vscode-visual-studio-code)
-    - [32.1.1. VSCode Extensions](#3211-vscode-extensions)
-  - [32.2. Atom](#322-atom)
-  - [32.3. Eclipse IDE](#323-eclipse-ide)
-  - [32.4. Web Storm](#324-web-storm)
-- [33. まとめ](#33-まとめ)
+- [17. Text Editor](#17-text-editor)
+  - [17.1. VSCode (Visual Studio Code)](#171-vscode-visual-studio-code)
+    - [17.1.1. VSCode Extensions](#1711-vscode-extensions)
+  - [17.2. Atom](#172-atom)
+  - [17.3. Eclipse IDE](#173-eclipse-ide)
+  - [17.4. Web Storm](#174-web-storm)
+- [18. Static Code Analysis](#18-static-code-analysis)
+  - [18.1. Coding Standards for C](#181-coding-standards-for-c)
+    - [18.1.1. MISRA-C](#1811-misra-c)
+    - [18.1.2. CERT-C](#1812-cert-c)
+    - [18.1.3. Coding Standards for JS](#1813-coding-standards-for-js)
+- [19. Code Formatter](#19-code-formatter)
+  - [19.1. Code Formatter のサービス例](#191-code-formatter-のサービス例)
+    - [19.1.1. Prettier (for JS)](#1911-prettier-for-js)
+    - [19.1.2. autopep8 (for Python)](#1912-autopep8-for-python)
+    - [19.1.3. Black (for Python)](#1913-black-for-python)
+    - [19.1.4. isort (for Python)](#1914-isort-for-python)
+    - [19.1.5. YAPF (for Python)](#1915-yapf-for-python)
+- [20.  Code Linter](#20--code-linter)
+  - [20.1. Code Linter for JS](#201-code-linter-for-js)
+    - [20.1.1. ESLint](#2011-eslint)
+    - [20.1.2. JSHint](#2012-jshint)
+    - [20.1.3. JSLint](#2013-jslint)
+  - [20.2. Code Linter for CSS](#202-code-linter-for-css)
+    - [20.2.1. Stylelint](#2021-stylelint)
+  - [20.3. Code Linter for Java](#203-code-linter-for-java)
+    - [20.3.1. SpotBugs](#2031-spotbugs)
+  - [20.4. Code Linter for Multi-Languages](#204-code-linter-for-multi-languages)
+    - [20.4.1. Coverity](#2041-coverity)
+- [21. Test Frameworks](#21-test-frameworks)
+  - [21.1. Test Frameworks for JS](#211-test-frameworks-for-js)
+    - [21.1.1. Jest](#2111-jest)
+    - [21.1.2. Mocha](#2112-mocha)
+    - [21.1.3. Selenium](#2113-selenium)
+- [22. Development Methods](#22-development-methods)
+  - [22.1. Waterfall](#221-waterfall)
+  - [22.2. Prototype](#222-prototype)
+  - [22.3. Agile](#223-agile)
+  - [22.4. Spiral](#224-spiral)
+  - [22.5. Other Development Methods](#225-other-development-methods)
+    - [22.5.1. DRY (Don’t Repeat Your Self)](#2251-dry-dont-repeat-your-self)
+    - [22.5.2. OAOO (Once And Only Once)](#2252-oaoo-once-and-only-once)
+    - [22.5.3. SOLID](#2253-solid)
+    - [22.5.4. KISS (Keep It Simple, Stupid)](#2254-kiss-keep-it-simple-stupid)
+    - [22.5.5. YAGNI (You Aren't Going to Need it.)](#2255-yagni-you-arent-going-to-need-it)
+- [23. Agile Development Practices](#23-agile-development-practices)
+  - [23.1. TDD (Test Driven Development)](#231-tdd-test-driven-development)
+  - [23.2. BDD (Behavior Driven Development)](#232-bdd-behavior-driven-development)
+    - [23.2.1. BDD Tools and Frameworks](#2321-bdd-tools-and-frameworks)
+  - [23.3. DDD (Domain Driven Design)](#233-ddd-domain-driven-design)
+  - [23.4. ATDD (Acceptance Test Driven Development)](#234-atdd-acceptance-test-driven-development)
+    - [23.4.1. ATDD Tools and Frameworks](#2341-atdd-tools-and-frameworks)
+  - [23.5. ADD (Attribute Driven Design)](#235-add-attribute-driven-design)
+  - [23.6. FDD (Feature Driven Development)](#236-fdd-feature-driven-development)
+  - [23.7. MDD (Model Driven Development)](#237-mdd-model-driven-development)
+  - [23.8. UCDD (Use Case Driven Development)](#238-ucdd-use-case-driven-development)
+  - [23.9. PDD (Proof Driven Development)](#239-pdd-proof-driven-development)
+- [24. Testing Pyramid](#24-testing-pyramid)
+  - [24.1. Unit Test](#241-unit-test)
+    - [24.1.1. White-Box Testing](#2411-white-box-testing)
+    - [24.1.2. Automated Testing](#2412-automated-testing)
+    - [24.1.3. Coding Coverage](#2413-coding-coverage)
+  - [24.2. Integration Test](#242-integration-test)
+  - [24.3. E2E Test (End to End Test)](#243-e2e-test-end-to-end-test)
+    - [24.3.1. Black-Box Testing](#2431-black-box-testing)
+    - [24.3.2. E2E Test Frameworks](#2432-e2e-test-frameworks)
+    - [24.3.3. E2E Test の不安定さ](#2433-e2e-test-の不安定さ)
+  - [24.4. Feedback Cycle](#244-feedback-cycle)
+- [25. Infrastructure](#25-infrastructure)
+  - [25.1. AWS Service](#251-aws-service)
+  - [25.2. AWSの各種用語](#252-awsの各種用語)
+    - [25.2.1. VPC (Virtual Private Cloud)](#2521-vpc-virtual-private-cloud)
+    - [25.2.2. Internet Gateway](#2522-internet-gateway)
+    - [25.2.3. Virtual Private Gateway](#2523-virtual-private-gateway)
+    - [25.2.4. NAT Gateway (a Network Address Translation Gateway)](#2524-nat-gateway-a-network-address-translation-gateway)
+    - [25.2.5. Subnet](#2525-subnet)
+    - [25.2.6. Route Table](#2526-route-table)
+    - [25.2.7. Amazon Route 53](#2527-amazon-route-53)
+    - [25.2.8. Amazon S3 (Amazon Simple Storage Service)](#2528-amazon-s3-amazon-simple-storage-service)
+    - [25.2.9. Amazon EFS (Amazon Elastic File System)](#2529-amazon-efs-amazon-elastic-file-system)
+    - [25.2.10. Amazon EBS (Amazon Elastic Block Store)](#25210-amazon-ebs-amazon-elastic-block-store)
+    - [25.2.11. Amazon ECS (Amazon Elastic Container Service)](#25211-amazon-ecs-amazon-elastic-container-service)
+    - [25.2.12. Amazon ElastiCache](#25212-amazon-elasticache)
+    - [25.2.13. Amazon DynamoDB](#25213-amazon-dynamodb)
+    - [25.2.14. Amazon API Gateway](#25214-amazon-api-gateway)
+    - [25.2.15. AWS Lambda](#25215-aws-lambda)
+    - [25.2.16. Amazon CloudFront](#25216-amazon-cloudfront)
+    - [25.2.17. AWS Certificate Manager](#25217-aws-certificate-manager)
+    - [25.2.18. Amazon Cognito](#25218-amazon-cognito)
+    - [25.2.19. AWS Fargate](#25219-aws-fargate)
+    - [25.2.20. Amazon Aurora](#25220-amazon-aurora)
+    - [25.2.21. Amazon Kinesis Data Firehose](#25221-amazon-kinesis-data-firehose)
+  - [25.3. Managed Services](#253-managed-services)
+  - [25.4. Load Balancer](#254-load-balancer)
+    - [25.4.1. LBの負荷分散方法](#2541-lbの負荷分散方法)
+- [26. Serverless Hosting Service](#26-serverless-hosting-service)
+  - [26.1. Firebase](#261-firebase)
+    - [26.1.1. Firebase Hosting](#2611-firebase-hosting)
+    - [26.1.2. Firestore](#2612-firestore)
+    - [26.1.3. Firebase Authentication](#2613-firebase-authentication)
+  - [26.2. Netlify](#262-netlify)
+  - [26.3. Vercel](#263-vercel)
+  - [26.4. Heroku](#264-heroku)
+  - [26.5. Supabase](#265-supabase)
+  - [26.6. Gatsby Cloud](#266-gatsby-cloud)
+- [27. Infrastructure Monitoring](#27-infrastructure-monitoring)
+  - [27.1. Monitoring の種類](#271-monitoring-の種類)
+    - [27.1.1. 死活監視](#2711-死活監視)
+    - [27.1.2. リソース監視](#2712-リソース監視)
+    - [27.1.3. 接続監視](#2713-接続監視)
+    - [27.1.4. ログ監視](#2714-ログ監視)
+    - [27.1.5. プロセス/サービス監視](#2715-プロセスサービス監視)
+  - [27.2. 監視サービス](#272-監視サービス)
+    - [27.2.1. Amazon CloudWatch](#2721-amazon-cloudwatch)
+    - [27.2.2. Datadog](#2722-datadog)
+    - [27.2.3. Mackerel](#2723-mackerel)
+    - [27.2.4. Prometheus](#2724-prometheus)
+    - [27.2.5. Zabbix](#2725-zabbix)
+    - [27.2.6. Sentry](#2726-sentry)
+    - [27.2.7. New Relic](#2727-new-relic)
+- [28. Virtualization vs Containerization](#28-virtualization-vs-containerization)
+  - [28.1. Virtualization](#281-virtualization)
+    - [28.1.1. VirtualBox](#2811-virtualbox)
+    - [28.1.2. VMware](#2812-vmware)
+    - [28.1.3. AWS EC2](#2813-aws-ec2)
+  - [28.2. Containerization](#282-containerization)
+    - [28.2.1. Docker](#2821-docker)
+    - [28.2.2. Kubernetes (K8s)](#2822-kubernetes-k8s)
+    - [28.2.3. Micro Kubernetes (Micro K8s)](#2823-micro-kubernetes-micro-k8s)
+    - [28.2.4. Lightweight Kubernetes (K3s)](#2824-lightweight-kubernetes-k3s)
+- [29. IaC (Infrastructure as Code)](#29-iac-infrastructure-as-code)
+  - [29.1. Terraform](#291-terraform)
+  - [29.2. Ansible](#292-ansible)
+  - [29.3. Chef](#293-chef)
+- [30. Security](#30-security)
+  - [30.1. Security Risks](#301-security-risks)
+    - [30.1.1. Password Cracking](#3011-password-cracking)
+    - [30.1.2. DOS Attack (Denial of Service)](#3012-dos-attack-denial-of-service)
+    - [30.1.3. DDOS Attack (Distributed DOS)](#3013-ddos-attack-distributed-dos)
+    - [30.1.4. Session Hijacking](#3014-session-hijacking)
+    - [30.1.5. Directory Traversal](#3015-directory-traversal)
+    - [30.1.6. XSS (Cross Site Scripting)](#3016-xss-cross-site-scripting)
+    - [30.1.7. CSRF (Cross Site Request Forgeries)](#3017-csrf-cross-site-request-forgeries)
+    - [30.1.8. SQL Injection](#3018-sql-injection)
+  - [30.2. Security Policies](#302-security-policies)
+    - [30.2.1. Same-Origin Policy](#3021-same-origin-policy)
+    - [30.2.2. CORS (Cross-Origin Resource Sharing)](#3022-cors-cross-origin-resource-sharing)
+  - [30.3. WAF (Web Application Firewall)](#303-waf-web-application-firewall)
+  - [30.4. 不正アクセスを防ぐ仕組み](#304-不正アクセスを防ぐ仕組み)
+  - [30.5. PKA (Public Key Authentication)](#305-pka-public-key-authentication)
+  - [30.6. Authentication](#306-authentication)
+    - [30.6.1. Open ID](#3061-open-id)
+  - [30.7. Authorization](#307-authorization)
+    - [30.7.1. OAuth (Open Authorization)](#3071-oauth-open-authorization)
+    - [30.7.2. Open ID Connect](#3072-open-id-connect)
+    - [30.7.3. JWT (JSON Web Tokens)](#3073-jwt-json-web-tokens)
+    - [30.7.4. Auth0](#3074-auth0)
+  - [30.8. Pen Test (Penetration Testing)](#308-pen-test-penetration-testing)
+  - [30.9. Pen Test Tools](#309-pen-test-tools)
+    - [30.9.1. Kali Linux](#3091-kali-linux)
+    - [30.9.2. NMAP (Network Mapper)](#3092-nmap-network-mapper)
+    - [30.9.3. Metasploit](#3093-metasploit)
+    - [30.9.4. Wireshark](#3094-wireshark)
+    - [30.9.5. Burp Suite](#3095-burp-suite)
+    - [30.9.6. OWASP ZAP (Zed Attack Proxy)](#3096-owasp-zap-zed-attack-proxy)
+- [31. Log運用](#31-log運用)
+- [32. Performance](#32-performance)
+  - [32.1. Performance 計測ツール](#321-performance-計測ツール)
+    - [32.1.1. Google Lighthouse](#3211-google-lighthouse)
+- [33. Payment](#33-payment)
+  - [33.1. Payment Services](#331-payment-services)
+    - [33.1.1. Stripe](#3311-stripe)
+    - [33.1.2. Square](#3312-square)
+    - [33.1.3. PayPal](#3313-paypal)
+- [34. まとめ](#34-まとめ)
 
 ## 2.  Internet
 
@@ -1416,7 +1421,7 @@ Vue.js（通称Vue、発音は/vjuː/で「ビュー」と同じ）は、UIやSP
 
 #### 8.3.3. Svelte
 
-人気急上昇中。Rich Harrisが作成。OSSとして公開されているJSコンパイラ。
+スヴェルト。人気急上昇中。Rich Harrisが作成。OSSとして公開されているJSコンパイラ。
 
 コード量が少なくて済む特徴がある。ReactやVue.jsと大きく異なる特徴として、Svelteは仮想DOMを持ちません。仮想DOMはDOMのコピー、比較、更新とだいたい3つのステップを経て画面に変更が反映されますが、これを実現するためには一定量のオーバーヘッドコード（仮想DOMの処理が含まれるコード）をビルド時にバンドルしなければなりません。
 
@@ -1466,7 +1471,7 @@ Runtimeは実行環境。サーバーサイドもJavaScriptでやる利点は、
 
 Node.jsは、開発者がJavaScriptを使ってコマンドラインツールを書いたり、サーバーサイドスクリプティングを行うことを可能にします。C、C++、JavaScriptで書かれており、2009年にリリースされました。イベント駆動型でノンブロッキングI/Oである。
 
-ちなみに、Node.js REPL (Read-Evaluate-Print-Loop) とは、Nodeの対話インタプリタのこと。
+ちなみに、Node.js REPL (Read-Evaluate-Print-Loop) とは、Nodeの対話インタプリタのこと。ローカルにインストールすると使える。
 
 <http://www.w3big.com/ja/nodejs/nodejs-repl.html>
 <https://digitalidentity.co.jp/blog/creative/javascript-nodejs.html>
@@ -2940,7 +2945,66 @@ SREチームの具体的な業務内容は「インシデント管理」「問�
 <https://www.sbbit.jp/article/cont1/48848>
 <https://codezine.jp/article/detail/11002>
 
-## 17. Static Code Analysis
+## 17. Text Editor
+
+やや閑話休題。じゃあ実際、何を使って書いていくの？ということで、エディタです。単なる書くためのツールではなく、エクステンションやアドインで後述のLintツールなども導入可能。意外とこういうところで無駄に時間を使って調べたりする人も多いと思います（かくゆう私もはまるタイプです）
+
+### 17.1. VSCode (Visual Studio Code)
+
+エディターで悩むなら、これ使っておくべし。Microsoftのエディターで、どの調査でもだいたい1位である。拡張機能やプラグインが豊富。前述の Prettier Code Formatter など。
+
+VSCode自体の主な開発言語は、TypeScript、JavaScript、CSS。Wikiから引用したところによると、2016年のStack Overflowによる調査では、Visual Studio Codeは、13番目に人気のある開発ツールで、46,613人のうち、7.2%がこれを使っていた。しかしながら、2019年の調査では、Visual Studio Codeは1位に位置し、87,317人の開発者のうち、50.7%がこれを使っていた。これは2021年も変わらないトレンドである。
+
+<https://ja.wikipedia.org/wiki/Visual_Studio_Code>
+<https://qiita.com/kumapo0313/items/a59df3d74a7eaaaf3137>
+
+#### 17.1.1. VSCode Extensions
+
+数多くのブログやYouTubeでまとめられていますので、そちらを基本は見て、がしがし入れていくとよいでしょう。
+
+- Markdownlint：　その名の通り Markdown の lint ツールです。インストールすると、よろしくない書き方をビシバシ指摘してくれます。
+- Auto Close Tag：　HTML/XML タグを書いたら、この拡張機能は面倒な作業を省き、自動的にタグを閉じてくれます
+- Auto Rename Tag：　Open/Close タグの名前を変更すると、もう一方のタグの名前も自動的に変更してくれる
+- ESLint：　後述
+- Prettier：　後述
+- Path Intellisense：　入力時にファイルパスを自動で補完してくれます
+- Bracket Pair Colorizer：　一致する括弧を色分けしてくれる
+- Git Lens
+- Debugger for Chrome
+- REST Client：　PostmanやSOAP UIのようなツールを使用しなくても、VSCode内で出来るようになる
+- JavaScript (ES6) code snippets：　同じコードを入力する手間を大幅に減らしてくれる
+- Code Spell Checker：　スペルミスがあったときに警告が表示されます
+- VSCode Icon：　ファイルの拡張子に応じて、さまざまなファイルタイプを美しく視覚的に表現してくれる
+
+<https://codeforgeek.com/best-visual-studio-code-extensions-web-development/>
+<https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development>
+<https://towardsdatascience.com/20-best-vs-code-extensions-for-productive-web-development-in-2020-95bf904ceb69>
+
+### 17.2. Atom
+
+GitHubが開発したオープンソースのテキストエディタ。MicrosoftはGitHubの親会社でもあるので、VSCodeとは兄弟的な関係になった。開発言語は、C++ / Node.js / CoffeeScript / JS / CSS / HTML。Electronを使用したデスクトップアプリケーションである。
+
+[https://ja.wikipedia.org/wiki/Atom_(テキストエディタ)](https://ja.wikipedia.org/wiki/Atom_(%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF))
+
+### 17.3. Eclipse IDE
+
+Eclipse Foundation が提供する統合開発環境。
+
+ベースとなるワークスペースと、環境をカスタマイズするための拡張可能なプラグインシステムが含まれている。Eclipseは主にJavaで書かれており、主にJavaアプリケーションの開発に使用されるが、Ada 、ABAP、C 、C ++ 、C＃ 、Clojure 、COBOL 、D、Erlang、Fortran 、Groovy 、Haskell、JavaScript、Julia、Lasso、Lua、NATURAL、Perl、PHP、Prolog、Python、R、Ruby（Ruby on Railsフレームワークを含む）、Rust、Scala、Schemeなどのプラグインを介して他のプログラミング言語のアプリケーションを開発するために使用することもできる。
+
+[https://ja.wikipedia.org/wiki/Eclipse_(統合開発環境)](https://ja.wikipedia.org/wiki/Eclipse_(%E7%B5%B1%E5%90%88%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83))
+<https://www.eclipse.org/>
+
+### 17.4. Web Storm
+
+JetBrains 社製の有料のIDE。
+
+WebStormは、JavaScriptとその関連技術のための統合開発環境です。他のJetBrainsのIDEと同様に、ルーチンワークを自動化し、複雑なタスクを簡単に処理できるようにすることで、開発体験をより楽しいものにします。
+
+<https://www.jetbrains.com/webstorm/>
+<https://ics.media/entry/11642/>
+
+## 18. Static Code Analysis
 
 静的規約チェックツール。そもそも、テストとは下記のように分類される。静的テストを特に分解するとこうなる
 
@@ -2956,16 +3020,16 @@ SREチームの具体的な業務内容は「インシデント管理」「問�
 
 独自に会社内で定義された規約もあれば、公開されているものもある
 
-### 17.1. Coding Standards for C
+### 18.1. Coding Standards for C
 
-#### 17.1.1. MISRA-C
+#### 18.1.1. MISRA-C
 
 C言語のためのコーディング・ガイドラインです。MISRA-Cは、より安全なC言語サブセット。車載機器や産業機器、医療機器といったミッションクリティカル分野の組み込みソフトウェア開発では、MISRA などのコーディング規約の遵守が求められています。
 
 <http://www.c-lang.org/detail/misra_c.html>
 <https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html>
 
-#### 17.1.2. CERT-C
+#### 18.1.2. CERT-C
 
 C言語を使ってセキュアコーディングを行うためのルール (Rule) とレコメンデーション (Recommendation) を定めています。CERT が提案しているセキュアコーディングスタンダードは、標準化団体が定める明文化された標準言語に基づく。C以外にもC++やJava用の規約も提供する。
 
@@ -2974,7 +3038,7 @@ C言語を使ってセキュアコーディングを行うためのルール (Ru
 <https://www.jpcert.or.jp/sc-rules/>
 <https://www.techmatrix.co.jp/product/ctest/staticanalysis/codingrule.html>
 
-#### 17.1.3. Coding Standards for JS
+#### 18.1.3. Coding Standards for JS
 
 - Google JavaScript Style Guide：　Googleによる、最も代表的なスタイルガイド
 - Airbnb JavaScript Style Guide：　GitHub上で最も人気のある、Airbnbのスタイルガイド
@@ -2982,7 +3046,7 @@ C言語を使ってセキュアコーディングを行うためのルール (Ru
 
 <https://qiita.com/takeharu/items/dee0972e5f39bfd4d7c8>
 
-## 18. Code Formatter
+## 19. Code Formatter
 
 コードの整形。コードフォーマッターは、WebStormやVisual Studio Codeなどのエディターにも付属していますが、これらはユーザー環境に依存する。PrettierはNode.js上で動作するため、ユーザー環境に依存することなく、プロジェクト単位でコードフォーマットを統一できます。
 
@@ -2996,27 +3060,27 @@ C言語を使ってセキュアコーディングを行うためのルール (Ru
 <https://www.digitalocean.com/community/tutorials/how-to-format-code-with-prettier-in-visual-studio-code-ja>
 <https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis>
 
-### 18.1. Code Formatter のサービス例
+### 19.1. Code Formatter のサービス例
 
-#### 18.1.1. Prettier (for JS)
+#### 19.1.1. Prettier (for JS)
 
 Node.js上で動作するコードフォーマッターです。2017年1月にリポジトリが開設されてからわずか1年で2万Starを集めており、ReactやBabel、Material-UIなど著名なプロダクトでも採用され話題になっています。
 
 <https://ics.media/entry/17030/>
 
-#### 18.1.2. autopep8 (for Python)
+#### 19.1.2. autopep8 (for Python)
 
 PEP8 コーディングスタイルに準拠した Python のコードフォーマッタ。
 
 <https://qiita.com/genbu-jp/items/c25b67c95425b733fb7d>
 
-#### 18.1.3. Black (for Python)
+#### 19.1.3. Black (for Python)
 
 Pythonのコードフォーマッター。PEP8に準拠。autopep8 や yapf などありますが、blackはより制限が強く、自由に設定ができないのが特徴。PEP8では触れられていない、改行の仕方や、シングルクォートとダブルクォートの統一、末尾カンマの統一、余計な丸括弧の削除、数値リテラルの書き方統一などをしてくれます。
 
 <https://blog.hirokiky.org/entry/2019/06/03/202745>
 
-#### 18.1.4. isort (for Python)
+#### 19.1.4. isort (for Python)
 
 Python PEP8に準拠したpackageの並びにしてくれる。具体的には、PEP8では、importは次の順序でグループ化して、なおかつ、グループの間には空行を挿入する必要がある。
 
@@ -3026,13 +3090,13 @@ Python PEP8に準拠したpackageの並びにしてくれる。具体的には�
 
 <https://dev2prod.site/python/install-isort/>
 
-#### 18.1.5. YAPF (for Python)
+#### 19.1.5. YAPF (for Python)
 
 Pythonコードフォーマッタ。Yet Another Python Formatterの略。
 
 <https://wonderwall.hatenablog.com/entry/2017/09/03/224500>
 
-## 19.  Code Linter
+## 20.  Code Linter
 
 Code Formatterとも重複する部分はあるが、Code Linterは、より良い構文、新しい機能、そして可能性のあるエラーをキャッチするために利用されるため、Code FormatterとCode Linterでそれぞれツールを入れることも多い。
 
@@ -3040,9 +3104,9 @@ Code Formatterとも重複する部分はあるが、Code Linterは、より良�
 <https://medium.com/@awesomecode/format-code-vs-and-lint-code-95613798dcb3>
 <https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis>
 
-### 19.1. Code Linter for JS
+### 20.1. Code Linter for JS
 
-#### 19.1.1. ESLint
+#### 20.1.1. ESLint
 
 恐らく最も使われている。初期リリースは 2013 年頃。 作者は Nicholas C. Zakas です。 ルールの拡張を自由に行えることが特徴で、これを Pluggable と読んでいます。
 
@@ -3051,7 +3115,7 @@ JSLint/JSHint 互換のルールも、デフォルトで Pluggable なルール�
 <https://maku77.github.io/js/tool/static-analysis-tools.html>
 <https://www.cresco.co.jp/blog/entry/11716/>
 
-#### 19.1.2. JSHint
+#### 20.1.2. JSHint
 
 初期リリースは 2011 年頃。 作者は Anton Kovalyov（アントン・コバリャノフ）で、JSLint の fork として作られました。
 
@@ -3059,32 +3123,32 @@ JSLint/JSHint 互換のルールも、デフォルトで Pluggable なルール�
 
 <https://maku77.github.io/js/tool/static-analysis-tools.html>
 
-#### 19.1.3. JSLint
+#### 20.1.3. JSLint
 
 初期リリースは 2007 年頃。 作者は Douglas Crockford で、著書に JavaScript Good Parts があり、JSON RFC4627 の仕様策定などを行っている人です。 後出の JSHint に比べると、デフォルトのチェックが厳しいです。
 
 <https://maku77.github.io/js/tool/static-analysis-tools.html>
 
-### 19.2. Code Linter for CSS
+### 20.2. Code Linter for CSS
 
-#### 19.2.1. Stylelint
+#### 20.2.1. Stylelint
 
 CSSのLinterといえば、これ。デファクトスタンダード。
 
 <https://stylelint.io/>
 <https://qiita.com/jagaapple/items/7f74fc32c69f5b731159>
 
-### 19.3. Code Linter for Java
+### 20.3. Code Linter for Java
 
-#### 19.3.1. SpotBugs
+#### 20.3.1. SpotBugs
 
 SpotBugsは、Javaプログラムの中のバグを見つけるプログラムです。このプログラムは「バグパターン」のインスタンスを探します。「バグパターン」とは、エラーとなる可能性の高いコードのインスタンスです。
 
 <https://spotbugs.readthedocs.io/ja/latest/introduction.html>
 
-### 19.4. Code Linter for Multi-Languages
+### 20.4. Code Linter for Multi-Languages
 
-#### 19.4.1. Coverity
+#### 20.4.1. Coverity
 
 シノプシス社のCoverityは、ソースコードに潜在する重大な不具合やセキュリティ脆弱性を、高精度で検出するソースコード静的解析プラットフォームです。様々な言語に対応している
 
@@ -3094,7 +3158,7 @@ SpotBugsは、Javaプログラムの中のバグを見つけるプログラム�
 
 <https://www.hitachi-solutions.co.jp/coverity/>
 
-## 20. Test Frameworks
+## 21. Test Frameworks
 
 こちらも言語ごとに色々あります。JSだと利用実績と満足度はこんな感じ。
 
@@ -3104,9 +3168,9 @@ SpotBugsは、Javaプログラムの中のバグを見つけるプログラム�
 
 <https://2020.stateofjs.com/en-US/technologies/testing/>
 
-### 20.1. Test Frameworks for JS
+### 21.1. Test Frameworks for JS
 
-#### 20.1.1. Jest
+#### 21.1.1. Jest
 
 利用実績も満足度も1位。（満足度は僅差でTesting Libraryが上だが）
 
@@ -3114,18 +3178,18 @@ SpotBugsは、Javaプログラムの中のバグを見つけるプログラム�
 
 <https://jestjs.io/ja/>
 
-#### 20.1.2. Mocha
+#### 21.1.2. Mocha
 
 Node.js 上とブラウザ上で動作する機能豊富な JavaScript テストフレームワークで、非同期テストを簡単かつ楽しく行うことができます。Mochaのテストは連続して実行されるため、柔軟で正確なレポートを作成することができ、キャッチされなかった例外を正しいテストケースにマッピングすることができます。GitHubで公開されています。
 
 <https://mochajs.org/>
 <https://qiita.com/hietahappousai/items/35bef9a16333ba84e46f>
 
-#### 20.1.3. Selenium
+#### 21.1.3. Selenium
 
 JS専用というわけではありませんが、Selenium は Web ブラウザの操作を自動化するためのフレームワークです。2004 年に ThoughtWorks 社によって Web アプリケーションの UI テストを自動化する目的で開発されました。テスト以外にもタスクの自動化や Web サイトのクローリングなど様々な用途で利用されています。<https://qiita.com/Chanmoro/items/9a3c86bb465c1cce738a>
 
-## 21. Development Methods
+## 22. Development Methods
 
 開発手法。ここも大きな章で、1つ1つにたくさんの本が出ていますが、大きくこういうものがあります。海外ソースも含めて調べると分かりますが、カテゴリ定義自体も結構曖昧です。。
 
@@ -3136,7 +3200,7 @@ JS専用というわけではありませんが、Selenium は Web ブラウザ�
 
 あの会社はいまだにウォーターフォールだ！（だからレガシーなのよ）、とか、うちの開発はアジャイル（だからモダン）だよ！、とか聞きますよね。しかし、知れば知るほど、そんな簡単にどれだなんて言えるのか、とも思う奥の深い概念でもあります。真の問題の所在は単にこの開発手法にはない場合もあるので、良い悪いを特に明言しにくいパートですね。ではそれぞれ簡単に紹介していきましょう。
 
-### 21.1. Waterfall
+### 22.1. Waterfall
 
 要件定義から外部・内部設計、コーディング、テスト、運用まで順番にフェーズを区切りながら、次のフェーズに進む際は、前フェーズを凍結しながら進む、後戻りをしない開発方法。
 
@@ -3146,7 +3210,7 @@ JS専用というわけではありませんが、Selenium は Web ブラウザ�
 
 全面的にだめな手法というわけではなく、誰もがイメージしやすいという利点もあるし、部分的に活用するなども可能だし、最初のローンチやリリースでは管理上向いている等の見方もある。
 
-### 21.2. Prototype
+### 22.2. Prototype
 
 ウォーターフォール・モデルの問題点を改善した手法がプロトタイプ・モデルです。プロジェクトの途中で試作品を開発し、発注者の要望と相違がないか確認しながらシステム開発するのが特徴。MVP（Minimum Viable Product）といわれる概念も近いですが、MVPは「実用最小限の製品」を実際に市場に投入することなのでプロトタイプ・モデルはあくまでも内部の開発プロセスという違いがあります。
 
@@ -3154,7 +3218,7 @@ JS専用というわけではありませんが、Selenium は Web ブラウザ�
 
 これまた言葉で書く以上に難しいことで、これは途中の状態だよ、だけど認識齟齬のないように見せるよ！と言ったところで、それを忘れてしまう、理解できないことは往々にしてあり、後工程でやるはずのことばかり指摘されてしまう、またそうなってしまうのではと尻込みしてしまう、なんてことも多いイメージです。見せる側・見る側に適切な知識が必要です。
 
-### 21.3. Agile
+### 22.3. Agile
 
 発注者と開発者がよりコミュニケーションしながらシステム開発を進める手法がアジャイル開発です。開発するシステムを小さく区切り、機能ごとに繰り返し開発していくのが特徴です。発注者が開発途中のシステムを試せるため、隠れたニーズや仕様の不満を見つけやすいのがメリット。優先度の高いところから開発することで、発注者が求めるシステムを効率的に提供できます。ただ、アジャイル開発は計画を立てるのが難しく、発注側にも適切な知識がないと管理上の問題が起きやすいです。
 
@@ -3164,7 +3228,7 @@ JS専用というわけではありませんが、Selenium は Web ブラウザ�
 
 少なくとも「うちはアジャイルだよ！」の後に、「具体的にはこういうところがアジャイルだよ！」というドキュメントが続くようになってるといいなと思います。
 
-### 21.4. Spiral
+### 22.4. Spiral
 
 ウォーターフォール・モデルとアジャイル開発のメリットを組み合わせた開発手法がスパイラル・モデルです。システムの設計とプロトタイピングを繰り返して成果物の完成を目指します。
 
@@ -3172,22 +3236,22 @@ JS専用というわけではありませんが、Selenium は Web ブラウザ�
 
 <https://onetech.jp/blog/what-are-the-four-types-of-system-development-methods-7101>
 
-### 21.5. Other Development Methods
+### 22.5. Other Development Methods
 
 同列ではないのですが・・・他にも開発手法というか概念に近い開発原則もあります。ここで少しだけ紹介します。
 
 [https://プログラマが知るべき97のこと.com/エッセイ/DRY原則/](https://xn--97-273ae6a4irb6e2hsoiozc2g4b8082p.com/%E3%82%A8%E3%83%83%E3%82%BB%E3%82%A4/DRY%E5%8E%9F%E5%89%87/)
 <https://qiita.com/yatmsu/items/b4a84c4ae78fd67a364c>
 
-#### 21.5.1. DRY (Don’t Repeat Your Self)
+#### 22.5.1. DRY (Don’t Repeat Your Self)
 
 Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱した原則。単に「コードを重複させない」という原則ではなく、DBスキーマ、テスト、ビルドシステム、ドキュメントなども対象になっており、「ソフトウェア開発全体において情報を重複させない」という原則。DRYは素晴らしい考えですが、やり過ぎると密結合を生んでしまう。
 
-#### 21.5.2. OAOO (Once And Only Once)
+#### 22.5.2. OAOO (Once And Only Once)
 
 「コードを重複させない」という原則。
 
-#### 21.5.3. SOLID
+#### 22.5.3. SOLID
 
 単一責任の原則。以下の頭文字をとった言葉である。詳細は参照リンクが詳しいのですが、概念には納得できたとしても、日々の業務の中で善管的に実行するのは難しいですね。しかし、あくまで原則であり、適用できないケースがまさにケースバイケースなのだとすると、ツールに仕込むことも難しいのかもしれません。
 
@@ -3200,14 +3264,14 @@ Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱し
 <https://note.com/erukiti/n/n67b323d1f7c5>
 <https://qiita.com/baby-degu/items/d058a62f145235a0f007>
 
-#### 21.5.4. KISS (Keep It Simple, Stupid)
+#### 22.5.4. KISS (Keep It Simple, Stupid)
 
 シンプルにしておけ、愚か者よ。の意。コードを書くとき、「単純性」や「簡潔性」を最重要視せよということ。元々は Stupid ではなかったそうなのですが、語呂が良すぎて Stupid になりました。
 
 <https://qiita.com/DeployCat/items/09bb6831b029f5185b33>
 <https://qiita.com/ryotanatsume/items/018cae5c5be8faba367a>
 
-#### 21.5.5. YAGNI (You Aren't Going to Need it.)
+#### 22.5.5. YAGNI (You Aren't Going to Need it.)
 
 それはきっと必要にならない、の意。コードが必要最低限にしろということ。
 
@@ -3217,7 +3281,7 @@ Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱し
 <https://hawk-tech-blog.com/principle-yagni/>
 <http://sukikoba.com/2018/05/11/yagni/>
 
-## 22. Agile Development Practices
+## 23. Agile Development Practices
 
 こちらはアジャイル開発の中の、より具体的なプラクティスになるので、上述の概念よりは分かりやすいかもです。しかし、上位の概念のせいか、こちらもカテゴライズの定義自体がすごく曖昧です。TDDなどが何かメモしたいので用意した章です。例えばこういうものがあります。開発だとか設計だとか若干入り乱れてるのですが、あしからず。
 
@@ -3236,7 +3300,7 @@ Andy HuntとDave Thomasが、著書「達人プログラマ」の中で提唱し
 
 <https://en.wikipedia.org/wiki/Agile_software_development#Agile_software_development_practices>
 
-### 22.1. TDD (Test Driven Development)
+### 23.1. TDD (Test Driven Development)
 
 テスト駆動開発。主に開発者が対象。
 
@@ -3248,7 +3312,7 @@ TDDに続く開発者にとって最も難しいことは、コードを書く�
 <https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf>
 <https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd>
 
-### 22.2. BDD (Behavior Driven Development)
+### 23.2. BDD (Behavior Driven Development)
 
 振舞駆動開発。開発者、利用者、QA（Quality Assurance：品質管理）の全員が対象。
 
@@ -3261,7 +3325,7 @@ TDDがテストという言葉が先行してしまったので、改めて提�
 <https://ja.myservername.com/tdd-vs-bdd-analyze-differences-with-examples>
 <https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd>
 
-#### 22.2.1. BDD Tools and Frameworks
+#### 23.2.1. BDD Tools and Frameworks
 
 下記のような自然言語で実装できるフレームワークが登場しています。xSpecとは、Rubyの「RSpec」を始祖とするテスティングフレームワークの総称で、JBehaveと比較してよりコードの見やすさやドキュメンテーションの作りやすさに注力している。SpecとはTestを指す。
 
@@ -3275,13 +3339,13 @@ TDDがテストという言葉が先行してしまったので、改めて提�
 
 <https://atmarkit.itmedia.co.jp/ait/articles/1403/25/news033_3.html>
 
-### 22.3. DDD (Domain Driven Design)
+### 23.3. DDD (Domain Driven Design)
 
 ドメインとはシステムが対象とする業務知識や適応範囲です。
 
 <https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf>
 
-### 22.4. ATDD (Acceptance Test Driven Development)
+### 23.4. ATDD (Acceptance Test Driven Development)
 
 受入テスト駆動開発。開発者、利用者、QA（Quality Assurance：品質管理）の全員が対象。
 
@@ -3293,7 +3357,7 @@ ATDDを導入するとこによって、書いた仕様書（受入基準）と�
 <https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e>
 <https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd>
 
-#### 22.4.1. ATDD Tools and Frameworks
+#### 23.4.1. ATDD Tools and Frameworks
 
 主なテストフレームワークは、
 
@@ -3301,37 +3365,37 @@ ATDDを導入するとこによって、書いた仕様書（受入基準）と�
 - Gauge：　ThoughtWorks社がメンテしているGo製の受入テスト自動化フレームワーク。Markdownベースのシンプルな仕様記述Syntax。ステップ実装のための言語は Java/JS/TS/Python/Ruby/C# をサポート。<https://gauge.org/>
 - その他：　Serenity、Concordion、KARMA、FitNesse、Robot Framework など
 
-### 22.5. ADD (Attribute Driven Design)
+### 23.5. ADD (Attribute Driven Design)
 
 品質特性を基にモジュール分割を再帰的に行う開発プロセス。
 
 [https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf](https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf#:~:text=%E5%93%81%E8%B3%AA%E7%89%B9%E6%80%A7%E9%A7%86%E5%8B%95%E5%9E%8B%E8%A8%AD%E8%A8%88,%E3%81%AB%E8%90%BD%E3%81%A8%E3%81%97%E8%BE%BC%E3%82%93%E3%81%A7%E3%81%84%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82)
 
-### 22.6. FDD (Feature Driven Development)
+### 23.6. FDD (Feature Driven Development)
 
 ユーザーには価値を提供しなければなりません。概念モデルからユーザーに提供する価値を抽出し、インクリメンタルな開発を行う手法。
 
 <https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf>
 
-### 22.7. MDD (Model Driven Development)
+### 23.7. MDD (Model Driven Development)
 
 設計とアーキテクチャがそれぞれ独立して変更するための開発手法。ドメイン固有言語(domain-specific language; DSL)を使ってシステムに依存しない設計を行い、プラットフォームに特化したモデルに変換する。
 
 <https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf>
 
-### 22.8. UCDD (Use Case Driven Development)
+### 23.8. UCDD (Use Case Driven Development)
 
 システムに関わるアクターを識別し、アクターの振舞をユースケースとして定義します。ユースケースを実現するためにロバストネス分析を行い、システム設計に落とし込んでいきます。
 
 <https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf>
 
-### 22.9. PDD (Proof Driven Development)
+### 23.9. PDD (Proof Driven Development)
 
 証明によってプログラムが期待通りの性質を有しているかを確かめながら開発していきます。数学的な観点ですね。Coq/Gallina といった定理証明支援系言語を使ってテストを行います。
 
 <https://qiita.com/kenji-yokoi/items/6b07a62415b56a959caf>
 
-## 23. Testing Pyramid
+## 24. Testing Pyramid
 
 Mike Cohn が2009年に提唱した概念。これは言葉としては聞いたことがなくても、開発をしたことがあれば通ったことのある道です。ピラミッドの下から書くと、
 
@@ -3343,7 +3407,7 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 
 <https://www.amazon.co.jp/dp/B002TIOYWQ>
 
-### 23.1. Unit Test
+### 24.1. Unit Test
 
 単体テスト。プログラムを構成する比較的小さな単位（ユニット）が個々の機能を正しく果たしているかどうかを検証するテスト。プログラムが全体として正しく動作しているかを検証する結合テストは、開発の比較的後の段階でQAチームなどによって行なわれることが多いのとは対照的に、単体テストは、コード作成時などの早い段階で開発者によって実施されることが多いのが特徴。
 
@@ -3354,7 +3418,7 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 
 <https://www.techmatrix.co.jp/t/quality/unittest.html>
 
-#### 23.1.1. White-Box Testing
+#### 24.1.1. White-Box Testing
 
 開発者などコードレベルで理解してる人が作る場合。
 
@@ -3369,7 +3433,7 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 <https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10>
 <https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637>
 
-#### 23.1.2. Automated Testing
+#### 24.1.2. Automated Testing
 
 自動化テスト。特に単体テストレベルであれば、自動化を行えると大きい。自動化のタイミングは夜間の間や、デプロイ時、手動トリガーなど色々ある。完全手動の場合、現実問題、やられないことが起きやすい。
 
@@ -3377,7 +3441,7 @@ Mike Cohn が2009年に提唱した概念。これは言葉としては聞いた
 
 <https://www.techmatrix.co.jp/t/quality/unittest.html>
 
-#### 23.1.3. Coding Coverage
+#### 24.1.3. Coding Coverage
 
 ホワイトボックステストに対する計測指標。どれがいい悪いもあるでしょうが、これまで不具合が多いにもかかわらず、何も測ってなかったのであれば、まずは測れそうなものから測っていくことが肝要。
 
@@ -3419,7 +3483,7 @@ if(条件文b1 || 条件文b2){ // 判定条件B
 <https://www.browserstack.com/guide/code-coverage-vs-test-coverage>
 <https://phpunit.readthedocs.io/ja/latest/code-coverage-analysis.html>
 
-### 23.2. Integration Test
+### 24.2. Integration Test
 
 結合テスト。自社システム内のモジュール間の結合テストであれば内部結合テスト、社外の外部システムも含めた結合テストであれば外部結合テストと言ったりする。
 
@@ -3427,7 +3491,7 @@ if(条件文b1 || 条件文b2){ // 判定条件B
 
 外部システムとの結合テストがない場合は、内部結合テストが事実上の総合テストやE2Eテストに該当する場合もある。いずれにしても、内外に定義を文章として明確にするのは最低限必要であると思われる。
 
-### 23.3. E2E Test (End to End Test)
+### 24.3. E2E Test (End to End Test)
 
 E2E (End to End) テストとは、システム全体が正しく動作することを確認するものです。具体的には「利用者による画面操作（Web ブラウザの操作）により、想定通りの動作となっていることを確認する」ことを指します。
 
@@ -3437,7 +3501,7 @@ E2E テストは「総合テスト」フェーズで実施されます。多く�
 <https://qiita.com/abchyw8611/items/54b84b77ef87755fdf3e>
 <https://qiita.com/mt0m/items/7e18d8802843d9f60d28>
 
-#### 23.3.1. Black-Box Testing
+#### 24.3.1. Black-Box Testing
 
 主に総合テストや受入テストなど後半のテストが該当。
 
@@ -3449,15 +3513,15 @@ E2E テストは「総合テスト」フェーズで実施されます。多く�
 <https://qiita.com/mikimaromomose/items/ef12e3823d81bf537c10>
 <https://qiita.com/masatakaaaa/items/ca8a05ce9bd3fb0e4637>
 
-#### 23.3.2. E2E Test Frameworks
+#### 24.3.2. E2E Test Frameworks
 
 主なテストフレームワークは、selenideなど。本家のselenium自体はテストクレームワークではないので、テストを書くのはつらいですが、selenideはseleniumをうまいことwrapして、テストに特化するlibraryで、使い心地がseleniumよりよいです。他にも、WebdriverIOや、Nightmareなどがあります。
 
-#### 23.3.3. E2E Test の不安定さ
+#### 24.3.3. E2E Test の不安定さ
 
 テストケースが不安定になると工数が増大しますが、その例としてテスト時のアカウント共有などがあります。「ログイン状態であることをテストしようとしたら、別の人が実行しているテストでログアウトしていて失敗する」「登録できることをテストしようとしたら、別の人が実行しているテストですでに登録しているので失敗する」などです。これはテストケース毎にユーザアカウントを分離したり、アカウントIDにタイムスタンプをつけてテスト実行毎にユニークなアカウントを作成して対応するケースが多いようです。
 
-### 23.4. Feedback Cycle
+### 24.4. Feedback Cycle
 
 テストしたら、その結果を早く知り、原因を探し、修正して、再度テスト！というサイクルを早く回す必要があります。だいたいの場合、当初スケジュールに比較して、開発が遅れていて、テスト開始日が遅れていて、でも納期は変わってない、なんてことが起こります。また、テスト工数の見積もり時に、何回もテストが失敗し、何回もコードを修正するような見積もりはされてないことが多いです。そのため、このフィードバックサイクルは仕組みとしてあった方がよいでしょう。
 
@@ -3468,11 +3532,11 @@ E2E テストは「総合テスト」フェーズで実施されます。多く�
 
 <https://qiita.com/mt0m/items/7e18d8802843d9f60d28>
 
-## 24. Infrastructure
+## 25. Infrastructure
 
 インフラパート。クラウドだと、AWSやGCP、Microsoft Azureなど。AWSを例にメモしていきます。
 
-### 24.1. AWS Service
+### 25.1. AWS Service
 
 AWSの全体像はこんな感じ。落ちてるものから分かりやすかったものをいくつか拾ってきた。まずは公式サイトのAmazonにあるWEBアプリケーションのよくある構成。（AWSのサイトで拾ったので、全部AWSサービスで構成されているが・・・）
 
@@ -3480,77 +3544,77 @@ AWSの全体像はこんな感じ。落ちてるものから分かりやすか�
 
 <https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html>
 
-### 24.2. AWSの各種用語
+### 25.2. AWSの各種用語
 
-#### 24.2.1. VPC (Virtual Private Cloud)
+#### 25.2.1. VPC (Virtual Private Cloud)
 
 AWS内の自分用の領域
 
-#### 24.2.2. Internet Gateway
+#### 25.2.2. Internet Gateway
 
 図には載ってないが、VPCとインターネットをつなぐGateway。これを使うことで、VPC内のシステムがグローバルIPを使えるようになります。
 
-#### 24.2.3. Virtual Private Gateway
+#### 25.2.3. Virtual Private Gateway
 
 インターネットGatewayがインターネットに接続するのに対し、こちらはオンプレミス環境に接続するためのゲートウェイ
 
-#### 24.2.4. NAT Gateway (a Network Address Translation Gateway)
+#### 25.2.4. NAT Gateway (a Network Address Translation Gateway)
 
 VPC内に構成した「プライベートサブネット」からインターネットに接続するためのゲートウェイ。公式サイトから持ってきた上図とはなんか逆ですが、調べる限り、「プライベートサブネットから」出るため用のようです
 <https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-nat-gateway.html>
 
-#### 24.2.5. Subnet
+#### 25.2.5. Subnet
 
 サブネット。VPCという大きなネットワークをIPアドレスの範囲で分割した小さなネットワークのこと
 
 - Public Subnet：　インターネットゲートウェイに接続ができるサブネット
 - Private Subnet：　インターネットに接続できないサブネットの中に配置したシステム
 
-#### 24.2.6. Route Table
+#### 25.2.6. Route Table
 
 サブネット内のリソースがどこに通信するのか？というルールを定めた表のこと。サブネットを作成すると、ローカル（作成したVPC内）と通信できますよ〜という設定がされたルートテーブルが自動で作成されます。サブネットによっては、ここにインターネットとも通信ができるようなルートも追加する
 
-#### 24.2.7. Amazon Route 53
+#### 25.2.7. Amazon Route 53
 
 DNSサーバー。
 
-#### 24.2.8. Amazon S3 (Amazon Simple Storage Service)
+#### 25.2.8. Amazon S3 (Amazon Simple Storage Service)
 
 高確率で使う。データためるところ。「オブジェクトストレージ」というタイプのストレージサービスであり、データを「オブジェクト」と呼ばれる単位で読み書きするためのHTTPSなどでアクセス可能なエンドポイントを提供。Amazon EFSに比べると安い分、直接読むことは出来ず、一度SCP（コピー）してこないと取り出せない
 
-#### 24.2.9. Amazon EFS (Amazon Elastic File System)
+#### 25.2.9. Amazon EFS (Amazon Elastic File System)
 
 ファイルサーバー。S3より取り出しやすい分、料金が高い。「ファイルストレージ」というタイプのストレージサービスであり、LinuxなどのOSでマウント可能なファイルシステムを提供。マウントすることで複数のEC2インスタンスから参照が可能。読み書きスピードは若干遅い
 
-#### 24.2.10. Amazon EBS (Amazon Elastic Block Store)
+#### 25.2.10. Amazon EBS (Amazon Elastic Block Store)
 
 直接上には出てこないが、別の種類のストレージ。「ブロックストレージ」というタイプのストレージサービスであり、Amazon Elastic Compute Cloud (EC2)のインスタンス(仮想マシン)にアタッチするためのボリュームを提供。
 
-#### 24.2.11. Amazon ECS (Amazon Elastic Container Service)
+#### 25.2.11. Amazon ECS (Amazon Elastic Container Service)
 
 完全マネージド型コンテナオーケストレーションサービスであり、コンテナ化されたアプリケーションを簡単にデプロイ、管理、スケール。AWS Fargate のサーバーレス技術を利用して、自律型のコンテナ運用を実現し、設定やパッチ適用、セキュリティに要する時間を削減。<https://aws.amazon.com/jp/ecs/>
 
-#### 24.2.12. Amazon ElastiCache
+#### 25.2.12. Amazon ElastiCache
 
 AmazonでRedisやMemcachedを使えるサービス。綴りはCが足りてないが、間違いではない。
 
-#### 24.2.13. Amazon DynamoDB
+#### 25.2.13. Amazon DynamoDB
 
 キーバリューおよびドキュメントデータ構造をサポートする、フルマネージドな独自のNoSQLデータベースサービスで、Amazon.comがAmazon Web Servicesポートフォリオの一部として提供しています。
 
-#### 24.2.14. Amazon API Gateway
+#### 25.2.14. Amazon API Gateway
 
 あらゆる規模の REST、HTTP、および WebSocket API を作成、公開、維持、モニタリング、およびセキュア化するための AWS のサービス。<https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/welcome.html>
 
-#### 24.2.15. AWS Lambda
+#### 25.2.15. AWS Lambda
 
 サーバーレスコンピューティングサービスで、サーバーのプロビジョニングや管理、ワークロード対応のクラスタースケーリングロジックの作成、イベント統合の維持、ランタイムの管理を行わずにコードを実行できます。Lambda を使用すれば、実質どのようなタイプのアプリケーションやバックエンドサービスでも管理を必要とせずに実行できます。<https://aws.amazon.com/jp/lambda/>
 
-#### 24.2.16. Amazon CloudFront
+#### 25.2.16. Amazon CloudFront
 
 CDN機能を提供。それ以外にも利点が2つある。1つ目はCloudFrontが、リクエストに応じて各AWSサービスに振り分ける、リバースプロキシの役割を提供する点。2つ目は静的コンテンツからAPIを実行した場合にクリアしなければいけないCORS（Cross-Origin Resource Sharing）の課題が回避できる点
 
-#### 24.2.17. AWS Certificate Manager
+#### 25.2.17. AWS Certificate Manager
 
 パブリックおよびプライベートのSSL/TLS（Secure Sockets Layer/Transport Layer Security）証明書を簡単にプロビジョニング、管理、導入して、AWSサービスや社内の接続リソースで使用できるようにするサービス。プロビジョニングは、IT インフラストラクチャをセットアップするプロセスです。また、データとリソースへのアクセスを管理し、ユーザーとシステムによる利用を可能にするために必要なステップを指すこともあります。
 
@@ -3558,32 +3622,32 @@ CDN機能を提供。それ以外にも利点が2つある。1つ目はCloudFron
 <https://zenn.dev/tomoshimizu/articles/6945b7ac472ca0>
 <https://www.bit-drive.ne.jp/managed-cloud/column/column_31.html>
 
-#### 24.2.18. Amazon Cognito
+#### 25.2.18. Amazon Cognito
 
 Amazon Cognito を使用すれば、ウェブアプリケーションおよびモバイルアプリに素早く簡単にユーザーのサインアップ/サインインおよびアクセスコントロールの機能を追加できます。
 
 <https://aws.amazon.com/jp/cognito/>
 <https://dev.classmethod.jp/articles/re-introduction-2020-amazon-cognito/>
 
-#### 24.2.19. AWS Fargate
+#### 25.2.19. AWS Fargate
 
 コンテナ向けサーバーレスコンピューティング。サーバーのスケーリング、パッチ適用、セキュリティ、管理などの運用上のオーバーヘッドを取り除きます。
 
 <https://aws.amazon.com/jp/fargate/>
 
-#### 24.2.20. Amazon Aurora
+#### 25.2.20. Amazon Aurora
 
 クラウド向けに構築された、MySQL および PostgreSQL と互換性のあるリレーショナルデータベースです。商用データベースと同等のパフォーマンスと可用性を、10 分の 1 のコストで実現。
 
 <https://aws.amazon.com/jp/rds/aurora/?aurora-whats-new.sort-by=item.additionalFields.postDateTime&aurora-whats-new.sort-order=desc>
 
-#### 24.2.21. Amazon Kinesis Data Firehose
+#### 25.2.21. Amazon Kinesis Data Firehose
 
 リアルタイム配信用の完全マネージド型サービス
 
 <https://docs.aws.amazon.com/ja_jp/firehose/latest/dev/what-is-this-service.html>
 
-### 24.3. Managed Services
+### 25.3. Managed Services
 
 Managed Servicesのメリットは以下。サーバーレスのこと。
 
@@ -3592,7 +3656,7 @@ Managed Servicesのメリットは以下。サーバーレスのこと。
 - インフラ、OS、ミドルウェアのメンテナンスが不要
 - サーバ自体がないため、セキュリティのリスクや対処負担が減る
 
-### 24.4. Load Balancer
+### 25.4. Load Balancer
 
 サーバーにかかる負荷を、平等に振り分けるための装置のことを指します。これによって1つのサーバーにかかる負担を軽減したり、停止状態を防ぐことができたりします。SSLアクセラレーターを使用することにより、本来サーバーごとに必要なSSL証明書を1本化したり、暗号化通信の負荷を軽減できたりします。
 
@@ -3600,7 +3664,7 @@ Managed Servicesのメリットは以下。サーバーレスのこと。
 
 <https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/>
 
-#### 24.4.1. LBの負荷分散方法
+#### 25.4.1. LBの負荷分散方法
 
 負荷分散の方法はいくつかある
 
@@ -3608,7 +3672,7 @@ Managed Servicesのメリットは以下。サーバーレスのこと。
 - 動的分散方式：　サーバーのCPUやメモリ使用率などの負荷状況を加味して軽いところに振り分ける
 - パーシステンス：　ログイン情報など同じユーザーは同じWEBサーバーの方がありがたい場合がある。これを加味する
 
-## 25. Serverless Hosting Service
+## 26. Serverless Hosting Service
 
 AWSやGCPもサーバーレスを提供しているが、使い勝手の良いサーバーレスなホスティングサービスは他にもある。ちなみにホスティングとは、サーバーを貸し出すこと。日本だとレンタルサーバーのことだが、クラウドも含む広義な言葉。
 
@@ -3624,7 +3688,7 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 <https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0>
 <https://www.jaipa.or.jp/hosting/about2.html>
 
-### 25.1. Firebase
+### 26.1. Firebase
 
 2011年設立。米有力VCのYCombinator卒業。2014年にGoogleが買収。以降、Googleが管理・開発しているBaaS（Backend as a service）。なので、がっつりGoogleがバックにサポートしたサービスになってます。Spark Planが無料プラン。
 
@@ -3638,11 +3702,11 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 <https://zenn.dev/razokulover/scraps/94844e54e519ed>
 <https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0>
 
-#### 25.1.1. Firebase Hosting
+#### 26.1.1. Firebase Hosting
 
 ホスティングサービス。
 
-#### 25.1.2. Firestore
+#### 26.1.2. Firestore
 
 非常に強力な機能性を備えたマネージド・データベースです。
 
@@ -3652,11 +3716,11 @@ Authenticationのサポートを得て、クライアントから直接アクセ
 
 Firestoreは本質がデータベースでありながら、従来のREST APIの役割を代替することができます。それは「クライアントからセキュアに直接読み書きが可能」「ドキュメント指向でありO/Rマッピング不要」「強い整合性」という特性を獲得し、極めて高い可用性とスケーラビリティーを持っているからです。もはや、バックエンドとデータのやり取りをするために、REST APIを用意する必要はなくなりました。
 
-#### 25.1.3. Firebase Authentication
+#### 26.1.3. Firebase Authentication
 
 ユーザー認証基盤
 
-### 25.2. Netlify
+### 26.2. Netlify
 
 最新のWebプロジェクトを自動化するためのオールインワンプラットフォーム。対応言語：Node.js, Golangなど。
 
@@ -3667,7 +3731,7 @@ mainブランチが新しくなる度に都度デプロイするが、その他�
 <https://megumu.me/posts/20210212/>
 <https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0>
 
-### 25.3. Vercel
+### 26.3. Vercel
 
 Vercel（企業名）によって運営/開発されている、FaaS（Function as a Service）。DNSやCDNサービスも展開しているため、PaaS（Platform as a Service）と言っても良いかもしれません。対応言語：Next.js, Node.js, Python, Golang, Rubyなど
 
@@ -3677,25 +3741,25 @@ Vercel（企業名）によって運営/開発されている、FaaS（Function 
 <https://zenn.dev/razokulover/scraps/94844e54e519ed>
 <https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0>
 
-### 25.4. Heroku
+### 26.4. Heroku
 
 Salesforceが買収した、PaaS(Platform as a Service)です。ユーザーのインフラ管理が不要で、「git push」を行うだけでリリースが行えたり、各種アドオンの追加で、ミドルウェアのインストールを行うことができます。
 
 <https://jp.heroku.com/>
 <https://qiita.com/0622okakyo/items/65b8c5e7d09ac383e9a0>
 
-### 25.5. Supabase
+### 26.5. Supabase
 
 同じくYC卒業。オープンソースFirebaseの代替。2分以内にバックエンドを作成できます。Postgresデータベース、認証、インスタントAPI、リアルタイムサブスクリプション、ストレージを備えたプロジェクトを開始できます。
 
 <https://supabase.io/>
 <https://techcrunch.com/2020/12/15/supabase-raises-6m-for-its-open-source-firebase-alternative/>
 
-### 25.6. Gatsby Cloud
+### 26.6. Gatsby Cloud
 
 特にGatsbyのビルド・ホスティングに特化したサービス。ビルド時にGoogle Lighthouse のレポート作成までしてくれる。Gatsbyを使うなら使いたい。ホスティングには裏でFastlyというCDNを利用している
 
-## 26. Infrastructure Monitoring
+## 27. Infrastructure Monitoring
 
 インフラ監視・分析。限りなく100%に近い稼動を必要とするシステムの場合、ハードウェアやソフトウェアの保守管理はもちろん、システムそのものが常に正常に稼動しているかを見守る必要があります。そして、もしもシステムに問題が発生したときにはいち早くそれを発見して対応する必要があります。
 
@@ -3705,37 +3769,37 @@ Salesforceが買収した、PaaS(Platform as a Service)です。ユーザーの�
 <https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html>
 <https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3>
 
-### 26.1. Monitoring の種類
+### 27.1. Monitoring の種類
 
 インフラ監視の種類は様々あり、それをあげていきます。
 
 <https://www.itprotoday.com/containers/it-monitoring-moves-beyond-way-beyond-infrastructure-and-application-monitoring>
 
-#### 26.1.1. 死活監視
+#### 27.1.1. 死活監視
 
 対象機器にPINGをおくり、それを受け取った機器が送り返す応答を確認することで機器が動作しているとみなす監視方法で、稼働監視とも呼びます。サーバやネットワークの監視によく使われる方法で、PING応答がなかった場合、対象機器か経路のネットワークかのどちらかに問題があります。
 
-#### 26.1.2. リソース監視
+#### 27.1.2. リソース監視
 
 CPU、メモリ、ディスク、ネットワークなど、OSやサーバ、ハードウェア、ネットワーク機器などのリソース使用状況をチェックすることで、性能監視とも呼ばれます。
 
-#### 26.1.3. 接続監視
+#### 27.1.3. 接続監視
 
 ネットワークの指定ポートへ接続をし応答があることを監視することです。ネットワークがダウンしていないか、あるいは性能低下でレスポンスが悪化していないかを調べる目的で行われます。
 
-#### 26.1.4. ログ監視
+#### 27.1.4. ログ監視
 
 サーバからの収集したログを監視することです。予めログに含まれる文字列やキーワードをもとに監視をし、設定したキーワードのログが検知するとアラートがでる仕組み
 
-#### 26.1.5. プロセス/サービス監視
+#### 27.1.5. プロセス/サービス監視
 
 サーバ上で稼働をするプロセスやサービスをまとめてアプリケーションとして定義をしプロセスの生死やWindowsサービスの状態によってアプリケーションが正常に動作しているかを監視すること。
 
 <https://www.itmanage.co.jp/column/system-monitoring-item-list/>
 
-### 26.2. 監視サービス
+### 27.2. 監視サービス
 
-#### 26.2.1. Amazon CloudWatch
+#### 27.2.1. Amazon CloudWatch
 
 AWSが提供する「フルマネージド運用監視サービス」で、AWSの各種リソースを監視してくれるもの。AWSでやるなら、せっかく用意してくれてるわけだし、これでいいかも。
 
@@ -3745,60 +3809,60 @@ AWSが提供する「フルマネージド運用監視サービス」で、AWS�
 
 <https://www.bit-drive.ne.jp/managed-cloud/column/column_06.html>
 
-#### 26.2.2. Datadog
+#### 27.2.2. Datadog
 
 クラウド型の監視アプリケーションサービスです。SaaSベースのデータ分析プラットフォームを介してサーバー、データベース、ツール、およびサービスの監視を提供します。<https://www.datadoghq.com/ja/>
 
-#### 26.2.3. Mackerel
+#### 27.2.3. Mackerel
 
 はてなが開発したサーバー管理・監視サービスです。仮想サーバーなどクラウドサービスをMackerelで統合管理および監視することができます。<https://mackerel.io/ja/>
 
-#### 26.2.4. Prometheus
+#### 27.2.4. Prometheus
 
 SoundCloudが中心になって開発しているプル型のリソース監視ツールです。サーバー管理・監視や、しきい値を超えた場合のアラート等を行うことができます。UIがかっこいいです。<https://prometheus.io/>
 
-#### 26.2.5. Zabbix
+#### 27.2.5. Zabbix
 
 ネットワーク管理のソフトウェアです。こちらもサーバー管理・監視や、しきい値を超えた場合のアラート等を行うことができます。C言語、PHP、JavaScriptで記述されてるらしいです。2004年に初版がリリースされ、比較的歴史が長いツールです。<https://www.zabbix.com/jp>
 
-#### 26.2.6. Sentry
+#### 27.2.6. Sentry
 
 イベントログ収集(エラー検知)のSaaSサービスになります。バックエンドのエラーのみならず、フロントエンドのエラーを収集して、可視化することができます。<https://sentry.io/>
 
-#### 26.2.7. New Relic
+#### 27.2.7. New Relic
 
 インフラからアプリケーションまで監視・分析してくれるSaaSサービスになります。<https://newrelic.co.jp/>
 
-## 27. Virtualization vs Containerization
+## 28. Virtualization vs Containerization
 
 仮想化とコンテナ化技術。仮想化とコンテナ化は似ているが異なる。
 
 - 仮想化：　ソフトウェアによって複数のハードウェアを統合し、自由なスペックでハードウェアを再現する技術で、限られた数量の物理リソース（CPU、メモリ、ハードディスク、ネットワーク等）を、実際の数量以上のリソース（論理リソース）が稼働しているかのように見せかけること。<https://www.fsi.co.jp/solution/vmware/knowledge/virtualization.html>
 - コンテナ化：　ソフトウェアのコードをライブラリやフレームワークなどの依存関係にあるすべてのコンポーネントとともにパッケージ化し、それぞれの入れ物、「コンテナ」に隔離すること。<https://www.redhat.com/ja/topics/cloud-native-apps/what-is-containerization>
 
-### 27.1. Virtualization
+### 28.1. Virtualization
 
 仮想化技術を使ったサービスやツールをあげていきます。
 
-#### 27.1.1. VirtualBox
+#### 28.1.1. VirtualBox
 
 オラクルが開発。無料で高機能。
 
 <https://eng-entrance.com/vm-list#VirtualBox-2>
 
-#### 27.1.2. VMware
+#### 28.1.2. VMware
 
 カリフォルニア州にあるVMware社が販売。
 
-#### 27.1.3. AWS EC2
+#### 28.1.3. AWS EC2
 
 ワードとしては上述ですが、これも仮想化環境である。ただインスタンスはAMI (Amazon Machine Images) というイメージから作成するところが、コンテナと似ている
 
-### 27.2. Containerization
+### 28.2. Containerization
 
 コンテナ化技術を使ったサービスやツールをあげていきます。
 
-#### 27.2.1. Docker
+#### 28.2.1. Docker
 
 どこでも聞くようになってきました。コンテナと呼ばれるOSレベルの仮想化環境を提供するオープンソースソフトウェアです。2013年にDocker社が公開。
 
@@ -3809,7 +3873,7 @@ SoundCloudが中心になって開発しているプル型のリソース監視�
 <https://www.docker.com/>
 <https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1>
 
-#### 27.2.2. Kubernetes (K8s)
+#### 28.2.2. Kubernetes (K8s)
 
 コンテナ化したアプリケーションのデプロイ、スケーリング、および管理を行うための、コンテナオーケストレーションシステムです。Docker等で構築されたコンテナの管理を行うことができます。
 
@@ -3821,7 +3885,7 @@ SoundCloudが中心になって開発しているプル型のリソース監視�
 <https://en.wikipedia.org/wiki/Kubernetes>
 <https://www.amazon.co.jp/gp/product/B08T961HKP/ref=ppx_yo_dt_b_d_asin_title_o04?ie=UTF8&psc=1>
 
-#### 27.2.3. Micro Kubernetes (Micro K8s)
+#### 28.2.3. Micro Kubernetes (Micro K8s)
 
 ローオペ（低運用コスト）、ミニマムプロダクションのKubernetes。開発者、クラウド、クラスター、ワークステーション、エッジ、IoT向け。Canonical社が開発。
 
@@ -3830,7 +3894,7 @@ MicroK8sは、Kubernetesのデータストアに最適なノードを自動的�
 <https://microk8s.io/>
 <https://qiita.com/ynott/items/89941c36c606a8384028>
 
-#### 27.2.4. Lightweight Kubernetes (K3s)
+#### 28.2.4. Lightweight Kubernetes (K3s)
 
 IoTとエッジコンピューティングのために作られた認定Kubernetesディストリビューション。Rancher Labs社が開発。
 
@@ -3842,7 +3906,7 @@ IoTとエッジコンピューティングのために作られた認定Kubernet
 <https://github.com/k3s-io/k3s>
 <https://qiita.com/ynott/items/89941c36c606a8384028>
 
-## 28. IaC (Infrastructure as Code)
+## 29. IaC (Infrastructure as Code)
 
 構成管理ツール。あらかじめ設定ファイルを作成することで、それを元にミドルウェアやリソースの配置を行う技術です。一つ設定ファイルを作っておけば、同様の環境を複数立ち上げることができます。
 
@@ -3856,70 +3920,70 @@ IoTとエッジコンピューティングのために作られた認定Kubernet
 <https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3>
 <https://qiita.com/pottava/items/5b386a952bf1d26ea387>
 
-### 28.1. Terraform
+### 29.1. Terraform
 
 HashiCorp社が提供するオープンソース。クラウド上のリソース(AWSのインスタンス等々)を定義ファイルに沿った形になるように生成・配置してくれるツールです。構築手順を書くのではなく、完成系を定義ファイルに宣言することで、その構成にしてくれます。開発言語はGo。また、Go言語で書かれたAWS SDKを使用しています。
 
 <https://www.terraform.io/>
 <https://www.lac.co.jp/lacwatch/service/20200903_002270.html>
 
-### 28.2. Ansible
+### 29.2. Ansible
 
 レッドハットが開発するオープンソースの構成管理ツールです。あらかじめ用意した設定ファイルに従って、ソフトウェアのインストールや設定を自動的に実行する事が出来ます。Pythonで作成されています。エージェントレス(設定先サーバーにエージェントを入れる必要がない)なことが特徴です。開発言語は、Python, PowerShell, Shell, Ruby。
 
 <https://github.com/ansible/ansible>
 
-### 28.3. Chef
+### 29.3. Chef
 
 Ruby、Erlangで記述された構成管理ツールです。Ansibleとは異なり、設定先サーバーにエージェントを入れる必要があります。Rubyで記述するため、Rubyが好きな方にはぴったりです。<https://github.com/chef/chef>
 
-## 29. Security
+## 30. Security
 
 どうしても疎かになりがち。往々にして、クライアントユーザーの制約などで対応を検討するケースが多い気がする。まずはそのリスクの種類とその対策についてメモしていく。
 
-### 29.1. Security Risks
+### 30.1. Security Risks
 
-#### 29.1.1. Password Cracking
+#### 30.1.1. Password Cracking
 
 よく使われる文字列を試す辞書攻撃と、手当たり次第に試すブルートフォース攻撃などがある。ブラウザが推奨するパスワードで入力させるような工夫が求められる
 
-#### 29.1.2. DOS Attack (Denial of Service)
+#### 30.1.2. DOS Attack (Denial of Service)
 
 DOS攻撃。SYNパケットを送りまくることでサーバーを接続待ち状態にさせることで別のユーザーが繋げなくするSYN flood攻撃や、リクエストしまくることでサーバー負荷を障害レベルまであげるF5攻撃がある。（F5は画面リロードなので）
 
-#### 29.1.3. DDOS Attack (Distributed DOS)
+#### 30.1.3. DDOS Attack (Distributed DOS)
 
 DDOS攻撃。単一ではない大量のクライアントからのDOS攻撃。Amazonなど防御システムを提供している
 
-#### 29.1.4. Session Hijacking
+#### 30.1.4. Session Hijacking
 
 セッションハイジャック。CookieやセッションIDからログイン情報などを盗まれる。急に異なるIPアドレスからのリクエストを察知する必要あり。
 
-#### 29.1.5. Directory Traversal
+#### 30.1.5. Directory Traversal
 
 ディレクトリ・トラバーサル。WEBで公開されてないディレクトリに侵入し、WEBサーバー自体のログイン情報を盗む。リクエストに対するURLのチェックが必要。Traversal とは横切る、横断するの意味。
 
-#### 29.1.6. XSS (Cross Site Scripting)
+#### 30.1.6. XSS (Cross Site Scripting)
 
 攻撃者がリンクを用意。これを踏むとクライアントサイドスクリプトが実行され、cookieやセッションIDが盗まれたり、ウィルスがダウンロードされたりする。
 
-#### 29.1.7. CSRF (Cross Site Request Forgeries)
+#### 30.1.7. CSRF (Cross Site Request Forgeries)
 
 通称、シーサーフともいう。XSSと同じだが、目的はなりすましログインである。Forgery とは偽造や捏造の意味。
 
-#### 29.1.8. SQL Injection
+#### 30.1.8. SQL Injection
 
 DBサーバーに送るクエリに悪意あるクエリを混ぜる。
 
-### 29.2. Security Policies
+### 30.2. Security Policies
 
 様々なポリシーがある。
 
-#### 29.2.1. Same-Origin Policy
+#### 30.2.1. Same-Origin Policy
 
 Web セキュリティの重要なポリシーの一つに、Same-Origin Policy (同一オリジンポリシー)があります。これは、オリジン間のリソース共有に制限をかけるもので、上述のXSSやCSRFのような脆弱性を防ぐことを目的としたものです。
 
-#### 29.2.2. CORS (Cross-Origin Resource Sharing)
+#### 30.2.2. CORS (Cross-Origin Resource Sharing)
 
 読み方: コルス or シーオーアールエス。「オリジン間リソース共有」。オリジンとは、例えば、<https://yahoo.co.jp/> のようなドメインに、プロトコルとポート番号がついたもののこと（URLとだいたい同じ）。CORS とは、あるオリジンで動いている Web アプリケーションに対して、別のオリジンのサーバーへのアクセスをオリジン間 HTTP リクエストによって許可できる仕組みのこと
 
@@ -3927,14 +3991,14 @@ Web セキュリティの重要なポリシーの一つに、Same-Origin Policy 
 <https://qiita.com/att55/items/2154a8aad8bf1409db2b>
 <https://zenn.dev/kkeeth/scraps/dd30ae9d48f092>
 
-### 29.3. WAF (Web Application Firewall)
+### 30.3. WAF (Web Application Firewall)
 
 ファイアウォール。一般的に高機能だが高い。後述するIDSやIPSは中身をチェックするわけではないので、一見正常に見える攻撃は防げない。そこでWAFが必要になる。
 
 - ブラックリスト型
 - ホワイトリスト型
 
-### 29.4. 不正アクセスを防ぐ仕組み
+### 30.4. 不正アクセスを防ぐ仕組み
 
 ファイアウォールで防ぎきれない攻撃を防ぐ手段としてIDSとIPSがある。通信を監視するネットワーク型とサーバー上のユーザーの動きを監視するホスト型がある。ネットワーク型だと、
 
@@ -3946,21 +4010,21 @@ Web セキュリティの重要なポリシーの一つに、Same-Origin Policy 
 - Signature型（不正検知型）：　データベースに登録された既知の攻撃と照らし合わせる。SYN flood攻撃などを特定できる
 - Anomaly型（異常検知型）：　通常を定義して外れる異常なものを検知する。F5攻撃を特定できる
 
-### 29.5. PKA (Public Key Authentication)
+### 30.5. PKA (Public Key Authentication)
 
 公開鍵証明書。WEBの世界の身分証明書。
 
 - SSL証明書：　認証局が発行する。発行費や時間がかかる
 - オレオレ証明書：　自己証明書。自らが発行するため費用や時間はかからないが、暗号化通信は可能。ブラウザ側で警告が出る
 
-### 29.6. Authentication
+### 30.6. Authentication
 
 認証。本人確認処理のこと。元々は各サイトで実装していたが、GoogleやFacebookなどが開発した認証を使うようになってきた。
 
 - 認証API方式：　Googleなど各社が提供するAPIに個別に合わせる方法
 - OPEN ID方式：　個別の認証処理を標準化したプロトコル。同じ手順で複数の認証処理が使える
 
-#### 29.6.1. Open ID
+#### 30.6.1. Open ID
 
 Open IDの処理は下記
 
@@ -3973,23 +4037,23 @@ Open IDの処理は下記
 
 <https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b>
 
-### 29.7. Authorization
+### 30.7. Authorization
 
 認可。サービスをまたいだ機能の利用時に必要。
 
 <https://qiita.com/kaysquare1231/items/c4e4736f2a924b03777b>
 
-#### 29.7.1. OAuth (Open Authorization)
+#### 30.7.1. OAuth (Open Authorization)
 
 オーオースと読む。（オースじゃないよ）
 
 サイトを跨いだ認可を実現するために標準化されたプロトコル。認可のみで認証は行わない。利用したいサービスをリソース、サービスを提供するサーバーはリソースサーバー、ユーザーをリソースオーナー、認可を受けてリソースを使うアプリなどをクライアントと言う。リソースの使用時は合言葉（トークン）を使う。
 
-#### 29.7.2. Open ID Connect
+#### 30.7.2. Open ID Connect
 
 OAuth2.0をベースに認証機能を追加したプロトコル。
 
-#### 29.7.3. JWT (JSON Web Tokens)
+#### 30.7.3. JWT (JSON Web Tokens)
 
 JSON Web Token (JWT) はオープンスタンダード (RFC 7519) で、当事者間で情報を JSON オブジェクトとして安全に送信するための、コンパクトで自己完結的な方法のこと。このやりとりされる情報は、デジタル署名されているため、検証および信頼することができます。JWTは、秘密鍵（HMAC アルゴリズムを使用）、またはRSAやECDSAを使用した公開鍵/秘密鍵ペアを用いて署名することができます。
 
@@ -4000,7 +4064,7 @@ JSON Web Token (JWT) はオープンスタンダード (RFC 7519) で、当事�
 <https://jwt.io/introduction>
 <https://qiita.com/Naoto9282/items/8427918564400968bd2b>
 
-#### 29.7.4. Auth0
+#### 30.7.4. Auth0
 
 クラウドにもオンプレミスでも、あらゆるアプリ、APIに柔軟に対応可能な次世代型の認証基盤サービスです。世界での導入実績は10,000社を越え、毎月40億回以上のセキュアなログインを支えています。Auth0, Inc. が開発。
 
@@ -4012,35 +4076,35 @@ Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心
 <https://classmethod.jp/partner/auth0/>
 <https://qiita.com/furuth/items/68c3caa3127cbf4f6b77>
 
-### 29.8. Pen Test (Penetration Testing)
+### 30.8. Pen Test (Penetration Testing)
 
 ペネトレーションテスト、脆弱性診断。ツールやセキュリティ企業への依頼など方法がある。ECサイト構築時などは必ずこれをやって、クライアントに提出してる場合も多いです（しかし、その中身はまた往々にして見られておらず、結果がOKだったかどうかしか興味を持たれない印象）
 
-### 29.9. Pen Test Tools
+### 30.9. Pen Test Tools
 
 以下、簡単にツールを紹介しておく。（まったく使ったことはありませんが）特に知識がないので、詳しい方いらっしゃったらコメント下さい。
 
 <https://www.csoonline.com/article/2943524/11-penetration-testing-tools-the-pros-use.html>
 
-#### 29.9.1. Kali Linux
+#### 30.9.1. Kali Linux
 
 ペンテスト用のLinux OS。Debianベース。以前はBackTrack Linuxとして知られ、Offensive Security（OSCP認証を運営しているOffSec）の優秀な人々によって維持されていたKaliは、ペネトレーション・テスターとして攻撃的に使用するためにあらゆる面で最適化されています。<https://www.kali.org/>
 
-#### 29.9.2. NMAP (Network Mapper)
+#### 30.9.2. NMAP (Network Mapper)
 
 ポートスキャナの祖先。1997年登場。どのポートが開いているのか？そのポートでは何が動いているのか？これは、ペンテスターが偵察を行う際に必要不可欠な情報であり、nmapはしばしばその作業に最適なツール。開発言語は、C, C++, Python, Lua。<https://en.wikipedia.org/wiki/Nmap>
 
-#### 29.9.3. Metasploit
+#### 30.9.3. Metasploit
 
 ペネトレーションテストやIDSのシグネチャ開発を支援するプロジェクト。マサチューセッツ州ボストンを拠点とするセキュリティ企業Rapid7社が所有。
 
 最もよく知られているサブプロジェクトは、オープンソースのMetasploit Frameworkであり、リモートのターゲットマシンに対してエクスプロイトコードを開発・実行するためのツールである。開発言語は、Ruby。<https://en.wikipedia.org/wiki/Metasploit_Project>
 
-#### 29.9.4. Wireshark
+#### 30.9.4. Wireshark
 
 Wiresharkは、ネットワークを通過するトラフィックを理解するためのユビキタスなツールです。一般的には日常のTCP/IP接続の問題を掘り下げるために使用されますが、Wiresharkは数百ものプロトコルの解析をサポートしており、それらのプロトコルの多くでリアルタイム解析と復号化をサポートしています。開発言語は、C, C++。<https://en.wikipedia.org/wiki/Wireshark>
 
-#### 29.9.5. Burp Suite
+#### 30.9.5. Burp Suite
 
 Web脆弱性スキャナのBurp Suiteを抜きにして、ペンテストツールを語ることはできません。Burp Suiteは、これまでに紹介した他のツールとは異なり、フリーではなく、プロが使用する高価なツールです。Burp Suiteにはコミュニティ版があるものの、機能の多くを欠いており、Burp Suiteエンタープライズ版は年間3,999ドル。
 
@@ -4048,7 +4112,7 @@ Web脆弱性スキャナのBurp Suiteを抜きにして、ペンテストツー�
 
 <https://portswigger.net/burp>
 
-#### 29.9.6. OWASP ZAP (Zed Attack Proxy)
+#### 30.9.6. OWASP ZAP (Zed Attack Proxy)
 
 ZAPはブラウザとテスト対象のウェブサイトの間に設置され、トラフィックをインターセプト（別名man in the middle）して検査や修正を行うことができます。
 
@@ -4056,7 +4120,7 @@ ZAPは、Burpの機能の多くを備えていませんが、オープンソー�
 
 <https://en.wikipedia.org/wiki/OWASP_ZAP>
 
-## 30. Log運用
+## 31. Log運用
 
 ログは重要。ログを制する者がバグを制す。そのログにも種類がある。
 
@@ -4070,7 +4134,7 @@ ZAPは、Burpの機能の多くを備えていませんが、オープンソー�
 - ログローテーション：　ログファイルの切り替え間隔など
 - アクセスログ解析：　ApacheLogViewerやVisitorsなどのソフトもある
 
-## 31. Performance
+## 32. Performance
 
 指標は色々。非常に重要、むしろかなり重要なんですが、軽く。
 
@@ -4079,9 +4143,9 @@ ZAPは、Burpの機能の多くを備えていませんが、オープンソー�
 - ページ読み込み時間：　ページの読み込み開始から完了までの時間
 - 可用性：　エラーなくWEBサイトにアクセスできた確率
 
-### 31.1. Performance 計測ツール
+### 32.1. Performance 計測ツール
 
-#### 31.1.1. Google Lighthouse
+#### 32.1.1. Google Lighthouse
 
 Webページの品質を測定するためのオープンソースの自動化ツール。
 
@@ -4089,66 +4153,53 @@ Webページの品質を測定するためのオープンソースの自動化�
 
 <https://developers.google.com/web/tools/lighthouse>
 
-## 32. Text Editor
+## 33. Payment
 
-ついでにこちらも扱っておきます。意外とこういうところで無駄に時間を使って調べたりする人も多いと思います（かくゆう私もはまるタイプです）
+決済系のツールは直接開発せずに、外部サービスとのAPI連携も視野に入れたいところ。特に新規事業ではここを頑張って内製化するよりも、本業のUIやロジックを磨いた方がいいはず。
 
-### 32.1. VSCode (Visual Studio Code)
+### 33.1. Payment Services
 
-エディターで悩むなら、これ使っておくべし。Microsoftのエディターで、どの調査でもだいたい1位である。拡張機能やプラグインが豊富。前述の Prettier Code Formatter など。
+色々なオンライン決済ツールのタイプがあります。
 
-VSCode自体の主な開発言語は、TypeScript、JavaScript、CSS。Wikiから引用したところによると、2016年のStack Overflowによる調査では、Visual Studio Codeは、13番目に人気のある開発ツールで、46,613人のうち、7.2%がこれを使っていた[19]。しかしながら、2019年の調査では、Visual Studio Codeは1位に位置し、87,317人の開発者のうち、50.7%がこれを使っていた。これは2021年も変わらないトレンドである。
+- クレジットカード決済
+- 電子マネー決済：　Suicaとか
+- QRコード決済：　PayPayとか
+- キャリア決済：　ソフトバンクとか
+- ネットバンキング決済：　みずほダイレクトとか
+- 後払い決済：　Net Protections とか
+- コンビニ決済：　セブンとか
 
-<https://ja.wikipedia.org/wiki/Visual_Studio_Code>
-<https://qiita.com/kumapo0313/items/a59df3d74a7eaaaf3137>
+<https://www.alpha-note.co.jp/cashless/weblink/weblink-type>
 
-#### 32.1.1. VSCode Extensions
+#### 33.1.1. Stripe
 
-数多くのブログやYouTubeでまとめられていますので、そちらを基本は見て、がしがし入れていくとよいでしょう。
+今もっとも注目の決済ツールだと思います。決済ごとに3.6％の手数料。
 
-- Markdownlint：　その名の通り Markdown の lint ツールです。インストールすると、よろしくない書き方をビシバシ指摘してくれます。
-- Auto Close Tag：　HTML/XML タグを書いたら、この拡張機能は面倒な作業を省き、自動的にタグを閉じてくれます
-- Auto Rename Tag：　Open/Close タグの名前を変更すると、もう一方のタグの名前も自動的に変更してくれる
-- ESLint：　前述のとおり
-- Prettier：　前述のとおり
-- Path Intellisense：　入力時にファイルパスを自動で補完してくれます
-- Bracket Pair Colorizer：　一致する括弧を色分けしてくれる
-- Git Lens
-- Debugger for Chrome
-- REST Client：　PostmanやSOAP UIのようなツールを使用しなくても、VSCode内で出来るようになる
-- JavaScript (ES6) code snippets：　同じコードを入力する手間を大幅に減らしてくれる
-- Code Spell Checker：　スペルミスがあったときに警告が表示されます
-- VSCode Icon：　ファイルの拡張子に応じて、さまざまなファイルタイプを美しく視覚的に表現してくれる
+ちなみに、Stripe 社は、アイルランド系アメリカ人の金融サービス企業で、米国のサンフランシスコとアイルランドのダブリンに本社を置く。2009年創業と若い会社だが、既に2020年の売上は74億ドル、従業員数も4,000人以上と大企業です。2010年YCombinator卒業。VCだと、Sequoia Capital、Founders Fund、Tiger Global Management、エンジェルだと Peter Thiel や Elon Musk など名だたる投資家が投資している。2022年にIPOも噂される。利用者は、日本だと SmartHR や freee、海外でも Slack や Zoom などが利用しているとされる（HPに載ってます）。
 
-<https://codeforgeek.com/best-visual-studio-code-extensions-web-development/>
-<https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development>
-<https://towardsdatascience.com/20-best-vs-code-extensions-for-productive-web-development-in-2020-95bf904ceb69>
+<https://stripe.com/jp>
+<https://en.wikipedia.org/wiki/Stripe_(company)>
+<https://www.bloomberg.com/news/articles/2021-09-10/stripe-is-said-to-discuss-public-listing-with-bankers-for-2022>
 
-### 32.2. Atom
+#### 33.1.2. Square
 
-GitHubが開発したオープンソースのテキストエディタ。MicrosoftはGitHubの親会社でもあるので、VSCodeとは兄弟的な関係になった。開発言語は、C++ / Node.js / CoffeeScript / JS / CSS / HTML。Electronを使用したデスクトップアプリケーションである。
+カリフォルニア州サンフランシスコに本社を構えるモバイル決済企業。2009年にジャック・ドーシーとジム・マッケルヴィが設立し、最初のアプリケーションとサービスがスタートしたのは2010年。実は上述のStripeと同じころなんですね。もっと古いイメージがありました。ジャック・ドーシーはTwitterの生みの親である。
 
-[https://ja.wikipedia.org/wiki/Atom_(テキストエディタ)](https://ja.wikipedia.org/wiki/Atom_(%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%87%E3%82%A3%E3%82%BF))
+対応しているクレジットカードブランドは、Visa、Mastercard、American Express、JCB、Diners Club、Discoverの六種類です。入会金や月額利用料は無料で、決済ごとに3.6％の手数料でStripeと同じ。
 
-### 32.3. Eclipse IDE
+#### 33.1.3. PayPal
 
-Eclipse Foundation が提供する統合開発環境。
+決済サービスを提供するアメリカの企業。決済手数料は、国内は1件あたり3.6%＋40円、海外は4.1%＋40円、と少しややこしい。（公式サイト内もぱっとみ分かりにくかったです）上述の2社よりも、少し高いようです。
 
-ベースとなるワークスペースと、環境をカスタマイズするための拡張可能なプラグインシステムが含まれている。Eclipseは主にJavaで書かれており、主にJavaアプリケーションの開発に使用されるが、Ada 、ABAP、C 、C ++ 、C＃ 、Clojure 、COBOL 、D、Erlang、Fortran 、Groovy 、Haskell、JavaScript、Julia、Lasso、Lua、NATURAL、Perl、PHP、Prolog、Python、R、Ruby（Ruby on Railsフレームワークを含む）、Rust、Scala、Schemeなどのプラグインを介して他のプログラミング言語のアプリケーションを開発するために使用することもできる。
+190の国と地域で利用でき、21通貨以上に対応。2011年2月現在、世界中で2億2000万のアカウントが開設されている。 金銭の授受をPayPalが仲介するため、取引先にクレジットカード番号や口座番号を知らせる必要がなく、安全なサービスであると謳われている。
 
-[https://ja.wikipedia.org/wiki/Eclipse_(統合開発環境)](https://ja.wikipedia.org/wiki/Eclipse_(%E7%B5%B1%E5%90%88%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83))
-<https://www.eclipse.org/>
+1998年創業で、創業者は、Stripeにも投資している、Peter Thiel や Elon Musk。2002年にeBayに買収されその子会社となっていたが、2015年7月にPayPal Holdings Inc.の社名で独立した。
 
-### 32.4. Web Storm
+<https://www.paypal.com/jp/webapps/mpp/home>
+<https://ja.wikipedia.org/wiki/PayPal>
+<https://wise.com/jp/blog/paypal-all-fees>
 
-JetBrains 社製の有料のIDE。
-
-WebStormは、JavaScriptとその関連技術のための統合開発環境です。他のJetBrainsのIDEと同様に、ルーチンワークを自動化し、複雑なタスクを簡単に処理できるようにすることで、開発体験をより楽しいものにします。
-
-<https://www.jetbrains.com/webstorm/>
-<https://ics.media/entry/11642/>
-
-## 33. まとめ
+## 34. まとめ
 
 自分や仲間用にまとめていたら、たいそうなボリュームになってしまいました。ここまで読んで、すべて知っていた人もなかなか少ないのではないでしょうか？私は正直、ほとんど知りませんでした。
 
