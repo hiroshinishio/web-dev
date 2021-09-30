@@ -252,7 +252,7 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
     - [12.6.3. Ionic](#1263-ionic)
     - [12.6.4. DART](#1264-dart)
   - [12.7. RIA (Rich Internet Application)](#127-ria-rich-internet-application)
-  - [12.8. BFF (Backends For Frontends)](#128-bff-backends-for-frontends)
+  - [12.8. BFF (Backends For Frontend)](#128-bff-backends-for-frontend)
     - [12.8.1. BFF のメリット](#1281-bff-のメリット)
     - [12.8.2. BFF のデメリット](#1282-bff-のデメリット)
   - [12.9. Microservices](#129-microservices)
@@ -292,6 +292,7 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
     - [14.4.2. Robomongo](#1442-robomongo)
     - [14.4.3. Apache Couch DB](#1443-apache-couch-db)
     - [14.4.4. Realm](#1444-realm)
+    - [14.4.5. Firestore](#1445-firestore)
   - [14.5. Multi-Model DB](#145-multi-model-db)
     - [14.5.1. ArangoDB](#1451-arangodb)
     - [14.5.2. Azure Cosmos DB](#1452-azure-cosmos-db)
@@ -417,6 +418,7 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
     - [26.1.1. Firebase Hosting](#2611-firebase-hosting)
     - [26.1.2. Firestore](#2612-firestore)
     - [26.1.3. Firebase Authentication](#2613-firebase-authentication)
+    - [Firebase のその他の機能](#firebase-のその他の機能)
   - [26.2. Netlify](#262-netlify)
   - [26.3. Vercel](#263-vercel)
   - [26.4. Heroku](#264-heroku)
@@ -2406,7 +2408,7 @@ Googleが開発したので、「Google Ads」「Google Fiber」「Google Expres
 
 <https://zenn.dev/koduki/articles/c07db4179bb7b86086a1>
 
-### 12.8. BFF (Backends For Frontends)
+### 12.8. BFF (Backends For Frontend)
 
 フロントエンドのためのバックエンド（サーバ）です。フロントエンドのためにAPIをコールしたり、HTMLを生成したりするサーバのことを指します。ここだけ読むと「今までのWebアプリケーションサーバと何が違うのか」と思うかもしれません。本質的にはそこまで変わりませんが、「フロントエンド専用」という役割が異なります。
 
@@ -2681,7 +2683,7 @@ NoSQL DBには大きく4種類ある。
 
 1. KVS (Key-Value Store)：　キーとバリューの組み合わせ。代表的なOSSは、RedisやMemcached
 2. Column-Oriented DB：　カラム指向DB。列方向のデータのまとまりをファイルシステム上の連続した位置に格納し効率的にアクセスする。代表的なOSSは、cassandra、HBASE
-3. Document-Oriented DB：　ドキュメント指向DB。キーに対してJSONあるいはXMLを格納する。代表的なOSSは、mongoDB、Apache couchDB
+3. Document-Oriented DB：　ドキュメント指向DB。キーに対してJSONあるいはXMLを格納する。代表的なOSSは、mongoDB、Apache couchDB、Firestore
 4. Graph-Oriented DB：　グラフ指向DB。グラフ理論に基づいて関連性を持たせる。代表的なOSSは、neo4j、TITAN
 
 <https://aws.amazon.com/jp/nosql/>
@@ -2765,6 +2767,16 @@ Apache CouchDB（読み：アパッチ カウチディービー）とは、ド�
 
 <https://realm.io/>
 <https://en.wikipedia.org/wiki/Realm_(database>)
+
+#### 14.4.5. Firestore
+
+非常に強力な機能性を備えたマネージド・データベースです。
+
+ドキュメント指向データベースに分類され、特にJavaScriptから使う場合はJSON形式のデータをそのまま読み書きできるので、O/Rマッピングの煩わしさもありません。自動スケーリング機能を備えたデータベース・ソリューションは数多くありますが、それに加えてクエリが強整合性を持っているところが、Firestoreの優れた点です。
+
+Authenticationのサポートを得て、クライアントから直接アクセスができるようになったFirestoreの主な役割は、従来のJSONデータを提供していたREST APIやBackends for Frontend(BFF)が担当していた部分をそのまま置き換えることです。
+
+Firestoreは本質がデータベースでありながら、従来のREST APIの役割を代替することができます。それは「クライアントからセキュアに直接読み書きが可能」「ドキュメント指向でありO/Rマッピング不要」「強い整合性」という特性を獲得し、極めて高い可用性とスケーラビリティーを持っているからです。もはや、バックエンドとデータのやり取りをするために、REST APIを用意する必要はなくなりました。
 
 ### 14.5. Multi-Model DB
 
@@ -3708,17 +3720,15 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 
 #### 26.1.2. Firestore
 
-非常に強力な機能性を備えたマネージド・データベースです。
-
-ドキュメント指向データベースに分類され、特にJavaScriptから使う場合はJSON形式のデータをそのまま読み書きできるので、O/Rマッピングの煩わしさもありません。自動スケーリング機能を備えたデータベース・ソリューションは数多くありますが、それに加えてクエリが強整合性を持っているところが、Firestoreの優れた点です。
-
-Authenticationのサポートを得て、クライアントから直接アクセスができるようになったFirestoreの主な役割は、従来のJSONデータを提供していたREST APIやBackends for Frontend(BFF)が担当していた部分をそのまま置き換えることです。
-
-Firestoreは本質がデータベースでありながら、従来のREST APIの役割を代替することができます。それは「クライアントからセキュアに直接読み書きが可能」「ドキュメント指向でありO/Rマッピング不要」「強い整合性」という特性を獲得し、極めて高い可用性とスケーラビリティーを持っているからです。もはや、バックエンドとデータのやり取りをするために、REST APIを用意する必要はなくなりました。
+Firebaseが提供する、ドキュメント指向データベース。
 
 #### 26.1.3. Firebase Authentication
 
 ユーザー認証基盤
+
+#### Firebase のその他の機能
+
+Googleがバックなので、Google Analytics など各種サービスが連携しやすい。
 
 ### 26.2. Netlify
 
