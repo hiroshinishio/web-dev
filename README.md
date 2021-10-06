@@ -2641,7 +2641,8 @@ draw.io と同じくらい有名だと個人的に思う。Lucidchart（ルシ�
 
 2011年、Lucid社は「エンジェル・ファンディング」で100万ドルを調達。2018年、Lucid社はMeritech CapitalとICONIQ Capitalから7,200万ドルの追加調達を発表。
 
-Lucidchartは使ったことはありませんが、これも使いやすそうですね。
+Lucidchartは使ったことはありませんが、これも使いやすそうですね。ただ、無料プランだと３つしか作ることが出来なさそうなところがちょっとイマイチですね。
+![Lucidchartの料金表（2021年10月1日時点）](2021-10-01-16-08-25.png)*Lucidchartの料金表（2021年10月1日時点）*
 
 <https://youtu.be/5a_FQPLMkKI>
 <https://en.wikipedia.org/wiki/Lucidchart>
