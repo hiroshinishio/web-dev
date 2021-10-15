@@ -234,6 +234,7 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
     - [11.2.2. Hasura](#1122-hasura)
     - [11.2.3. Apollo GraphQL](#1123-apollo-graphql)
   - [11.3. Webhook](#113-webhook)
+  - [11.4. SOAP API (Simple Object Access Protocol)](#114-soap-api-simple-object-access-protocol)
 - [12. WEB Application](#12-web-application)
   - [12.1. SPA (Single Page Application)](#121-spa-single-page-application)
     - [12.1.1. SPA と SEO](#1211-spa-と-seo)
@@ -418,7 +419,7 @@ WEB系の知識が0の状態からまとめたので、すごく基本的なこ�
     - [26.1.1. Firebase Hosting](#2611-firebase-hosting)
     - [26.1.2. Firestore](#2612-firestore)
     - [26.1.3. Firebase Authentication](#2613-firebase-authentication)
-    - [Firebase のその他の機能](#firebase-のその他の機能)
+    - [26.1.4. Firebase のその他の機能](#2614-firebase-のその他の機能)
   - [26.2. Netlify](#262-netlify)
   - [26.3. Vercel](#263-vercel)
   - [26.4. Heroku](#264-heroku)
@@ -2259,6 +2260,18 @@ Webサービスがサービス内で起こったイベントをトリガーに�
 <https://twitter.com/rapid_api/status/1436066031735300097?s=21>
 <https://qiita.com/soarflat/items/ed970f6dc59b2ab76169>
 
+### 11.4. SOAP API (Simple Object Access Protocol)
+
+RESTとの違いでいうと、RESTとSOAPは、オンラインでのデータ送信に関する2つの異なるアプローチです。
+
+具体的には、ウェブアプリケーション間でのデータ通信を可能にするAPIの構築方法を定義しています。REST（Representational State Transfer）は、アーキテクチャの原則を定めたもの。SOAP（Simple Object Access Protocol）は、W3C（World Wide Web Consortium）が管理する公式プロトコルです。主な違いは、SOAPがプロトコルであるのに対し、RESTはプロトコルではないこと。一般的に、APIはユースケースや開発者の好みに応じて、RESTまたはSOAPのいずれかに準拠する。
+
+SOAPは古くからある。多くのレガシーシステムではいまだにSOAPが採用されていますが、RESTはそれよりも後に登場し、Webベースのシナリオではより高速な代替手段とみなされることが多いです。SOAPがXMLメッセージングのような特定の要件を持つプロトコルであるのに対し、RESTは柔軟な実装を可能にするガイドラインのセットです。
+
+REST APIは軽量で、モノのインターネット（IoT）、モバイルアプリケーション開発、サーバーレスコンピューティングなどの新しいコンテクストに最適です。SOAP Webサービスは、セキュリティとトランザクションコンプライアンスが組み込まれており、多くの企業のニーズに合致していますが、その分重くなります。また、Google Maps APIなどの多くのパブリックAPIは、RESTガイドラインに準拠しています。
+
+<https://www.redhat.com/en/topics/integration/whats-the-difference-between-soap-rest>
+
 ## 12. WEB Application
 
 ### 12.1. SPA (Single Page Application)
@@ -3727,7 +3740,7 @@ Firebaseが提供する、ドキュメント指向データベース。
 
 ユーザー認証基盤
 
-#### Firebase のその他の機能
+#### 26.1.4. Firebase のその他の機能
 
 Googleがバックなので、Google Analytics など各種サービスが連携しやすい。
 
