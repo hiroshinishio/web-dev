@@ -1295,11 +1295,11 @@ code {
 <p><a href="https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&amp;psc=1">https://www.amazon.co.jp/gp/product/B06XNMMC9S/ref=ppx_yo_dt_b_d_asin_title_o03?ie=UTF8&amp;psc=1</a></p>
 <h3 id="29-url-a-uniform-resource-locator">2.9. URL (a Uniform Resource Locator)</h3>
 <p>図の下に記載の参考サイトより。パスはファイル名を含めたパスで、「.html」などが来ます。「.jsp」はjavaコードが含まれたHTMLファイルの拡張子です。引数はパラメータとも呼ばれ、&amp;区切りで複数つく場合があります。</p>
-<p><img src="../public/2021-09-27-17-11-07.png" alt="URLの説明">
+<p><img src="./public/2021-09-27-17-11-07.png" alt="URLの説明">
 <a href="https://rainbow-engine.com/basic-domain-url/">https://rainbow-engine.com/basic-domain-url/</a></p>
 <h3 id="210-isp-internet-service-provider">2.10. ISP (Internet Service Provider)</h3>
 <p>国内だと、NTTコミュニケーションズや、ソフトバンクなど。海外だとVerizonやAT＆Tなどのこと。ISPは階層構造をとっていて、非常に規模が大きく最上位に位置するISPがTier1です。Tier1以外のISPも相互に接続されていて、最終的にはどこかのTier1のISPにつながっています。つまり、インターネット上のすべてのISPはTier1を経由してどこかでつながっています。</p>
-<p><img src="../public/2021-09-27-17-13-59.png" alt="ISPの概念図"></p>
+<p><img src="./public/2021-09-27-17-13-59.png" alt="ISPの概念図"></p>
 <p>同Tier内では、ピアー（peer）と呼ばれる、無料での情報やり取りができますが、Tierが違うとトランジット（transit）と呼ばれる、上位Tierに使用料を払うことで経路情報をもらう接続が適用されます。</p>
 <ul>
 <li>Tier 1：　AT&amp;T、Verizon、NTTコミュニケーションズ（米Verioを買収してTier1昇格）、ソフトバンク（米Sprintを買収してTier1昇格）。</li>
@@ -1355,7 +1355,7 @@ code {
 <a href="https://qiita.com/chihiro/items/9d280704c6eff8603389">https://qiita.com/chihiro/items/9d280704c6eff8603389</a></p>
 <h2 id="3-browser">3. Browser</h2>
 <p>受け取ったHTMLファイルを解析するレンダリングエンジンが各ブラウザには内包されている。またJavaScriptはJavaScriptエンジンで動く。それらのエンジンが、ブラウザ間で異なるために同じHTMLやJavaScriptの内容でも表示や挙動が異なる場合がある。</p>
-<p><img src="../public/2021-09-27-17-27-03.png" alt="ブラウザの利用調査"><em>Which browser(s) do you primarily work in during initial development?</em></p>
+<p><img src="./public/2021-09-27-17-27-03.png" alt="ブラウザの利用調査"><em>Which browser(s) do you primarily work in during initial development?</em></p>
 <p><a href="https://2020.stateofjs.com/en-US/other-tools/">https://2020.stateofjs.com/en-US/other-tools/</a>
 <a href="https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_FEV5Y74CDVTH1HD880NF">https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_FEV5Y74CDVTH1HD880NF</a></p>
 <h3 id="31-browser%E3%81%AE%E7%A8%AE%E9%A1%9E">3.1. Browserの種類</h3>
@@ -1397,7 +1397,7 @@ code {
 <a href="https://qiita.com/ryoya41/items/fd8e46702b0f4fbe1188">https://qiita.com/ryoya41/items/fd8e46702b0f4fbe1188</a></p>
 <h3 id="34-critical-rendering-path">3.4. Critical Rendering Path</h3>
 <p>HTML,CSS,Javascriptをどう処理して画面に表示するのか。HTML、CSS、JavaScript のバイトの受信から、これらをピクセルとしてレンダリングするために必要な処理までの中間段階で行われている内容のこと。</p>
-<p><img src="../public/2021-09-27-18-33-57.png" alt="Critical Rendering Pathのイメージ"><em>Critical Rendering Pathのイメージ</em></p>
+<p><img src="./public/2021-09-27-18-33-57.png" alt="Critical Rendering Pathのイメージ"><em>Critical Rendering Pathのイメージ</em></p>
 <p>そのプロセスは下記の通り。</p>
 <ol>
 <li>Object Model の構築</li>
@@ -1480,13 +1480,13 @@ code {
 <p>Microsoftが開発・管理している</p>
 <h3 id="53-web-server-software-%E3%81%AE%E5%88%A9%E7%94%A8%E3%82%B7%E3%82%A7%E3%82%A2">5.3. WEB Server Software の利用シェア</h3>
 <p>２大巨頭はNginxとApache。2021年7月はNginx、Cloudflare Server、LiteSpeedがシェアを増やし、Apacheがシェアを減らした。ApacheとMicrosoft-IISがシェアを減らし、Nginx、Cloudflare Server、LiteSpeedがシェアを増やすというのがここ数年の傾向となっている。ただし、増減のペースはほぼ一定で、数年間という比較的長いスパンでシェアの推移が起こっている。</p>
-<p><img src="../public/2021-09-27-18-38-11.png" alt="Usage of Web Servers">
+<p><img src="./public/2021-09-27-18-38-11.png" alt="Usage of Web Servers">
 <a href="https://news.livedoor.com/article/detail/20472752/">https://news.livedoor.com/article/detail/20472752/</a></p>
 <h3 id="54-static-content%E9%9D%99%E7%9A%84%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84">5.4. Static Content（静的コンテンツ）</h3>
 <p>ヘルプページなど、最初から配信するコンテンツの中身が変わらないもの。この特性を生かして、効率よく配信するためのシステムをCDN（Contents Delivery Network）という。</p>
 <h3 id="55-cdn-contents-delivery-network">5.5. CDN (Contents Delivery Network)</h3>
 <p>コンテンツキャッシュサーバーの役割も果たす。CDNを提供する事業者やクラウドサービスはいくつかある。CDNを実現する、つまり同一のコンテンツを多くのサーバでミラーする手段としては、単純なDNSラウンドロビンから、P2P、地理情報を加味した複雑な配信技術までさまざまなものがあり、研究、実用化がなされている。(左) 単一のサーバーによる配信　(右) CDNによる配信</p>
-<p><img src="../public/2021-09-27-18-51-32.png" alt="CDNの概念図"></p>
+<p><img src="./public/2021-09-27-18-51-32.png" alt="CDNの概念図"></p>
 <h3 id="56-cdn-%E4%BA%8B%E6%A5%AD%E8%80%85">5.6. CDN 事業者</h3>
 <p>主なCDN事業者は、下記。世界的には上位3社による寡占が進んでいるらしい。日本語サイトではAmazon CloudFrontが2018年頃からここ数年1位。</p>
 <ul>
@@ -1559,7 +1559,7 @@ code {
 <a href="https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&amp;psc=1">https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_KGFK4GJ0GF6ARKB15YHT?_encoding=UTF8&amp;psc=1</a></p>
 <h3 id="72-dom-document-object-model">7.2. DOM (Document Object Model)</h3>
 <p>W3Cが標準化・管理。HTMLはテキスト文書を扱うために構造化された言語だが、そのままではコンピュータで扱うことはできず、一度解析をして、メモリ上に構造化されたデータとして読み込む必要がある。こんなツリー上のデータ。</p>
-<p><img src="../public/2021-09-27-18-54-54.png" alt="DOMのイメージ"></p>
+<p><img src="./public/2021-09-27-18-54-54.png" alt="DOMのイメージ"></p>
 <p>ブラウザで解析された HTMLのデータに対してデータの読み込みや変更を行いたい場合は、何らかの形で操作方法を提供する必要がある。</p>
 <p>DOMは、 HTMLのようなマークアップ言語の文書をプログラミング言語から操作可能にするためのプログラミングインタフェース。</p>
 <h3 id="73-ogp-open-graph-protocol">7.3. OGP (Open Graph Protocol)</h3>
@@ -1585,7 +1585,7 @@ code {
 </ul>
 <h3 id="76-css-frameworks">7.6. CSS Frameworks</h3>
 <p>CSSでHTMLから見栄えの部分の分離ができたとはいえ、ゼロからCSSを書くのは大変です。そこでよく使われるスタイルをあらかじめ定義しておいて、それを利用する方法が考えられました。それがCSSフレームワークです。CSSフレームワークにもいくつか実装がありますが、代表的なものにBootstrap。2020年の利用率調査ではこんな感じでした。ただ、SatisfactionではTailwind CSSが1位で、Bootstrapは中位くらいでした。</p>
-<p><img src="../public/2021-09-27-18-56-15.png" alt="CSSフレームワークの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
+<p><img src="./public/2021-09-27-18-56-15.png" alt="CSSフレームワークの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
 <p><a href="https://2020.stateofcss.com/en-US/">https://2020.stateofcss.com/en-US/</a>
 <a href="https://coliss.com/articles/build-websites/operation/css/the-state-of-css-2020.html">https://coliss.com/articles/build-websites/operation/css/the-state-of-css-2020.html</a></p>
 <h4 id="761-bootstrap">7.6.1. Bootstrap</h4>
@@ -1700,21 +1700,21 @@ code {
 <h3 id="713-user-interface-design">7.13. User Interface Design</h3>
 <p>WEBサイトのデザインの変遷として、下記のパターンと流れがあった。絵で見た方がはやい。</p>
 <h4 id="7131-skeuomorphism-design">7.13.1. Skeuomorphism Design</h4>
-<p><img src="../public/2021-09-27-19-14-45.png" alt="スキューモーフィズムデザイン例１">
-<img src="../public/2021-09-27-19-15-03.png" alt="スキューモーフィズムデザイン例２"></p>
+<p><img src="./public/2021-09-27-19-14-45.png" alt="スキューモーフィズムデザイン例１">
+<img src="./public/2021-09-27-19-15-03.png" alt="スキューモーフィズムデザイン例２"></p>
 <p>スキューモーフィズムデザインと読む。初期のデザイン。ギリシャ由来の言葉で、リアリズムに影響を受けた実際にあるものに近しいデザイン。</p>
 <p>初期のデザインなのですが、またブームが来ているとかいないとか。フラットデザインに飽きてくるんでしょうね。（個人的な意見ですが）</p>
 <p><a href="https://b-risk.jp/blog/2020/01/skeuomorphism/">https://b-risk.jp/blog/2020/01/skeuomorphism/</a>
 <a href="https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/">https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/</a></p>
 <h4 id="7132-flat-design">7.13.2. Flat Design</h4>
-<p><img src="../public/2021-09-27-20-41-48.png" alt="フラットデザイン例１">
-<img src="../public/2021-09-27-20-42-02.png" alt="フラットデザイン例２"></p>
+<p><img src="./public/2021-09-27-20-41-48.png" alt="フラットデザイン例１">
+<img src="./public/2021-09-27-20-42-02.png" alt="フラットデザイン例２"></p>
 <p>現在主流。質感や立体感を取り除いたシンプルなデザイン。</p>
 <p>シンプルな分、ページの読み込み時間も早くなったりするらしい。</p>
 <p><a href="https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/">https://en.99designs.jp/blog/trends/skeuomorphism-flat-design-material-design/</a></p>
 <h4 id="7133-material-design">7.13.3. Material Design</h4>
-<p><img src="../public/2021-09-27-20-43-33.png" alt="マテリアルデザイン例１">
-<img src="../public/2021-09-27-20-43-47.png" alt="マテリアルデザイン例２"></p>
+<p><img src="./public/2021-09-27-20-43-33.png" alt="マテリアルデザイン例１">
+<img src="./public/2021-09-27-20-43-47.png" alt="マテリアルデザイン例２"></p>
 <p>フラットデザインに少しスキューモーフィズムを追加した感じ。2014年にGoogleが提唱したデザイン。明確なガイドラインが定められたデザインであり、「見やすく、直感的に操作できるWebページ・サービス」を作ることを目的としています。</p>
 <p>アニメーションが関係してたりもするので、実際に本家を訪れて、タッチしてみるのが早いです。</p>
 <p><a href="https://material.io/develop/web/examples">https://material.io/develop/web/examples</a>
@@ -1746,7 +1746,7 @@ code {
 <p>本編を特に詳しく扱います。</p>
 <p>Webの初期のころに使われていたNetscape Navigatorというブラウザ上で動作する言語として実装された。当時Javaが大きな注目を浴びていた言語であったため、JavaScriptという名前が付けられた。ECMAScriptとして仕様が標準化。プロトタイプベースのオブジェクト指向が採用されているため型付が緩くバグになりやすい。ブラウザ上で動かすことがほとんど。大文字小文字を区別する。</p>
 <p>色んな技術の外観はこんな感じ。右上は利用も満足度も高い。左上は利用は少ないが満足度は高い。</p>
-<p><img src="../public/2021-09-27-20-56-44.png" alt="JavaScript周りの技術"></p>
+<p><img src="./public/2021-09-27-20-56-44.png" alt="JavaScript周りの技術"></p>
 <p><a href="https://2020.stateofjs.com/en-US/technologies/">https://2020.stateofjs.com/en-US/technologies/</a></p>
 <h3 id="81-ecma-script">8.1. ECMA Script</h3>
 <p>MozillaとMicrosoftが別々に開発してたのでECMA(エクマインターナショナルが間を持った結果ECMAスクリプトという仕様名になった。（結局フレームワーク側でまた色んなものが開発されているが・・・）</p>
@@ -1775,7 +1775,7 @@ code {
 <h4 id="823-javascript-flavors-%E3%81%AE%E5%88%A9%E7%94%A8%E7%8E%87">8.2.3. JavaScript Flavors の利用率</h4>
 <p>TypeScriptの利用率が圧倒的。グラフは割愛したが、満足度も93％で1位。</p>
 <p><a href="https://2020.stateofjs.com/en-US/technologies/javascript-flavors/">https://2020.stateofjs.com/en-US/technologies/javascript-flavors/</a></p>
-<p><img src="../public/2021-09-27-20-59-46.png" alt="TypeScriptの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
+<p><img src="./public/2021-09-27-20-59-46.png" alt="TypeScriptの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
 <h3 id="83-front-end-js-frameworks">8.3. Front-End JS Frameworks</h3>
 <p>ここ数年はReactとVueがリード。Svelteが猛追している。</p>
 <h4 id="831-react">8.3.1. React</h4>
@@ -1792,8 +1792,8 @@ code {
 <h4 id="835-front-end-js-frameworks-%E3%81%AE%E5%88%A9%E7%94%A8%E7%8E%87%E3%82%84%E6%BA%80%E8%B6%B3%E5%BA%A6">8.3.5. Front-End JS Frameworks の利用率や満足度</h4>
 <p>利用率ではReactがこの数年1位。Angularも高いが満足度が相対的に低い。満足度の高さと利用率の伸びでみるとSvelteの勢いはすごい。</p>
 <p><a href="https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/">https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/</a></p>
-<p><img src="../public/2021-09-27-21-01-26.png" alt="Front-End JS Frameworks の利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
-<p><img src="../public/2021-09-27-21-01-51.png" alt="Front-End JS Frameworks の満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
+<p><img src="./public/2021-09-27-21-01-26.png" alt="Front-End JS Frameworks の利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
+<p><img src="./public/2021-09-27-21-01-51.png" alt="Front-End JS Frameworks の満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
 <h4 id="836-other-alt-js">8.3.6. Other Alt JS</h4>
 <p>他にもかなりの種類がある。ありすぎて説明しきれない。</p>
 <ul>
@@ -1810,7 +1810,7 @@ code {
 </ul>
 <h3 id="84-runtime-for-javascript-and-typescript">8.4. Runtime for JavaScript (and TypeScript)</h3>
 <p>Runtimeは実行環境。サーバーサイドもJavaScriptでやる利点は、サーバーサイドとクライアントサイドが同じ言語になり、同じ技術者がサーバーとクライアント両方を開発しやすくなり、通常なら必要となる双方の技術者間の仕様のすり合わせなどが少なくなり、開発コストが押さえやすくなること。</p>
-<p><img src="../public/2021-09-27-21-03-11.png" alt="JS Runtimeの利用調査"><em>Which engines/runtimes/execution environments do you regularly use?</em></p>
+<p><img src="./public/2021-09-27-21-03-11.png" alt="JS Runtimeの利用調査"><em>Which engines/runtimes/execution environments do you regularly use?</em></p>
 <p><a href="https://2020.stateofjs.com/en-US/other-tools/">https://2020.stateofjs.com/en-US/other-tools/</a>
 <a href="https://persol-tech-s.co.jp/hatalabo/it_engineer/225.html">https://persol-tech-s.co.jp/hatalabo/it_engineer/225.html</a></p>
 <h4 id="841-nodejs">8.4.1. Node.js</h4>
@@ -1840,8 +1840,8 @@ code {
 <h3 id="85-back-end-js-frameworks">8.5. Back-End JS Frameworks</h3>
 <p>バックエンドの分野はまだ非常に細分化されていますが、Expressは圧倒的な存在感を示しており、Next.jsは高い満足度を維持しています。</p>
 <p>WEBアプリ開発における必須のスキル「MERN」という言葉がありますが、MERNのEはExpressのEですから、そのあたりの言葉にも如実に表れています。ちなみにMはMongoDB、RはReact、NはNode.jsです。</p>
-<p><img src="../public/2021-09-27-21-05-33.png" alt="Back-End JS Frameworks の利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
-<p><img src="../public/2021-09-27-21-06-01.png" alt="Back-End JS Frameworks の満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
+<p><img src="./public/2021-09-27-21-05-33.png" alt="Back-End JS Frameworks の利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
+<p><img src="./public/2021-09-27-21-06-01.png" alt="Back-End JS Frameworks の満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
 <p><a href="https://2020.stateofjs.com/en-US/technologies/back-end-frameworks/">https://2020.stateofjs.com/en-US/technologies/back-end-frameworks/</a></p>
 <h4 id="851-expressjs">8.5.1. Express.js</h4>
 <p>最小限の機能と柔軟性を備えたNode.jsのWebアプリケーションフレームワークで、Webおよびモバイルアプリケーションのための堅牢な機能を備えています。APIを提供しています。</p>
@@ -1868,8 +1868,8 @@ code {
 <p>Node.jsスタイルのコードは、そのままの状態ではブラウザで動きません。 ソースコードを元にして、実際に動くプログラム（実行可能ファイル）を作ってあげる必要があります。 その作成処理のことを ビルド と言います。</p>
 <p>バンドラとは、HTTP/1.1接続ではブラウザとウェブサーバーの同時接続数が限られるため、複数のファイルの転送に時間がかかります。複数のJSファイルを1つにまとめてしまうことが一般的な解決案として知られています。</p>
 <p>webpackの優位性で議論が決着したかと思いきや、Snowpackやesbuildなどの新規参入者によってビルドツールのシーンが再び爆発的に増え、State of JSのサイトにおいても、2017年以来のフルセクションを設けられた。</p>
-<p><img src="../public/2021-09-27-21-11-55.png" alt="ビルドツールの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
-<p><img src="../public/2021-09-27-21-12-25.png" alt="ビルドツールの満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
+<p><img src="./public/2021-09-27-21-11-55.png" alt="ビルドツールの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
+<p><img src="./public/2021-09-27-21-12-25.png" alt="ビルドツールの満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
 <p><a href="https://2020.stateofjs.com/en-US/technologies/build-tools/">https://2020.stateofjs.com/en-US/technologies/build-tools/</a>
 <a href="https://qiita.com/yukibe/items/453d874eb7ce929363d6">https://qiita.com/yukibe/items/453d874eb7ce929363d6</a>
 <a href="https://ics.media/entry/12140/">https://ics.media/entry/12140/</a>
@@ -2164,12 +2164,12 @@ hello\x00                      // field name
 <a href="https://ja.wikipedia.org/wiki/Nim">https://ja.wikipedia.org/wiki/Nim</a></li>
 <li>F#：　これまた写ってませんが・・・、OCaml という言語をベースに開発された2プログラミング言語で、C# の速度・クロスプラットフォーム性・ライブラリの多さ・開発環境、Python のオフサイドルール、Haskell のモナド文化、静的ダックタイピング(事実上のトレイト/型クラス)、コンパイル時型生成(type providers)、といった要素を兼ね備えています。<a href="https://qiita.com/cannorin/items/59d79cc9a3b64c761cd4">https://qiita.com/cannorin/items/59d79cc9a3b64c761cd4</a></li>
 </ul>
-<p><img src="../public/2021-09-27-21-25-43.png" alt="JS以外の利用言語"></p>
+<p><img src="./public/2021-09-27-21-25-43.png" alt="JS以外の利用言語"></p>
 <p><a href="https://2020.stateofjs.com/en-US/other-tools/">https://2020.stateofjs.com/en-US/other-tools/</a>
 <a href="https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3">https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3</a></p>
 <h3 id="101-python-frameworks">10.1. Python Frameworks</h3>
 <p>Pythonは機械学習の人気も相まって、今最も人気のあるサーバーサイドスクリプトです。動的型付け言語。同じ数の空白でインデントされたまとまりを一つのブロックと認識します。Webアプリケーションやデスクトップアプリケーションといった様々なシステムの開発が行えます。科学計算、機械学習の分野において採用されるケースが多い</p>
-<p><img src="../public/2021-09-27-21-27-00.png" alt="Pythonフレームワークの利用調査"></p>
+<p><img src="./public/2021-09-27-21-27-00.png" alt="Pythonフレームワークの利用調査"></p>
 <p><a href="https://www.jetbrains.com/lp/python-developers-survey-2020/">https://www.jetbrains.com/lp/python-developers-survey-2020/</a></p>
 <h4 id="1011-flask">10.1.1. Flask</h4>
 <p>JetBrain社のサーベイだと利用率は1位。</p>
@@ -2306,7 +2306,7 @@ type User {
 <h4 id="1123-apollo-graphql">11.2.3. Apollo GraphQL</h4>
 <p>ApolloはGraphQLのフロントエンド＆バックエンドのライブラリです。バックエンド側はApollo Server、フロントエンド側は Apollo Clientを導入する必要があります。</p>
 <p>またGraphiQLというVisual Editorがツールとして付属しているのでAPIの動作確認を簡単に行うことができます。Apollo を利用することで、あらゆるデータが GraphQL サーバーとして集約されます。</p>
-<p><img src="../public/2021-09-27-21-48-32.png" alt="Apolloのイメージ図"></p>
+<p><img src="./public/2021-09-27-21-48-32.png" alt="Apolloのイメージ図"></p>
 <p>こうすることでバックエンドの複雑性が Apollo によって隠蔽され、クライアントおよびバックエンドは Apollo サーバーとの接続にのみ注意すればよくなる</p>
 <p><a href="https://www.apollographql.com/">https://www.apollographql.com/</a>
 <a href="https://qiita.com/teradonburi/items/2ad98c7c21f1f6cc4390">https://qiita.com/teradonburi/items/2ad98c7c21f1f6cc4390</a>
@@ -2415,7 +2415,7 @@ type User {
 <p><a href="https://zenn.dev/koduki/articles/c07db4179bb7b86086a1">https://zenn.dev/koduki/articles/c07db4179bb7b86086a1</a></p>
 <h3 id="128-bff-backends-for-frontend">12.8. BFF (Backends For Frontend)</h3>
 <p>フロントエンドのためのバックエンド（サーバ）です。フロントエンドのためにAPIをコールしたり、HTMLを生成したりするサーバのことを指します。ここだけ読むと「今までのWebアプリケーションサーバと何が違うのか」と思うかもしれません。本質的にはそこまで変わりませんが、「フロントエンド専用」という役割が異なります。</p>
-<p><img src="../public/2021-09-27-22-03-58.png" alt="BFFのイメージ"></p>
+<p><img src="./public/2021-09-27-22-03-58.png" alt="BFFのイメージ"></p>
 <p><a href="https://atmarkit.itmedia.co.jp/ait/articles/1803/12/news012.html">https://atmarkit.itmedia.co.jp/ait/articles/1803/12/news012.html</a></p>
 <h4 id="1281-bff-%E3%81%AE%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88">12.8.1. BFF のメリット</h4>
 <p>例えば、下記のようないくつかのメリットが生まれる。</p>
@@ -2524,15 +2524,15 @@ type User {
 <p><a href="https://www.lucidchart.com/pages/ja/er-diagram">https://www.lucidchart.com/pages/ja/er-diagram</a></p>
 <h4 id="1371-conceptual-data-model">13.7.1. Conceptual Data Model</h4>
 <p>概念データモデル。システム全体をモデル化し、シンボルを用いて事象を大まかな分類した図</p>
-<p><img src="../public/2021-09-27-22-10-25.png" alt="Conceptual Data Modelのサンプル"></p>
+<p><img src="./public/2021-09-27-22-10-25.png" alt="Conceptual Data Modelのサンプル"></p>
 <p><a href="https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/">https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/</a></p>
 <h4 id="1372-logical-data-model">13.7.2. Logical Data Model</h4>
 <p>論理データモデル。概念データモデルを詳細に落とし込んで、画面や帳票などのシステムで必要とする属性を付与したモデル図</p>
-<p><img src="../public/2021-09-27-22-11-00.png" alt="Logical Data Modelのサンプル"></p>
+<p><img src="./public/2021-09-27-22-11-00.png" alt="Logical Data Modelのサンプル"></p>
 <p><a href="https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/">https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/</a></p>
 <h4 id="1373-physical-data-model">13.7.3. Physical Data Model</h4>
 <p>物理データモデル。論理データモデルさらに詳細に落とし込んだ図で、実際のデータベースの情報と1対1の関係になっています。</p>
-<p><img src="../public/2021-09-27-22-11-30.png" alt="Physical Data Modelのサンプル"></p>
+<p><img src="./public/2021-09-27-22-11-30.png" alt="Physical Data Modelのサンプル"></p>
 <p><a href="https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/">https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/</a></p>
 <h3 id="138-eerd-enhanced--extended-erd">13.8. EERD (Enhanced / Extended ERD)</h3>
 <p>ER図を拡張した「拡張実体関連モデル」。EER図は、ER図に以下のような要素を追加しています。</p>
@@ -2542,9 +2542,9 @@ type User {
 <li>カテゴリーまたはユニオン</li>
 <li>アトリビュート（属性）やリレーションの継承</li>
 </ol>
-<p><img src="../public/2021-09-27-22-13-09.png" alt="サブクラスとスーパークラスのイメージ"><em>サブクラスとスーパークラス</em>
-<img src="../public/2021-09-27-22-13-33.png" alt="特殊化と一般化のイメージ"><em>特殊化と一般化</em>
-<img src="../public/2021-09-27-22-13-50.png" alt="カテゴリーまたはユニオンのイメージ"><em>カテゴリーまたはユニオン</em></p>
+<p><img src="./public/2021-09-27-22-13-09.png" alt="サブクラスとスーパークラスのイメージ"><em>サブクラスとスーパークラス</em>
+<img src="./public/2021-09-27-22-13-33.png" alt="特殊化と一般化のイメージ"><em>特殊化と一般化</em>
+<img src="./public/2021-09-27-22-13-50.png" alt="カテゴリーまたはユニオンのイメージ"><em>カテゴリーまたはユニオン</em></p>
 <p><a href="https://www.tutorialspoint.com/Extended-Entity-Relationship-EE-R-Model">https://www.tutorialspoint.com/Extended-Entity-Relationship-EE-R-Model</a>
 <a href="https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/">https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/</a>
 <a href="https://www.lucidchart.com/pages/enhanced-entity-relationship-diagram">https://www.lucidchart.com/pages/enhanced-entity-relationship-diagram</a></p>
@@ -2568,7 +2568,7 @@ type User {
 <p>draw.io と同じくらい有名だと個人的に思う。Lucidchart（ルシドチャート）は，図や表の描画，修正，共有を共同で行うことができるWebベースの独自プラットフォームである。 米国ユタ州に本拠地を置くLucid Software Inc.が制作している。</p>
 <p>2011年、Lucid社は「エンジェル・ファンディング」で100万ドルを調達。2018年、Lucid社はMeritech CapitalとICONIQ Capitalから7,200万ドルの追加調達を発表。</p>
 <p>Lucidchartは使ったことはありませんが、これも使いやすそうですね。ただ、無料プランだと３つしか作ることが出来なさそうなところがちょっとイマイチですね。
-<img src="../public/2021-10-01-16-08-25.png" alt="Lucidchartの料金表（2021年10月1日時点）"><em>Lucidchartの料金表（2021年10月1日時点）</em></p>
+<img src="./public/2021-10-01-16-08-25.png" alt="Lucidchartの料金表（2021年10月1日時点）"><em>Lucidchartの料金表（2021年10月1日時点）</em></p>
 <p><a href="https://youtu.be/5a_FQPLMkKI">https://youtu.be/5a_FQPLMkKI</a>
 <a href="https://en.wikipedia.org/wiki/Lucidchart">https://en.wikipedia.org/wiki/Lucidchart</a></p>
 <h4 id="1393-cacoo">13.9.3. Cacoo</h4>
@@ -2908,8 +2908,8 @@ type User {
 <p><a href="https://www.hitachi-solutions.co.jp/coverity/">https://www.hitachi-solutions.co.jp/coverity/</a></p>
 <h2 id="21-test-frameworks">21. Test Frameworks</h2>
 <p>こちらも言語ごとに色々あります。JSだと利用実績と満足度はこんな感じ。</p>
-<p><img src="../public/2021-09-27-22-52-03.png" alt="Test Frameworksの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
-<p><img src="../public/2021-09-27-22-52-45.png" alt="Test Frameworksの満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
+<p><img src="./public/2021-09-27-22-52-03.png" alt="Test Frameworksの利用実績率"><em>利用実績率の推移。Usage = (would use again + would not use again) / total</em></p>
+<p><img src="./public/2021-09-27-22-52-45.png" alt="Test Frameworksの満足度"><em>満足度の推移。Satisfaction = would use again / (would use again + would not use again)</em></p>
 <p><a href="https://2020.stateofjs.com/en-US/technologies/testing/">https://2020.stateofjs.com/en-US/technologies/testing/</a></p>
 <h3 id="211-test-frameworks-for-js">21.1. Test Frameworks for JS</h3>
 <h4 id="2111-jest">21.1.1. Jest</h4>
@@ -3154,7 +3154,7 @@ type User {
 <p>インフラパート。クラウドだと、AWSやGCP、Microsoft Azureなど。AWSを例にメモしていきます。</p>
 <h3 id="251-aws-service">25.1. AWS Service</h3>
 <p>AWSの全体像はこんな感じ。落ちてるものから分かりやすかったものをいくつか拾ってきた。まずは公式サイトのAmazonにあるWEBアプリケーションのよくある構成。（AWSのサイトで拾ったので、全部AWSサービスで構成されているが・・・）</p>
-<p><img src="../public/2021-09-27-23-04-13.png" alt="AWSの構成イメージ"></p>
+<p><img src="./public/2021-09-27-23-04-13.png" alt="AWSの構成イメージ"></p>
 <p><a href="https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html">https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html</a></p>
 <h3 id="252-aws%E3%81%AE%E5%90%84%E7%A8%AE%E7%94%A8%E8%AA%9E">25.2. AWSの各種用語</h3>
 <h4 id="2521-vpc-virtual-private-cloud">25.2.1. VPC (Virtual Private Cloud)</h4>
@@ -3222,7 +3222,7 @@ type User {
 </ul>
 <h3 id="254-load-balancer">25.4. Load Balancer</h3>
 <p>サーバーにかかる負荷を、平等に振り分けるための装置のことを指します。これによって1つのサーバーにかかる負担を軽減したり、停止状態を防ぐことができたりします。SSLアクセラレーターを使用することにより、本来サーバーごとに必要なSSL証明書を1本化したり、暗号化通信の負荷を軽減できたりします。</p>
-<p><img src="../public/2021-09-27-23-08-52.png" alt="LBのイメージ"></p>
+<p><img src="./public/2021-09-27-23-08-52.png" alt="LBのイメージ"></p>
 <p><a href="https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/">https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/</a></p>
 <h4 id="2541-lb%E3%81%AE%E8%B2%A0%E8%8D%B7%E5%88%86%E6%95%A3%E6%96%B9%E6%B3%95">25.4.1. LBの負荷分散方法</h4>
 <p>負荷分散の方法はいくつかある</p>
@@ -3248,7 +3248,7 @@ type User {
 <h3 id="261-firebase">26.1. Firebase</h3>
 <p>2011年設立。米有力VCのYCombinator卒業。2014年にGoogleが買収。以降、Googleが管理・開発しているBaaS（Backend as a service）。なので、がっつりGoogleがバックにサポートしたサービスになってます。Spark Planが無料プラン。</p>
 <p>対応言語：Node.js, C++. Kotlin, Java, Object-C, Swift。モバイルアプリ開発に使われることも多いので、mBaaS(mobile backend as a Service)と呼ばれたりもします。例えばNuxt.jsを利用して開発したSPAをインターネット上で配信する際にバックエンドで必要となる機能は、大きく分けて下記の点。</p>
-<p><img src="../public/2021-09-27-23-09-55.png" alt="Firebaseのイメージ"></p>
+<p><img src="./public/2021-09-27-23-09-55.png" alt="Firebaseのイメージ"></p>
 <p><a href="https://firebase.google.com/">https://firebase.google.com/</a>
 <a href="https://www.ycombinator.com/companies/firebase">https://www.ycombinator.com/companies/firebase</a>
 <a href="https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&amp;psc=1">https://www.amazon.co.jp/gp/product/B08NSZJZ4Q/ref=ppx_yo_dt_b_d_asin_title_o09?ie=UTF8&amp;psc=1</a>
@@ -3472,7 +3472,7 @@ type User {
 <h4 id="3074-auth0">30.7.4. Auth0</h4>
 <p>クラウドにもオンプレミスでも、あらゆるアプリ、APIに柔軟に対応可能な次世代型の認証基盤サービスです。世界での導入実績は10,000社を越え、毎月40億回以上のセキュアなログインを支えています。Auth0, Inc. が開発。</p>
 <p>Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心に創業した会社で、Washington州Bellevueに本社があります。創業メンバーはEugenio Pace(CEO), Matias Woloski(CTO)　などMicrosoftに在籍していたメンバーのほか、Node.jsの認証フレームワークである&quot;Passport&quot;の開発者であった Jered Hanson, AT&amp;T, Amazon.com, 国防総省での勤務経験のある Eugen Koganも創業メンバーです。</p>
-<p><img src="../public/2021-09-28-14-48-02.png" alt="Auth0のイメージ"></p>
+<p><img src="./public/2021-09-28-14-48-02.png" alt="Auth0のイメージ"></p>
 <p><a href="https://auth0.com/">https://auth0.com/</a>
 <a href="https://classmethod.jp/partner/auth0/">https://classmethod.jp/partner/auth0/</a>
 <a href="https://qiita.com/furuth/items/68c3caa3127cbf4f6b77">https://qiita.com/furuth/items/68c3caa3127cbf4f6b77</a></p>
