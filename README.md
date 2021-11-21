@@ -637,14 +637,14 @@ HTTP通信をカプセル化したトランスポート層でのプロトコル�
 
 図の下に記載の参考サイトより。パスはファイル名を含めたパスで、「.html」などが来ます。「.jsp」はjavaコードが含まれたHTMLファイルの拡張子です。引数はパラメータとも呼ばれ、&区切りで複数つく場合があります。
 
-![URLの説明](2021-09-27-17-11-07.png)
+![URLの説明](./public/2021-09-27-17-11-07.png)
 <https://rainbow-engine.com/basic-domain-url/>
 
 ### 2.10. ISP (Internet Service Provider)
 
 国内だと、NTTコミュニケーションズや、ソフトバンクなど。海外だとVerizonやAT＆Tなどのこと。ISPは階層構造をとっていて、非常に規模が大きく最上位に位置するISPがTier1です。Tier1以外のISPも相互に接続されていて、最終的にはどこかのTier1のISPにつながっています。つまり、インターネット上のすべてのISPはTier1を経由してどこかでつながっています。
 
-![ISPの概念図](2021-09-27-17-13-59.png)
+![ISPの概念図](./public/2021-09-27-17-13-59.png)
 
 同Tier内では、ピアー（peer）と呼ばれる、無料での情報やり取りができますが、Tierが違うとトランジット（transit）と呼ばれる、上位Tierに使用料を払うことで経路情報をもらう接続が適用されます。
 
@@ -730,7 +730,7 @@ Webにおいて双方向通信を低コストで行うための仕組み。プ�
 
 受け取ったHTMLファイルを解析するレンダリングエンジンが各ブラウザには内包されている。またJavaScriptはJavaScriptエンジンで動く。それらのエンジンが、ブラウザ間で異なるために同じHTMLやJavaScriptの内容でも表示や挙動が異なる場合がある。
 
-![ブラウザの利用調査](2021-09-27-17-27-03.png)*Which browser(s) do you primarily work in during initial development?*
+![ブラウザの利用調査](./public/2021-09-27-17-27-03.png)*Which browser(s) do you primarily work in during initial development?*
 
 <https://2020.stateofjs.com/en-US/other-tools/>
 <https://www.amazon.co.jp/dp/B092Q8SKDB/ref=cm_sw_r_tw_dp_FEV5Y74CDVTH1HD880NF>
@@ -804,7 +804,7 @@ V8は、C++で書かれたGoogleのオープンソースの高性能JavaScript�
 
 HTML,CSS,Javascriptをどう処理して画面に表示するのか。HTML、CSS、JavaScript のバイトの受信から、これらをピクセルとしてレンダリングするために必要な処理までの中間段階で行われている内容のこと。
 
-![Critical Rendering Pathのイメージ](2021-09-27-18-33-57.png)*Critical Rendering Pathのイメージ*
+![Critical Rendering Pathのイメージ](./public/2021-09-27-18-33-57.png)*Critical Rendering Pathのイメージ*
 
 そのプロセスは下記の通り。
 
@@ -937,7 +937,7 @@ Microsoftが開発・管理している
 
 ２大巨頭はNginxとApache。2021年7月はNginx、Cloudflare Server、LiteSpeedがシェアを増やし、Apacheがシェアを減らした。ApacheとMicrosoft-IISがシェアを減らし、Nginx、Cloudflare Server、LiteSpeedがシェアを増やすというのがここ数年の傾向となっている。ただし、増減のペースはほぼ一定で、数年間という比較的長いスパンでシェアの推移が起こっている。
 
-![Usage of Web Servers](2021-09-27-18-38-11.png)
+![Usage of Web Servers](./public/2021-09-27-18-38-11.png)
 <https://news.livedoor.com/article/detail/20472752/>
 
 ### 5.4. Static Content（静的コンテンツ）
@@ -948,7 +948,7 @@ Microsoftが開発・管理している
 
 コンテンツキャッシュサーバーの役割も果たす。CDNを提供する事業者やクラウドサービスはいくつかある。CDNを実現する、つまり同一のコンテンツを多くのサーバでミラーする手段としては、単純なDNSラウンドロビンから、P2P、地理情報を加味した複雑な配信技術までさまざまなものがあり、研究、実用化がなされている。(左) 単一のサーバーによる配信　(右) CDNによる配信
 
-![CDNの概念図](2021-09-27-18-51-32.png)
+![CDNの概念図](./public/2021-09-27-18-51-32.png)
 
 ### 5.6. CDN 事業者
 
@@ -1051,7 +1051,7 @@ Microsoftのミドルウェア（WEBサーバーでもある）
 
 W3Cが標準化・管理。HTMLはテキスト文書を扱うために構造化された言語だが、そのままではコンピュータで扱うことはできず、一度解析をして、メモリ上に構造化されたデータとして読み込む必要がある。こんなツリー上のデータ。
 
-![DOMのイメージ](2021-09-27-18-54-54.png)
+![DOMのイメージ](./public/2021-09-27-18-54-54.png)
 
 ブラウザで解析された HTMLのデータに対してデータの読み込みや変更を行いたい場合は、何らかの形で操作方法を提供する必要がある。
 
@@ -1088,7 +1088,7 @@ CSSはHTMLの見栄えを変更することを目的に策定された。その�
 
 CSSでHTMLから見栄えの部分の分離ができたとはいえ、ゼロからCSSを書くのは大変です。そこでよく使われるスタイルをあらかじめ定義しておいて、それを利用する方法が考えられました。それがCSSフレームワークです。CSSフレームワークにもいくつか実装がありますが、代表的なものにBootstrap。2020年の利用率調査ではこんな感じでした。ただ、SatisfactionではTailwind CSSが1位で、Bootstrapは中位くらいでした。
 
-![CSSフレームワークの利用実績率](2021-09-27-18-56-15.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
+![CSSフレームワークの利用実績率](./public/2021-09-27-18-56-15.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
 <https://2020.stateofcss.com/en-US/>
 <https://coliss.com/articles/build-websites/operation/css/the-state-of-css-2020.html>
@@ -1277,8 +1277,8 @@ WEBサイトのデザインの変遷として、下記のパターンと流れ�
 
 #### 7.13.1. Skeuomorphism Design
 
-![スキューモーフィズムデザイン例１](2021-09-27-19-14-45.png)
-![スキューモーフィズムデザイン例２](2021-09-27-19-15-03.png)
+![スキューモーフィズムデザイン例１](./public/2021-09-27-19-14-45.png)
+![スキューモーフィズムデザイン例２](./public/2021-09-27-19-15-03.png)
 
 スキューモーフィズムデザインと読む。初期のデザイン。ギリシャ由来の言葉で、リアリズムに影響を受けた実際にあるものに近しいデザイン。
 
@@ -1289,8 +1289,8 @@ WEBサイトのデザインの変遷として、下記のパターンと流れ�
 
 #### 7.13.2. Flat Design
 
-![フラットデザイン例１](2021-09-27-20-41-48.png)
-![フラットデザイン例２](2021-09-27-20-42-02.png)
+![フラットデザイン例１](./public/2021-09-27-20-41-48.png)
+![フラットデザイン例２](./public/2021-09-27-20-42-02.png)
 
 現在主流。質感や立体感を取り除いたシンプルなデザイン。
 
@@ -1300,8 +1300,8 @@ WEBサイトのデザインの変遷として、下記のパターンと流れ�
 
 #### 7.13.3. Material Design
 
-![マテリアルデザイン例１](2021-09-27-20-43-33.png)
-![マテリアルデザイン例２](2021-09-27-20-43-47.png)
+![マテリアルデザイン例１](./public/2021-09-27-20-43-33.png)
+![マテリアルデザイン例２](./public/2021-09-27-20-43-47.png)
 
 フラットデザインに少しスキューモーフィズムを追加した感じ。2014年にGoogleが提唱したデザイン。明確なガイドラインが定められたデザインであり、「見やすく、直感的に操作できるWebページ・サービス」を作ることを目的としています。
 
@@ -1358,7 +1358,7 @@ Webの初期のころに使われていたNetscape Navigatorというブラウ�
 
 色んな技術の外観はこんな感じ。右上は利用も満足度も高い。左上は利用は少ないが満足度は高い。
 
-![JavaScript周りの技術](2021-09-27-20-56-44.png)
+![JavaScript周りの技術](./public/2021-09-27-20-56-44.png)
 
 <https://2020.stateofjs.com/en-US/technologies/>
 
@@ -1406,7 +1406,7 @@ TypeScriptの利用率が圧倒的。グラフは割愛したが、満足度も9
 
 <https://2020.stateofjs.com/en-US/technologies/javascript-flavors/>
 
-![TypeScriptの利用実績率](2021-09-27-20-59-46.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
+![TypeScriptの利用実績率](./public/2021-09-27-20-59-46.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
 ### 8.3. Front-End JS Frameworks
 
@@ -1440,9 +1440,9 @@ GoogleのAngularチームが中心となり、個人や企業のコミュニテ�
 
 <https://2020.stateofjs.com/en-US/technologies/front-end-frameworks/>
 
-![Front-End JS Frameworks の利用実績率](2021-09-27-21-01-26.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
+![Front-End JS Frameworks の利用実績率](./public/2021-09-27-21-01-26.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
-![Front-End JS Frameworks の満足度](2021-09-27-21-01-51.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
+![Front-End JS Frameworks の満足度](./public/2021-09-27-21-01-51.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
 
 #### 8.3.6. Other Alt JS
 
@@ -1463,7 +1463,7 @@ GoogleのAngularチームが中心となり、個人や企業のコミュニテ�
 
 Runtimeは実行環境。サーバーサイドもJavaScriptでやる利点は、サーバーサイドとクライアントサイドが同じ言語になり、同じ技術者がサーバーとクライアント両方を開発しやすくなり、通常なら必要となる双方の技術者間の仕様のすり合わせなどが少なくなり、開発コストが押さえやすくなること。
 
-![JS Runtimeの利用調査](2021-09-27-21-03-11.png)*Which engines/runtimes/execution environments do you regularly use?*
+![JS Runtimeの利用調査](./public/2021-09-27-21-03-11.png)*Which engines/runtimes/execution environments do you regularly use?*
 
 <https://2020.stateofjs.com/en-US/other-tools/>
 <https://persol-tech-s.co.jp/hatalabo/it_engineer/225.html>
@@ -1510,9 +1510,9 @@ Node.jsで開発を行う際に欠かせない。代表的なパッケージ例�
 
 WEBアプリ開発における必須のスキル「MERN」という言葉がありますが、MERNのEはExpressのEですから、そのあたりの言葉にも如実に表れています。ちなみにMはMongoDB、RはReact、NはNode.jsです。
 
-![Back-End JS Frameworks の利用実績率](2021-09-27-21-05-33.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
+![Back-End JS Frameworks の利用実績率](./public/2021-09-27-21-05-33.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
-![Back-End JS Frameworks の満足度](2021-09-27-21-06-01.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
+![Back-End JS Frameworks の満足度](./public/2021-09-27-21-06-01.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
 
 <https://2020.stateofjs.com/en-US/technologies/back-end-frameworks/>
 
@@ -1563,9 +1563,9 @@ Node.jsスタイルのコードは、そのままの状態ではブラウザで�
 
 webpackの優位性で議論が決着したかと思いきや、Snowpackやesbuildなどの新規参入者によってビルドツールのシーンが再び爆発的に増え、State of JSのサイトにおいても、2017年以来のフルセクションを設けられた。
 
-![ビルドツールの利用実績率](2021-09-27-21-11-55.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
+![ビルドツールの利用実績率](./public/2021-09-27-21-11-55.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
-![ビルドツールの満足度](2021-09-27-21-12-25.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
+![ビルドツールの満足度](./public/2021-09-27-21-12-25.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
 
 <https://2020.stateofjs.com/en-US/technologies/build-tools/>
 <https://qiita.com/yukibe/items/453d874eb7ce929363d6>
@@ -2004,7 +2004,7 @@ Tideは、迅速な開発のために作られた、ミニマルで実用的なR
 <https://ja.wikipedia.org/wiki/Nim>
 - F#：　これまた写ってませんが・・・、OCaml という言語をベースに開発された2プログラミング言語で、C# の速度・クロスプラットフォーム性・ライブラリの多さ・開発環境、Python のオフサイドルール、Haskell のモナド文化、静的ダックタイピング(事実上のトレイト/型クラス)、コンパイル時型生成(type providers)、といった要素を兼ね備えています。<https://qiita.com/cannorin/items/59d79cc9a3b64c761cd4>
 
-![JS以外の利用言語](2021-09-27-21-25-43.png)
+![JS以外の利用言語](./public/2021-09-27-21-25-43.png)
 
 <https://2020.stateofjs.com/en-US/other-tools/>
 <https://qiita.com/inagacky/items/43cc0518ef11f1e4beb3>
@@ -2013,7 +2013,7 @@ Tideは、迅速な開発のために作られた、ミニマルで実用的なR
 
 Pythonは機械学習の人気も相まって、今最も人気のあるサーバーサイドスクリプトです。動的型付け言語。同じ数の空白でインデントされたまとまりを一つのブロックと認識します。Webアプリケーションやデスクトップアプリケーションといった様々なシステムの開発が行えます。科学計算、機械学習の分野において採用されるケースが多い
 
-![Pythonフレームワークの利用調査](2021-09-27-21-27-00.png)
+![Pythonフレームワークの利用調査](./public/2021-09-27-21-27-00.png)
 
 <https://www.jetbrains.com/lp/python-developers-survey-2020/>
 
@@ -2243,7 +2243,7 @@ ApolloはGraphQLのフロントエンド＆バックエンドのライブラリ�
 
 またGraphiQLというVisual Editorがツールとして付属しているのでAPIの動作確認を簡単に行うことができます。Apollo を利用することで、あらゆるデータが GraphQL サーバーとして集約されます。
 
-![Apolloのイメージ図](2021-09-27-21-48-32.png)
+![Apolloのイメージ図](./public/2021-09-27-21-48-32.png)
 
 こうすることでバックエンドの複雑性が Apollo によって隠蔽され、クライアントおよびバックエンドは Apollo サーバーとの接続にのみ注意すればよくなる
 
@@ -2425,7 +2425,7 @@ Googleが開発したので、「Google Ads」「Google Fiber」「Google Expres
 
 フロントエンドのためのバックエンド（サーバ）です。フロントエンドのためにAPIをコールしたり、HTMLを生成したりするサーバのことを指します。ここだけ読むと「今までのWebアプリケーションサーバと何が違うのか」と思うかもしれません。本質的にはそこまで変わりませんが、「フロントエンド専用」という役割が異なります。
 
-![BFFのイメージ](2021-09-27-22-03-58.png)
+![BFFのイメージ](./public/2021-09-27-22-03-58.png)
 
 <https://atmarkit.itmedia.co.jp/ait/articles/1803/12/news012.html>
 
@@ -2588,7 +2588,7 @@ ER図は、実体そのものの間の関連ではなく、実体内の要素の
 
 概念データモデル。システム全体をモデル化し、シンボルを用いて事象を大まかな分類した図
 
-![Conceptual Data Modelのサンプル](2021-09-27-22-10-25.png)
+![Conceptual Data Modelのサンプル](./public/2021-09-27-22-10-25.png)
 
 <https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/>
 
@@ -2596,7 +2596,7 @@ ER図は、実体そのものの間の関連ではなく、実体内の要素の
 
 論理データモデル。概念データモデルを詳細に落とし込んで、画面や帳票などのシステムで必要とする属性を付与したモデル図
 
-![Logical Data Modelのサンプル](2021-09-27-22-11-00.png)
+![Logical Data Modelのサンプル](./public/2021-09-27-22-11-00.png)
 
 <https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/>
 
@@ -2604,7 +2604,7 @@ ER図は、実体そのものの間の関連ではなく、実体内の要素の
 
 物理データモデル。論理データモデルさらに詳細に落とし込んだ図で、実際のデータベースの情報と1対1の関係になっています。
 
-![Physical Data Modelのサンプル](2021-09-27-22-11-30.png)
+![Physical Data Modelのサンプル](./public/2021-09-27-22-11-30.png)
 
 <https://online.visual-paradigm.com/knowledge/visual-modeling/conceptual-vs-logical-vs-physical-data-model/>
 
@@ -2617,9 +2617,9 @@ ER図を拡張した「拡張実体関連モデル」。EER図は、ER図に以�
 3. カテゴリーまたはユニオン
 4. アトリビュート（属性）やリレーションの継承
 
-![サブクラスとスーパークラスのイメージ](2021-09-27-22-13-09.png)*サブクラスとスーパークラス*
-![特殊化と一般化のイメージ](2021-09-27-22-13-33.png)*特殊化と一般化*
-![カテゴリーまたはユニオンのイメージ](2021-09-27-22-13-50.png)*カテゴリーまたはユニオン*
+![サブクラスとスーパークラスのイメージ](./public/2021-09-27-22-13-09.png)*サブクラスとスーパークラス*
+![特殊化と一般化のイメージ](./public/2021-09-27-22-13-33.png)*特殊化と一般化*
+![カテゴリーまたはユニオンのイメージ](./public/2021-09-27-22-13-50.png)*カテゴリーまたはユニオン*
 
 <https://www.tutorialspoint.com/Extended-Entity-Relationship-EE-R-Model>
 <https://cacoo.com/ja/blog/entity-relationship-diagram-for-beginner/>
@@ -2655,7 +2655,7 @@ draw.io と同じくらい有名だと個人的に思う。Lucidchart（ルシ�
 2011年、Lucid社は「エンジェル・ファンディング」で100万ドルを調達。2018年、Lucid社はMeritech CapitalとICONIQ Capitalから7,200万ドルの追加調達を発表。
 
 Lucidchartは使ったことはありませんが、これも使いやすそうですね。ただ、無料プランだと３つしか作ることが出来なさそうなところがちょっとイマイチですね。
-![Lucidchartの料金表（2021年10月1日時点）](2021-10-01-16-08-25.png)*Lucidchartの料金表（2021年10月1日時点）*
+![Lucidchartの料金表（2021年10月1日時点）](./public/2021-10-01-16-08-25.png)*Lucidchartの料金表（2021年10月1日時点）*
 
 <https://youtu.be/5a_FQPLMkKI>
 <https://en.wikipedia.org/wiki/Lucidchart>
@@ -3188,9 +3188,9 @@ SpotBugsは、Javaプログラムの中のバグを見つけるプログラム�
 
 こちらも言語ごとに色々あります。JSだと利用実績と満足度はこんな感じ。
 
-![Test Frameworksの利用実績率](2021-09-27-22-52-03.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
+![Test Frameworksの利用実績率](./public/2021-09-27-22-52-03.png)*利用実績率の推移。Usage = (would use again + would not use again) / total*
 
-![Test Frameworksの満足度](2021-09-27-22-52-45.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
+![Test Frameworksの満足度](./public/2021-09-27-22-52-45.png)*満足度の推移。Satisfaction = would use again / (would use again + would not use again)*
 
 <https://2020.stateofjs.com/en-US/technologies/testing/>
 
@@ -3566,7 +3566,7 @@ E2E テストは「総合テスト」フェーズで実施されます。多く�
 
 AWSの全体像はこんな感じ。落ちてるものから分かりやすかったものをいくつか拾ってきた。まずは公式サイトのAmazonにあるWEBアプリケーションのよくある構成。（AWSのサイトで拾ったので、全部AWSサービスで構成されているが・・・）
 
-![AWSの構成イメージ](2021-09-27-23-04-13.png)
+![AWSの構成イメージ](./public/2021-09-27-23-04-13.png)
 
 <https://docs.aws.amazon.com/whitepapers/latest/web-application-hosting-best-practices/an-aws-cloud-architecture-for-web-hosting.html>
 
@@ -3686,7 +3686,7 @@ Managed Servicesのメリットは以下。サーバーレスのこと。
 
 サーバーにかかる負荷を、平等に振り分けるための装置のことを指します。これによって1つのサーバーにかかる負担を軽減したり、停止状態を防ぐことができたりします。SSLアクセラレーターを使用することにより、本来サーバーごとに必要なSSL証明書を1本化したり、暗号化通信の負荷を軽減できたりします。
 
-![LBのイメージ](2021-09-27-23-08-52.png)
+![LBのイメージ](./public/2021-09-27-23-08-52.png)
 
 <https://www.kagoya.jp/howto/it-glossary/network/loadvalancer/>
 
@@ -3720,7 +3720,7 @@ AWSやGCPもサーバーレスを提供しているが、使い勝手の良い�
 
 対応言語：Node.js, C++. Kotlin, Java, Object-C, Swift。モバイルアプリ開発に使われることも多いので、mBaaS(mobile backend as a Service)と呼ばれたりもします。例えばNuxt.jsを利用して開発したSPAをインターネット上で配信する際にバックエンドで必要となる機能は、大きく分けて下記の点。
 
-![Firebaseのイメージ](2021-09-27-23-09-55.png)
+![Firebaseのイメージ](./public/2021-09-27-23-09-55.png)
 
 <https://firebase.google.com/>
 <https://www.ycombinator.com/companies/firebase>
@@ -4094,7 +4094,7 @@ JSON Web Token (JWT) はオープンスタンダード (RFC 7519) で、当事�
 
 Auth0 Inc.は2013年に米国Microsoftに在籍していたメンバーを中心に創業した会社で、Washington州Bellevueに本社があります。創業メンバーはEugenio Pace(CEO), Matias Woloski(CTO)　などMicrosoftに在籍していたメンバーのほか、Node.jsの認証フレームワークである"Passport"の開発者であった Jered Hanson, AT&T, Amazon.com, 国防総省での勤務経験のある Eugen Koganも創業メンバーです。
 
-![Auth0のイメージ](2021-09-28-14-48-02.png)
+![Auth0のイメージ](./public/2021-09-28-14-48-02.png)
 
 <https://auth0.com/>
 <https://classmethod.jp/partner/auth0/>
