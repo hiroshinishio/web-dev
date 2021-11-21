@@ -1261,8 +1261,8 @@ Webサイトのデザインを「閲覧ユーザーが使用するデバイス�
 閲覧ユーザーの画面サイズに応じたページサイズの切り替えができるようになります。
 
 ```css
-@media screen and (min-width: 481px)　{ A }
-@media screen and (max-width: 480px)　{ B }
+@media screen and (min-width: 481px)　{ "A" }
+@media screen and (max-width: 480px)　{ "B" }
 ```
 
 1行目で「min-width: 481px」と指定することで、画面横のサイズ（CSSピクセル）が481pxに達した時に、モバイル版ページからPC版ページへと画面サイズが切り替わるようになります。Aの部分にCSSコードを入れます。2行目にはモバイル版のコードをBに入れるイメージ。
